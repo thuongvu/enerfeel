@@ -1,0 +1,30 @@
+{
+  "name": "EnerFeel",
+  "version": "0.0.0",
+  "description": "NPM Modules for EnerFeel",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thuongvu/enerfeel.git"
+  },
+  "author": "Thuongvu Ho",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/thuongvu/enerfeel/issues"
+  },
+  "dependencies": {
+    "bower": "~1.2.8"
+    ,"express": "3.1.0"
+    ,"underscore": "*"
+    ,"ejs": "0.8.5"
+    ,"mongojs": "0.9.11"
+    ,"forever": "0.10.11"
+    ,"mongoose": "3.8.4"
+    ,"connect-flash": "0.1.1"
+    ,"passport" : "0.1.18"
+    ,"passport-facebook":"1.0.2"
+  }
+}

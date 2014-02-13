@@ -1,0 +1,26 @@
+{
+  "name": "EnerFeel",
+  "version": "0.0.0",
+  "homepage": "https://github.com/thuongvu/enerfeel.git",
+  "author": [
+    "Thuongvu Ho"
+  ],
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.8",
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.0.3",
+    "angular-resource": "~1.2.8",
+    "angular-route": "~1.2.8",
+    "normalize-css": "3.0.0",
+    "angular-cookies": "~1.2"
+  }
+}
