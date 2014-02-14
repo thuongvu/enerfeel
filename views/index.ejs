@@ -8,8 +8,12 @@
 	<body>
 		Hello world
 		<div ng-controller="mainCtrl">
-			
+			<input ng-model="energy.level" type="number"></input>
+			<button ng-click="add(energy.level)">Add</button>
+			<graph data="dataContainer"></graph>
 		</div>
+
+
 
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/angular-resource/angular-resource.min.js"></script>
