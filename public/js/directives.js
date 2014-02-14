@@ -63,7 +63,9 @@ angular.module('app.directives', [])
 				var svg = d3.select("body").append("svg") //svg needs to be a global var
 					.attr("width", width)
 					.attr("height", height)
-				  		.append("g") // this one is used for tick marks!
+					// .append("j")
+				 
+
 
 				// APPENDING + CALLING AXES
 
@@ -75,7 +77,7 @@ angular.module('app.directives', [])
 				 .append("text") 
 						.text("Date")
 						.attr("x", width / 2)
-						.attr("y", 50)
+						.attr("y", 50);
 
 					// y axis
 				svg.append("g")
