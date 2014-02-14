@@ -86,23 +86,17 @@ angular.module('app.directives', [])
 					.call(yAxis)
 						
 				// PATH
-				var path = svg.append("g") //path needs to be a global var
+				var path = svg.append("g").attr("class", "linepath") //path needs to be a global var
 					.append("path")
 					.datum(graphData)
 					.attr("d", line)
 					.attr("class", "line")
 
 				// CIRCLES	
-				// var h = svg.append("h");
-
-				// var circles = d3.selectAll('svg').append('svg')
-				// 	append('g').data(graphData)
-
-				var circles = svg.selectAll(".circles")
+				var circles = svg.append("g")
+					.attr("class", "circles")
+					.selectAll(".circles")
 					.data(graphData);
-
-				// var circles = svg.selectAll(".circles")
-				// 	.data(graphData);
 
 				circles
 					.enter()
@@ -117,8 +111,7 @@ angular.module('app.directives', [])
 					.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
 					.attr("opacity", 0.5)
 
-
-				// circles
+				// circles tooltip
 					.append("svg:p")
 						.text(function(d) {
 							return d.note;
