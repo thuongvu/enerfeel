@@ -21,6 +21,8 @@ angular.module('app.directives', [])
 					.attr("height", height)
 					.attr("class", "chart")
 
+				// SCALES
+
 				// x scale
 				var x = d3.time.scale()
 					.domain(d3.extent(graphData, function (d) {
@@ -61,7 +63,7 @@ angular.module('app.directives', [])
 				var svg = d3.select("body").append("svg") //svg needs to be a global var
 					.attr("width", width)
 					.attr("height", height)
-				  		.append("g")
+				  		// .append("g") // unneeded g?
 
 					// APPENDING + CALLING AXES
 
@@ -87,6 +89,18 @@ angular.module('app.directives', [])
 					.datum(graphData)
 					.attr("d", line)
 					.attr("class", "line")
+
+				path.on("mouseover", function(d) {
+					console.log("mouseover!")
+					d3.select(this)
+						.attr("class", "line_hover")
+				})
+
+				path.on("mouseout", function(d) {
+					console.log("mouseout!")
+					d3.select(this)
+						.attr("class", "line")
+				})
 
 			scope.$watch('data', updateGraph, true);
 
