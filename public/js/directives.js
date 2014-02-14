@@ -51,7 +51,7 @@ angular.module('app.directives', [])
 				// LINE
 				var line = d3.svg.line()
 					.x(function (d) {
-						return x(d.date) 
+						return x(d.date);
 					})
 					.y(function (d) {
 						return y(d.energylevel) 
@@ -116,18 +116,18 @@ angular.module('app.directives', [])
 					var xAxis = d3.svg.axis()
 						.scale(x)
 						.orient("bottom")
-						.ticks(10)
+						.ticks(5)
 
 						 // y axis
 					var yAxis = d3.svg.axis()
 						.scale(y)
 						.orient("left")
-						.ticks(10)
+						.ticks(5)
 
 					// REDEFINING LINE
 					var line = d3.svg.line()
 						.x(function (d) {
-							return x(d.date) 
+							return x(d.date);
 						})
 						.y(function (d) {
 							return y(d.energylevel) 
