@@ -50,14 +50,14 @@ angular.module('app.directives', [])
 				   .orient("left")
 					.ticks(10)
 
-				// // LINE
-				// var line = d3.svg.line()
-				// 	.x(function (d) {
-				// 		return x(d.date);
-				// 	})
-				// 	.y(function (d) {
-				// 		return y(d.energylevel) 
-				// 	})
+				// LINE
+				var line = d3.svg.line()
+					.x(function (d) {
+						return x(d.date);
+					})
+					.y(function (d) {
+						return y(d.energylevel) 
+					})
 
 				// SVG INNER DIMENSION
 				var svg = d3.select("body").append("svg") //svg needs to be a global var
@@ -83,19 +83,20 @@ angular.module('app.directives', [])
 					.attr("transform", "translate(" + padding + ",-10)")                  
 					.call(yAxis)
 						
-				// // PATH
-				// var path = svg.append("g") //path needs to be a global var
-				// 	.append("path")
-				// 	.datum(graphData)
-				// 	.attr("d", line)
-				// 	.attr("class", "line")
+				// PATH
+				var path = svg.append("g") //path needs to be a global var
+					.append("path")
+					.datum(graphData)
+					.attr("d", line)
+					.attr("class", "line")
 
 				// CIRCLES	
-				var g = svg.append("g");
+				// var g = svg.append("g");
 
-				var circles = g.selectAll(".circles")
-					.data(graphData)
-					.enter()
+				var circles = svg.selectAll(".circles")
+					.data(graphData);
+
+					circles.enter()
 					.append("circle")
 					.attr("cx", function(d) {
 						return x(d.date);
@@ -157,36 +158,37 @@ angular.module('app.directives', [])
 						.orient("left")
 						.ticks(5)
 
-					// // REDEFINING LINE
-					// var line = d3.svg.line()
-					// 	.x(function (d) {
-					// 		return x(d.date);
-					// 	})
-					// 	.y(function (d) {
-					// 		return y(d.energylevel) 
-					// 	})
+					// REDEFINING LINE
+					var line = d3.svg.line()
+						.x(function (d) {
+							return x(d.date);
+						})
+						.y(function (d) {
+							return y(d.energylevel) 
+						})
 
 					// AXES TRANSITION
 
 						// x axis + calling
 					svg.select(".x.axis").transition()
-						.duration(150)
+						.duration(500)
 						.call(xAxis)
 
 						// y axis + calling			
 					svg.select(".y.axis").transition()
-						.duration(150)
+						.duration(500)
 						.call(yAxis)
 
 					// // PATH TRANSITION
 					
-					// path.attr("d", line)
-					// 	 .attr("transform", null)
-					//  .transition()
-					// 	.duration(750)
-					// 	.ease("linear")
+					path.attr("d", line)
+						 .attr("transform", null)
+					 .transition()
+						.duration(750)
+						.ease("linear")
 
 					// CIRCLE
+
 					circles
 						.data(graphData)
 						.enter()
@@ -199,9 +201,18 @@ angular.module('app.directives', [])
 						})
 						.attr("r", 10)
 						.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-						.attr("opacity", 0.5)
+						.attr("opacity", 0.5);
+
+					circles
+						.attr("cx", function(d) {
+							return x(d.date);
+						})
+						.attr("cy", function(d) {
+							return y(d.energylevel)
+						})
 
 
+					// svg.select(".circles").transition().duration(150)
 
 					// console.log(graphData)
 				}
