@@ -50,20 +50,20 @@ angular.module('app.directives', [])
 				   .orient("left")
 					.ticks(10)
 
-				// LINE
-				var line = d3.svg.line()
-					.x(function (d) {
-						return x(d.date);
-					})
-					.y(function (d) {
-						return y(d.energylevel) 
-					})
+				// // LINE
+				// var line = d3.svg.line()
+				// 	.x(function (d) {
+				// 		return x(d.date);
+				// 	})
+				// 	.y(function (d) {
+				// 		return y(d.energylevel) 
+				// 	})
 
 				// SVG INNER DIMENSION
 				var svg = d3.select("body").append("svg") //svg needs to be a global var
 					.attr("width", width)
 					.attr("height", height)
-				  		// .append("g") // unneeded g?
+				  		.append("g") // unneeded g?
 
 					// APPENDING + CALLING AXES
 
@@ -83,24 +83,43 @@ angular.module('app.directives', [])
 					.attr("transform", "translate(" + padding + ",-10)")                  
 					.call(yAxis)
 						
-				// PATH
-				var path = svg.append("g") //path needs to be a global var
-					.append("path")
-					.datum(graphData)
-					.attr("d", line)
-					.attr("class", "line")
+				// // PATH
+				// var path = svg.append("g") //path needs to be a global var
+				// 	.append("path")
+				// 	.datum(graphData)
+				// 	.attr("d", line)
+				// 	.attr("class", "line")
 
-				path.on("mouseover", function(d) {
-					console.log("mouseover!")
-					d3.select(this)
-						.attr("class", "line_hover")
-				})
+				// CIRCLES	
+				var g = svg.append("g");
 
-				path.on("mouseout", function(d) {
-					console.log("mouseout!")
-					d3.select(this)
-						.attr("class", "line")
-				})
+				var circles = g.selectAll(".circles")
+					.data(graphData)
+					.enter()
+					.append("circle")
+					.attr("cx", function(d) {
+						return x(d.date);
+					})
+					.attr("cy", function(d) {
+						return y(d.energylevel)
+					})
+					.attr("r", 10)
+					.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+					.attr("opacity", 0.5)
+
+				// // PATH MOUSEOVERS
+
+				// path.on("mouseover", function(d) {
+				// 	console.log("mouseover!")
+				// 	d3.select(this)
+				// 		.attr("class", "line_hover")
+				// })
+
+				// path.on("mouseout", function(d) {
+				// 	console.log("mouseout!")
+				// 	d3.select(this)
+				// 		.attr("class", "line")
+				// })
 
 			scope.$watch('data', updateGraph, true);
 
@@ -138,14 +157,14 @@ angular.module('app.directives', [])
 						.orient("left")
 						.ticks(5)
 
-					// REDEFINING LINE
-					var line = d3.svg.line()
-						.x(function (d) {
-							return x(d.date);
-						})
-						.y(function (d) {
-							return y(d.energylevel) 
-						})
+					// // REDEFINING LINE
+					// var line = d3.svg.line()
+					// 	.x(function (d) {
+					// 		return x(d.date);
+					// 	})
+					// 	.y(function (d) {
+					// 		return y(d.energylevel) 
+					// 	})
 
 					// AXES TRANSITION
 
@@ -159,13 +178,32 @@ angular.module('app.directives', [])
 						.duration(150)
 						.call(yAxis)
 
-					// PATH TRANSITION
+					// // PATH TRANSITION
 					
-					path.attr("d", line)
-						 .attr("transform", null)
-					 .transition()
-						.duration(750)
-						.ease("linear")
+					// path.attr("d", line)
+					// 	 .attr("transform", null)
+					//  .transition()
+					// 	.duration(750)
+					// 	.ease("linear")
+
+					// CIRCLE
+					circles
+						.data(graphData)
+						.enter()
+						.append("circle")
+						.attr("cx", function(d) {
+							return x(d.date);
+						})
+						.attr("cy", function(d) {
+							return y(d.energylevel)
+						})
+						.attr("r", 10)
+						.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+						.attr("opacity", 0.5)
+
+
+
+					// console.log(graphData)
 				}
 
 			}
