@@ -96,10 +96,10 @@ angular.module('app.directives', [])
 				var circles = svg.append("g")
 					.attr("class", "circles")
 					.selectAll(".circles")
-					.data(graphData);
+					.data(graphData)
+					.enter();
 
 				circles
-					.enter()
 					.append("svg:circle")
 					.attr("cx", function(d) {
 						return x(d.date);
@@ -109,19 +109,34 @@ angular.module('app.directives', [])
 					})
 					.attr("r", 10)
 					.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-					.attr("opacity", 0.5)
+					.attr("opacity", 0.5);
+
+				circles.append("text")
+					.text(function(d) {
+						return d.note;
+					})
+					.attr("x", function(d) {
+						return x(d.date);
+					})
+					.attr("y", function(d) {
+						return y(d.energylevel)
+					})
+					.attr("dy", ".5em")
+
 
 				// circles tooltip
-					.append("svg:p")
-						.text(function(d) {
-							return d.note;
-						})
-						.attr("x", function(d) {
-							return x(d.date);
-						})
-						.attr("y", function(d) {
-							return y(d.energylevel)
-						})
+				// circles
+				// 	.enter()
+				// 	.append("svg:title")
+				// 		.text(function(d) {
+				// 			return d.note;
+				// 		})
+						// .attr("x", function(d) {
+						// 	return x(d.date);
+						// })
+						// .attr("y", function(d) {
+						// 	return y(d.energylevel)
+						// })
 				
 				// var tooltip = d3.select("body")
 				// 	.append("div")
