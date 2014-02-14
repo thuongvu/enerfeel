@@ -2,18 +2,19 @@ angular.module('app.controllers', [])
 	.controller('mainCtrl', ['$scope', function ($scope) {
 		console.log("in mainCtrl")
 
-		$scope.dataContainer = [{"counter":1, "energylevel":2},{"counter":2, "energylevel":4}];
+		$scope.dataContainer = [{"date": new Date(), "energylevel":2},{"date": new Date(), "energylevel":4}, {"date": new Date(), "energylevel":3}];
 
 
 		$scope.energy = {};
-		var counter = 3;
+		var counter = 4;
 		
 		$scope.add = function(item) {
 			var dataItem = {};
 			dataItem.energylevel = item;
-			// var currentTime = new Date;
+			var currentTime = new Date;
+			dataItem.date = currentTime;
 			// dataItem.time = currentTime;
-			dataItem.counter = counter;
+			// dataItem.date = counter;
 			counter++;
 			$scope.dataContainer.push(dataItem);
 			console.log("dataItem is the data container");

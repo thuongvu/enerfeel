@@ -11,103 +11,147 @@ angular.module('app.directives', [])
 				// set graphData to be the data linked on the 'data' attr of the directive
 				var graphData = scope.data
 				// dimensions of svg
-				var width = 500,
-					 height = 500,
-					 padding = 20;
+				var width = 800,
+					 height = 400,
+					 padding = 50;
 
 				var svg = d3.select(iElement[0])
 					.append("svg")
 					.attr("width", width)
 					.attr("height", height)
 					.attr("class", "chart")
-				// scales for chart
-				var x = d3.scale.ordinal()
-					.domain(graphData.map(function (d) {
-						return d.counter;
-					}))
-					.rangeRoundBands([0, width], .1);
 
-				 var y = d3.scale.linear()
-					.range([height, 0])
+				// x scale
+				var x = d3.time.scale()
+					.domain(d3.extent(graphData, function (d) {
+						return d.date;
+					}))
+					.range([padding, width - padding])
+
+				// y scale
+				var y = d3.scale.linear()
 					.domain([0, d3.max(graphData, function (d) {
 						return d.energylevel;
 					})])
-				// chart
-				var chart = d3.select(".chart")
-					.attr("width", width - padding)
-					.attr("height", height - padding)
-					.append("g")
+					.range([height - padding - 10, padding - 10]) 
 
-				chart.selectAll("rect")
-					.data(graphData)
-					.enter().append("rect")
-						.attr("x", function (d, i) {
-							return i * 25
-						})
-						.attr("y", function (d) {
-							return y(d.energylevel);
-						})
-						.attr("height", function (d) {
-							return height - y(d.energylevel)
-						})
-						.attr("width", 25)
-						.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16)) // http://stackoverflow.com/a/5092846
-				// $watch on data attr of this directive, on change, invoke updateGraph
-				scope.$watch('data', updateGraph, true);
+				// INITIALIZING AXES
+
+				// x axis
+				var xAxis = d3.svg.axis()
+					.scale(x)
+				   .orient("bottom")
+					.ticks(10)
+				// y axis
+				var yAxis = d3.svg.axis()
+					.scale(y)
+				   .orient("left")
+					.ticks(10)
+
+				// LINE
+				var line = d3.svg.line()
+					.x(function (d) {
+						return x(d.date) 
+					})
+					.y(function (d) {
+						return y(d.energylevel) 
+					})
+
+				// SVG INNER DIMENSION
+				var svg = d3.select("body").append("svg") //svg needs to be a global var
+					.attr("width", width)
+					.attr("height", height)
+				  		.append("g")
+
+					// APPENDING + CALLING AXES
+
+					// x axis
+				svg.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0," + (height - padding - 10) + ")")
+					.call(xAxis)
+				 .append("text") 
+						.text("Date")
+						.attr("x", width / 2)
+						.attr("y", 50)
+
+					// y axis
+				svg.append("g")
+					.attr("class", "y axis")
+					.attr("transform", "translate(" + padding + ",-10)")                  
+					.call(yAxis)
+						
+				// PATH
+				var path = svg.append("g") //path needs to be a global var
+					.append("path")
+					.datum(graphData)
+					.attr("d", line)
+					.attr("class", "line")
+
+			scope.$watch('data', updateGraph, true);
 
 				function updateGraph() {
-					// assign data to updated graphData
-					var graphData = scope.data
-					console.log(graphData)
-					// update y domain
-					// y.domain([0, d3.max(graphData, function (d) {
-					// 	return d.energylevel
-					// })])
-					
-						x.domain(graphData.map(function (d) {
-							return d.counter;
+					var graphData = scope.data;
+					console.log(graphData);
+
+					// REDEFINING SCALES
+
+					// x scale
+					var x = d3.time.scale()
+						.domain(d3.extent(graphData, function (d) {
+							return d.date;
 						}))
-						// .rangeRo	undBands([0, width], .1);
-					
-						y.range([height, 0])
+						.range([padding, width - padding])
+
+					 // y scale
+				 	var y = d3.scale.linear()
 						.domain([0, d3.max(graphData, function (d) {
-							// console.log(d.energylevel)
-							return d.energylevel;
-						})])
-		
+					 		return d.energylevel;
+					 	})])
+					 	.range([height - padding - 10, padding - 10]) 
 
-					chart.selectAll("rect")
-						.data(graphData)
-						.enter().append("rect")
-							.attr("x", function (d, i) {
-								return i * 25
-							})
-							.attr("y", function (d) {
-								return y(d.energylevel);
-							})
-							.attr("height", function (d) {
-								return height - y(d.energylevel)
-							})
-							.attr("width", 25)
-							.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16)) // http://stackoverflow.com/a/5092846
+					// REDEFINING AXES
 
-					// update rect
-					var rect = chart.selectAll("rect")
-						.data(graphData);
+						// x axis
+					var xAxis = d3.svg.axis()
+						.scale(x)
+						.orient("bottom")
+						.ticks(10)
 
-					rect.transition()
-						.duration(500)
-						.attr("x", function (d, i) {
-							return i * 25
+						 // y axis
+					var yAxis = d3.svg.axis()
+						.scale(y)
+						.orient("left")
+						.ticks(10)
+
+					// REDEFINING LINE
+					var line = d3.svg.line()
+						.x(function (d) {
+							return x(d.date) 
 						})
-						.attr("y", function (d) {
-							return y(d.energylevel);
+						.y(function (d) {
+							return y(d.energylevel) 
 						})
-						.attr("height", function (d) {
-							return height - y(d.energylevel)
-						})
-						.attr("width", 25)
-						.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16)) // http://stackoverflow.com/a/5092846
+
+					// AXES TRANSITION
+
+						// x axis + calling
+					svg.select(".x.axis").transition()
+						.duration(150)
+						.call(xAxis)
+
+						// y axis + calling			
+					svg.select(".y.axis").transition()
+						.duration(150)
+						.call(yAxis)
+
+					// PATH TRANSITION
+					
+					path.attr("d", line)
+						 .attr("transform", null)
+					 .transition()
+						.duration(750)
+						.ease("linear")
 				}
 
 			}
