@@ -20,7 +20,7 @@ app.set("views", __dirname + "/views");
 app.use(express.static("public", __dirname + "/public"));
 
 app.get("/", function(req,res) {
-	res.render("index");
+	res.render("index.ejs");
 })
 
 
