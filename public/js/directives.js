@@ -23,14 +23,14 @@ angular.module('app.directives', [])
 
 				// SCALES
 
-				// x scale
+					// x scale
 				var x = d3.time.scale()
 					.domain(d3.extent(graphData, function (d) {
 						return d.date;
 					}))
 					.range([padding, width - padding])
 
-				// y scale
+					// y scale
 				var y = d3.scale.linear()
 					.domain([0, d3.max(graphData, function (d) {
 						return d.energylevel;
@@ -39,12 +39,12 @@ angular.module('app.directives', [])
 
 				// INITIALIZING AXES
 
-				// x axis
+					// x axis
 				var xAxis = d3.svg.axis()
 					.scale(x)
 				   .orient("bottom")
 					.ticks(10)
-				// y axis
+					// y axis
 				var yAxis = d3.svg.axis()
 					.scale(y)
 				   .orient("left")
@@ -63,9 +63,9 @@ angular.module('app.directives', [])
 				var svg = d3.select("body").append("svg") //svg needs to be a global var
 					.attr("width", width)
 					.attr("height", height)
-				  		.append("g") // unneeded g?
+				  		.append("g") // this one is used for tick marks!
 
-					// APPENDING + CALLING AXES
+				// APPENDING + CALLING AXES
 
 					// x axis
 				svg.append("g")
@@ -91,13 +91,20 @@ angular.module('app.directives', [])
 					.attr("class", "line")
 
 				// CIRCLES	
-				// var g = svg.append("g");
+				// var h = svg.append("h");
+
+				// var circles = d3.selectAll('svg').append('svg')
+				// 	append('g').data(graphData)
 
 				var circles = svg.selectAll(".circles")
 					.data(graphData);
 
-					circles.enter()
-					.append("circle")
+				// var circles = svg.selectAll(".circles")
+				// 	.data(graphData);
+
+				circles
+					.enter()
+					.append("svg:circle")
 					.attr("cx", function(d) {
 						return x(d.date);
 					})
@@ -108,19 +115,54 @@ angular.module('app.directives', [])
 					.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
 					.attr("opacity", 0.5)
 
-				// // PATH MOUSEOVERS
 
-				// path.on("mouseover", function(d) {
-				// 	console.log("mouseover!")
-				// 	d3.select(this)
-				// 		.attr("class", "line_hover")
-				// })
+				// circles
+					.append("svg:p")
+						.text(function(d) {
+							return d.note;
+						})
+						.attr("x", function(d) {
+							return x(d.date);
+						})
+						.attr("y", function(d) {
+							return y(d.energylevel)
+						})
+				
+				// var tooltip = d3.select("body")
+				// 	.append("div")
+				// 	.style("position", "absolute")
+				// 	.style("z-index", "10")
+				// 	.style("visibility", "hidden")
+				// 	.text()
+				
 
-				// path.on("mouseout", function(d) {
-				// 	console.log("mouseout!")
-				// 	d3.select(this)
-				// 		.attr("class", "line")
-				// })
+				// MOUSEOVERS
+
+					// path
+				path.on("mouseover", function(d) {
+					console.log("mouseover!")
+					d3.select(this)
+						.attr("class", "line_hover")
+				})
+
+				path.on("mouseout", function(d) {
+					console.log("mouseout!")
+					d3.select(this)
+						.attr("class", "line")
+				})
+
+					// circle
+				circles.on("mouseover", function(d) {
+					d3.select(this)
+						.attr("fill", 'green')
+
+				})
+
+				circles.on("mouseout", function(d) {
+					d3.select(this)
+						.attr("fill", 'blue')
+				})
+
 
 			scope.$watch('data', updateGraph, true);
 
@@ -130,14 +172,14 @@ angular.module('app.directives', [])
 
 					// REDEFINING SCALES
 
-					// x scale
+						// x scale
 					var x = d3.time.scale()
 						.domain(d3.extent(graphData, function (d) {
 							return d.date;
 						}))
 						.range([padding, width - padding])
 
-					 // y scale
+						 // y scale
 				 	var y = d3.scale.linear()
 						.domain([0, d3.max(graphData, function (d) {
 					 		return d.energylevel;
@@ -179,7 +221,7 @@ angular.module('app.directives', [])
 						.duration(500)
 						.call(yAxis)
 
-					// // PATH TRANSITION
+					//PATH TRANSITION
 					
 					path.attr("d", line)
 						 .attr("transform", null)
@@ -188,33 +230,30 @@ angular.module('app.directives', [])
 						.ease("linear")
 
 					// CIRCLE
+						// ENTER ANY NEW ONES
+					// circles
+					// 	.data(graphData)
+					// 	.enter()
+					// 	.append("circle")
+					// 	.attr("cx", function(d) {
+					// 		return x(d.date);
+					// 	})
+					// 	.attr("cy", function(d) {
+					// 		return y(d.energylevel)
+					// 	})
+					// 	.attr("r", 10)
+					// 	.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+					// 	.attr("opacity", 0.5);
 
-					circles
-						.data(graphData)
-						.enter()
-						.append("circle")
-						.attr("cx", function(d) {
-							return x(d.date);
-						})
-						.attr("cy", function(d) {
-							return y(d.energylevel)
-						})
-						.attr("r", 10)
-						.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-						.attr("opacity", 0.5);
+					// 	// UPDATE ANY OLD ONES
+					// circles
+					// 	.attr("cx", function(d) {
+					// 		return x(d.date);
+					// 	})
+					// 	.attr("cy", function(d) {
+					// 		return y(d.energylevel)
+					// 	})
 
-					circles
-						.attr("cx", function(d) {
-							return x(d.date);
-						})
-						.attr("cy", function(d) {
-							return y(d.energylevel)
-						})
-
-
-					// svg.select(".circles").transition().duration(150)
-
-					// console.log(graphData)
 				}
 
 			}
