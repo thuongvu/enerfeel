@@ -51,6 +51,7 @@ angular.module('app.directives', [])
 					.ticks(10)
 
 				// LINE
+				
 				var line = d3.svg.line()
 					.x(function (d) {
 						return x(d.date);
@@ -60,13 +61,11 @@ angular.module('app.directives', [])
 					})
 
 				// SVG INNER DIMENSION
+
 				var svg = d3.select("body").append("svg") //svg needs to be a global var
 					.attr("width", width)
 					.attr("height", height)
-					// .append("j")
 				 
-
-
 				// APPENDING + CALLING AXES
 
 					// x axis
@@ -86,32 +85,28 @@ angular.module('app.directives', [])
 					.call(yAxis)
 						
 				// PATH
+
 				var path = svg.append("g").attr("class", "linepath") //path needs to be a global var
 					.append("path")
 					.datum(graphData)
 					.attr("d", line)
 					.attr("class", "line")
+					.on("mouseover", function(d) {
+						console.log("mouseover!")
+						d3.select(this)
+							.attr("class", "line_hover")
+					})
+					.on("mouseout", function(d) {
+						console.log("mouseout!")
+						d3.select(this)
+							.attr("class", "line")
+					})
 
 				// TOOLTIP	
 
 				var div = d3.select("body").append("div")
 					.attr("class", "tooltip")
 					.style("opacity", 0);
-
-				// MOUSEOVERS
-
-					// path
-				path.on("mouseover", function(d) {
-					console.log("mouseover!")
-					d3.select(this)
-						.attr("class", "line_hover")
-				})
-
-				path.on("mouseout", function(d) {
-					console.log("mouseout!")
-					d3.select(this)
-						.attr("class", "line")
-				})
 
 
 			scope.$watch('data', updateGraph, true);
@@ -179,16 +174,19 @@ angular.module('app.directives', [])
 						.duration(750)
 						.ease("linear")
 
-					// CIRCLES
-						// define
-					var circles =
-						svg.append("g")
-						.attr("class", "circles")
-						.selectAll(".circles")
-						.data(graphData)
+					// CIRCLE
 
-						// enter circle + tooltip						
+			// ************
+			// SPECIAL NOTE:
+			// CANNOT USE G GROUP FOR CIRCLES otherwise stuff breaks.
+			// ************
+
+						// define circles
+					var circles = svg.selectAll(".circles").data(graphData)
+
+						// enter circle + tooltips
 					circles.enter().append("svg:circle")
+						.attr("class", "circles")
 						.attr("cx", function(d) {
 							return x(d.date);
 						})
@@ -212,7 +210,7 @@ angular.module('app.directives', [])
 								.style("opacity", 0)
 						})
 
-						// update (location of circle in svg)
+						// update circle (locations)
 					circles
 						.attr("cx", function(d) {
 							return x(d.date);
@@ -221,7 +219,7 @@ angular.module('app.directives', [])
 							return y(d.energylevel)
 						})
 
-						// exit (not needed, but for future maybe)
+						// circle exit (not needed now, but maybe in the future)
 					circles.exit().remove();
 
 				}
