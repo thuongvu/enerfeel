@@ -2,7 +2,7 @@ angular.module('app.controllers', [])
 	.controller('mainCtrl', ['$scope', function ($scope) {
 		console.log("in mainCtrl")
 
-		$scope.dataContainer = [{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"hello"},{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "world"}, {"date": new Date(2014, 1, 14, 19), "energylevel":3, "note":"this is cool stuff"}];
+		$scope.dataContainer = [{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month"}, {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"hello"},{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "world"}, {"date": new Date(2014, 1, 14, 19), "energylevel":3, "note":"this is cool stuff"}];
 		console.log($scope.dataContainer)
 		$scope.energy = {};
 		var counter = 4;
@@ -43,7 +43,7 @@ angular.module('app.controllers', [])
 			} else if (time === 'week') {
 				var timeAmount = Date.now() - 604800000;
 			} else if (time === 'month') {
-				var timeAmount = Date.now() - 2.62974e9;
+				var timeAmount = Date.now() - 262974000000000;
 			}
 
 			for (prop in $scope.dataContainer) {
