@@ -93,7 +93,7 @@ angular.module('app.directives', [])
 					.attr("class", "line")
 
 				// CIRCLES	
-				var circles = svg.append("g")
+				 circles = svg.append("g")
 					.attr("class", "circles")
 					.selectAll(".circles")
 					.data(graphData)
@@ -103,29 +103,30 @@ angular.module('app.directives', [])
 					.attr("class", "tooltip")
 					.style("opacity", 0);
 				
-				var circle = circles.append("svg:circle")
-					.attr("cx", function(d) {
-						return x(d.date);
-					})
-					.attr("cy", function(d) {
-						return y(d.energylevel)
-					})
-					.attr("r", 10)
-					.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-					.attr("opacity", 0.5)
-					.on("mouseover", function(d) {
-						div.transition()
-							.duration(250)
-							.style("opacity", 1)
-						div .html(d.note)
-							.style("left", (d3.event.pageX) + "px")
-							.style("top", (d3.event.pageY - 28) + "px")
-					})
-					.on("mouseleave", function(d) {
-						div.transition()
-							.duration(250)
-							.style("opacity", 0)
-					})
+				// circles.append("svg:circle")
+					
+				// 	.attr("cx", function(d) {
+				// 		return x(d.date);
+				// 	})
+				// 	.attr("cy", function(d) {
+				// 		return y(d.energylevel)
+				// 	})
+				// 	.attr("r", 10)
+				// 	.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+				// 	.attr("opacity", 0.5)
+				// 	.on("mouseover", function(d) {
+				// 		div.transition()
+				// 			.duration(250)
+				// 			.style("opacity", 1)
+				// 		div .html(d.note)
+				// 			.style("left", (d3.event.pageX) + "px")
+				// 			.style("top", (d3.event.pageY - 28) + "px")
+				// 	})
+				// 	.on("mouseleave", function(d) {
+				// 		div.transition()
+				// 			.duration(250)
+				// 			.style("opacity", 0)
+				// 	})
 
 
 				// MOUSEOVERS
@@ -209,12 +210,50 @@ angular.module('app.directives', [])
 						.duration(750)
 						.ease("linear")
 
-					// CIRCLE
-						// ENTER ANY NEW ONES
-					// circles
+
+					// svg.selectAll(".circles")
 					// 	.data(graphData)
 					// 	.enter()
-					// 	.append("circle")
+					circles
+						.append("svg:circle")
+						.attr("cx", function(d) {
+							return x(d.date);
+						})
+						.attr("cy", function(d) {
+							return y(d.energylevel)
+						})
+						.attr("r", 10)
+						.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+						.attr("opacity", 0.5)
+						.on("mouseover", function(d) {
+							div.transition()
+								.duration(250)
+								.style("opacity", 1)
+							div .html(d.note)
+								.style("left", (d3.event.pageX) + "px")
+								.style("top", (d3.event.pageY - 28) + "px")
+						})
+						.on("mouseleave", function(d) {
+							div.transition()
+								.duration(250)
+								.style("opacity", 0)
+						})
+
+					// svg.selectAll(".circles")
+					// 	.attr("cx", function(d) {
+					// 		return x(d.date);
+					// 	})
+					// 	.attr("cy", function(d) {
+					// 		return y(d.energylevel)
+					// 	})
+
+					// CIRCLE
+						// ENTER ANY NEW ONES
+						// console.log(circles)
+					// circles
+					// 	// .data(graphData)
+					// 	// .enter()
+					// 	.append("svg:circle")
 					// 	.attr("cx", function(d) {
 					// 		return x(d.date);
 					// 	})
@@ -225,7 +264,7 @@ angular.module('app.directives', [])
 					// 	.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
 					// 	.attr("opacity", 0.5);
 
-					// 	// UPDATE ANY OLD ONES
+						// UPDATE ANY OLD ONES
 					// circles
 					// 	.attr("cx", function(d) {
 					// 		return x(d.date);
@@ -233,6 +272,8 @@ angular.module('app.directives', [])
 					// 	.attr("cy", function(d) {
 					// 		return y(d.energylevel)
 					// 	})
+
+					
 
 				}
 
