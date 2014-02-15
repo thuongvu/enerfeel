@@ -97,6 +97,7 @@ angular.module('app.directives', [])
 					.attr("class", "circles")
 					.selectAll(".circles")
 					.data(graphData)
+<<<<<<< HEAD
 					.enter();
 
 				// var tooltips = circles.append("text")
@@ -112,6 +113,34 @@ angular.module('app.directives', [])
 					// })
 					// .attr("dy", ".5em")
 					// .attr("opacity", 0)
+=======
+					.enter()
+					
+				var tooltips = circles.append("text")
+					.attr("class", "tooltip")
+				 .append("svg:circle")
+					.attr("cx", function(d) {
+						return x(d.date);
+					})
+					.attr("cy", function(d) {
+						return y(d.energylevel)
+					})
+					.attr("r", 10)
+					.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+					.attr("opacity", 0.5)
+				 .append("text")
+					.text(function(d) {
+						return d.note;
+					})
+					.attr("x", function(d) {
+						return x(d.date);
+					})
+					.attr("y", function(d) {
+						return y(d.energylevel)
+					})
+					.attr("dy", ".5em")
+					.attr("opacity", 0)
+>>>>>>> f0002aaec1c93c01f6a606636a2a51e48191168d
 
 				
 				var circle = circles.append("svg:circle")
@@ -158,7 +187,6 @@ angular.module('app.directives', [])
 					// 		.attr("opacity", 0)
 					// })
 
-				
 
 
 				// circles tooltip
