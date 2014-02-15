@@ -62,9 +62,9 @@ angular.module('app.directives', [])
 
 				// SVG INNER DIMENSION
 
-				var svg = d3.select("body").append("svg") //svg needs to be a global var
-					.attr("width", width)
-					.attr("height", height)
+				// var svg = d3.select("body").append("svg") //svg needs to be a global var
+				// 	.attr("width", width)
+				// 	.attr("height", height)
 				 
 				// APPENDING + CALLING AXES
 
@@ -137,7 +137,7 @@ angular.module('app.directives', [])
 					var xAxis = d3.svg.axis()
 						.scale(x)
 						.orient("bottom")
-						.ticks(5)
+						.ticks(10)
 
 						 // y axis
 					var yAxis = d3.svg.axis()
