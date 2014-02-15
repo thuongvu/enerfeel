@@ -3,7 +3,7 @@ angular.module('app.controllers', [])
 		console.log("in mainCtrl")
 
 		$scope.dataContainer = [{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"hello"},{"date": new Date(2014, 1, 13, 18), "energylevel":4, "note": "world"}, {"date": new Date(2014, 1, 13, 19), "energylevel":3, "note":"this is cool stuff"}];
-
+		console.log($scope.dataContainer)
 		$scope.energy = {};
 		var counter = 4;
 		
@@ -22,7 +22,7 @@ angular.module('app.controllers', [])
 
 			console.log("dataItem is the data container");
 			console.log($scope.dataContainer);
-			
+
 			$scope.energy.level = null;
 			$scope.energy.note = null;
 		}
