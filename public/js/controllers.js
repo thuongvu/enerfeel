@@ -1,25 +1,25 @@
 angular.module('app.controllers', [])
-	.controller('mainCtrl', ['$scope', 'eventService', function ($scope, eventService) {
+	.controller('mainCtrl', ['$scope', 'EventService', function ($scope, EventService) {
 		console.log("in mainCtrl")
 
 		// $scope.allLifeEvents = [{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month"}, {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"hello"},{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "world"}, {"date": new Date(2014, 1, 14, 19), "energylevel":3, "note":"this is cool stuff"}];
-		$scope.energy = {};
+		$scope.input = {};
 
-		$scope.eventService = eventService;
+		$scope.eventService = EventService;
 
-		// $scope.eventService.allLifeEvents.push(5)
 		console.log($scope.eventService.allLifeEvents)
 		
-		$scope.add = function(energyLevel, note) {
-			var eventData = {};
-			eventData.energylevel = energyLevel;
-			eventData.note = note;
-			eventData.date = new Date();
+		$scope.addEvent = function(energyLevel, note) {
+			var eventData = {
+				energylevel : energyLevel,
+				note			: note,
+				date        : new Date()	
+			};
 
 			$scope.eventService.allLifeEvents.push(eventData);
 
-			$scope.energy.level = null;
-			$scope.energy.note = null;
+			$scope.input.level = null;
+			$scope.input.note = null;
 			// make sure currentfilter isnt null, that means we have to change it at first, currently
 			$scope.filter($scope.currentFilter.time);
 			console.log($scope.currentFilter.time)
