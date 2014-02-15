@@ -120,13 +120,77 @@ angular.module('app.directives', [])
 						div .html(d.note)
 							.style("left", (d3.event.pageX) + "px")
 							.style("top", (d3.event.pageY - 28) + "px")
+							// .attr("x", function(d) {
+							// 	return x(d.date);
+							// })
+							// .attr("y", function(d) {
+							// 	return y(d.energylevel)
+							// })
+							// .attr("dy", ".5em")
+							// .attr("opacity", 1)
 					})
 					.on("mouseleave", function(d) {
 						div.transition()
 							.duration(250)
-							.style("opacity", 0)
+							.attr("opacity", 0)
 					})
 
+				// var tooltips = circles.append("text")
+				// // svg.selectAll("circles")
+				// // 	.data(graphData)
+				// // 	.enter()
+				// 	// .append("text")
+				// 	.text(function(d) {
+				// 		return d.note;
+				// 	})
+				// 	.attr("x", function(d) {
+				// 		return x(d.date);
+				// 	})
+				// 	.attr("y", function(d) {
+				// 		return y(d.energylevel)
+				// 	})
+				// 	.attr("dy", ".5em")
+				// 	.on("mouseover", function(d) {
+				// 		tooltips.transition()
+				// 			.duration(250)
+				// 			.attr("x", function(d) {
+				// 				return x(d.date);
+				// 			})
+				// 			.attr("y", function(d) {
+				// 				return y(d.energylevel)
+				// 			})
+				// 			.attr("dy", ".5em")
+				// 			.attr("opacity", 1)
+				// 	})
+				// 	.on("mouseleave", function(d) {
+				// 		tooltips.transition()
+				// 			.duration(250)
+				// 			.attr("opacity", 0)
+				// 	})
+
+
+
+				// circles tooltip
+				// circles
+				// 	.enter()
+				// 	.append("svg:title")
+				// 		.text(function(d) {
+				// 			return d.note;
+				// 		})
+				// 		.attr("x", function(d) {
+				// 			return x(d.date);
+				// 		})
+				// 		.attr("y", function(d) {
+				// 			return y(d.energylevel)
+				// 		})
+				
+				// var tooltip = d3.select("body")
+				// 	.append("div")
+				// 	.style("position", "absolute")
+				// 	.style("z-index", "10")
+				// 	.style("visibility", "hidden")
+				// 	.text()
+				
 
 				// MOUSEOVERS
 
@@ -142,6 +206,18 @@ angular.module('app.directives', [])
 					d3.select(this)
 						.attr("class", "line")
 				})
+
+					// circle
+				// circles.on("mouseover", function(d) {
+				// 	d3.select(this)
+				// 		.attr("fill", 'green')
+
+				// })
+
+				// circles.on("mouseout", function(d) {
+				// 	d3.select(this)
+				// 		.attr("fill", 'blue')
+				// })
 
 
 			scope.$watch('data', updateGraph, true);
