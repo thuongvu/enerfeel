@@ -93,18 +93,19 @@ angular.module('app.directives', [])
 					.attr("class", "line")
 
 				// CIRCLES	
-				 circles = svg.append("g")
-					.attr("class", "circles")
-					.selectAll(".circles")
-					.data(graphData)
-					.enter();
 
 				var div = d3.select("body").append("div")
 					.attr("class", "tooltip")
 					.style("opacity", 0);
-				
-				// circles.append("svg:circle")
-					
+
+				// var circles = svg.append("g")
+				// var circles =
+				// 	svg.selectAll(".circles")
+				// 	.data(graphData)
+				// 	// .enter();
+
+				// circles.enter().append("svg:circle")
+				// 	.attr("class", "circles")
 				// 	.attr("cx", function(d) {
 				// 		return x(d.date);
 				// 	})
@@ -211,11 +212,14 @@ angular.module('app.directives', [])
 						.ease("linear")
 
 
-					// svg.selectAll(".circles")
-					// 	.data(graphData)
-					// 	.enter()
-					circles
-						.append("svg:circle")
+
+					var circles =
+						svg.selectAll(".circles")
+						.data(graphData)
+						// .enter();
+
+					circles.enter().append("svg:circle")
+						.attr("class", "circles")
 						.attr("cx", function(d) {
 							return x(d.date);
 						})
@@ -238,6 +242,47 @@ angular.module('app.directives', [])
 								.duration(250)
 								.style("opacity", 0)
 						})
+
+
+
+					// svg.selectAll(".circles")
+					circles
+						.attr("cx", function(d) {
+							return x(d.date);
+						})
+						.attr("cy", function(d) {
+							return y(d.energylevel)
+						})
+
+					circles.exit().remove();
+
+					// svg.selectAll(".circles")
+					// 	.data(graphData)
+					// 	.enter()
+					// circles
+					// 	.append("svg:circle")
+					// 	.attr("cx", function(d) {
+					// 		return x(d.date);
+					// 	})
+					// 	.attr("cy", function(d) {
+					// 		return y(d.energylevel)
+					// 	})
+					// 	.attr("r", 10)
+					// 	.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+					// 	.attr("opacity", 0.5)
+					// 	.on("mouseover", function(d) {
+					// 		div.transition()
+					// 			.duration(250)
+					// 			.style("opacity", 1)
+					// 		div .html(d.note)
+					// 			.style("left", (d3.event.pageX) + "px")
+					// 			.style("top", (d3.event.pageY - 28) + "px")
+					// 	})
+					// 	.on("mouseleave", function(d) {
+					// 		div.transition()
+					// 			.duration(250)
+					// 			.style("opacity", 0)
+					// 	})
 
 					// svg.selectAll(".circles")
 					// 	.attr("cx", function(d) {
