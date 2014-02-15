@@ -6,11 +6,18 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		Hello world
 		<div ng-controller="mainCtrl">
-			<input ng-model="energy.level" type="number"></input>
-			<button ng-click="add(energy.level)">Add</button>
-			<graph data="dataContainer"></graph>
+			<div>
+				<input ng-model="energy.level" type="number" placeholder="0"></input>
+				<input ng-model="energy.note" type="text" placeholder="note"></input>
+				<button ng-click="add(energy.level, energy.note)">Add</button>
+			</div>
+			<div>
+				<button ng-click="filter('day')">Day</button>
+				<button ng-click="filter('week')">Week</button>
+				<button ng-click="filter('month')">Month</button>
+			</div>
+			<graph data="dataContainerTwo"></graph>
 		</div>
 
 

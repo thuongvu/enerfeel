@@ -51,6 +51,7 @@ angular.module('app.directives', [])
 					.ticks(10)
 
 				// LINE
+
 				var line = d3.svg.line()
 					.x(function (d) {
 						return x(d.date);
@@ -60,11 +61,11 @@ angular.module('app.directives', [])
 					})
 
 				// SVG INNER DIMENSION
-				var svg = d3.select("body").append("svg") //svg needs to be a global var
-					.attr("width", width)
-					.attr("height", height)
-				  		.append("g") // this one is used for tick marks!
 
+				// var svg = d3.select("body").append("svg") //svg needs to be a global var
+				// 	.attr("width", width)
+				// 	.attr("height", height)
+				 
 				// APPENDING + CALLING AXES
 
 					// x axis
@@ -75,7 +76,7 @@ angular.module('app.directives', [])
 				 .append("text") 
 						.text("Date")
 						.attr("x", width / 2)
-						.attr("y", 50)
+						.attr("y", 50);
 
 					// y axis
 				svg.append("g")
@@ -84,84 +85,28 @@ angular.module('app.directives', [])
 					.call(yAxis)
 						
 				// PATH
-				var path = svg.append("g") //path needs to be a global var
-					.append("path")
+
+				var path = svg.append("g").attr("class", "linepath") //path needs to be a global var
+					.append("path");
+				path
 					.datum(graphData)
+				// path
 					.attr("d", line)
 					.attr("class", "line")
-
-				// CIRCLES	
-				// var h = svg.append("h");
-
-				// var circles = d3.selectAll('svg').append('svg')
-				// 	append('g').data(graphData)
-
-				var circles = svg.selectAll(".circles")
-					.data(graphData);
-
-				// var circles = svg.selectAll(".circles")
-				// 	.data(graphData);
-
-				circles
-					.enter()
-					.append("svg:circle")
-					.attr("cx", function(d) {
-						return x(d.date);
+					.on("mouseover", function(d) {
+						d3.select(this)
+							.attr("class", "line_hover")
 					})
-					.attr("cy", function(d) {
-						return y(d.energylevel)
+					.on("mouseout", function(d) {
+						d3.select(this)
+							.attr("class", "line")
 					})
-					.attr("r", 10)
-					.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-					.attr("opacity", 0.5)
 
+				// TOOLTIP	
 
-				// circles
-					.append("svg:p")
-						.text(function(d) {
-							return d.note;
-						})
-						.attr("x", function(d) {
-							return x(d.date);
-						})
-						.attr("y", function(d) {
-							return y(d.energylevel)
-						})
-				
-				// var tooltip = d3.select("body")
-				// 	.append("div")
-				// 	.style("position", "absolute")
-				// 	.style("z-index", "10")
-				// 	.style("visibility", "hidden")
-				// 	.text()
-				
-
-				// MOUSEOVERS
-
-					// path
-				path.on("mouseover", function(d) {
-					console.log("mouseover!")
-					d3.select(this)
-						.attr("class", "line_hover")
-				})
-
-				path.on("mouseout", function(d) {
-					console.log("mouseout!")
-					d3.select(this)
-						.attr("class", "line")
-				})
-
-					// circle
-				circles.on("mouseover", function(d) {
-					d3.select(this)
-						.attr("fill", 'green')
-
-				})
-
-				circles.on("mouseout", function(d) {
-					d3.select(this)
-						.attr("fill", 'blue')
-				})
+				var div = d3.select("body").append("div")
+					.attr("class", "tooltip")
+					.style("opacity", 0);
 
 
 			scope.$watch('data', updateGraph, true);
@@ -192,7 +137,7 @@ angular.module('app.directives', [])
 					var xAxis = d3.svg.axis()
 						.scale(x)
 						.orient("bottom")
-						.ticks(5)
+						.ticks(10)
 
 						 // y axis
 					var yAxis = d3.svg.axis()
@@ -223,36 +168,62 @@ angular.module('app.directives', [])
 
 					//PATH TRANSITION
 					
-					path.attr("d", line)
+					path
+						.datum(graphData)
+						 .attr("d", line)
 						 .attr("transform", null)
 					 .transition()
 						.duration(750)
 						.ease("linear")
 
-					// CIRCLE
-						// ENTER ANY NEW ONES
-					// circles
-					// 	.data(graphData)
-					// 	.enter()
-					// 	.append("circle")
-					// 	.attr("cx", function(d) {
-					// 		return x(d.date);
-					// 	})
-					// 	.attr("cy", function(d) {
-					// 		return y(d.energylevel)
-					// 	})
-					// 	.attr("r", 10)
-					// 	.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-					// 	.attr("opacity", 0.5);
 
-					// 	// UPDATE ANY OLD ONES
-					// circles
-					// 	.attr("cx", function(d) {
-					// 		return x(d.date);
-					// 	})
-					// 	.attr("cy", function(d) {
-					// 		return y(d.energylevel)
-					// 	})
+					// CIRCLE
+
+			// ************
+			// SPECIAL NOTE:
+			// CANNOT USE G GROUP FOR CIRCLES otherwise stuff breaks.
+			// ************
+
+						// define circles
+					var circles = svg.selectAll(".circles").data(graphData)
+
+						// enter circle + tooltips
+					circles.enter().append("svg:circle")
+						.attr("class", "circles")
+						.attr("cx", function(d) {
+							return x(d.date);
+						})
+						.attr("cy", function(d) {
+							return y(d.energylevel)
+						})
+						.attr("r", 10)
+						.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+						.attr("opacity", 0.5)
+						.on("mouseover", function(d) {
+							div.transition()
+								.duration(250)
+								.style("opacity", 1)
+							div .html(d.note + "<br>" + d.date)
+								.style("left", (d3.event.pageX) + "px")
+								.style("top", (d3.event.pageY - 28) + "px")
+						})
+						.on("mouseleave", function(d) {
+							div.transition()
+								.duration(250)
+								.style("opacity", 0)
+						})
+
+						// update circle (locations)
+					circles
+						.attr("cx", function(d) {
+							return x(d.date);
+						})
+						.attr("cy", function(d) {
+							return y(d.energylevel)
+						})
+
+						// circle exit (not needed now, but maybe in the future)
+					circles.exit().remove();
 
 				}
 
