@@ -87,8 +87,10 @@ angular.module('app.directives', [])
 				// PATH
 
 				var path = svg.append("g").attr("class", "linepath") //path needs to be a global var
-					.append("path")
+					.append("path");
+				path
 					.datum(graphData)
+				// path
 					.attr("d", line)
 					.attr("class", "line")
 					.on("mouseover", function(d) {
@@ -166,11 +168,14 @@ angular.module('app.directives', [])
 
 					//PATH TRANSITION
 					
-					path.attr("d", line)
+					path
+						.datum(graphData)
+						 .attr("d", line)
 						 .attr("transform", null)
 					 .transition()
 						.duration(750)
 						.ease("linear")
+
 
 					// CIRCLE
 
