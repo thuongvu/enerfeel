@@ -99,18 +99,6 @@ angular.module('app.directives', [])
 					.data(graphData)
 					.enter();
 
-				
-				var circle =	circles.append("svg:circle")
-					.attr("cx", function(d) {
-						return x(d.date);
-					})
-					.attr("cy", function(d) {
-						return y(d.energylevel)
-					})
-					.attr("r", 10)
-					.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-					.attr("opacity", 0.5)
-
 				var tooltips = circles.append("text")
 					.attr("class", "tooltip")
 					.text(function(d) {
@@ -123,7 +111,31 @@ angular.module('app.directives', [])
 						return y(d.energylevel)
 					})
 					.attr("dy", ".5em")
-					.attr("opacity", 0.3)
+					.attr("opacity", 0)
+
+				
+				var circle = circles.append("svg:circle")
+					.attr("cx", function(d) {
+						return x(d.date);
+					})
+					.attr("cy", function(d) {
+						return y(d.energylevel)
+					})
+					.attr("r", 10)
+					.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+					.attr("opacity", 0.5)
+					.on("mouseover", function(d) {
+						tooltips.transition()
+							.duration(250)
+							.attr("opacity", 1)
+					})
+					.on("mouseleave", function(d) {
+						tooltips.transition()
+							.duration(250)
+							.attr("opacity", 0)
+					})
+
+				
 
 
 				// circles tooltip
