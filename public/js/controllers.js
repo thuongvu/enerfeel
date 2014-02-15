@@ -1,27 +1,22 @@
 angular.module('app.controllers', [])
-	.controller('mainCtrl', ['$scope', function ($scope) {
+	.controller('mainCtrl', ['$scope', 'eventService', function ($scope, eventService) {
 		console.log("in mainCtrl")
 
-		$scope.dataContainer = [{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month"}, {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"hello"},{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "world"}, {"date": new Date(2014, 1, 14, 19), "energylevel":3, "note":"this is cool stuff"}];
-		console.log($scope.dataContainer)
+		// $scope.allLifeEvents = [{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month"}, {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"hello"},{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "world"}, {"date": new Date(2014, 1, 14, 19), "energylevel":3, "note":"this is cool stuff"}];
 		$scope.energy = {};
-		var counter = 4;
+
+		$scope.eventService = eventService;
+
+		// $scope.eventService.allLifeEvents.push(5)
+		console.log($scope.eventService.allLifeEvents)
 		
-		$scope.add = function(item, note) {
-			var dataItem = {};
+		$scope.add = function(energyLevel, note) {
+			var eventData = {};
+			eventData.energylevel = energyLevel;
+			eventData.note = note;
+			eventData.date = new Date();
 
-			dataItem.energylevel = item;
-			dataItem.note = note;
-
-			var currentTime = new Date;
-			dataItem.date = currentTime;
-			
-			counter++;
-
-			$scope.dataContainer.push(dataItem);
-
-			console.log("dataItem is the data container");
-			console.log($scope.dataContainer);
+			$scope.eventService.allLifeEvents.push(eventData);
 
 			$scope.energy.level = null;
 			$scope.energy.note = null;
@@ -30,7 +25,7 @@ angular.module('app.controllers', [])
 			console.log($scope.currentFilter.time)
 		}
 
-		$scope.dataContainerTwo = $scope.dataContainer;
+		$scope.dataContainerTwo = $scope.eventService.allLifeEvents;
 		$scope.currentFilter = {};
 		$scope.currentFilter.time = "month";
 		$scope.filter = function(time) {
@@ -46,8 +41,8 @@ angular.module('app.controllers', [])
 				var timeAmount = Date.now() - 262974000000000;
 			}
 
-			for (prop in $scope.dataContainer) {
-				var obj = $scope.dataContainer;
+			for (prop in $scope.eventService.allLifeEvents) {
+				var obj = $scope.eventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
 				if (dateOfProp > timeAmount) {
 					$scope.dataContainerTwo.push(obj[prop])
