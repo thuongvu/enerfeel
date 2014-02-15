@@ -2,7 +2,7 @@ angular.module('app.controllers', [])
 	.controller('mainCtrl', ['$scope', function ($scope) {
 		console.log("in mainCtrl")
 
-		$scope.dataContainer = [{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"hello"},{"date": new Date(2014, 1, 13, 18), "energylevel":4, "note": "world"}, {"date": new Date(2014, 1, 13, 19), "energylevel":3, "note":"this is cool stuff"}];
+		$scope.dataContainer = [{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"hello"},{"date": new Date(2014, 1, 13, 18), "energylevel":4, "note": "world"}, {"date": new Date(2014, 1, 14, 19), "energylevel":3, "note":"this is cool stuff"}];
 		console.log($scope.dataContainer)
 		$scope.energy = {};
 		var counter = 4;
@@ -26,4 +26,22 @@ angular.module('app.controllers', [])
 			$scope.energy.level = null;
 			$scope.energy.note = null;
 		}
+
+
+		// $scope.dataContainerTwo = [];
+
+		// console.log("ms right now " + Date.now())
+		// var yesterdayInMs = Date.now() - 86400000;
+		// for (prop in $scope.dataContainer) {
+		// 	var obj = $scope.dataContainer;
+		// 	var dateOfProp = obj[prop].date.valueOf();
+		// 	// console.log(obj[prop].date)
+		// 	// console.log(obj[prop].date.valueOf())
+		// 	if (dateOfProp < yesterdayInMs) {
+		// 		$scope.dataContainerTwo.push(obj[prop])
+		// 		// delete obj[prop]
+		// 		// console.log(obj)
+		// 	}
+		// }
+		// console.log($scope.dataContainerTwo)
 	}])
