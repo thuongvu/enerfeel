@@ -7,16 +7,23 @@ angular.module('app.controllers', [])
 		$scope.energy = {};
 		var counter = 4;
 		
-		$scope.add = function(item) {
+		$scope.add = function(item, note) {
 			var dataItem = {};
+
 			dataItem.energylevel = item;
+			dataItem.note = note;
+
 			var currentTime = new Date;
 			dataItem.date = currentTime;
-			// dataItem.time = currentTime;
-			// dataItem.date = counter;
+			
 			counter++;
+
 			$scope.dataContainer.push(dataItem);
+
 			console.log("dataItem is the data container");
 			console.log($scope.dataContainer);
+			
+			$scope.energy.level = null;
+			$scope.energy.note = null;
 		}
 	}])

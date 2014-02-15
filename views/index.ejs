@@ -7,8 +7,9 @@
 	</head>
 	<body>
 		<div ng-controller="mainCtrl">
-			<input ng-model="energy.level" type="number"></input>
-			<button ng-click="add(energy.level)">Add</button>
+			<input ng-model="energy.level" type="number" placeholder="0"></input>
+			<input ng-model="energy.note" type="text" placeholder="note"></input>
+			<button ng-click="add(energy.level, energy.note)">Add</button>
 			<graph data="dataContainer"></graph>
 		</div>
 
