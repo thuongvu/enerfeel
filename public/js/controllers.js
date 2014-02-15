@@ -25,12 +25,17 @@ angular.module('app.controllers', [])
 
 			$scope.energy.level = null;
 			$scope.energy.note = null;
+			// make sure currentfilter isnt null, that means we have to change it at first, currently
+			$scope.filter($scope.currentFilter.time);
+			console.log($scope.currentFilter.time)
 		}
 
 		$scope.dataContainerTwo = $scope.dataContainer;
+		$scope.currentFilter = {};
+		$scope.currentFilter.time = "month";
 		$scope.filter = function(time) {
 			console.log(time);
-
+			$scope.currentFilter.time = time;
 			$scope.dataContainerTwo = []; // empty out dataContainerTwo
 
 			if (time === 'day') {
