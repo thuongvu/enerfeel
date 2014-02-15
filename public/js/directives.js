@@ -92,12 +92,10 @@ angular.module('app.directives', [])
 					.attr("d", line)
 					.attr("class", "line")
 					.on("mouseover", function(d) {
-						console.log("mouseover!")
 						d3.select(this)
 							.attr("class", "line_hover")
 					})
 					.on("mouseout", function(d) {
-						console.log("mouseout!")
 						d3.select(this)
 							.attr("class", "line")
 					})

@@ -27,6 +27,9 @@ angular.module('app.controllers', [])
 			$scope.energy.note = null;
 		}
 
+		$scope.filter = function(time) {
+			console.log(time);
+		}
 
 		// $scope.dataContainerTwo = [];
 
