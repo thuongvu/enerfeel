@@ -9,6 +9,11 @@
 	stroke: #4682b4;
 	stroke-width: 3px;
 }
+.lineMeal {
+  fill: none;
+  stroke: red;
+  stroke-width: 3px;
+}
 .line_hover {
   fill: none;
   stroke: orange;

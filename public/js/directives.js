@@ -70,32 +70,53 @@ angular.module('app.directives', [])
 
 				// LINE
 
-				// var line = d3.svg.line()
-				// 	.x(function (d) {
-				// 		return x(d.date);
-				// 	})
-				// 	.y(function (d) {
-				// 		return y(d.energylevel) 
-				// 	})
+				var line = d3.svg.line()
+					.x(function (d) {
+						return x(d.date);
+					})
+					.y(function (d) {
+						return y(d.energylevel) 
+					})
 						
 				// PATH
 
-				// var path = svg.append("g")
-				// 	.attr("class", "linepath") //path needs to be a global var
-				// 	.append("path");
+				var path = svg.append("g")
+					.attr("class", "linepath") //path needs to be a global var
+					.append("path");
 
-				// path
-				// 	.datum(graphData)
-				// 	.attr("d", line)
-				// 	.attr("class", "line")
-				// 	.on("mouseover", function(d) {
-				// 		d3.select(this)
-				// 			.attr("class", "line_hover")
-				// 	})
-				// 	.on("mouseout", function(d) {
-				// 		d3.select(this)
-				// 			.attr("class", "line")
-				// 	})
+				path
+					.datum(graphData)
+					.attr("d", line)
+					.attr("class", "line")
+					.on("mouseover", function(d) {
+						d3.select(this)
+							.attr("class", "line_hover")
+					})
+					.on("mouseout", function(d) {
+						d3.select(this)
+							.attr("class", "line")
+					})
+
+
+				// PATH 2 TEST
+
+				var nestedData = d3.nest()
+					.key(function(d) {
+						return d.category;
+					})
+					.entries(graphData);
+
+				var meals = nestedData[0];
+				console.log(meals)
+
+				var path2 = svg.append("g")
+					.attr("class", "linepath") //path needs to be a global var
+					.append("path");
+
+				path2
+					.datum(meals.values)
+					.attr("d", line)
+					.attr("class", "lineMeal");
 
 				// TOOLTIP	
 
@@ -163,13 +184,26 @@ angular.module('app.directives', [])
 
 					//PATH TRANSITION
 					
-					// path
-					// 	.datum(graphData)
-					// 	 .attr("d", line)
-					// 	 .attr("transform", null)
-					//  .transition()
-					// 	.duration(750)
-					// 	.ease("linear")
+					path
+						.datum(graphData)
+						 .attr("d", line)
+						 .attr("transform", null)
+					 .transition()
+						.duration(750)
+						.ease("linear")
+
+					// PATH2 TRANSITON
+
+
+					path2
+						.datum(meals.values)
+						.attr("d", line)
+						.attr("transform", null)
+					 .transition()
+						.duration(750)
+						.ease("linear")
+
+
 
 
 					// CIRCLE
@@ -221,42 +255,44 @@ angular.module('app.directives', [])
 					circles.exit().remove();
 
 
-					var nestedData = d3.nest()
-						.key(function(d) {
-							return d.category;
-						})
-						.entries(graphData);
 
-					console.log(nestedData)
+				// // NESTED DATA CATEGORIES	
+				// 	var nestedData = d3.nest()
+				// 		.key(function(d) {
+				// 			return d.category;
+				// 		})
+				// 		.entries(graphData);
 
-					var category = svg.selectAll(".category")
-						.data(nestedData)
-						.enter()
-						.append("g")
-						.attr("class", "category")
+				// 	console.log(nestedData)
 
-					category.append("path")
-						.attr("class", "categoryLine")
-						.attr("d", function(d) {
-							return line(d.values)
-						})
-						.style("stroke", "#000");
+				// 	var category = svg.selectAll(".category")
+				// 		.data(nestedData)
+				// 		.enter()
+				// 		.append("g")
+				// 		.attr("class", "category")
 
-					category.append("text")
-						.datum(function(d) {
-							return {
-								key: d.key,
-								value: d.values[d.values.length - 1]
-							}
-						})
-						.attr("transform", function(d) {
-							return "translate(" + x(d.value.date) + "," + y(d.value.energylevel) + ")";
-						})
-						.attr("x", 3)
-						.attr("dy", ".35em")
-						.text(function(d) {
-							return d.key;
-						})
+				// 	category.append("path")
+				// 		.attr("class", "categoryLine")
+				// 		.attr("d", function(d) {
+				// 			return line(d.values)
+				// 		})
+				// 		.style("stroke", "#000");
+
+				// 	category.append("text")
+				// 		.datum(function(d) {
+				// 			return {
+				// 				key: d.key,
+				// 				value: d.values[d.values.length - 1]
+				// 			}
+				// 		})
+				// 		.attr("transform", function(d) {
+				// 			return "translate(" + x(d.value.date) + "," + y(d.value.energylevel) + ")";
+				// 		})
+				// 		.attr("x", 3)
+				// 		.attr("dy", ".35em")
+				// 		.text(function(d) {
+				// 			return d.key;
+				// 		})
 
 				}
 
