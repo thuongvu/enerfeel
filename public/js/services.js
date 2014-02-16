@@ -11,3 +11,43 @@ angular.module('app.services', [])
 			allLifeEvents: data
 		}
 	})
+	.factory('FilterService', ['EventService', function (EventService) {
+		var currentFilterObj = {};
+		currentFilterObj.time = "month";
+		currentFilterObj.lifeEvents = [];
+
+		function determineTimeAmount(time) {
+			if (time === 'day') {
+				var timeAmount = Date.now() - 86400000;
+			} else if (time === 'week') {
+				var timeAmount = Date.now() - 604800000;
+			} else if (time === 'month') {
+				var timeAmount = Date.now() - 262974000000000;
+			}
+			return timeAmount;
+		};
+
+		function filter(timeAmount, arr) {
+			for (prop in EventService.allLifeEvents) {
+				var obj = EventService.allLifeEvents;
+				var dateOfProp = obj[prop].date.valueOf();
+				if (dateOfProp > timeAmount) {
+					arr.push(obj[prop])
+				}
+			}
+			return arr;
+		} 
+
+		return {
+			filterLifeEvents : function(time) {
+				currentFilterObj.time = time; // set currentFilterObj.time to what was passed
+				console.log("currentFilterObj.time from service is " + currentFilterObj.time);
+				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
+				var timeAmount = determineTimeAmount(time); // determine number for subtraction
+				var results = filter(timeAmount, currentFilterObj.lifeEvents); // get me my results!
+				currentFilterObj.lifeEvents = results;
+				return currentFilterObj.lifeEvents;
+			},
+			currentFilterObj: currentFilterObj,
+		}
+	}])
