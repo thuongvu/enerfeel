@@ -18,15 +18,14 @@ angular.module('app.controllers', [])
 
 			$scope.eventService.allLifeEvents.push(eventData);
 
+			$scope.dataContainerTwo.push(eventData)
+
 			$scope.input.level = null;
 			$scope.input.note = null;
 
-			$scope.filter($scope.filterService.currentFilterObj.time);
-			console.log($scope.filterService.currentFilterObj.time)
+			// $scope.filter($scope.filterService.currentFilterObj.time);
+			// console.log($scope.filterService.currentFilterObj.time)
 		}
-
-		// $scope.dataContainerTwo = $scope.eventService.allLifeEvents;
-	
 
 		$scope.filter = function(time) {
 			$scope.dataContainerTwo = $scope.filterService.filterLifeEvents(time);
