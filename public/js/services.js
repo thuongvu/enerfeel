@@ -13,7 +13,8 @@ angular.module('app.services', [])
 	})
 	.factory('FilterService', ['EventService', function (EventService) {
 		var currentFilterObj = {};
-		currentFilterObj.time = "month";
+		// currentFilterObj.time = "month";
+		currentFilterObj.time = null;
 		currentFilterObj.lifeEvents = [];
 
 		function determineTimeAmount(time) {
