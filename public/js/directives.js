@@ -50,22 +50,6 @@ angular.module('app.directives', [])
 				   .orient("left")
 					.ticks(10)
 
-				// LINE
-
-				var line = d3.svg.line()
-					.x(function (d) {
-						return x(d.date);
-					})
-					.y(function (d) {
-						return y(d.energylevel) 
-					})
-
-				// SVG INNER DIMENSION
-
-				// var svg = d3.select("body").append("svg") //svg needs to be a global var
-				// 	.attr("width", width)
-				// 	.attr("height", height)
-				 
 				// APPENDING + CALLING AXES
 
 					// x axis
@@ -83,14 +67,25 @@ angular.module('app.directives', [])
 					.attr("class", "y axis")
 					.attr("transform", "translate(" + padding + ",-10)")                  
 					.call(yAxis)
+
+				// LINE
+
+				var line = d3.svg.line()
+					.x(function (d) {
+						return x(d.date);
+					})
+					.y(function (d) {
+						return y(d.energylevel) 
+					})
 						
 				// PATH
 
-				var path = svg.append("g").attr("class", "linepath") //path needs to be a global var
+				var path = svg.append("g")
+					.attr("class", "linepath") //path needs to be a global var
 					.append("path");
+
 				path
 					.datum(graphData)
-				// path
 					.attr("d", line)
 					.attr("class", "line")
 					.on("mouseover", function(d) {
@@ -101,6 +96,27 @@ angular.module('app.directives', [])
 						d3.select(this)
 							.attr("class", "line")
 					})
+
+
+				// PATH 2 TEST
+
+				var nestedData = d3.nest()
+					.key(function(d) {
+						return d.category;
+					})
+					.entries(graphData);
+
+				var meals = nestedData[0];
+				console.log(meals)
+
+				var path2 = svg.append("g")
+					.attr("class", "linepath") //path needs to be a global var
+					.append("path");
+
+				path2
+					.datum(meals.values)
+					.attr("d", line)
+					.attr("class", "lineMeal");
 
 				// TOOLTIP	
 
@@ -176,6 +192,25 @@ angular.module('app.directives', [])
 						.duration(750)
 						.ease("linear")
 
+					// PATH2 TRANSITON
+					var nestedData = d3.nest()
+						.key(function(d) {
+							return d.category;
+						})
+						.entries(graphData);
+
+					var meals = nestedData[0];
+
+					path2
+						.datum(meals.values)
+						.attr("d", line)
+						.attr("transform", null)
+					 .transition()
+						.duration(750)
+						.ease("linear")
+
+
+
 
 					// CIRCLE
 
@@ -224,6 +259,46 @@ angular.module('app.directives', [])
 
 						// circle exit (not needed now, but maybe in the future)
 					circles.exit().remove();
+
+
+
+				// // NESTED DATA CATEGORIES	
+				// 	var nestedData = d3.nest()
+				// 		.key(function(d) {
+				// 			return d.category;
+				// 		})
+				// 		.entries(graphData);
+
+				// 	console.log(nestedData)
+
+				// 	var category = svg.selectAll(".category")
+				// 		.data(nestedData)
+				// 		.enter()
+				// 		.append("g")
+				// 		.attr("class", "category")
+
+				// 	category.append("path")
+				// 		.attr("class", "categoryLine")
+				// 		.attr("d", function(d) {
+				// 			return line(d.values)
+				// 		})
+				// 		.style("stroke", "#000");
+
+				// 	category.append("text")
+				// 		.datum(function(d) {
+				// 			return {
+				// 				key: d.key,
+				// 				value: d.values[d.values.length - 1]
+				// 			}
+				// 		})
+				// 		.attr("transform", function(d) {
+				// 			return "translate(" + x(d.value.date) + "," + y(d.value.energylevel) + ")";
+				// 		})
+				// 		.attr("x", 3)
+				// 		.attr("dy", ".35em")
+				// 		.text(function(d) {
+				// 			return d.key;
+				// 		})
 
 				}
 

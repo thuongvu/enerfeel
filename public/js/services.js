@@ -1,6 +1,6 @@
 angular.module('app.services', [])
 	.factory('EventService', function() {
-		var data = [{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month"}, {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"hello"},{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "world"}, {"date": new Date(2014, 1, 14, 19), "energylevel":3, "note":"this is cool stuff"}];
+		var data = [{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal"}, {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal"},{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise"}, {"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise"}];
 		return {
 			allLifeEvents: data
 		}
