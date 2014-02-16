@@ -193,7 +193,13 @@ angular.module('app.directives', [])
 						.ease("linear")
 
 					// PATH2 TRANSITON
+					var nestedData = d3.nest()
+						.key(function(d) {
+							return d.category;
+						})
+						.entries(graphData);
 
+					var meals = nestedData[0];
 
 					path2
 						.datum(meals.values)
