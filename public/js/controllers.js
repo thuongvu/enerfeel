@@ -3,11 +3,11 @@ angular.module('app.controllers', [])
 		console.log("in mainCtrl")
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
-		$scope.dataContainerTwo = $scope.filterService.filterLifeEvents("week");
+		$scope.dataContainerTwo = $scope.filterService.filterLifeEvents("month");
 		$scope.input = {};
 
-		console.log($scope.eventService.allLifeEvents)
-		
+		console.log("$scope.eventService on init");
+		console.log($scope.eventService)
 
 		$scope.addEvent = function(energyLevel, note) {
 			var eventData = {
@@ -17,14 +17,12 @@ angular.module('app.controllers', [])
 			};
 
 			$scope.eventService.allLifeEvents.push(eventData);
-
+			console.log("this is what $scope.eventService looks like now")
+			console.log($scope.eventService)
 			$scope.dataContainerTwo.push(eventData)
 
 			$scope.input.level = null;
 			$scope.input.note = null;
-
-			// $scope.filter($scope.filterService.currentFilterObj.time);
-			// console.log($scope.filterService.currentFilterObj.time)
 		}
 
 		$scope.filter = function(time) {
