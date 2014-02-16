@@ -240,7 +240,23 @@ angular.module('app.directives', [])
 						.attr("d", function(d) {
 							return line(d.values)
 						})
-						.style("stroke", "#000")
+						.style("stroke", "#000");
+
+					category.append("text")
+						.datum(function(d) {
+							return {
+								key: d.key,
+								value: d.values[d.values.length - 1]
+							}
+						})
+						.attr("transform", function(d) {
+							return "translate(" + x(d.value.date) + "," + y(d.value.energylevel) + ")";
+						})
+						.attr("x", 3)
+						.attr("dy", ".35em")
+						.text(function(d) {
+							return d.key;
+						})
 
 				}
 
