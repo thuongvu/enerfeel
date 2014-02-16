@@ -50,22 +50,6 @@ angular.module('app.directives', [])
 				   .orient("left")
 					.ticks(10)
 
-				// LINE
-
-				var line = d3.svg.line()
-					.x(function (d) {
-						return x(d.date);
-					})
-					.y(function (d) {
-						return y(d.energylevel) 
-					})
-
-				// SVG INNER DIMENSION
-
-				// var svg = d3.select("body").append("svg") //svg needs to be a global var
-				// 	.attr("width", width)
-				// 	.attr("height", height)
-				 
 				// APPENDING + CALLING AXES
 
 					// x axis
@@ -83,24 +67,35 @@ angular.module('app.directives', [])
 					.attr("class", "y axis")
 					.attr("transform", "translate(" + padding + ",-10)")                  
 					.call(yAxis)
+
+				// LINE
+
+				// var line = d3.svg.line()
+				// 	.x(function (d) {
+				// 		return x(d.date);
+				// 	})
+				// 	.y(function (d) {
+				// 		return y(d.energylevel) 
+				// 	})
 						
 				// PATH
 
-				var path = svg.append("g").attr("class", "linepath") //path needs to be a global var
-					.append("path");
-				path
-					.datum(graphData)
+				// var path = svg.append("g")
+				// 	.attr("class", "linepath") //path needs to be a global var
+				// 	.append("path");
+
 				// path
-					.attr("d", line)
-					.attr("class", "line")
-					.on("mouseover", function(d) {
-						d3.select(this)
-							.attr("class", "line_hover")
-					})
-					.on("mouseout", function(d) {
-						d3.select(this)
-							.attr("class", "line")
-					})
+				// 	.datum(graphData)
+				// 	.attr("d", line)
+				// 	.attr("class", "line")
+				// 	.on("mouseover", function(d) {
+				// 		d3.select(this)
+				// 			.attr("class", "line_hover")
+				// 	})
+				// 	.on("mouseout", function(d) {
+				// 		d3.select(this)
+				// 			.attr("class", "line")
+				// 	})
 
 				// TOOLTIP	
 
@@ -168,13 +163,13 @@ angular.module('app.directives', [])
 
 					//PATH TRANSITION
 					
-					path
-						.datum(graphData)
-						 .attr("d", line)
-						 .attr("transform", null)
-					 .transition()
-						.duration(750)
-						.ease("linear")
+					// path
+					// 	.datum(graphData)
+					// 	 .attr("d", line)
+					// 	 .attr("transform", null)
+					//  .transition()
+					// 	.duration(750)
+					// 	.ease("linear")
 
 
 					// CIRCLE
@@ -224,6 +219,28 @@ angular.module('app.directives', [])
 
 						// circle exit (not needed now, but maybe in the future)
 					circles.exit().remove();
+
+
+					var nestedData = d3.nest()
+						.key(function(d) {
+							return d.category;
+						})
+						.entries(graphData);
+
+					console.log(nestedData)
+
+					var category = svg.selectAll(".category")
+						.data(nestedData)
+						.enter()
+						.append("g")
+						.attr("class", "category")
+
+					category.append("path")
+						.attr("class", "categoryLine")
+						.attr("d", function(d) {
+							return line(d.values)
+						})
+						.style("stroke", "#000")
 
 				}
 
