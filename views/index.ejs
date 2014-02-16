@@ -8,9 +8,9 @@
 	<body>
 		<div ng-controller="mainCtrl">
 			<div>
-				<input ng-model="energy.level" type="number" placeholder="0"></input>
-				<input ng-model="energy.note" type="text" placeholder="note"></input>
-				<button ng-click="add(energy.level, energy.note)">Add</button>
+				<input ng-model="input.level" type="number" placeholder="0"></input>
+				<input ng-model="input.note" type="text" placeholder="note"></input>
+				<button ng-click="addEvent(input.level, input.note)">Add</button>
 			</div>
 			<div>
 				<button ng-click="filter('day')">Day</button>
