@@ -1,1 +1,1 @@
-angular.module('app', [ 'ngRoute', 'app.services', 'app.directives', 'app.controllers', 'd3'])
+angular.module('app', [ 'ngRoute', 'd3', 'ngQuickDate', 'app.services', 'app.directives', 'app.controllers' ])

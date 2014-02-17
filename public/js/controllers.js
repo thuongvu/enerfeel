@@ -1,5 +1,5 @@
 angular.module('app.controllers', [])
-	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', function ($scope, EventService, FilterService) {
+	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', '$timeout', function ($scope, EventService, FilterService, $timeout) {
 		console.log("in mainCtrl")
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
@@ -13,7 +13,6 @@ angular.module('app.controllers', [])
 				date        : new Date(),
 				category 	: category,	
 			};
-
 
 			$scope.eventService.allLifeEvents.push(eventData);
 			$scope.lifeEventsInView.push(eventData)
@@ -32,6 +31,27 @@ angular.module('app.controllers', [])
 
 		$scope.filterCategory = function(category) {
 			$scope.category.setTo = category;
+		}
+
+		function log() {
+			console.log("Hello")
+		}
+
+		$scope.myDate = new Date();
+
+		// $timeout(function() {
+		// 	$scope.myDate = new Date();
+		// }, 60000)
+
+		// $timeout(function() {
+		// 	console.log()
+		// })
+		// $scope.$watch('$scope.myDate', log, true)
+
+		
+
+		$scope.checkDate = function() {
+			console.log($scope.myDate)
 		}
 
 	}])

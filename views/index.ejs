@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+		<link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date.css">
+		<link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date-default-theme.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
@@ -19,6 +21,8 @@
 					<option value="sleep">Sleep</option>
 				</select>
 				<!-- <input type="datetime-local"></input> -->
+				<datepicker ng-model='myDate'></datepicker>
+				<button ng-click="checkDate()">Check Date</button>
 			</div>
 			<div>
 				<button ng-click="filterTime('day')">Day</button>
@@ -41,6 +45,7 @@
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/angular-resource/angular-resource.min.js"></script>
 		<script src="bower_components/angular-route/angular-route.min.js"></script>
+		<script src="bower_components/ngQuickDate/dist/ng-quick-date.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/services.js"></script>
 		<script src="js/d3module.js"></script>
