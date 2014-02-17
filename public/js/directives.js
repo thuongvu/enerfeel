@@ -108,17 +108,21 @@ angular.module('app.directives', [])
 					})
 					.entries(graphData);
 
-				var meals = nestedData[0];
-				console.log(meals)
+				for (var i = 0; i < nestedData.length; i++) {
+					if (nestedData[i].key === category) {
+						var categoryData = nestedData[i];
+						break;
+					} 
+				}
 
 				var path2 = svg.append("g")
 					.attr("class", "linepath") //path needs to be a global var
 					.append("path");
 
 				path2
-					.datum(meals.values)
+					.datum(categoryData.values)
 					.attr("d", line)
-					.attr("class", "lineMeal");
+					.attr("class", "line-category");
 
 				// TOOLTIP	
 
@@ -204,19 +208,15 @@ angular.module('app.directives', [])
 						})
 						.entries(graphData);
 
-					console.log(nestedData);
 					for (var i = 0; i < nestedData.length; i++) {
 						if (nestedData[i].key === category) {
-							console.log(category);
-							var meals = nestedData[i];
+							var categoryData = nestedData[i];
 							break;
 						} 
 					}
 
-					// var meals = nestedData[0];
-
 					path2
-						.datum(meals.values)
+						.datum(categoryData.values)
 						.attr("d", line)
 						.attr("transform", null)
 					 .transition()
