@@ -3,13 +3,15 @@ angular.module('app.directives', [])
 		return {
 			restrict: 'EA',
 			scope: {
-				data: '='
+				data: '=',
+				category: '='
 			},
 			controller: function ($scope) {
 			},
 			link: function (scope, iElement, iAttrs) {
 				// set graphData to be the data linked on the 'data' attr of the directive
-				var graphData = scope.data
+				var graphData = scope.data;
+				var category = scope.category;
 				// dimensions of svg
 				var width = 800,
 					 height = 400,
@@ -100,23 +102,13 @@ angular.module('app.directives', [])
 
 				// PATH 2 TEST
 
-				var nestedData = d3.nest()
-					.key(function(d) {
-						return d.category;
-					})
-					.entries(graphData);
-
-				var meals = nestedData[0];
-				console.log(meals)
+					// declaring path2 outside like this might cause problems
+					// but i need to do it, otherwise if i put it inside the function, every time $watch is invoked
+					// it makes a new one. but i'm trying to use a enter/update/exit pattern.
 
 				var path2 = svg.append("g")
 					.attr("class", "linepath") //path needs to be a global var
 					.append("path");
-
-				path2
-					.datum(meals.values)
-					.attr("d", line)
-					.attr("class", "lineMeal");
 
 				// TOOLTIP	
 
@@ -124,12 +116,18 @@ angular.module('app.directives', [])
 					.attr("class", "tooltip")
 					.style("opacity", 0);
 
+				// COLORSCALE
+
+				var colorScale = d3.scale.category10()
 
 			scope.$watch('data', updateGraph, true);
+			scope.$watch('category', updateGraph, true);
 
 				function updateGraph() {
 					var graphData = scope.data;
+					var category = scope.category;
 					console.log(graphData);
+					// console.log(category);
 
 					// REDEFINING SCALES
 
@@ -186,28 +184,39 @@ angular.module('app.directives', [])
 					
 					path
 						.datum(graphData)
+						 .transition()
+							.duration(750)
+							.ease("linear")
 						 .attr("d", line)
 						 .attr("transform", null)
-					 .transition()
-						.duration(750)
-						.ease("linear")
+			
 
 					// PATH2 TRANSITON
-					var nestedData = d3.nest()
-						.key(function(d) {
-							return d.category;
-						})
-						.entries(graphData);
+					if (category != 'null') {
+						var nestedData = d3.nest()
+							.key(function(d) {
+								return d.category;
+							})
+							.entries(graphData);
 
-					var meals = nestedData[0];
+						for (var i = 0; i < nestedData.length; i++) {
+							if (nestedData[i].key === category) {
+								var categoryData = nestedData[i];
+								break;
+							} 
+						}
 
-					path2
-						.datum(meals.values)
-						.attr("d", line)
-						.attr("transform", null)
-					 .transition()
-						.duration(750)
-						.ease("linear")
+						path2
+							.datum(categoryData.values)
+							 .transition()
+							 	.delay(250)
+								.duration(500)
+								.ease("linear")
+							.attr("d", line)
+							.attr("class", "line-category")
+							.attr("transform", null)
+					}
+					
 
 
 
@@ -232,7 +241,10 @@ angular.module('app.directives', [])
 							return y(d.energylevel)
 						})
 						.attr("r", 10)
-						.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+						// .attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+						.attr("fill", function(d,i) {
+							return colorScale(d.category);
+						})
 						.attr("opacity", 0.5)
 						.on("mouseover", function(d) {
 							div.transition()
@@ -250,11 +262,17 @@ angular.module('app.directives', [])
 
 						// update circle (locations)
 					circles
+						 .transition()
+							.duration(750)
+							.ease("linear")
 						.attr("cx", function(d) {
 							return x(d.date);
 						})
 						.attr("cy", function(d) {
 							return y(d.energylevel)
+						})
+						.attr("fill", function(d,i) {
+							return colorScale(d.category);
 						})
 
 						// circle exit (not needed now, but maybe in the future)
