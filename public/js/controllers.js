@@ -20,7 +20,7 @@ angular.module('app.controllers', [])
 			$scope.input.note = null;
 		}
 
-		$scope.filter = function(time) {
+		$scope.filterTime = function(time) {
 			$scope.dataContainerTwo = $scope.filterService.filterLifeEvents(time);
 		}
 
