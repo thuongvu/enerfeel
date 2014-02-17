@@ -14,13 +14,13 @@ angular.module('app.controllers', [])
 				category 	: category,	
 			};
 
-			// console.log(category)
 
 			$scope.eventService.allLifeEvents.push(eventData);
 			$scope.lifeEventsInView.push(eventData)
 
 			$scope.input.level = null;
 			$scope.input.note = null; 
+			$scope.input.category = null; 
 		}
 
 		$scope.filterTime = function(time) {
