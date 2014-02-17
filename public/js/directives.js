@@ -266,6 +266,9 @@ angular.module('app.directives', [])
 						.attr("cy", function(d) {
 							return y(d.energylevel)
 						})
+						.attr("fill", function(d,i) {
+							return colorScale(d.category);
+						})
 
 						// circle exit (not needed now, but maybe in the future)
 					circles.exit().remove();
