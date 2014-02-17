@@ -3,7 +3,7 @@ angular.module('app.controllers', [])
 		console.log("in mainCtrl")
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
-		$scope.dataContainerTwo = $scope.filterService.filterLifeEvents("month");
+		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("month");
 		$scope.input = {};
 
 		$scope.addEvent = function(energyLevel, note) {
@@ -14,15 +14,18 @@ angular.module('app.controllers', [])
 			};
 
 			$scope.eventService.allLifeEvents.push(eventData);
-			$scope.dataContainerTwo.push(eventData)
+			$scope.lifeEventsInView.push(eventData)
 
 			$scope.input.level = null;
 			$scope.input.note = null;
 		}
 
 		$scope.filterTime = function(time) {
-			$scope.dataContainerTwo = $scope.filterService.filterLifeEvents(time);
+			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
 		}
 
+		$scope.filterCategory = function(category) {
+
+		}
 
 	}])
