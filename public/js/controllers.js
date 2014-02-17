@@ -17,7 +17,7 @@ angular.module('app.controllers', [])
 			$scope.lifeEventsInView.push(eventData)
 
 			$scope.input.level = null;
-			$scope.input.note = null;
+			$scope.input.note = null; 
 		}
 
 		$scope.filterTime = function(time) {
@@ -25,7 +25,7 @@ angular.module('app.controllers', [])
 		}
 
 		$scope.category = {};
-		$scope.category.setTo = 'meal';
+		$scope.category.setTo = 'null';
 
 		$scope.filterCategory = function(category) {
 			$scope.category.setTo = category;

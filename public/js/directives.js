@@ -102,27 +102,13 @@ angular.module('app.directives', [])
 
 				// PATH 2 TEST
 
-				var nestedData = d3.nest()
-					.key(function(d) {
-						return d.category;
-					})
-					.entries(graphData);
-
-				for (var i = 0; i < nestedData.length; i++) {
-					if (nestedData[i].key === category) {
-						var categoryData = nestedData[i];
-						break;
-					} 
-				}
+					// declaring path2 outside like this might cause problems
+					// but i need to do it, otherwise if i put it inside the function, every time $watch is invoked
+					// it makes a new one. but i'm trying to use a enter/update/exit pattern.
 
 				var path2 = svg.append("g")
 					.attr("class", "linepath") //path needs to be a global var
 					.append("path");
-
-				path2
-					.datum(categoryData.values)
-					.attr("d", line)
-					.attr("class", "line-category");
 
 				// TOOLTIP	
 
@@ -205,26 +191,30 @@ angular.module('app.directives', [])
 						.ease("linear")
 
 					// PATH2 TRANSITON
-					var nestedData = d3.nest()
-						.key(function(d) {
-							return d.category;
-						})
-						.entries(graphData);
+					if (category != 'null') {
+						var nestedData = d3.nest()
+							.key(function(d) {
+								return d.category;
+							})
+							.entries(graphData);
 
-					for (var i = 0; i < nestedData.length; i++) {
-						if (nestedData[i].key === category) {
-							var categoryData = nestedData[i];
-							break;
-						} 
+						for (var i = 0; i < nestedData.length; i++) {
+							if (nestedData[i].key === category) {
+								var categoryData = nestedData[i];
+								break;
+							} 
+						}
+
+						path2
+							.datum(categoryData.values)
+							.attr("d", line)
+							.attr("class", "line-category")
+							.attr("transform", null)
+						 .transition()
+							.duration(750)
+							.ease("linear")
 					}
-
-					path2
-						.datum(categoryData.values)
-						.attr("d", line)
-						.attr("transform", null)
-					 .transition()
-						.duration(750)
-						.ease("linear")
+					
 
 
 

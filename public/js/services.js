@@ -5,7 +5,7 @@ angular.module('app.services', [])
 		 {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal"},
 		 {"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise"}, 
 		 {"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise"},
-		 {"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "meal"},
+		 {"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise"},
 		 {"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal"},
 		 ];
 		return {
