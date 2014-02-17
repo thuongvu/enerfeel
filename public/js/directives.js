@@ -184,11 +184,12 @@ angular.module('app.directives', [])
 					
 					path
 						.datum(graphData)
+						 .transition()
+							.duration(750)
+							.ease("linear")
 						 .attr("d", line)
 						 .attr("transform", null)
-					 .transition()
-						.duration(750)
-						.ease("linear")
+			
 
 					// PATH2 TRANSITON
 					if (category != 'null') {
@@ -207,12 +208,13 @@ angular.module('app.directives', [])
 
 						path2
 							.datum(categoryData.values)
+							 .transition()
+							 	.delay(250)
+								.duration(500)
+								.ease("linear")
 							.attr("d", line)
 							.attr("class", "line-category")
 							.attr("transform", null)
-						 .transition()
-							.duration(750)
-							.ease("linear")
 					}
 					
 
@@ -260,6 +262,9 @@ angular.module('app.directives', [])
 
 						// update circle (locations)
 					circles
+						 .transition()
+							.duration(750)
+							.ease("linear")
 						.attr("cx", function(d) {
 							return x(d.date);
 						})
