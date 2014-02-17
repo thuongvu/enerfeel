@@ -48,20 +48,36 @@ angular.module('app.controllers', [])
 		// })
 		// $scope.$watch('$scope.myDate', log, true)
 
+		// i'm going to make it a function now where i can control how many seconds until
 		var myIntervalFunction = function() {
 			cancelRefresh = $timeout(function myFunction() {
 				// do something
-				console.log("hello")
+				console.log("it is now the next minute now ")
 				$scope.myDate = new Date();
 				// did something
-				cancelRefresh = $timeout(myFunction, 3000);
-			}, 3000);
+				cancelRefresh = $timeout(myFunction, 60000);
+			}, 60000);
 		};
-		myIntervalFunction()
+
+		
+
+		function setTime() {
+			var currentTime = new Date();
+			var currentTimeSeconds = currentTime.getSeconds();
+			var secsUntilNextMin = 60 - currentTimeSeconds;
+			console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
+			$timeout(function() {
+				$scope.myDate = new Date();
+				myIntervalFunction()
+			}, secsUntilNextMin)
+		}
+
+		setTime()
 
 		$scope.$on('destroy', function(e) {
 			$timeout.cancel(cancelRefresh);
 		});
+
 
 
 
