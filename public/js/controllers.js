@@ -48,7 +48,22 @@ angular.module('app.controllers', [])
 		// })
 		// $scope.$watch('$scope.myDate', log, true)
 
-		
+		var myIntervalFunction = function() {
+			cancelRefresh = $timeout(function myFunction() {
+				// do something
+				console.log("hello")
+				$scope.myDate = new Date();
+				// did something
+				cancelRefresh = $timeout(myFunction, 3000);
+			}, 3000);
+		};
+		myIntervalFunction()
+
+		$scope.$on('destroy', function(e) {
+			$timeout.cancel(cancelRefresh);
+		});
+
+
 
 		$scope.checkDate = function() {
 			console.log($scope.myDate)
