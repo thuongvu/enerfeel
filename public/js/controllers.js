@@ -24,8 +24,11 @@ angular.module('app.controllers', [])
 			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
 		}
 
-		$scope.filterCategory = function(category) {
+		$scope.category = {};
+		$scope.category.setTo = 'meal';
 
+		$scope.filterCategory = function(category) {
+			$scope.category.setTo = category;
 		}
 
 	}])

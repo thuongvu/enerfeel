@@ -3,13 +3,15 @@ angular.module('app.directives', [])
 		return {
 			restrict: 'EA',
 			scope: {
-				data: '='
+				data: '=',
+				category: '='
 			},
 			controller: function ($scope) {
 			},
 			link: function (scope, iElement, iAttrs) {
 				// set graphData to be the data linked on the 'data' attr of the directive
-				var graphData = scope.data
+				var graphData = scope.data;
+				var category = scope.category;
 				// dimensions of svg
 				var width = 800,
 					 height = 400,
@@ -126,10 +128,13 @@ angular.module('app.directives', [])
 
 
 			scope.$watch('data', updateGraph, true);
+			scope.$watch('category', updateGraph, true);
 
 				function updateGraph() {
 					var graphData = scope.data;
+					var category = scope.category;
 					console.log(graphData);
+					// console.log(category);
 
 					// REDEFINING SCALES
 
@@ -199,7 +204,16 @@ angular.module('app.directives', [])
 						})
 						.entries(graphData);
 
-					var meals = nestedData[0];
+					console.log(nestedData);
+					for (var i = 0; i < nestedData.length; i++) {
+						if (nestedData[i].key === category) {
+							console.log(category);
+							var meals = nestedData[i];
+							break;
+						} 
+					}
+
+					// var meals = nestedData[0];
 
 					path2
 						.datum(meals.values)
