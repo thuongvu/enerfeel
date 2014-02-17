@@ -130,6 +130,9 @@ angular.module('app.directives', [])
 					.attr("class", "tooltip")
 					.style("opacity", 0);
 
+				// COLORSCALE
+
+				var colorScale = d3.scale.category10()
 
 			scope.$watch('data', updateGraph, true);
 			scope.$watch('category', updateGraph, true);
@@ -246,7 +249,10 @@ angular.module('app.directives', [])
 							return y(d.energylevel)
 						})
 						.attr("r", 10)
-						.attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+						// .attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+						.attr("fill", function(d,i) {
+							return colorScale(d.category);
+						})
 						.attr("opacity", 0.5)
 						.on("mouseover", function(d) {
 							div.transition()
