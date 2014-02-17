@@ -6,12 +6,15 @@ angular.module('app.controllers', [])
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("month");
 		$scope.input = {};
 
-		$scope.addEvent = function(energyLevel, note) {
+		$scope.addEvent = function(energyLevel, note, category) {
 			var eventData = {
 				energylevel : energyLevel,
 				note			: note,
-				date        : new Date()	
+				date        : new Date(),
+				category 	: category,	
 			};
+
+			// console.log(category)
 
 			$scope.eventService.allLifeEvents.push(eventData);
 			$scope.lifeEventsInView.push(eventData)

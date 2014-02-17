@@ -10,7 +10,14 @@
 			<div>
 				<input ng-model="input.level" type="number" placeholder="0"></input>
 				<input ng-model="input.note" type="text" placeholder="note"></input>
-				<button ng-click="addEvent(input.level, input.note)">Add</button>
+				<button ng-click="addEvent(input.level, input.note, input.category)">Add</button>
+				<select name="categorytoAdd" ng-model="input.category">
+					<option value="">Select an option</option>
+					<option value="meal">Meal</option>
+					<option value="exercise">Exercise</option>
+					<option value="work">Work</option>
+					<option value="sleep">Sleep</option>
+				</select>
 			</div>
 			<div>
 				<button ng-click="filterTime('day')">Day</button>
@@ -24,6 +31,7 @@
 				<button ng-click="filterCategory('sleep')">Sleep</button>
 				<button ng-click="filterCategory('null')">None</button>
 			</div>
+			
 			<graph data="lifeEventsInView" category="category.setTo"></graph>
 		</div>
 
