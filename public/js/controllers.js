@@ -18,7 +18,8 @@ angular.module('app.controllers', [])
 
 			$scope.eventService.allLifeEvents.push(eventData);
 			$scope.lifeEventsInView.push(eventData)
-			$scope.sortTime($scope.lifeEventsInView)
+			// $scope.sortTime($scope.lifeEventsInView)
+			$scope.filterService.sortTime($scope.lifeEventsInView);
 
 			$scope.input.level = null;
 			$scope.input.note = null; 
@@ -64,14 +65,14 @@ angular.module('app.controllers', [])
 			console.log($scope.dateTimePicked)
 		}
 
-		$scope.sortTime = function(arr) {
-			arr.sort(function(a,b) {
-					return a.date - b.date	
-				})
-			// console.log(arr);
-			for (var i = 0; i < arr.length; i++) {
-				console.log(arr[i].date)
-			}
-		}
+		// $scope.sortTime = function(arr) {
+		// 	arr.sort(function(a,b) {
+		// 			return a.date - b.date	
+		// 		})
+		// 	// console.log(arr);
+		// 	for (var i = 0; i < arr.length; i++) {
+		// 		console.log(arr[i].date)
+		// 	}
+		// }
 
 	}])

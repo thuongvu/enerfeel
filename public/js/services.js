@@ -47,13 +47,16 @@ angular.module('app.services', [])
 		} 
 
 		return {
-			filterLifeEvents : function(time) {
+			filterLifeEvents: function(time) {
 				currentFilterObj.time = time; // set currentFilterObj.time to what was passed
 				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
 				var timeAmount = determineTimeAmount(time); // determine number for subtraction
 				var results = filterTimeDuration(timeAmount, currentFilterObj.lifeEvents); // get me my results!
 				currentFilterObj.lifeEvents = sortTime(results); // sort the results
 				return currentFilterObj.lifeEvents;
+			},
+			sortTime: function(arr) {
+				sortTime(arr);
 			},
 			currentFilterObj: currentFilterObj,
 		}
