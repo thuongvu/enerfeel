@@ -12,7 +12,7 @@ angular.module('app.controllers', [])
 			var eventData = {
 				energylevel : energyLevel,
 				note			: note,
-				date        : $scope.myDate,
+				date        : $scope.dateTimePicked,
 				category 	: category,	
 			};
 
@@ -32,12 +32,12 @@ angular.module('app.controllers', [])
 			$scope.category.setTo = category;
 		}
 
-		$scope.myDate = new Date();
+		$scope.dateTimePicked = new Date();
 
 		var timeIntervalFunction = function() {
 			cancelRefresh = $timeout(function createNewDateObj() {
-				$scope.myDate = new Date();
-				console.log("the new time is " + $scope.myDate);
+				$scope.dateTimePicked = new Date();
+				console.log("the new time is " + $scope.dateTimePicked);
 				cancelRefresh = $timeout(createNewDateObj, 60000);
 			}, 60000);
 		};
@@ -48,7 +48,7 @@ angular.module('app.controllers', [])
 			var secsUntilNextMin = (60 - currentTimeSeconds) * 1000;
 			console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
 			$timeout(function() {
-				$scope.myDate = new Date();
+				$scope.dateTimePicked = new Date();
 				timeIntervalFunction()
 			}, secsUntilNextMin)
 		}
@@ -60,7 +60,7 @@ angular.module('app.controllers', [])
 		});
 
 		$scope.checkDateChosen = function() {
-			console.log($scope.myDate)
+			console.log($scope.dateTimePicked)
 		}
 
 	}])
