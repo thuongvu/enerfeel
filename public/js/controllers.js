@@ -12,7 +12,7 @@ angular.module('app.controllers', [])
 			var eventData = {
 				energylevel : energyLevel,
 				note			: note,
-				date        : new Date(),
+				date        : $scope.myDate,
 				category 	: category,	
 			};
 
@@ -59,5 +59,8 @@ angular.module('app.controllers', [])
 			$timeout.cancel(cancelRefresh);
 		});
 
+		$scope.checkDateChosen = function() {
+			console.log($scope.myDate)
+		}
 
 	}])
