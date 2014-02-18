@@ -52,7 +52,7 @@ angular.module('app.services', [])
 				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
 				var timeAmount = determineTimeAmount(time); // determine number for subtraction
 				var results = filterTimeDuration(timeAmount, currentFilterObj.lifeEvents); // get me my results!
-				currentFilterObj.lifeEvents = results;
+				currentFilterObj.lifeEvents = sortTime(results); // sort the results
 				return currentFilterObj.lifeEvents;
 			},
 			currentFilterObj: currentFilterObj,

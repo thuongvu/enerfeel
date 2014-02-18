@@ -18,6 +18,7 @@ angular.module('app.controllers', [])
 
 			$scope.eventService.allLifeEvents.push(eventData);
 			$scope.lifeEventsInView.push(eventData)
+			$scope.sortTime($scope.lifeEventsInView)
 
 			$scope.input.level = null;
 			$scope.input.note = null; 
