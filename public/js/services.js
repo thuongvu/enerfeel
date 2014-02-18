@@ -28,7 +28,7 @@ angular.module('app.services', [])
 			return timeAmount;
 		};
 
-		function filter(timeAmount, arr) {
+		function filterTimeDuration(timeAmount, arr) {
 			for (prop in EventService.allLifeEvents) {
 				var obj = EventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
@@ -37,6 +37,13 @@ angular.module('app.services', [])
 				}
 			}
 			return arr;
+		}
+
+		function sortTime(arr) {
+				arr.sort(function(a,b) {
+					return a.date - b.date	
+				})
+			return arr;
 		} 
 
 		return {
@@ -44,7 +51,7 @@ angular.module('app.services', [])
 				currentFilterObj.time = time; // set currentFilterObj.time to what was passed
 				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
 				var timeAmount = determineTimeAmount(time); // determine number for subtraction
-				var results = filter(timeAmount, currentFilterObj.lifeEvents); // get me my results!
+				var results = filterTimeDuration(timeAmount, currentFilterObj.lifeEvents); // get me my results!
 				currentFilterObj.lifeEvents = results;
 				return currentFilterObj.lifeEvents;
 			},
