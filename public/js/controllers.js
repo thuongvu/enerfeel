@@ -61,18 +61,4 @@ angular.module('app.controllers', [])
 			$timeout.cancel(cancelRefresh);
 		});
 
-		$scope.checkDateChosen = function() {
-			console.log($scope.dateTimePicked)
-		}
-
-		// $scope.sortTime = function(arr) {
-		// 	arr.sort(function(a,b) {
-		// 			return a.date - b.date	
-		// 		})
-		// 	// console.log(arr);
-		// 	for (var i = 0; i < arr.length; i++) {
-		// 		console.log(arr[i].date)
-		// 	}
-		// }
-
 	}])
