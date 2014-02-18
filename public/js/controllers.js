@@ -5,6 +5,8 @@ angular.module('app.controllers', [])
 		$scope.filterService = FilterService;
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("month");
 		$scope.input = {};
+		$scope.category = {};
+		$scope.category.setTo = 'null';
 
 		$scope.addEvent = function(energyLevel, note, category) {
 			var eventData = {
@@ -26,49 +28,28 @@ angular.module('app.controllers', [])
 			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
 		}
 
-		$scope.category = {};
-		$scope.category.setTo = 'null';
-
 		$scope.filterCategory = function(category) {
 			$scope.category.setTo = category;
 		}
 
-		function log() {
-			console.log("Hello")
-		}
-
 		$scope.myDate = new Date();
 
-		// $timeout(function() {
-		// 	$scope.myDate = new Date();
-		// }, 60000)
-
-		// $timeout(function() {
-		// 	console.log()
-		// })
-		// $scope.$watch('$scope.myDate', log, true)
-
-		// i'm going to make it a function now where i can control how many seconds until
-		var myIntervalFunction = function() {
-			cancelRefresh = $timeout(function myFunction() {
-				// do something
-				console.log("it is now the next minute now ")
+		var timeIntervalFunction = function() {
+			cancelRefresh = $timeout(function createNewDateObj() {
 				$scope.myDate = new Date();
-				// did something
-				cancelRefresh = $timeout(myFunction, 60000);
+				console.log("the new time is " + $scope.myDate);
+				cancelRefresh = $timeout(createNewDateObj, 60000);
 			}, 60000);
 		};
-
-		
 
 		function setTime() {
 			var currentTime = new Date();
 			var currentTimeSeconds = currentTime.getSeconds();
-			var secsUntilNextMin = 60 - currentTimeSeconds;
+			var secsUntilNextMin = (60 - currentTimeSeconds) * 1000;
 			console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
 			$timeout(function() {
 				$scope.myDate = new Date();
-				myIntervalFunction()
+				timeIntervalFunction()
 			}, secsUntilNextMin)
 		}
 
@@ -78,11 +59,5 @@ angular.module('app.controllers', [])
 			$timeout.cancel(cancelRefresh);
 		});
 
-
-
-
-		$scope.checkDate = function() {
-			console.log($scope.myDate)
-		}
 
 	}])
