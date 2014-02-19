@@ -36,10 +36,11 @@
 				<button ng-click="filterCategory('null')">None</button>
 			</div>
 			<div>
-				{{event.selected.date}}
-				{{event.selected.energylevel}}
-				{{event.selected.note}}
-				{{event.selected.category}}
+				<input type="text" ng-model="event.selected.date"></input>
+				<input type="text" ng-model="event.selected.energylevel"></input>
+				<input type="text" ng-model="event.selected.note"></input>
+				<input type="text" ng-model="event.selected.category"></input>
+				<button ng-click="updateEvent(event)">Update</button>
 				<button ng-click="deleteEvent(event)">Delete</button>
 			</div>
 			

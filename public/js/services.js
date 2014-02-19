@@ -20,6 +20,14 @@ angular.module('app.services', [])
 					}
 				}
 			},
+			updateLifeEvent: function(event) { // i think this is redundant for angular, but it will be important when there's a REST api
+				for (var i = 0; i < data.length; i++) {
+					if (event.date === data[i].date) {
+						data.splice(i,1, event);
+						break;
+					}
+				}
+			},
 			allLifeEvents: data
 		}
 	})

@@ -75,10 +75,17 @@ angular.module('app.controllers', [])
 		}
 
 		$scope.deleteEvent = function (event) {
-			// console.log(event.selected)
 			$scope.eventService.deleteLifeEvent(event.selected);
-			console.log($scope.filterService.currentFilterObj.time)
-			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time)
+			console.log($scope.filterService.currentFilterObj.time);
+			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+		}
+
+		$scope.updateEvent = function (event) {
+			if (event) {
+				console.log(event.selected)
+				$scope.eventService.updateLifeEvent(event.selected);
+				$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+			}
 		}
 
 	}])
