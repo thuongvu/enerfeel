@@ -1,0 +1,14 @@
+<button ng-click="addTest()">Add</button>
+<div ng-show="showAdd">
+	<input ng-model="input.level" type="number" placeholder="0"></input>
+	<input ng-model="input.note" type="text" placeholder="note"></input>
+	<button ng-click="addEvent(input.level, input.note, input.category)">Add</button>
+	<select name="categorytoAdd" ng-model="input.category">
+		<option value="">Select an option</option>
+		<option value="meal">Meal</option>
+		<option value="exercise">Exercise</option>
+		<option value="work">Work</option>
+		<option value="sleep">Sleep</option>
+	</select>
+	<datepicker ng-model='dateTimePicked'></datepicker>
+</div>

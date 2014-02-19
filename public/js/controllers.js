@@ -8,23 +8,23 @@ angular.module('app.controllers', [])
 		$scope.category = {};
 		$scope.category.setTo = 'null';
 
-		$scope.addEvent = function(energyLevel, note, category) {
-			var eventData = {
-				energylevel : energyLevel,
-				note			: note,
-				date        : $scope.dateTimePicked,
-				category 	: category,	
-			};
+		// $scope.addEvent = function(energyLevel, note, category) {
+		// 	var eventData = {
+		// 		energylevel : energyLevel,
+		// 		note			: note,
+		// 		date        : $scope.dateTimePicked,
+		// 		category 	: category,	
+		// 	};
 
-			$scope.eventService.allLifeEvents.push(eventData);
-			$scope.lifeEventsInView.push(eventData)
-			// $scope.sortTime($scope.lifeEventsInView)
-			$scope.filterService.sortTime($scope.lifeEventsInView);
+		// 	$scope.eventService.allLifeEvents.push(eventData);
+		// 	$scope.lifeEventsInView.push(eventData)
+		// 	// $scope.sortTime($scope.lifeEventsInView)
+		// 	$scope.filterService.sortTime($scope.lifeEventsInView);
 
-			$scope.input.level = null;
-			$scope.input.note = null; 
-			$scope.input.category = null; 
-		}
+		// 	$scope.input.level = null;
+		// 	$scope.input.note = null; 
+		// 	$scope.input.category = null; 
+		// }
 
 		$scope.filterTime = function(time) {
 			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
