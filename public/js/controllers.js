@@ -62,15 +62,20 @@ angular.module('app.controllers', [])
 		});
 
 
-		$scope.selectNode = function (node) {
-			console.log("selectNode invoked on the controller and here's the node")
-			console.log(node)
+		$scope.selectEvent = function (event) {
+			console.log("selectEvent invoked on the controller and here's the event")
+			console.log(event)
 		}
 
-		$scope.node = {};
+		$scope.event = {};
+		$scope.event.selected;
 
-		$scope.showNode = function() {
-			console.log($scope.node);
+		$scope.showEvent = function() {
+			console.log($scope.event.selected);
+		}
+
+		$scope.deleteEvent = function (event) {
+			console.log(event.selected)
 		}
 
 	}])
