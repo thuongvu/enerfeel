@@ -6,7 +6,8 @@ angular.module('app.directives', [])
 			controller: function ($scope) {
 				$scope.showAdd = true;
 				$scope.show = {};
-
+				$scope.input.checkbox = {};
+				$scope.input.checkbox.checked = 0;
 
 				$scope.showModifyFunc = function() {
 					if ($scope.showAdd === true) {
@@ -17,16 +18,21 @@ angular.module('app.directives', [])
 				};
 
 				$scope.addEvent = function(energyLevel, note, category, opacity) {
+					
+					for (food in $scope.input.checkbox) {
+						if ($scope.input.checkbox[food] === true) {
+							$scope.input.checkbox.checked++;
+						}
+					};
+
 					var eventData = {
 						energylevel : energyLevel,
 						note			: note,
 						date        : $scope.dateTimePicked,
 						category 	: category,	
-						opacity		: opacity
-						// spot for size
+						opacity		: opacity,
+						size			: $scope.input.checkbox.checked
 					};
-
-					console.log($scope.input.size)
 
 					$scope.eventService.allLifeEvents.push(eventData);
 					$scope.lifeEventsInView.push(eventData)
@@ -39,6 +45,8 @@ angular.module('app.directives', [])
 					}
 
 					showHideCategories('none');
+
+					$scope.input.checkbox = {}; // make checkbox again so it's not null, total hack
 				};
 
 				$scope.dateTimePicked = new Date();
