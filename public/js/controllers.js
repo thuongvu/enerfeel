@@ -75,7 +75,10 @@ angular.module('app.controllers', [])
 		}
 
 		$scope.deleteEvent = function (event) {
-			console.log(event.selected)
+			// console.log(event.selected)
+			$scope.eventService.deleteLifeEvent(event.selected);
+			console.log($scope.filterService.currentFilterObj.time)
+			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time)
 		}
 
 	}])

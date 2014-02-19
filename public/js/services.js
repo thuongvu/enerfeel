@@ -9,6 +9,17 @@ angular.module('app.services', [])
 		 {"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal"},
 		 ];
 		return {
+			deleteLifeEvent: function (event) {
+				for (var i = 0; i < data.length; i++) {
+					if (event.date === data[i].date) {
+						console.log(data.length)
+						console.log(event.date + " IS THE ONE");
+						data.splice(i, 1);
+						console.log(data.length)
+						break;
+					}
+				}
+			},
 			allLifeEvents: data
 		}
 	})
