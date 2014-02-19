@@ -50,7 +50,7 @@ angular.module('app.graphDirective', [])
 					// opacity scale
 				var o = d3.scale.linear()
 					.domain([0,5])
-					.range([.2,.8]);
+					.range([.1,.9]);
 
 				// INITIALIZING AXES
 
@@ -278,7 +278,10 @@ angular.module('app.graphDirective', [])
 						.attr("fill", function(d,i) {
 							return colorScale(d.category);
 						})
-						.attr("opacity", 0.8)
+						// .attr("opacity", 0.8)
+						.attr("opacity", function(d) {
+							return o(d.opacity)
+						})
 						.on("mouseover", function(d) {
 							div.transition()
 								.duration(250)

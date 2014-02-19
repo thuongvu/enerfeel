@@ -16,12 +16,14 @@ angular.module('app.directives', [])
 					}
 				};
 
-				$scope.addEvent = function(energyLevel, note, category) {
+				$scope.addEvent = function(energyLevel, note, category, opacity) {
 					var eventData = {
 						energylevel : energyLevel,
 						note			: note,
 						date        : $scope.dateTimePicked,
 						category 	: category,	
+						opacity		: opacity
+						// spot for size
 					};
 
 					$scope.eventService.allLifeEvents.push(eventData);
@@ -32,8 +34,8 @@ angular.module('app.directives', [])
 					$scope.input.note = null; 
 					$scope.input.category = null; 
 					$scope.showAdd = false;
-					// opacity to average
-					// size to average
+					$scope.input.opacity = null;
+					$scope.input.size = null;
 				};
 
 				$scope.dateTimePicked = new Date();
@@ -81,13 +83,13 @@ angular.module('app.directives', [])
 					} else if ($scope.input.category === 'exercise') {
 						showHideCategories($scope.input.category);
 					} else if ($scope.input.category === 'work') {
-						// size to average
-						// opacity to average
+						$scope.input.opacity = 3;
+						$scope.input.size = 3;
 						showHideCategories($scope.input.category);
 					} else if (($scope.input.category === 'sleep')) {
 						showHideCategories($scope.input.category);
-						// size to average
-						// opacity to average
+						$scope.input.opacity = 3;
+						$scope.input.size = 3;
 					};
 				}
 
