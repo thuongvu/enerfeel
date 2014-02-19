@@ -26,22 +26,17 @@ angular.module('app.directives', [])
 						// spot for size
 					};
 
+					console.log($scope.input.size)
+
 					$scope.eventService.allLifeEvents.push(eventData);
 					$scope.lifeEventsInView.push(eventData)
 					$scope.filterService.sortTime($scope.lifeEventsInView);
 
 					$scope.showAdd = false;
+
 					for (prop in $scope.input) {
 						$scope.input[prop] = null;
 					}
-					// $scope.input.level = null;
-					// $scope.input.note = null; 
-					// $scope.input.category = null; 
-					
-					// $scope.input.opacity = null;
-					// $scope.input.size = null;
-
-					console.log($scope.input)
 
 					showHideCategories('none');
 				};
@@ -101,7 +96,7 @@ angular.module('app.directives', [])
 					};
 				}
 
-				$scope.$watch('input', watchCategory, true )
+				$scope.$watch('input.category', watchCategory, true )
 
 			},
 			link: function (scope, iElement, iAttrs) {
