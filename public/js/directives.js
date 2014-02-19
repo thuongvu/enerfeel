@@ -114,7 +114,8 @@ angular.module('app.directives', [])
 					// it makes a new one. but i'm trying to use a enter/update/exit pattern.
 
 				var path2 = svg.append("g")
-					.attr("class", "linepath") //path needs to be a global var
+					// .attr("class", "linepath") //path needs to be a global var
+					.attr("class", "line-category")
 					.append("path");
 
 				// TOOLTIP	
@@ -204,6 +205,12 @@ angular.module('app.directives', [])
 
 					// PATH2 TRANSITON
 					if (category != 'null') {
+							if (path2 == null) {
+								path2 = svg.append("g")
+									.attr("class", "linepath") //path needs to be a global var
+									.append("path");
+							}
+							
 						var nestedData = d3.nest()
 							.key(function(d) {
 								return d.category;
@@ -226,6 +233,11 @@ angular.module('app.directives', [])
 							.attr("d", line)
 							.attr("class", "line-category")
 							.attr("transform", null)
+					} 
+					else if (category === 'null'){
+						console.log("remove")
+						svg.selectAll(".line-category").data([]).exit().remove()
+						path2 = null;
 					}
 					
 
