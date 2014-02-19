@@ -61,4 +61,16 @@ angular.module('app.controllers', [])
 			$timeout.cancel(cancelRefresh);
 		});
 
+
+		$scope.selectNode = function (node) {
+			console.log("selectNode invoked on the controller and here's the node")
+			console.log(node)
+		}
+
+		$scope.node = {};
+
+		$scope.showNode = function() {
+			console.log($scope.node);
+		}
+
 	}])

@@ -4,7 +4,8 @@ angular.module('app.directives', [])
 			restrict: 'EA',
 			scope: {
 				data: '=',
-				category: '='
+				category: '=',
+				select: '='
 			},
 			controller: function ($scope) {
 			},
@@ -12,6 +13,7 @@ angular.module('app.directives', [])
 				// set graphData to be the data linked on the 'data' attr of the directive
 				var graphData = scope.data;
 				var category = scope.category;
+				// var select = scope.select;
 				// dimensions of svg
 				var width = 800,
 					 height = 400,
@@ -258,6 +260,12 @@ angular.module('app.directives', [])
 							div.transition()
 								.duration(250)
 								.style("opacity", 0)
+						})
+						.on("click", function(d) {
+							console.log("clicked circle")
+							// console.log(d);
+							scope.select = d;
+							// console.log(scope.select)
 						})
 
 						// update circle (locations)

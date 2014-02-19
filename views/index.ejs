@@ -21,6 +21,7 @@
 					<option value="sleep">Sleep</option>
 				</select>
 				<datepicker ng-model='dateTimePicked'></datepicker>
+				<button ng-click="showNode()">Show Node</button>
 			</div>
 			<div>
 				<button ng-click="filterTime('day')">Day</button>
@@ -34,8 +35,14 @@
 				<button ng-click="filterCategory('sleep')">Sleep</button>
 				<button ng-click="filterCategory('null')">None</button>
 			</div>
+			<div>
+				{{node.date}}
+				{{node.energylevel}}
+				{{node.note}}
+				{{note.category}}
+			</div>
 			
-			<graph data="lifeEventsInView" category="category.setTo"></graph>
+			<graph data="lifeEventsInView" category="category.setTo" select="node"></graph>
 		</div>
 
 
