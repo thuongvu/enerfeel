@@ -10,20 +10,6 @@
 	<body>
 		<div ng-controller="mainCtrl">
 			<div>
-				<!-- <input ng-model="input.level" type="number" placeholder="0"></input>
-				<input ng-model="input.note" type="text" placeholder="note"></input>
-				<button ng-click="addEvent(input.level, input.note, input.category)">Add</button>
-				<select name="categorytoAdd" ng-model="input.category">
-					<option value="">Select an option</option>
-					<option value="meal">Meal</option>
-					<option value="exercise">Exercise</option>
-					<option value="work">Work</option>
-					<option value="sleep">Sleep</option>
-				</select>
-				<datepicker ng-model='dateTimePicked'></datepicker> -->
-				<!-- <button ng-click="showEvent()">Show Event</button> -->
-			</div>
-			<div>
 				<button ng-click="filterTime('day')">Day</button>
 				<button ng-click="filterTime('week')">Week</button>
 				<button ng-click="filterTime('month')">Month</button>
@@ -36,17 +22,7 @@
 				<button ng-click="filterCategory('null')">None</button>
 			</div>
 			<div modify></div>
-			<!-- <div>
-				<input type="text" ng-model="event.selected.date"></input>
-				<input type="text" ng-model="event.selected.energylevel"></input>
-				<input type="text" ng-model="event.selected.note"></input>
-				<input type="text" ng-model="event.selected.category"></input>
-				<button ng-click="updateEvent(event)">Update</button>
-				<button ng-click="deleteEvent(event)">Delete</button>
-			</div> -->
-			<div>
-				<div add></div>
-			</div>
+			<div add></div>
 			
 			<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>
 		</div>

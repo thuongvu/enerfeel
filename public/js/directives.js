@@ -25,7 +25,6 @@ angular.module('app.directives', [])
 
 					$scope.eventService.allLifeEvents.push(eventData);
 					$scope.lifeEventsInView.push(eventData)
-					// $scope.sortTime($scope.lifeEventsInView)
 					$scope.filterService.sortTime($scope.lifeEventsInView);
 
 					$scope.input.level = null;
@@ -62,9 +61,13 @@ angular.module('app.directives', [])
 
 			},
 			templateUrl: 'directiveTemplates/addTemplate.html'
-			// template: '<button ng-click=' + "addTest()" + '>ADD</button><span ng-show=' + "showAdd" + '>This is sometimes hidden</span>'
 		}
 	}])
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
 	.directive('modify', ['EventService', 'FilterService', function (EventService, FilterService) {
 		return {
 			restrict: 'EA',
