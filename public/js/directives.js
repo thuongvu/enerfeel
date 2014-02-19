@@ -65,12 +65,35 @@ angular.module('app.directives', [])
 			// template: '<button ng-click=' + "addTest()" + '>ADD</button><span ng-show=' + "showAdd" + '>This is sometimes hidden</span>'
 		}
 	}])
-	.directive('modify', ['eventService', 'filterService', function (EventService, FilterService) {
+	.directive('modify', ['EventService', 'FilterService', function (EventService, FilterService) {
 		return {
 			restrict: 'EA',
 			// scope: {},
 			controller: function ($scope) {
 
+				$scope.showModify = false;
+
+				$scope.showModifyFunc = function () {
+					if ($scope.showModify === true) {
+						$scope.showModify = false;
+					} else {
+						$scope.showModify = true;
+					}
+				};
+
+				$scope.deleteEvent = function (event) {
+					$scope.eventService.deleteLifeEvent(event.selected);
+					console.log($scope.filterService.currentFilterObj.time);
+					$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+				};
+
+				$scope.updateEvent = function (event) {
+					if (event) {
+						console.log(event.selected)
+						$scope.eventService.updateLifeEvent(event.selected);
+						$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+					}
+				};
 			},
 			link: function (scope, iElement, iAttrs) {
 

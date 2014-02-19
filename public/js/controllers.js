@@ -62,30 +62,30 @@ angular.module('app.controllers', [])
 		});
 
 
-		$scope.selectEvent = function (event) {
-			console.log("selectEvent invoked on the controller and here's the event")
-			console.log(event)
-		}
+		// $scope.selectEvent = function (event) {
+		// 	console.log("selectEvent invoked on the controller and here's the event")
+		// 	console.log(event)
+		// }
 
 		$scope.event = {};
 		$scope.event.selected;
 
-		$scope.showEvent = function() {
-			console.log($scope.event.selected);
-		}
+		// $scope.showEvent = function() {
+		// 	console.log($scope.event.selected);
+		// }
 
-		$scope.deleteEvent = function (event) {
-			$scope.eventService.deleteLifeEvent(event.selected);
-			console.log($scope.filterService.currentFilterObj.time);
-			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
-		}
+		// $scope.deleteEvent = function (event) {
+		// 	$scope.eventService.deleteLifeEvent(event.selected);
+		// 	console.log($scope.filterService.currentFilterObj.time);
+		// 	$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+		// }
 
-		$scope.updateEvent = function (event) {
-			if (event) {
-				console.log(event.selected)
-				$scope.eventService.updateLifeEvent(event.selected);
-				$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
-			}
-		}
+		// $scope.updateEvent = function (event) {
+		// 	if (event) {
+		// 		console.log(event.selected)
+		// 		$scope.eventService.updateLifeEvent(event.selected);
+		// 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+		// 	}
+		// }
 
 	}])

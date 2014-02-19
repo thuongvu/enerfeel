@@ -1,0 +1,9 @@
+<button ng-click="showModifyFunc()">Modify</button>
+<div ng-show="showModify">
+	<input type="text" ng-model="event.selected.date"></input>
+	<input type="text" ng-model="event.selected.energylevel"></input>
+	<input type="text" ng-model="event.selected.note"></input>
+	<input type="text" ng-model="event.selected.category"></input>
+	<button ng-click="updateEvent(event)">Update</button>
+	<button ng-click="deleteEvent(event)">Delete</button>
+</div>
