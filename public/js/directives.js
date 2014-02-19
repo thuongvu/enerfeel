@@ -32,6 +32,8 @@ angular.module('app.directives', [])
 					$scope.input.note = null; 
 					$scope.input.category = null; 
 					$scope.showAdd = false;
+					// opacity to average
+					// size to average
 				};
 
 				$scope.dateTimePicked = new Date();
@@ -79,9 +81,13 @@ angular.module('app.directives', [])
 					} else if ($scope.input.category === 'exercise') {
 						showHideCategories($scope.input.category);
 					} else if ($scope.input.category === 'work') {
+						// size to average
+						// opacity to average
 						showHideCategories($scope.input.category);
 					} else if (($scope.input.category === 'sleep')) {
 						showHideCategories($scope.input.category);
+						// size to average
+						// opacity to average
 					};
 				}
 

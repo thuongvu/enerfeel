@@ -1,3 +1,9 @@
+// scale for opacity
+// scale for size
+
+
+
+
 angular.module('app.graphDirective', [])
 	.directive('graph', ['d3', function (d3) {
 		return {
@@ -263,11 +269,11 @@ angular.module('app.graphDirective', [])
 						.attr("cy", function(d) {
 							return y(d.energylevel)
 						})
-						.attr("r", 10)
+						.attr("r", 12)
 						.attr("fill", function(d,i) {
 							return colorScale(d.category);
 						})
-						.attr("opacity", 0.5)
+						.attr("opacity", 0.8)
 						.on("mouseover", function(d) {
 							div.transition()
 								.duration(250)
