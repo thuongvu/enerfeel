@@ -34,28 +34,28 @@ angular.module('app.controllers', [])
 			$scope.category.setTo = category;
 		}
 
-		$scope.dateTimePicked = new Date();
+		// $scope.dateTimePicked = new Date();
 
-		var timeIntervalFunction = function() {
-			cancelRefresh = $timeout(function createNewDateObj() {
-				$scope.dateTimePicked = new Date();
-				console.log("the new time is " + $scope.dateTimePicked);
-				cancelRefresh = $timeout(createNewDateObj, 60000);
-			}, 60000);
-		};
+		// var timeIntervalFunction = function() {
+		// 	cancelRefresh = $timeout(function createNewDateObj() {
+		// 		$scope.dateTimePicked = new Date();
+		// 		console.log("the new time is " + $scope.dateTimePicked);
+		// 		cancelRefresh = $timeout(createNewDateObj, 60000);
+		// 	}, 60000);
+		// };
 
-		function setTime() {
-			var currentTime = new Date();
-			var currentTimeSeconds = currentTime.getSeconds();
-			var secsUntilNextMin = (60 - currentTimeSeconds) * 1000;
-			console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
-			$timeout(function() {
-				$scope.dateTimePicked = new Date();
-				timeIntervalFunction()
-			}, secsUntilNextMin)
-		}
+		// function setTime() {
+		// 	var currentTime = new Date();
+		// 	var currentTimeSeconds = currentTime.getSeconds();
+		// 	var secsUntilNextMin = (60 - currentTimeSeconds) * 1000;
+		// 	console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
+		// 	$timeout(function() {
+		// 		$scope.dateTimePicked = new Date();
+		// 		timeIntervalFunction()
+		// 	}, secsUntilNextMin)
+		// }
 
-		setTime()
+		// setTime()
 
 		$scope.$on('destroy', function(e) {
 			$timeout.cancel(cancelRefresh);

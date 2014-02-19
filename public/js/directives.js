@@ -1,5 +1,5 @@
 angular.module('app.directives', [])
-	.directive('add', ['EventService', 'FilterService', function (EventService, FilterService) {
+	.directive('add', ['EventService', 'FilterService', '$timeout', function (EventService, FilterService, $timeout) {
 		return {
 			restrict: 'EA',
 			// scope: {},
@@ -13,7 +13,7 @@ angular.module('app.directives', [])
 					} else {
 						$scope.showAdd = true;
 					}
-				}
+				};
 
 				$scope.addEvent = function(energyLevel, note, category) {
 					var eventData = {
@@ -32,7 +32,30 @@ angular.module('app.directives', [])
 					$scope.input.note = null; 
 					$scope.input.category = null; 
 					$scope.showAdd = false;
-				}
+				};
+
+				$scope.dateTimePicked = new Date();
+
+				var timeIntervalFunction = function() {
+					cancelRefresh = $timeout(function createNewDateObj() {
+						$scope.dateTimePicked = new Date();
+						console.log("the new time is " + $scope.dateTimePicked);
+						cancelRefresh = $timeout(createNewDateObj, 60000);
+					}, 60000);
+				};
+
+				function setTime() {
+					var currentTime = new Date();
+					var currentTimeSeconds = currentTime.getSeconds();
+					var secsUntilNextMin = (60 - currentTimeSeconds) * 1000;
+					console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
+					$timeout(function() {
+						$scope.dateTimePicked = new Date();
+						timeIntervalFunction()
+					}, secsUntilNextMin)
+				};
+
+				setTime();
 
 			},
 			link: function (scope, iElement, iAttrs) {
@@ -42,3 +65,23 @@ angular.module('app.directives', [])
 			// template: '<button ng-click=' + "addTest()" + '>ADD</button><span ng-show=' + "showAdd" + '>This is sometimes hidden</span>'
 		}
 	}])
+	.directive('modify', ['eventService', 'filterService', function (EventService, FilterService) {
+		return {
+			restrict: 'EA',
+			// scope: {},
+			controller: function ($scope) {
+
+			},
+			link: function (scope, iElement, iAttrs) {
+
+			},
+			templateUrl: 'directiveTemplates/modifyTemplate.html'
+		}
+	}])
+
+
+
+
+
+
+
