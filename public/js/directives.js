@@ -6,7 +6,7 @@ angular.module('app.directives', [])
 			controller: function ($scope) {
 				$scope.showAdd = false;
 
-				$scope.addTest = function() {
+				$scope.showModifyFunc = function() {
 					console.log("addTest")
 					if ($scope.showAdd === true) {
 						$scope.showAdd = false; 
