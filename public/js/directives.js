@@ -30,12 +30,20 @@ angular.module('app.directives', [])
 					$scope.lifeEventsInView.push(eventData)
 					$scope.filterService.sortTime($scope.lifeEventsInView);
 
-					$scope.input.level = null;
-					$scope.input.note = null; 
-					$scope.input.category = null; 
 					$scope.showAdd = false;
-					$scope.input.opacity = null;
-					$scope.input.size = null;
+					for (prop in $scope.input) {
+						$scope.input[prop] = null;
+					}
+					// $scope.input.level = null;
+					// $scope.input.note = null; 
+					// $scope.input.category = null; 
+					
+					// $scope.input.opacity = null;
+					// $scope.input.size = null;
+
+					console.log($scope.input)
+
+					showHideCategories('none');
 				};
 
 				$scope.dateTimePicked = new Date();
