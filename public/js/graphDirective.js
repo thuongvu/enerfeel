@@ -38,14 +38,19 @@ angular.module('app.graphDirective', [])
 					.domain(d3.extent(graphData, function (d) {
 						return d.date;
 					}))
-					.range([padding, width - padding])
+					.range([padding, width - padding]);
 
 					// y scale
 				var y = d3.scale.linear()
 					.domain([0, d3.max(graphData, function (d) {
 						return d.energylevel;
 					})])
-					.range([height - padding - 10, padding - 10]) 
+					.range([height - padding - 10, padding - 10]);
+
+					// opacity scale
+				var o = d3.scale.linear()
+					.domain([0,5])
+					.range([.2,.8]);
 
 				// INITIALIZING AXES
 
