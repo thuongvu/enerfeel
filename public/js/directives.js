@@ -68,7 +68,7 @@ angular.module('app.directives', [])
 					// 	.attr("y", 50)
 						// .attr("transform", "translate(" + x + "," + y + ")" + "rotate(-90)")
 
-				svg.selectAll("text")
+				svg.selectAll(".x.axis").selectAll("text")
 					.attr("transform", "rotate(-45)translate(-20, 0)")
 
 					// y axis
@@ -181,6 +181,9 @@ angular.module('app.directives', [])
 					svg.select(".x.axis").transition()
 						.duration(500)
 						.call(xAxis)
+
+					svg.selectAll(".x.axis").selectAll("text")
+						.attr("transform", "rotate(-45)translate(-20, 0)")	
 
 
 						// y axis + calling			
