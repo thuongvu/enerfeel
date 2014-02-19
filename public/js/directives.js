@@ -4,10 +4,11 @@ angular.module('app.directives', [])
 			restrict: 'EA',
 			// scope: {},
 			controller: function ($scope) {
-				$scope.showAdd = false;
+				$scope.showAdd = true;
+				$scope.show = {};
+
 
 				$scope.showModifyFunc = function() {
-					console.log("addTest")
 					if ($scope.showAdd === true) {
 						$scope.showAdd = false; 
 					} else {
@@ -55,6 +56,36 @@ angular.module('app.directives', [])
 				};
 
 				setTime();
+
+				function showHideCategories(cat) {
+					for (category in $scope.show) {
+						if (category !== cat) {
+							$scope.show[category] = false;
+						} else {
+							$scope.show[category] = true;
+						}
+					}
+					console.log($scope.show)
+				}
+
+				$scope.show.meal = false;
+				$scope.show.exercise = false;
+				$scope.show.work = false;
+				$scope.show.sleep = false;
+
+				function watchCategory() {
+					if ($scope.input.category === 'meal') {
+						showHideCategories($scope.input.category);
+					} else if ($scope.input.category === 'exercise') {
+						showHideCategories($scope.input.category);
+					} else if ($scope.input.category === 'work') {
+						showHideCategories($scope.input.category);
+					} else if (($scope.input.category === 'sleep')) {
+						showHideCategories($scope.input.category);
+					};
+				}
+
+				$scope.$watch('input', watchCategory, true )
 
 			},
 			link: function (scope, iElement, iAttrs) {
