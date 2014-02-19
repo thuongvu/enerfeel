@@ -48,6 +48,7 @@ angular.module('app.directives', [])
 					.scale(x)
 				   .orient("bottom")
 					.ticks(10)
+
 					// y axis
 				var yAxis = d3.svg.axis()
 					.scale(y)
@@ -61,10 +62,14 @@ angular.module('app.directives', [])
 					.attr("class", "x axis")
 					.attr("transform", "translate(0," + (height - padding - 10) + ")")
 					.call(xAxis)
-				 .append("text") 
-						.text("Date")
-						.attr("x", width / 2)
-						.attr("y", 50);
+				 // .append("text") 
+					// 	.text("Date")
+					// 	.attr("x", width / 2)
+					// 	.attr("y", 50)
+						// .attr("transform", "translate(" + x + "," + y + ")" + "rotate(-90)")
+
+				svg.selectAll("text")
+					.attr("transform", "rotate(-45)translate(-20, 0)")
 
 					// y axis
 				svg.append("g")
@@ -177,6 +182,7 @@ angular.module('app.directives', [])
 						.duration(500)
 						.call(xAxis)
 
+
 						// y axis + calling			
 					svg.select(".y.axis").transition()
 						.duration(500)
@@ -243,7 +249,6 @@ angular.module('app.directives', [])
 							return y(d.energylevel)
 						})
 						.attr("r", 10)
-						// .attr("fill", '#'+(Math.random()*0xFFFFFF<<0).toString(16))
 						.attr("fill", function(d,i) {
 							return colorScale(d.category);
 						})
@@ -262,10 +267,7 @@ angular.module('app.directives', [])
 								.style("opacity", 0)
 						})
 						.on("click", function(d) {
-							console.log("clicked circle")
-							// console.log(d);
 							scope.select = d;
-							// console.log(scope.select)
 						})
 
 						// update circle (locations)

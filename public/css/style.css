@@ -41,3 +41,7 @@ div.tooltip {
   border-radius: 8px;           
   pointer-events: none;         
 }
+
+.x.axis {
+  font-size: 1.2em;
+}
