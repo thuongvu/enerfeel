@@ -19,16 +19,18 @@ angular.module('app.directives', [])
 				};
 
 				function addIfMeal() {
+					$scope.input.checkbox.checked = 0; // to reset it from the 3 set on default
 					console.log("checked" + $scope.input.checkbox.checked)
 					for (food in $scope.input.checkbox) {
 						if ($scope.input.checkbox[food] === true) {
 							$scope.input.checkbox.checked++;
 						}
 					};
-					console.log($scope.input.checkbox.checked);
+					console.log("$scope.input.checkbox.checked is " + $scope.input.checkbox.checked);
 					$scope.input.size = $scope.input.checkbox.checked;
 
-					$scope.input.checkbox = {};
+
+					// $scope.input.checkbox = {};
 					// $scope.input.checkbox.checked = 0;
 				}
 
@@ -38,6 +40,9 @@ angular.module('app.directives', [])
 					if (category === 'meal') {
 						addIfMeal();
 					}
+
+					console.log("$scope.input.opacity is " + $scope.input.opacity);
+					console.log("$scope.input.size is " + $scope.input.size);
 
 					var eventData = {
 						energylevel : energyLevel,
