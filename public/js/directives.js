@@ -141,13 +141,16 @@ angular.module('app.directives', [])
 			restrict: 'EA',
 			// scope: {},
 			controller: function ($scope) {
-
+				$scope.event = {};
+				$scope.event.selected;
 				$scope.showModify = false;
 
 				$scope.showModifyFunc = function () {
-					console.log("this should be modify, hmm")
+
 					if ($scope.showModify === true) {
 						$scope.showModify = false;
+						$scope.event = {};
+						$scope.event.selected;
 					} else {
 						$scope.showModify = true;
 					}
