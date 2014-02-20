@@ -18,14 +18,26 @@ angular.module('app.directives', [])
 					}
 				};
 
-				// ADD LOGIC
-				$scope.addEvent = function(energyLevel, note, category, opacity) {
-					
+				function addIfMeal() {
+					console.log("checked" + $scope.input.checkbox.checked)
 					for (food in $scope.input.checkbox) {
 						if ($scope.input.checkbox[food] === true) {
 							$scope.input.checkbox.checked++;
 						}
 					};
+					console.log($scope.input.checkbox.checked);
+					$scope.input.size = $scope.input.checkbox.checked;
+
+					$scope.input.checkbox = {};
+					// $scope.input.checkbox.checked = 0;
+				}
+
+				// ADD LOGIC
+				$scope.addEvent = function(energyLevel, note, category, opacity) {
+					
+					if (category === 'meal') {
+						addIfMeal();
+					}
 
 					var eventData = {
 						energylevel : energyLevel,
@@ -33,7 +45,9 @@ angular.module('app.directives', [])
 						date        : $scope.dateTimePicked,
 						category 	: category,	
 						opacity		: opacity,
-						size			: $scope.input.checkbox.checked
+						size			: $scope.input.size
+						// size			: $scope.input.checkbox.checked
+										// we need a scope.input.size... and only when in the case of category meal, we make it equal to that.  other wise its a direct input. put it another function before this
 					};
 
 					$scope.eventService.allLifeEvents.push(eventData);
@@ -46,10 +60,10 @@ angular.module('app.directives', [])
 						$scope.input[prop] = null;
 					}
 
-					showHideCategories('none');
+					showHideCategories('all');
 
-					$scope.input.checkbox = {}; // make checkbox again so it's not null, total hack
-					$scope.input.checkbox.checked = 0;
+					// $scope.input.checkbox = {}; // make checkbox again so it's not null, total hack
+					// $scope.input.checkbox.checked = 0;
 				};
 
 				// DATEPICKER LOGIC
@@ -97,6 +111,9 @@ angular.module('app.directives', [])
 					// set both options to 3, JUST IN CASE user won't
 					showHideCategories($scope.input.category);
 					$scope.input.opacity = 3;
+					if ($scope.input.checkbox == null) {
+						$scope.input.checkbox = {};
+					}
 					$scope.input.checkbox.checked = 3;
 				}
 
