@@ -10,7 +10,7 @@ angular.module('app.directives', [])
 				$scope.input.checkbox.checked = 0;
 
 				// show the ADD div or not
-				$scope.showModifyFunc = function() {
+				$scope.showAddFunc = function() {
 					if ($scope.showAdd === true) {
 						$scope.showAdd = false; 
 					} else {
@@ -145,6 +145,7 @@ angular.module('app.directives', [])
 				$scope.showModify = false;
 
 				$scope.showModifyFunc = function () {
+					console.log("this should be modify, hmm")
 					if ($scope.showModify === true) {
 						$scope.showModify = false;
 					} else {
