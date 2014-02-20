@@ -20,22 +20,17 @@ angular.module('app.directives', [])
 
 				function addIfMeal() {
 					$scope.input.checkbox.checked = 0; // to reset it from the 3 set on default
-					console.log("checked" + $scope.input.checkbox.checked)
+
 					for (food in $scope.input.checkbox) {
 						if ($scope.input.checkbox[food] === true) {
 							$scope.input.checkbox.checked++;
 						}
 					};
-					console.log("$scope.input.checkbox.checked is " + $scope.input.checkbox.checked);
-					$scope.input.size = $scope.input.checkbox.checked;
-
-
-					// $scope.input.checkbox = {};
-					// $scope.input.checkbox.checked = 0;
+					$scope.input.opacity = $scope.input.checkbox.checked;
 				}
 
 				// ADD LOGIC
-				$scope.addEvent = function(energyLevel, note, category, opacity) {
+				$scope.addEvent = function(energyLevel, note, category) {
 					
 					if (category === 'meal') {
 						addIfMeal();
@@ -49,10 +44,8 @@ angular.module('app.directives', [])
 						note			: note,
 						date        : $scope.dateTimePicked,
 						category 	: category,	
-						opacity		: opacity,
+						opacity		: $scope.input.opacity,
 						size			: $scope.input.size
-						// size			: $scope.input.checkbox.checked
-										// we need a scope.input.size... and only when in the case of category meal, we make it equal to that.  other wise its a direct input. put it another function before this
 					};
 
 					$scope.eventService.allLifeEvents.push(eventData);
