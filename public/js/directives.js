@@ -102,6 +102,10 @@ angular.module('app.directives', [])
 					}, secsUntilNextMin)
 				};
 
+				$scope.$on('destroy', function(e) {
+					$timeout.cancel(cancelRefresh);
+				});
+				
 				// CATEGORIES SHOW/HIDE + LOGIC
 				function showHideCategories(cat) {
 					for (category in $scope.show) {
