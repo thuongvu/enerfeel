@@ -22,7 +22,7 @@ angular.module('app.directives', [])
 					if ($scope.input.checkbox == null) {
 						$scope.input.checkbox = {};
 					}
-					$scope.input.checkbox.checked = 0; // to reset it from the 3 set on default
+					$scope.input.checkbox.checked = 0; 
 
 					for (food in $scope.input.checkbox) {
 						if ($scope.input.checkbox[food] === true) {
@@ -31,6 +31,8 @@ angular.module('app.directives', [])
 					};
 					$scope.input.opacity = $scope.input.checkbox.checked;
 				}
+
+			
 
 				function catchEmptyInputs() {
 					if (($scope.input.opacity == undefined) || ($scope.input.opacity == 0)) {
@@ -45,15 +47,36 @@ angular.module('app.directives', [])
 					}					
 				}
 
+				function addIfSleep(energyLevel, note, category) {
+					var eventData = {
+						energylevel : energyLevel,
+						note			: note,
+						date        : $scope.wakeTime,
+						category 	: category,	
+						opacity		: $scope.input.opacity,
+						size			: $scope.input.size
+					};
+
+					$scope.eventService.allLifeEvents.push(eventData);
+					$scope.lifeEventsInView.push(eventData)
+
+				}
+
 				// ADD LOGIC
 				$scope.addEvent = function(energyLevel, note, category) {
 					
+					console.log($scope.eventService.allLifeEvents);			
+
 					if (category === 'meal') {
 						addIfMeal();
 					}
 
-					console.log("$scope.input.opacity is " + $scope.input.opacity);
-					console.log("$scope.input.size is " + $scope.input.size);
+					if (category === 'sleep') {
+						addIfSleep(energyLevel, note, category);
+					}
+
+					// console.log("$scope.input.opacity is " + $scope.input.opacity);
+					// console.log("$scope.input.size is " + $scope.input.size);
 					catchEmptyInputs();
 
 					var eventData = {
@@ -77,10 +100,14 @@ angular.module('app.directives', [])
 
 					showHideCategories('all');
 
+					console.log($scope.eventService.allLifeEvents);					
+
 				};
 
 				// DATEPICKER LOGIC
 				$scope.dateTimePicked = new Date();
+				// $scope.sleepTime = new Date();
+				$scope.wakeTime = new Date();
 				setTime();
 
 				var timeIntervalFunction = function() {
@@ -105,7 +132,7 @@ angular.module('app.directives', [])
 				$scope.$on('destroy', function(e) {
 					$timeout.cancel(cancelRefresh);
 				});
-				
+
 				// CATEGORIES SHOW/HIDE + LOGIC
 				function showHideCategories(cat) {
 					for (category in $scope.show) {
