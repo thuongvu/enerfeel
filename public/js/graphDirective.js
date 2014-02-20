@@ -1,4 +1,4 @@
-ngular.module('app.graphDirective', [])
+angular.module('app.graphDirective', [])
 	.directive('graph', ['d3', function (d3) {
 		return {
 			restrict: 'EA',
@@ -45,8 +45,18 @@ ngular.module('app.graphDirective', [])
 					.domain([0,5])
 					.range([.1,.9]);
 
+					// size scale
 				var sizeScale = d3.scale.linear()
 					.domain([0,5])
+					.range([6,13]);
+
+					// size scale for exercise!
+				var exerciseScale = d3.scale.linear()
+					.domain([0, d3.max(graphData, function (d) {
+						if (d.category === 'exercise') {
+							return d.size;
+						}
+					})])
 					.range([6,13]);
 
 				// INITIALIZING AXES
@@ -267,7 +277,12 @@ ngular.module('app.graphDirective', [])
 							return y(d.energylevel)
 						})
 						.attr("r", function(d) {
-							return sizeScale(d.size);
+							if (d.category !== 'exercise') {
+								return sizeScale(d.size);
+							} else {
+								return exerciseScale(d.size);
+							}
+							
 						})
 						.attr("fill", function(d,i) {
 							return colorScale(d.category);
