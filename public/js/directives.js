@@ -9,6 +9,7 @@ angular.module('app.directives', [])
 				$scope.input.checkbox = {};
 				$scope.input.checkbox.checked = 0;
 
+				// show the ADD div or not
 				$scope.showModifyFunc = function() {
 					if ($scope.showAdd === true) {
 						$scope.showAdd = false; 
@@ -17,6 +18,7 @@ angular.module('app.directives', [])
 					}
 				};
 
+				// ADD LOGIC
 				$scope.addEvent = function(energyLevel, note, category, opacity) {
 					
 					for (food in $scope.input.checkbox) {
@@ -50,12 +52,14 @@ angular.module('app.directives', [])
 					$scope.input.checkbox.checked = 0;
 				};
 
+				// DATEPICKER LOGIC
 				$scope.dateTimePicked = new Date();
+				setTime();
 
 				var timeIntervalFunction = function() {
 					cancelRefresh = $timeout(function createNewDateObj() {
 						$scope.dateTimePicked = new Date();
-						console.log("the new time is " + $scope.dateTimePicked);
+						// console.log("the new time is " + $scope.dateTimePicked);
 						cancelRefresh = $timeout(createNewDateObj, 60000);
 					}, 60000);
 				};
@@ -64,15 +68,14 @@ angular.module('app.directives', [])
 					var currentTime = new Date();
 					var currentTimeSeconds = currentTime.getSeconds();
 					var secsUntilNextMin = (60 - currentTimeSeconds) * 1000;
-					console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
+					// console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
 					$timeout(function() {
 						$scope.dateTimePicked = new Date();
 						timeIntervalFunction()
 					}, secsUntilNextMin)
 				};
 
-				setTime();
-
+				// CATEGORIES SHOW/HIDE + LOGIC
 				function showHideCategories(cat) {
 					for (category in $scope.show) {
 						if (category !== cat) {
@@ -81,7 +84,7 @@ angular.module('app.directives', [])
 							$scope.show[category] = true;
 						}
 					}
-					console.log($scope.show)
+					// console.log($scope.show)
 				}
 
 				$scope.show.meal = false;
@@ -90,19 +93,11 @@ angular.module('app.directives', [])
 				$scope.show.sleep = false;
 
 				function watchCategory() {
-					if ($scope.input.category === 'meal') {
-						showHideCategories($scope.input.category);
-					} else if ($scope.input.category === 'exercise') {
-						showHideCategories($scope.input.category);
-					} else if ($scope.input.category === 'work') {
-						$scope.input.opacity = 3;
-						$scope.input.size = 3;
-						showHideCategories($scope.input.category);
-					} else if (($scope.input.category === 'sleep')) {
-						showHideCategories($scope.input.category);
-						$scope.input.opacity = 3;
-						$scope.input.size = 3;
-					};
+					// showHide based on category
+					// set both options to 3, JUST IN CASE user won't
+					showHideCategories($scope.input.category);
+					$scope.input.opacity = 3;
+					$scope.input.checkbox.checked = 3;
 				}
 
 				$scope.$watch('input.category', watchCategory, true )
