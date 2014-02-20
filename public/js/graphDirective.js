@@ -48,9 +48,13 @@ angular.module('app.graphDirective', [])
 					.range([height - padding - 10, padding - 10]);
 
 					// opacity scale
-				var o = d3.scale.linear()
+				var opacityScale = d3.scale.linear()
 					.domain([0,5])
 					.range([.1,.9]);
+
+				var sizeScale = d3.scale.linear()
+					.domain([0,5])
+					.range([6,13]);
 
 				// INITIALIZING AXES
 
@@ -274,13 +278,16 @@ angular.module('app.graphDirective', [])
 						.attr("cy", function(d) {
 							return y(d.energylevel)
 						})
-						.attr("r", 12)
+						// .attr("r", 12)
+						.attr("r", function(d) {
+							return sizeScale(d.size);
+						})
 						.attr("fill", function(d,i) {
 							return colorScale(d.category);
 						})
 						// .attr("opacity", 0.8)
 						.attr("opacity", function(d) {
-							return o(d.opacity)
+							return opacityScale(d.opacity)
 						})
 						.on("mouseover", function(d) {
 							div.transition()

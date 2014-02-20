@@ -47,6 +47,7 @@ angular.module('app.directives', [])
 					showHideCategories('none');
 
 					$scope.input.checkbox = {}; // make checkbox again so it's not null, total hack
+					$scope.input.checkbox.checked = 0;
 				};
 
 				$scope.dateTimePicked = new Date();
