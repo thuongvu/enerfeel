@@ -160,14 +160,27 @@ angular.module('app.graphDirective', [])
 						.domain(d3.extent(graphData, function (d) {
 							return d.date;
 						}))
-						.range([padding, width - padding])
+						.range([padding, width - padding]);
 
 						 // y scale
 				 	var y = d3.scale.linear()
 						.domain([0, d3.max(graphData, function (d) {
 					 		return d.energylevel;
 					 	})])
-					 	.range([height - padding - 10, padding - 10]) 
+					 	.range([height - padding - 10, padding - 10]);
+
+					 var sizeScale = d3.scale.linear()
+					 	.domain([0,5])
+					 	.range([6,13]);
+
+					 	// size scale for exercise!
+					 var exerciseScale = d3.scale.linear()
+					 	.domain([0, d3.max(graphData, function (d) {
+					 		if (d.category === 'exercise') {
+					 			return d.size;
+					 		}
+					 	})])
+					 	.range([6,13]);
 
 					// REDEFINING AXES
 
@@ -251,7 +264,6 @@ angular.module('app.graphDirective', [])
 							.attr("transform", null)
 					} 
 					else if (category === 'null'){
-						console.log("remove")
 						svg.selectAll(".line-category").data([]).exit().remove()
 						path2 = null;
 					}
@@ -270,6 +282,9 @@ angular.module('app.graphDirective', [])
 						// enter circle + tooltips
 					circles.enter().append("svg:circle")
 						.attr("class", "circles")
+						 .transition()
+							.duration(750)
+							.ease("linear")
 						.attr("cx", function(d) {
 							return x(d.date);
 						})
@@ -282,7 +297,6 @@ angular.module('app.graphDirective', [])
 							} else {
 								return exerciseScale(d.size);
 							}
-							
 						})
 						.attr("fill", function(d,i) {
 							return colorScale(d.category);
@@ -290,6 +304,9 @@ angular.module('app.graphDirective', [])
 						.attr("opacity", function(d) {
 							return opacityScale(d.opacity)
 						})
+
+
+					circles
 						.on("mouseover", function(d) {
 							div.transition()
 								.duration(250)
@@ -307,6 +324,7 @@ angular.module('app.graphDirective', [])
 							scope.select = d;
 						})
 
+
 						// update circle (locations)
 					circles
 						 .transition()
@@ -320,6 +338,16 @@ angular.module('app.graphDirective', [])
 						})
 						.attr("fill", function(d,i) {
 							return colorScale(d.category);
+						})
+						.attr("r", function(d) {
+							if (d.category !== 'exercise') {
+								return sizeScale(d.size);
+							} else {
+								return exerciseScale(d.size);
+							}
+						})
+						.attr("opacity", function(d) {
+							return opacityScale(d.opacity)
 						})
 
 						// circle exit (not needed now, but maybe in the future)

@@ -19,6 +19,9 @@ angular.module('app.directives', [])
 				};
 
 				function addIfMeal() {
+					if ($scope.input.checkbox == null) {
+						$scope.input.checkbox = {};
+					}
 					$scope.input.checkbox.checked = 0; // to reset it from the 3 set on default
 
 					for (food in $scope.input.checkbox) {
@@ -108,10 +111,11 @@ angular.module('app.directives', [])
 					// showHide based on category
 					// set both options to 3, JUST IN CASE user won't
 					showHideCategories($scope.input.category);
+					
+					// if ($scope.input.checkbox == null) {
+					// 	$scope.input.checkbox = {};
+					// }
 					// $scope.input.opacity = 3;
-					if ($scope.input.checkbox == null) {
-						$scope.input.checkbox = {};
-					}
 					// $scope.input.checkbox.checked = 3;
 				}
 
