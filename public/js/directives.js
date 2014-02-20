@@ -36,8 +36,8 @@ angular.module('app.directives', [])
 						addIfMeal();
 					}
 
-					console.log("$scope.input.opacity is " + $scope.input.opacity);
-					console.log("$scope.input.size is " + $scope.input.size);
+					// console.log("$scope.input.opacity is " + $scope.input.opacity);
+					// console.log("$scope.input.size is " + $scope.input.size);
 
 					var eventData = {
 						energylevel : energyLevel,
@@ -108,11 +108,11 @@ angular.module('app.directives', [])
 					// showHide based on category
 					// set both options to 3, JUST IN CASE user won't
 					showHideCategories($scope.input.category);
-					$scope.input.opacity = 3;
+					// $scope.input.opacity = 3;
 					if ($scope.input.checkbox == null) {
 						$scope.input.checkbox = {};
 					}
-					$scope.input.checkbox.checked = 3;
+					// $scope.input.checkbox.checked = 3;
 				}
 
 				$scope.$watch('input.category', watchCategory, true )

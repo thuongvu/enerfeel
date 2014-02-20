@@ -1,8 +1,8 @@
-<button ng-click="showAddFunc()">Add</button>
+<button ng-click="showAddFunc()">Add Event</button>
 <div ng-show="showAdd">
 	<input ng-model="input.level" type="number" placeholder="0"></input>
 	<input ng-model="input.note" type="text" placeholder="note"></input>
-	<button ng-click="addEvent(input.level, input.note, input.category, input.opacity)">Add</button>
+	<button ng-click="addEvent(input.level, input.note, input.category)">Add</button>
 	<select name="categorytoAdd" ng-model="input.category">
 		<option value="">Select an option</option>
 		<option value="meal">Meal</option>
@@ -25,16 +25,16 @@
 	<div ng-show="show.exercise">
 		exercise
 		<input ng-model="input.size" type="number" placeholder="Minutes"></input>
-		<input ng-model="input.opacity" type="number" placholder="Intensity 1-5"></input>
+		<input ng-model="input.opacity" type="number" placeholder="Intensity level, 1-5"></input>
 	</div>
 	<div ng-show="show.work">
 		work
-		<input ng-model="input.size"></input>
-		<input ng-model="input.opacity"></input>
+		<input ng-model="input.size" type="number" placeholder="Productivity, 1-5, 5 most productive"></input> 
+		<input ng-model="input.opacity" type="number" placeholder="Stress Level, 1-5, 5 most stressed"></input>
 	</div>
 	<div ng-show="show.sleep">
 		sleep
-		<input ng-model="input.size"></input>
-		<input ng-model="input.opacity"></input>
+		<input ng-model="input.size" type="number" placeholder="Number of hours"></input>
+		<input ng-model="input.opacity" type="number" placeholder="Sleep quality, 1-5, 5 best"></input>
 	</div>
 </div>
