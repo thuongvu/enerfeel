@@ -59,6 +59,15 @@ angular.module('app.graphDirective', [])
 					})])
 					.range([6,13]);
 
+					// sleep scale for exercise!
+				var sleepScale = d3.scale.linear()
+					.domain([0, d3.max(graphData, function (d) {
+						if (d.category === 'sleep') {
+							return d.size;
+						}
+					})])
+					.range([6,13]);
+
 				// INITIALIZING AXES
 
 					// x axis
@@ -177,6 +186,14 @@ angular.module('app.graphDirective', [])
 					 var exerciseScale = d3.scale.linear()
 					 	.domain([0, d3.max(graphData, function (d) {
 					 		if (d.category === 'exercise') {
+					 			return d.size;
+					 		}
+					 	})])
+					 	.range([6,13]);
+
+					 var sleepScale = d3.scale.linear()
+					 	.domain([0, d3.max(graphData, function (d) {
+					 		if (d.category === 'sleep') {
 					 			return d.size;
 					 		}
 					 	})])
@@ -340,10 +357,12 @@ angular.module('app.graphDirective', [])
 							return colorScale(d.category);
 						})
 						.attr("r", function(d) {
-							if (d.category !== 'exercise') {
-								return sizeScale(d.size);
-							} else {
+							if (d.category === 'exercise') {
 								return exerciseScale(d.size);
+							} else if (d.category === 'sleep') {
+								return sleepScale(d.size);
+							} else {
+								return sizeScale(d.size);
 							}
 						})
 						.attr("opacity", function(d) {

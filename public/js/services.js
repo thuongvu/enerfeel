@@ -7,6 +7,7 @@ angular.module('app.services', [])
 		 {"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
 		 {"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
 		 {"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
+		 {"date": new Date(2014, 1, 19, 12), "energylevel":4, "note":"slept for a long time", "category": "sleep", "opacity": 1, "size": 10},
 		 ];
 		return {
 			deleteLifeEvent: function (event) {
