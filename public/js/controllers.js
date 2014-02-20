@@ -1,6 +1,5 @@
 angular.module('app.controllers', [])
 	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', '$timeout', function ($scope, EventService, FilterService, $timeout) {
-		console.log("in mainCtrl")
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("month");
@@ -67,8 +66,8 @@ angular.module('app.controllers', [])
 		// 	console.log(event)
 		// }
 
-		$scope.event = {};
-		$scope.event.selected;
+		// $scope.event = {};
+		// $scope.event.selected;
 
 		// $scope.showEvent = function() {
 		// 	console.log($scope.event.selected);

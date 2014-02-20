@@ -13,7 +13,6 @@
 	<datepicker ng-model='dateTimePicked'></datepicker>
 	<div ng-show="show.meal">
 		meal
-		<!-- input for opacity -->
 		<input ng-model="input.size" type="number">How full do you feel? 1-5</input>
 		<form>
 			<input ng-model="input.checkbox.dairy" type="checkbox">Dairy</input>
@@ -22,17 +21,20 @@
 			<input ng-model="input.checkbox.meat" type="checkbox">Meat</input>
 			<input ng-model="input.checkbox.vegetables" type="checkbox">Vegetables</input>
 		</form>
-		<!-- input for size -->
 	</div>
 	<div ng-show="show.exercise">
 		exercise
-		<!-- input for opacity -->
-		<!-- input for size -->
+		<input ng-model="input.size" type="number" placeholder="Minutes"></input>
+		<input ng-model="input.opacity" type="number" placholder="Intensity 1-5"></input>
 	</div>
 	<div ng-show="show.work">
 		work
+		<input ng-model="input.size"></input>
+		<input ng-model="input.opacity"></input>
 	</div>
 	<div ng-show="show.sleep">
 		sleep
+		<input ng-model="input.size"></input>
+		<input ng-model="input.opacity"></input>
 	</div>
 </div>

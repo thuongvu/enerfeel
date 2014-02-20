@@ -1,10 +1,4 @@
-// scale for opacity
-// scale for size
-
-
-
-
-angular.module('app.graphDirective', [])
+ngular.module('app.graphDirective', [])
 	.directive('graph', ['d3', function (d3) {
 		return {
 			restrict: 'EA',
@@ -16,10 +10,9 @@ angular.module('app.graphDirective', [])
 			controller: function ($scope) {
 			},
 			link: function (scope, iElement, iAttrs) {
-				// set graphData to be the data linked on the 'data' attr of the directive
 				var graphData = scope.data;
 				var category = scope.category;
-				// var select = scope.select;
+
 				// dimensions of svg
 				var width = 800,
 					 height = 400,
@@ -105,7 +98,7 @@ angular.module('app.graphDirective', [])
 				// PATH
 
 				var path = svg.append("g")
-					.attr("class", "linepath") //path needs to be a global var
+					.attr("class", "linepath")
 					.append("path");
 
 				path
@@ -124,12 +117,7 @@ angular.module('app.graphDirective', [])
 
 				// PATH 2 TEST
 
-					// declaring path2 outside like this might cause problems
-					// but i need to do it, otherwise if i put it inside the function, every time $watch is invoked
-					// it makes a new one. but i'm trying to use a enter/update/exit pattern.
-
 				var path2 = svg.append("g")
-					// .attr("class", "linepath") //path needs to be a global var
 					.attr("class", "line-category")
 					.append("path");
 
@@ -146,10 +134,13 @@ angular.module('app.graphDirective', [])
 			scope.$watch('data', updateGraph, true);
 			scope.$watch('category', updateGraph, true);
 
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 				function updateGraph() {
 					var graphData = scope.data;
 					var category = scope.category;
-					console.log(graphData);
+					// console.log(graphData);
 					// console.log(category);
 
 					// REDEFINING SCALES
@@ -256,9 +247,6 @@ angular.module('app.graphDirective', [])
 					}
 					
 
-
-
-
 					// CIRCLE
 
 			// ************
@@ -278,14 +266,12 @@ angular.module('app.graphDirective', [])
 						.attr("cy", function(d) {
 							return y(d.energylevel)
 						})
-						// .attr("r", 12)
 						.attr("r", function(d) {
 							return sizeScale(d.size);
 						})
 						.attr("fill", function(d,i) {
 							return colorScale(d.category);
 						})
-						// .attr("opacity", 0.8)
 						.attr("opacity", function(d) {
 							return opacityScale(d.opacity)
 						})
@@ -324,45 +310,6 @@ angular.module('app.graphDirective', [])
 						// circle exit (not needed now, but maybe in the future)
 					circles.exit().remove();
 
-
-
-				// // NESTED DATA CATEGORIES	
-				// 	var nestedData = d3.nest()
-				// 		.key(function(d) {
-				// 			return d.category;
-				// 		})
-				// 		.entries(graphData);
-
-				// 	console.log(nestedData)
-
-				// 	var category = svg.selectAll(".category")
-				// 		.data(nestedData)
-				// 		.enter()
-				// 		.append("g")
-				// 		.attr("class", "category")
-
-				// 	category.append("path")
-				// 		.attr("class", "categoryLine")
-				// 		.attr("d", function(d) {
-				// 			return line(d.values)
-				// 		})
-				// 		.style("stroke", "#000");
-
-				// 	category.append("text")
-				// 		.datum(function(d) {
-				// 			return {
-				// 				key: d.key,
-				// 				value: d.values[d.values.length - 1]
-				// 			}
-				// 		})
-				// 		.attr("transform", function(d) {
-				// 			return "translate(" + x(d.value.date) + "," + y(d.value.energylevel) + ")";
-				// 		})
-				// 		.attr("x", 3)
-				// 		.attr("dy", ".35em")
-				// 		.text(function(d) {
-				// 			return d.key;
-				// 		})
 
 				}
 
