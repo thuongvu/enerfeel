@@ -32,6 +32,19 @@ angular.module('app.directives', [])
 					$scope.input.opacity = $scope.input.checkbox.checked;
 				}
 
+				function catchEmptyInputs() {
+					if (($scope.input.opacity == undefined) || ($scope.input.opacity == 0)) {
+						$scope.input.opacity = 3;
+					}
+					if (($scope.input.size == undefined) || ($scope.input.size == 0)) {
+						if ($scope.input.category = 'exercise') {
+							$scope.input.size = 30;
+						} else {
+							$scope.input.size = 3;
+						}
+					}					
+				}
+
 				// ADD LOGIC
 				$scope.addEvent = function(energyLevel, note, category) {
 					
@@ -39,8 +52,9 @@ angular.module('app.directives', [])
 						addIfMeal();
 					}
 
-					// console.log("$scope.input.opacity is " + $scope.input.opacity);
-					// console.log("$scope.input.size is " + $scope.input.size);
+					console.log("$scope.input.opacity is " + $scope.input.opacity);
+					console.log("$scope.input.size is " + $scope.input.size);
+					catchEmptyInputs();
 
 					var eventData = {
 						energylevel : energyLevel,
@@ -63,8 +77,6 @@ angular.module('app.directives', [])
 
 					showHideCategories('all');
 
-					// $scope.input.checkbox = {}; // make checkbox again so it's not null, total hack
-					// $scope.input.checkbox.checked = 0;
 				};
 
 				// DATEPICKER LOGIC
@@ -108,15 +120,7 @@ angular.module('app.directives', [])
 				$scope.show.sleep = false;
 
 				function watchCategory() {
-					// showHide based on category
-					// set both options to 3, JUST IN CASE user won't
 					showHideCategories($scope.input.category);
-					
-					// if ($scope.input.checkbox == null) {
-					// 	$scope.input.checkbox = {};
-					// }
-					// $scope.input.opacity = 3;
-					// $scope.input.checkbox.checked = 3;
 				}
 
 				$scope.$watch('input.category', watchCategory, true )
