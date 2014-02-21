@@ -21,7 +21,8 @@ module.exports = function(config) {
       {pattern: 'public/bower_components/angular-route/angular-route.min.js', watched: false},
       {pattern: 'public/bower_components/ngQuickDate/dist/ng-quick-date.min.js', watched: false},
       {pattern: 'public/bower_components/d3module.js', watched: false},
-      {pattern: 'public/js/*.js', watched: true},
+      {pattern: 'public/js/*.js', watched: false},
+      {pattern: 'test/test.js'}
     ],
 
 

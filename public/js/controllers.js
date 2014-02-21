@@ -14,8 +14,11 @@ angular.module('app.controllers', [])
 		$scope.filterCategory = function(category) {
 			$scope.category.setTo = category;
 		}
-		$scope.run = function() {
-			console.log("run")
+		
+		$scope.name = "Thuongvu";
+
+		$scope.sayHello = function() {
+			$scope.greeting = "Hello " + $scope.name;
 		}
 
 	}])
