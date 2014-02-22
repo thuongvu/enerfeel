@@ -67,55 +67,55 @@
 // })
 
 
-describe('Directives', function() {
-	beforeEach(module("app"));
-	
-	var element, scope, template;
-
-	beforeEach(module('public/directiveTemplates/addTemplate.html'));
-
-	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
-		template = $templateCache.get('public/directiveTemplates/addTemplate.html');
-		$templateCache.put('directiveTemplates/addTemplate.html', template);
-		
-		$compile = _$compile_;
-		$rootScope = _$rootScope_;
-	}))	
-
-	it('should make showAdd true', function() {
-		var elementPreDigest = angular.element('<div add></div>');
-		var element = $compile(elementPreDigest)($rootScope);
-		$rootScope.$digest();
-
-		console.log(element.find('input'));
-		expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
-	})
-
-})
-
-
 // describe('Directives', function() {
 // 	beforeEach(module("app"));
 	
-// 	var element, scope, controller;
+// 	var element, scope, template;
 
 // 	beforeEach(module('public/directiveTemplates/addTemplate.html'));
 
-// 	describe('just the controller', function() {
-// 		var scope, ctrl;
-// 		beforeEach(inject(function($controller, $rootScope) {
-// 			scope = $rootScope;
+// 	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
+// 		template = $templateCache.get('public/directiveTemplates/addTemplate.html');
+// 		$templateCache.put('directiveTemplates/addTemplate.html', template);
+		
+// 		$compile = _$compile_;
+// 		$rootScope = _$rootScope_;
+// 	}))	
 
-// 			ctrl = $controller(AddController, {$scope: scope});
-// 		}))
+// 	it('should make showAdd true', function() {
+// 		var elementPreDigest = angular.element('<div add></div>');
+// 		var element = $compile(elementPreDigest)($rootScope);
+// 		$rootScope.$digest();
 
-// 		it('should show me the controller', function() {
-// 			// console.log(scope.input.checkbox.checked)
-// 			expect(scope.input.checkbox.checked).toEqual(0)
-// 		})
+// 		console.log(element.find('input'));
+// 		expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
 // 	})
 
 // })
+
+
+describe('Directives', function() {
+	beforeEach(module("app"));
+	
+	var element, scope, controller;
+
+	beforeEach(module('public/directiveTemplates/addTemplate.html'));
+
+	describe('just the controller', function() {
+		var scope, ctrl;
+		beforeEach(inject(function($controller, $rootScope) {
+			scope = $rootScope;
+
+			ctrl = $controller(AddController, {$scope: scope});
+		}))
+
+		it('should show me the controller', function() {
+			// console.log(scope.input.checkbox.checked)
+			expect(scope.input.checkbox.checked).toEqual(0)
+		})
+	})
+
+})
 
 
 

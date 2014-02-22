@@ -1,4 +1,4 @@
-var AddController = function ($scope, $timeout) {
+function AddController ($scope, $timeout) {
 	$scope.showAdd = false;
 	$scope.show = {};
 	$scope.input = {};
@@ -14,6 +14,7 @@ var AddController = function ($scope, $timeout) {
 		}
 	};
 
+	// ADDING LOGIC
 	function addIfMeal() {
 		if ($scope.input.checkbox == null) {
 			$scope.input.checkbox = {};
@@ -81,7 +82,7 @@ var AddController = function ($scope, $timeout) {
 		return eventData;
 	}
 
-	// ADD LOGIC
+	// WHERE ALL THESE ADD FUNCTIONS COME TOGETHER
 	$scope.addEvent = function(energyLevel, note, category) {
 		
 		if (category === 'meal') {
@@ -160,7 +161,9 @@ angular.module('app.directives', [])
 			link: function (scope, iElement, iAttrs) {
 			},
 			templateUrl: 'directiveTemplates/addTemplate.html'
-		}
+		};
+
+
 	}])
 
 // ----------------------------------------------------------------------------
