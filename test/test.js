@@ -109,14 +109,18 @@ describe('Directives', function() {
 
 	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
 		template = $templateCache.get('public/directiveTemplates/addTemplate.html');
-		$templateCache.put('directiveTemplates/addTemplate.html')
+		$templateCache.put('directiveTemplates/addTemplate.html', template);
 		
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
 	}))	
 
 	it('should make showAdd true', function() {
-	
+		var elementPreDigest = angular.element('<div add></div>');
+		var element = $compile(elementPreDigest)($rootScope);
+		$rootScope.$digest();
+
+		console.log(element);
 		expect(scope.showAdd).toBeTruthy();
 	})
 
