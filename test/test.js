@@ -69,29 +69,35 @@
 
 // STILL NOT WORKING
 
-// describe('Directives', function() {
-// 	beforeEach(module("app"));
+describe('Directives', function() {
+	beforeEach(module("app"));
 	
-// 	var element, scope;
+	var element, scope;
 
-// 	beforeEach(module('public/directiveTemplate/addTemplate.html'));
+	beforeEach(module('public/directiveTemplates/addTemplate.html'));
 
-// 	beforeEach(inject(function($compile, $rootScope) {
-// 		scope = $rootScope;
-// 		element = angular.element('<button ng-click="' + showAddFunc() +'">Add Event</button>')
-// 		$compile(element)(scope);
-// 		scope.$apply();
-// 	}))	
+	beforeEach(inject(function($compile, $rootScope, $controller) {
+		scope = $rootScope;
+		ctrl = $controller('mainCtrl', {
+			$scope: scope
+		});
 
-// 	it('should make showAdd true', function() {
-// 		// scope.$apply(function() {
-// 			// console.log(element)
-// 		// 	scope.showAddFunc();
-// 		// })
-// 		// expect(scope.showAdd).toBeTruthy();
-// 	})
+		// element = angular.element('<button ng-click="showAddFunc()">Add Event</button>')
+		element = angular.element('<div add></div>')
+		$compile(element)(scope);
+		scope.$apply();
+	}))	
 
-// })
+	it('should make showAdd true', function() {
+		scope.$apply(function() {
+			console.log(element.controller('add'))
+			// console.log(scope)
+			scope.showAddFunc();
+		})
+		expect(scope.showAdd).toBeTruthy();
+	})
+
+})
 
 // describe('Directive: albums', function() {
 //   beforeEach(module('app'));
@@ -134,45 +140,45 @@
 // 	});
 // });
 
-describe('tabs', function() {
-  var elm, scope;
+// describe('tabs', function() {
+//   var elm, scope;
 
-  // load the tabs code
-  beforeEach(module('app'));
+//   // load the tabs code
+//   beforeEach(module('app'));
 
-  // load the templates
-  beforeEach(module('templates'));
+//   // load the templates
+//   beforeEach(module('public/directiveTemplates/tabs.html'));
 
-  beforeEach(inject(function($rootScope, $compile) {
-    // we might move this tpl into an html file as well...
-    elm = angular.element(
-      '<div>' +
-        '<tabs>' +
-          '<pane title="First Tab">' +
-            'first content is {{first}}' +
-          '</pane>' +
-          '<pane title="Second Tab">' +
-            'second content is {{second}}' +
-          '</pane>' +
-        '</tabs>' +
-      '</div>');
+//   beforeEach(inject(function($rootScope, $compile) {
+//     // we might move this tpl into an html file as well...
+//     elm = angular.element(
+//       '<div>' +
+//         '<tabs>' +
+//           '<pane title="First Tab">' +
+//             'first content is {{first}}' +
+//           '</pane>' +
+//           '<pane title="Second Tab">' +
+//             'second content is {{second}}' +
+//           '</pane>' +
+//         '</tabs>' +
+//       '</div>');
 
-    scope = $rootScope;
-    $compile(elm)(scope);
-    scope.$digest();
-  }));
+//     scope = $rootScope;
+//     $compile(elm)(scope);
+//     scope.$digest();
+//   }));
 
 
-  it('should create clickable titles', inject(function($compile, $rootScope) {
-  	console.log(elm)
-    // var titles = elm.find('ul.nav-tabs li a');
+//   it('should create clickable titles', inject(function($compile, $rootScope) {
+//   	console.log(elm)
+//     var titles = elm.find('ul.nav-tabs li a');
 
-    // expect(titles.length).toBe(2);
-    // expect(titles.eq(0).text()).toBe('First Tab');
-    // expect(titles.eq(1).text()).toBe('Second Tab');
-  }));
+//     expect(titles.length).toBe(2);
+//     expect(titles.eq(0).text()).toBe('First Tab');
+//     expect(titles.eq(1).text()).toBe('Second Tab');
+//   }));
 
-});
+// });
 
 
 
