@@ -4,7 +4,7 @@ angular.module('app.directives', [])
 			restrict: 'EA',
 			// scope: {},
 			controller: function ($scope) {
-				$scope.showAdd = true;
+				$scope.showAdd = false;
 				$scope.show = {};
 				$scope.input.checkbox = {};
 				$scope.input.checkbox.checked = 0;

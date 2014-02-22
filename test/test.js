@@ -50,22 +50,35 @@
 // 	})
 // })
 
-describe('Services:', function() {
-	beforeEach(module('app'))
+// describe('Services:', function() {
+// 	beforeEach(module('app'))
 
-	describe('EventService', function() {
-		var EventService;
-		beforeEach(inject(function($injector) {
-			EventService = $injector.get('EventService')
-		}))
+// 	describe('EventService', function() {
+// 		var EventService;
+// 		beforeEach(inject(function($injector) {
+// 			EventService = $injector.get('EventService')
+// 		}))
 
-		it('should not be null', function() {
-			expect(EventService).not.toBeNull()
-		})
+// 		it('should not be null', function() {
+// 			expect(EventService).not.toBeNull()
+// 		})
+// 	})
+	
+// })
+
+describe('Directives', function() {
+	beforeEach(module("app"));
+	
+	describe("template", function() {
+		var $compile, $scope, $httpBackend;
+
+		beforeEach(module('public/directiveTemplate/addTemplate.html'));
+
+
 	})
-	
+
 })
-	
+
 
 
 
