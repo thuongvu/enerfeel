@@ -22,23 +22,24 @@ module.exports = function(config) {
       {pattern: 'public/bower_components/ngQuickDate/dist/ng-quick-date.min.js', watched: false},
       {pattern: 'public/bower_components/d3module.js', watched: false},
       {pattern: 'public/js/*.js', watched: false},
-      {pattern: 'public/directiveTemplate/*.html', watched: false},
-      {pattern: 'public/directiveTemplate/albums.html', watched: false},
+      {pattern: 'public/directiveTemplates/*.html', watched: false},
+      {pattern: 'public/**/*.html', watched: false},
+      {pattern: 'public/directiveTemplates/albums.html', watched: false},
       {pattern: 'test/test.js'}
     ],
 
      preprocessors: {
-       // 'public/directiveTemplate/*.html': ['ng-html2js'],
+       'public/directiveTemplates/*.html': 'ng-html2js',
        // 'public/directiveTemplate/addTemplate.html': ['ng-html2js'],
-       'public/directiveTemplate/albums.html': 'ng-html2js',
+       // 'public/directiveTemplate/albums.html': 'ng-html2js',
        // 'public/directiveTemplate/albums.html': 'html2js'
      },
        
-     ngHtml2JsPreprocessor: {
-         // setting this option will create only a single module that contains templates
-         // from all the files, so you can load them all with module('foo')
-        moduleName: 'templates'
-    },
+    //  ngHtml2JsPreprocessor: {
+    //      // setting this option will create only a single module that contains templates
+    //      // from all the files, so you can load them all with module('foo')
+    //     moduleName: 'templates'
+    // },
 
 
     // list of files to exclude
