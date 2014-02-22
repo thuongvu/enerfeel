@@ -35,7 +35,8 @@ var AddController = function ($scope, $timeout) {
 			$scope.input.opacity = 3;
 		}
 		if (($scope.input.size == undefined) || ($scope.input.size == 0)) {
-			if ($scope.input.category = 'exercise') {
+			if ($scope.input.category === 'exercise') {
+				// console.log($scope.input.category)
 				$scope.input.size = 30;
 			} else {
 				$scope.input.size = 3;
@@ -71,8 +72,6 @@ var AddController = function ($scope, $timeout) {
 			addIfSleep(energyLevel, note, category);
 		}
 
-		// console.log("$scope.input.opacity is " + $scope.input.opacity);
-		// console.log("$scope.input.size is " + $scope.input.size);
 		catchEmptyInputs();
 
 		var eventData = {
