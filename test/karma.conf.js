@@ -11,6 +11,7 @@ module.exports = function(config) {
     // frameworks to use
     frameworks: ['jasmine'],
 
+    
 
     // list of files / patterns to load in the browser
     files: [
@@ -23,23 +24,22 @@ module.exports = function(config) {
       {pattern: 'public/bower_components/d3module.js', watched: false},
       {pattern: 'public/js/*.js', watched: false},
       {pattern: 'public/directiveTemplates/*.html', watched: false},
-      {pattern: 'public/**/*.html', watched: false},
-      {pattern: 'public/directiveTemplates/albums.html', watched: false},
-      {pattern: 'test/test.js'}
+      // {pattern: 'public/**/*.html', watched: false},
+      'public/directiveTemplates/tabs.html',
+      {pattern: 'test/*.js'}
     ],
+
 
      preprocessors: {
        'public/directiveTemplates/*.html': 'ng-html2js',
-       // 'public/directiveTemplate/addTemplate.html': ['ng-html2js'],
-       // 'public/directiveTemplate/albums.html': 'ng-html2js',
-       // 'public/directiveTemplate/albums.html': 'html2js'
+       'public/directiveTemplates/tabs.html': 'ng-html2js'
      },
        
-    //  ngHtml2JsPreprocessor: {
-    //      // setting this option will create only a single module that contains templates
-    //      // from all the files, so you can load them all with module('foo')
-    //     moduleName: 'templates'
-    // },
+     ngHtml2JsPreprocessor: {
+         // setting this option will create only a single module that contains templates
+         // from all the files, so you can load them all with module('foo')
+        moduleName: 'templates'
+    },
 
 
     // list of files to exclude
