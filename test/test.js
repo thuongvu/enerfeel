@@ -76,68 +76,75 @@
 
 // 	beforeEach(module('public/directiveTemplates/addTemplate.html'));
 
-	// beforeEach(inject(function($compile, $rootScope) {
-	// 	scope = $rootScope;
-	// 	// ,$controller
-	// 	// ctrl = $controller('mainCtrl', {
-	// 	// 	$scope: scope
-	// 	// });
-
-	// 	// element = angular.element('<button ng-click="showAddFunc()">Add Event</button>')
-	// 	element = angular.element('<div add></div>')
-	// 	$compile(element)(scope);
-	// 	controller = element.controller()
-	// 	scope.$apply();
+// 	beforeEach(inject(function($compile, $rootScope) {
+// 		scope = $rootScope;
+// 		// element = angular.element('<button ng-click="showAddFunc()">Add Event</button>')
+// 		element = angular.element('<div add></div>')
+// 		$compile(element)(scope);
+// 		controller = element.controller()
+// 		scope.$apply();
 		
-	// }))	
+// 	}))	
 
-	// it('should make showAdd true', function() {
-	// 	scope.$apply(function() {
-	// 		// console.log(element.controller('add'))
-	// 		// console.log(scope)
-	// 		// console.log(element.controller)
-	// 		console.log(controller)
-	// 		scope.showAddFunc();
-	// 	})
-	// 	expect(scope.showAdd).toBeTruthy();
-	// })
+// 	it('should make showAdd true', function() {
+// 		scope.$apply(function() {
+// 			// console.log(element.controller('add'))
+// 			// console.log(scope)
+// 			// console.log(element.controller)
+// 			// console.log(controller)
+// 			// scope.showAddFunc();
+// 		})
+// 		expect(scope.showAdd).toBeTruthy();
+// 	})
 
 // })
+
 
 describe('Directives', function() {
 	beforeEach(module("app"));
 	
-	var element, scope, controller;
+	var element, scope, template;
 
 	beforeEach(module('public/directiveTemplates/addTemplate.html'));
 
-	describe('just the controller', function() {
-		var scope, ctrl;
-		beforeEach(inject(function($controller, $rootScope) {
-			scope = $rootScope;
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
+		template = $templateCache.get('public/directiveTemplates/addTemplate.html');
+		$templateCache.put('directiveTemplates/addTemplate.html')
+		
+		$compile = _$compile_;
+		$rootScope = _$rootScope_;
+	}))	
 
-			ctrl = $controller(AddController, {$scope: scope});
-		}))
-
-		it('should show me the controller', function() {
-			// console.log(scope.input.checkbox.checked)
-			expect(scope.input.checkbox.checked).toEqual(0)
-		})
+	it('should make showAdd true', function() {
+	
+		expect(scope.showAdd).toBeTruthy();
 	})
 
 })
 
-// JUS THE CONTROLLER????
 
-// describe('just the controller', function() {
-// 	var scope, ctrl;
-// 	beforeEach(inject(function($controller, $rootScope) {
-// 		scope = $rootScope;
+// describe('Directives', function() {
+// 	beforeEach(module("app"));
+	
+// 	var element, scope, controller;
 
-// 		ctl = $controller(AddController, {$scope: scope, $element: null});
-// 	}))
+// 	beforeEach(module('public/directiveTemplates/addTemplate.html'));
+
+// 	describe('just the controller', function() {
+// 		var scope, ctrl;
+// 		beforeEach(inject(function($controller, $rootScope) {
+// 			scope = $rootScope;
+
+// 			ctrl = $controller(AddController, {$scope: scope});
+// 		}))
+
+// 		it('should show me the controller', function() {
+// 			// console.log(scope.input.checkbox.checked)
+// 			expect(scope.input.checkbox.checked).toEqual(0)
+// 		})
+// 	})
+
 // })
-
 
 
 // describe('Directive: albums', function() {

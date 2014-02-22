@@ -38,8 +38,8 @@ module.exports = function(config) {
     //     // cacheIdFromPath: function(filepath) {
     //     //         return '/vision/assets/' + filepath;
     //     //     },
-    //     stripPrefix: 'public/',
-    //     prependPrefix: 'served/',
+    //     // stripPrefix: 'public/',
+    //     // prependPrefix: 'served/',
     //     moduleName: 'templates'
     // },
 
