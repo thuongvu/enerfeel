@@ -366,39 +366,6 @@ angular.module('app.directives', [])
 			templateUrl: 'directiveTemplates/modifyTemplate.html'
 		}
 	}])
-	.directive('albums', function() {
-		return {
-			restrict: 'EA',
-			templateUrl: 'directiveTemplates/albums.html',
-			scope: {}
-		}
-	})
-	.directive('tabs', function() {
-	  return {
-	    restrict: 'E',
-	    transclude: true,
-	    scope: {},
-	    controller: function ($scope, $element) {
-	    	var panes = $scope.panes = [];
-
-	    	$scope.select = function(pane) {
-	    	  angular.forEach(panes, function(pane) {
-	    	    pane.selected = false;
-	    	  });
-	    	  pane.selected = true;
-	    	};
-
-	    	this.addPane = function(pane) {
-	    	  if (!panes.length) $scope.select(pane);
-	    	  panes.push(pane);
-	    	};
-	    },
-	    templateUrl: 'directiveTemplates/tabs.html',
-	    replace: true
-	  };
-	});
-
-
 
 
 
