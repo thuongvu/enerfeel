@@ -22,17 +22,14 @@ module.exports = function(config) {
       {pattern: 'public/bower_components/angular-route/angular-route.min.js', watched: false},
       {pattern: 'public/bower_components/ngQuickDate/dist/ng-quick-date.min.js', watched: false},
       {pattern: 'public/bower_components/d3module.js', watched: false},
-      {pattern: 'public/js/*.js', watched: false},
       {pattern: 'public/directiveTemplates/*.html', watched: false},
-      // {pattern: 'public/**/*.html', watched: false},
-      'public/directiveTemplates/tabs.html',
+      {pattern: 'public/js/*.js', watched: false},
       {pattern: 'test/*.js'}
     ],
 
 
      preprocessors: {
        'public/directiveTemplates/*.html': 'ng-html2js',
-       'public/directiveTemplates/tabs.html': 'ng-html2js'
      },
        
      ngHtml2JsPreprocessor: {
