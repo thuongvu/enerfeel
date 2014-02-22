@@ -100,6 +100,58 @@ function AddController ($scope, $timeout) {
 	};
 
 	// DATEPICKER LOGIC
+	// $scope.dateTimePicked = new Date();
+	// $scope.wakeTime = new Date();
+	// setTime();
+
+	// var timeIntervalFunction = function() {
+	// 	cancelRefresh = $timeout(function createNewDateObj() {
+	// 		$scope.dateTimePicked = new Date();
+	// 		// console.log("the new time is " + $scope.dateTimePicked);
+	// 		cancelRefresh = $timeout(createNewDateObj, 60000);
+	// 	}, 60000);
+	// };
+
+	// function setTime() {
+	// 	var currentTime = new Date();
+	// 	var currentTimeSeconds = currentTime.getSeconds();
+	// 	var secsUntilNextMin = (60 - currentTimeSeconds) * 1000;
+	// 	// console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
+	// 	$timeout(function() {
+	// 		$scope.dateTimePicked = new Date();
+	// 		timeIntervalFunction()
+	// 	}, secsUntilNextMin)
+	// };
+
+	// $scope.$on('destroy', function(e) {
+	// 	$timeout.cancel(cancelRefresh);
+	// });
+
+	// CATEGORIES SHOW/HIDE + LOGIC
+	function showHideCategories(cat) {
+		for (category in $scope.show) {
+			if (category !== cat) {
+				$scope.show[category] = false;
+			} else {
+				$scope.show[category] = true;
+			}
+		}
+	}
+
+	$scope.show.meal = false;
+	$scope.show.exercise = false;
+	$scope.show.work = false;
+	$scope.show.sleep = false;
+
+	function watchCategory() {
+		showHideCategories($scope.input.category);
+	}
+
+	$scope.$watch('input.category', watchCategory, true )
+
+} 
+
+function timeController ($scope, $timeout) {
 	$scope.dateTimePicked = new Date();
 	$scope.wakeTime = new Date();
 	setTime();
@@ -126,34 +178,10 @@ function AddController ($scope, $timeout) {
 	$scope.$on('destroy', function(e) {
 		$timeout.cancel(cancelRefresh);
 	});
-
-	// CATEGORIES SHOW/HIDE + LOGIC
-	function showHideCategories(cat) {
-		for (category in $scope.show) {
-			if (category !== cat) {
-				$scope.show[category] = false;
-			} else {
-				$scope.show[category] = true;
-			}
-		}
-	}
-
-	$scope.show.meal = false;
-	$scope.show.exercise = false;
-	$scope.show.work = false;
-	$scope.show.sleep = false;
-
-	function watchCategory() {
-		showHideCategories($scope.input.category);
-	}
-
-	$scope.$watch('input.category', watchCategory, true )
-
-} 
+}
 
 angular.module('app.directives', [])
-	.directive('add', ['EventService', 'FilterService', '$timeout', function (EventService, FilterService, $timeout) {
-			
+	.directive('add', ['EventService', 'FilterService', '$timeout', function (EventService, FilterService, $timeout) {		
 		return {
 			restrict: 'EA',
 			// scope: {},
@@ -162,11 +190,19 @@ angular.module('app.directives', [])
 			},
 			templateUrl: 'directiveTemplates/addTemplate.html'
 		};
-
-
 	}])
 
 // ----------------------------------------------------------------------------
+.directive('time', ['$timeout', function ($timeout) {
+	return {
+		restrict: 'EA',
+		// scope: {},
+		controller: timeController,
+		link: function (scope, iElement, iAttrs) {
+		},
+		template: '<datepicker ng-model="dateTimePicked"></datepicker>'
+	};
+}])
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
