@@ -120,7 +120,8 @@ describe('Directives', function() {
 		}))
 
 		it('should show me the controller', function() {
-			console.log(ctrl)
+			// console.log(scope.input.checkbox.checked)
+			expect(scope.input.checkbox.checked).toEqual(0)
 		})
 	})
 
