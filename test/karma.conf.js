@@ -12,14 +12,15 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     preprocessors: {
-      'public/directiveTemplate/*.html': ['ng-html2js']
+      'public/directiveTemplate/*.html': ['ng-html2js'],
+      'public/directiveTemplate/addTemplate.html': ['ng-html2js']
     },
       
-    ngHtml2JsPreprocessor: {
-        // setting this option will create only a single module that contains templates
-        // from all the files, so you can load them all with module('foo')
-       moduleName: 'templates'
-   },
+   //  ngHtml2JsPreprocessor: {
+   //      // setting this option will create only a single module that contains templates
+   //      // from all the files, so you can load them all with module('foo')
+   //     moduleName: 'templates'
+   // },
 
     // list of files / patterns to load in the browser
     files: [

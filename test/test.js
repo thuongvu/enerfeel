@@ -66,18 +66,33 @@
 	
 // })
 
-describe('Directives', function() {
-	beforeEach(module("app"));
+// describe('Directives', function() {
+// 	beforeEach(module("app"));
 	
-	describe("template", function() {
-		var $compile, $scope, $httpBackend;
+// 	var element, scope;
 
-		beforeEach(module('public/directiveTemplate/addTemplate.html'));
+// 	beforeEach(module('public/directiveTemplate/addTemplate.html'));
+
+	
+
+// })
 
 
-	})
 
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
