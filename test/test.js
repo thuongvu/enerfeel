@@ -66,31 +66,73 @@
 	
 // })
 
-describe('Directives', function() {
-	beforeEach(module("app"));
+
+// STILL NOT WORKING
+
+// describe('Directives', function() {
+// 	beforeEach(module("app"));
 	
+// 	var element, scope;
+
+// 	beforeEach(module('public/directiveTemplate/addTemplate.html'));
+
+// 	beforeEach(inject(function($compile, $rootScope) {
+// 		scope = $rootScope;
+// 		element = angular.element('<button ng-click="' + showAddFunc() +'">Add Event</button>')
+// 		$compile(element)(scope);
+// 		scope.$apply();
+// 	}))	
+
+// 	it('should make showAdd true', function() {
+// 		// scope.$apply(function() {
+// 			// console.log(element)
+// 		// 	scope.showAddFunc();
+// 		// })
+// 		// expect(scope.showAdd).toBeTruthy();
+// 	})
+
+// })
+
+describe('Directive: albums', function() {
+  beforeEach(module('app'));
+ 
 	var element, scope;
-
-	beforeEach(module('public/directiveTemplate/addTemplate.html'));
-
-	beforeEach(inject(function($compile, $rootScope) {
+ 
+	beforeEach(module('directiveTemplates/albums.html'));
+ 
+	beforeEach(inject(function($rootScope, $compile) {
+		element = angular.element('<div class="well span6">' +
+			'<h3>Busdriver Albums:</h3>' +
+			'<albums ng-repeat="album in albums" title="{{album.title}}">' +
+			'</albums></div>');
+ 
 		scope = $rootScope;
-		element = angular.element('<button ng-click="' + showAddFunc() +'">Add Event</button>')
+ 
+		scope.albums = [{
+			'title': 'Memoirs of the Elephant Man'
+		}, {
+			'title': 'Temporary Forever'
+		}, {
+			'title': 'Cosmic Cleavage'
+		}, {
+			'title': 'Fear of a Black Tangent'
+		}, {
+			'title': 'RoadKillOvercoat'
+		}, {
+			'title': 'Jhelli Beam'
+		}, {
+			'title': 'Beaus$Eros'
+		}];
+ 
 		$compile(element)(scope);
-		scope.$apply();
-	}))	
-
-	it('should make showAdd true', function() {
-		// scope.$apply(function() {
-			// console.log(element)
-		// 	scope.showAddFunc();
-		// })
-		// expect(scope.showAdd).toBeTruthy();
-	})
-
-})
-
-
+		scope.$digest();
+	}));
+ 
+	it("should have the correct amount of albums in the list", function() {
+		var list = element.find('li');
+		expect(list.length).toBe(7);
+	});
+});
 
 
 

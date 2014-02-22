@@ -208,6 +208,13 @@ angular.module('app.directives', [])
 			templateUrl: 'directiveTemplates/modifyTemplate.html'
 		}
 	}])
+	.directive('albums', function() {
+		return {
+			restrict: 'EA',
+			templateUrl: 'directiveTemplates/albums.html',
+			scope: {}
+		}
+	})
 
 
 
