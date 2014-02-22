@@ -66,16 +66,29 @@
 	
 // })
 
-// describe('Directives', function() {
-// 	beforeEach(module("app"));
+describe('Directives', function() {
+	beforeEach(module("app"));
 	
-// 	var element, scope;
+	var element, scope;
 
-// 	beforeEach(module('public/directiveTemplate/addTemplate.html'));
+	beforeEach(module('public/directiveTemplate/addTemplate.html'));
 
-	
+	beforeEach(inject(function($compile, $rootScope) {
+		scope = $rootScope;
+		element = angular.element('<button ng-click="' + showAddFunc() +'">Add Event</button>')
+		$compile(element)(scope);
+		scope.$apply();
+	}))	
 
-// })
+	it('should make showAdd true', function() {
+		// scope.$apply(function() {
+			// console.log(element)
+		// 	scope.showAddFunc();
+		// })
+		// expect(scope.showAdd).toBeTruthy();
+	})
+
+})
 
 
 
