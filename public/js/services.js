@@ -78,7 +78,7 @@ angular.module('app.services', [])
 				var obj = EventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
 				console.log(obj)
-				if ((dateOfProp > first) && (dateOfProp < second)) {
+				if ((dateOfProp >= first) && (dateOfProp <= second)) {
 					arr.push(obj[prop])
 				}
 			}
@@ -96,13 +96,7 @@ angular.module('app.services', [])
 			},
 			sortTime: function(arr) {
 				// sortTime(arr);
-				// return sort(arr);
 				return sortTime(arr);
-				// return sortTime(arr);
-				// arr.sort(function(a,b) {
-				// 	return a.date - b.date	
-				// })
-				// return arr;
 			},
 			customFilterLifeEvents: function(first, second) {
 				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
