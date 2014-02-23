@@ -155,7 +155,7 @@ angular.module('app.directives', [])
 .controller('categoryController', ['$scope', function ($scope) {
 	$scope.category = {};
 	$scope.category.setTo = 'null';
-	
+
 	// console.log("show me once")
 	// CATEGORIES SHOW/HIDE + LOGIC
 	 $scope.showHideCategories = function(cat) {
@@ -249,8 +249,6 @@ angular.module('app.directives', [])
 	$scope.customLengthTime = function(first, second) {
 		$scope.lifeEventsInView = $scope.filterService.customFilterLifeEvents(first, second);
 	};
-
-	
 }])
 .directive('filterdir', ['EventService', 'FilterService', function (EventService, FilterService) {
 	return {
@@ -259,7 +257,17 @@ angular.module('app.directives', [])
 		templateUrl: 'directiveTemplates/filterTemplate.html'
 	}
 }])
+// ----------------------------------------------------------------------------
+.controller('categoryInputController', ['CategoryService', '$scope', function (CategoryService, $scope) {
 
+}])
+.directive('categoryInput', ['CategoryService', function (CategoryService) {
+	return {
+		restrict: 'EA',
+		controller: 'categoryInputController',
+		templateUrl: 'directiveTemplates/categoryInputTemplate.html'
+	};
+}])
 
 
 

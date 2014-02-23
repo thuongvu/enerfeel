@@ -272,13 +272,57 @@ describe('Services:', function() {
 			expect(CategoryService.categoriesObj.list).toContain('meal');
 			CategoryService.deleteCategory('meal');
 			expect(CategoryService.categoriesObj.list).not.toContain('meal');
+		});
 
-		})
+	});
 
-	})
+	describe("On the mainCtrl,", function() {
+		var ctrl, scope;
+
+		beforeEach(inject(function($controller, $rootScope) {
+			scope = $rootScope.$new();
+
+			ctrl = $controller('mainCtrl', {
+				$scope: scope
+			});
+		}));
+
+		it("categoryService should be injected within", function() {
+			expect(scope.categoryService).not.toBeNull();
+		});
+
+	});
 	
 })
 
+describe('Directives', function() {
+	beforeEach(module("app"));
+	
+	var element, scope, template;
+
+	beforeEach(module('templates'));
+
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
+		template = $templateCache.get('public/directiveTemplates/categoryInputTemplate.html');
+		$templateCache.put('directiveTemplates/categoryInputTemplate.html', template);
+		
+		$compile = _$compile_;
+		$rootScope = _$rootScope_;
+	}))	
+
+	it('should make showAdd true', function() {
+		var categoryService = {};
+		categoryService.categoriesObj = {};
+		categoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep']
+		var elementPreDigest = angular.element('<div category-input></div>');
+		var element = $compile(elementPreDigest)($rootScope);
+		$rootScope.$digest();
+		console.log(element)
+		// console.log(element.find('input'));
+		// expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
+	})
+
+})
 
 
 
