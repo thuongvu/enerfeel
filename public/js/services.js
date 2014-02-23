@@ -66,6 +66,13 @@ angular.module('app.services', [])
 			return arr;
 		} 
 
+		function sort(arr) {
+				arr.sort(function(a,b) {
+					return a.date - b.date	
+				})
+			return arr;
+		} 
+
 		function filterCustomDuration(first, second, arr) {
 			for (prop in EventService.allLifeEvents) {
 				var obj = EventService.allLifeEvents;
@@ -88,13 +95,24 @@ angular.module('app.services', [])
 				return currentFilterObj.lifeEvents;
 			},
 			sortTime: function(arr) {
-				sortTime(arr);
+				// sortTime(arr);
+				// return sort(arr);
+				return sortTime(arr);
+				// return sortTime(arr);
+				// arr.sort(function(a,b) {
+				// 	return a.date - b.date	
+				// })
+				// return arr;
 			},
 			customFilterLifeEvents: function(first, second) {
 				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
 				var results = filterCustomDuration(first, second, currentFilterObj.lifeEvents);
 				currentFilterObj.lifeEvents = sortTime(results); 
 				return currentFilterObj.lifeEvents;
+			},
+			test: function() {
+				// console.log("blah")
+				return "blah";
 			},
 			currentFilterObj: currentFilterObj,
 		}

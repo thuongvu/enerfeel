@@ -129,38 +129,75 @@
 // })
 
 
-describe("Unit: filterController", function() {
+// describe("Unit: filterController", function() {
 
-	beforeEach(function() {
-		module("app");
-	})	
+// 	beforeEach(function() {
+// 		module("app");
+// 	})	
 	
-	var ctrl, scope;
+// 	var ctrl, scope;
 
-	beforeEach(inject(function($controller, $rootScope) {
-		scope = $rootScope.$new();
+// 	beforeEach(inject(function($controller, $rootScope) {
+// 		scope = $rootScope.$new();
 
-		ctrl = $controller('filterController', {
-			$scope: scope
+// 		ctrl = $controller('filterController', {
+// 			$scope: scope
+// 		});
+// 	}))
+
+// 	it("should change category to 'hello'", function() {
+// 		expect(scope.category.setTo).toEqual('null')
+// 		scope.filterCategory('hello');
+// 		expect(scope.category.setTo).toEqual("hello");
+// 	})
+
+// 	it("should have a defined firstDate", function() {
+// 		expect(scope.calendar.firstDate).toBeDefined()
+// 	})
+
+// 	it("should have a defined secondDate", function() {
+// 		expect(scope.calendar.secondDate).toBeDefined()
+// 	})
+
+// })
+
+
+describe('Services:', function() {
+	beforeEach(module('app'));
+
+	describe('FilterService:', function() {
+		var FilterService;
+		beforeEach(inject(function($injector) {
+			FilterService = $injector.get('FilterService');
+		}))
+
+		it('should not be null', function() {
+			FilterService.test();
+			expect(FilterService).not.toBeNull();
 		});
-	}))
 
-	it("should change category to 'hello'", function() {
-		expect(scope.category.setTo).toEqual('null')
-		scope.filterCategory('hello');
-		expect(scope.category.setTo).toEqual("hello");
-	})
+		it('"test" function should return "blah', function() {
+			expect(FilterService.test()).toMatch("blah");
+		});
 
-	it("should have a defined firstDate", function() {
-		expect(scope.calendar.firstDate).toBeDefined()
-	})
+		it('sortTime should sort time', function() {
+			var data = [
+			 {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
+			 {"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise", "opacity": 3, "size": 5}, 
+			 {"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
+			 {"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
+			 {"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
+			 {"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
+			 ];
+			var filteredData = FilterService.sortTime(data);
+			expect(filteredData[0].note).toMatch("last month, ate food");
+		});
 
-	it("should have a defined secondDate", function() {
-		expect(scope.calendar.secondDate).toBeDefined()
-	})
+		
 
-})
-
+	});
+	
+});
 
 
 
