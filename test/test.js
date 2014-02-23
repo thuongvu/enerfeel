@@ -194,8 +194,8 @@ describe('Services:', function() {
 		});
 
 		it('customFilterLifeEvents should take two dates and check if fitting', function() {
-			var currentFilterObj = {};
-			currentFilterObj.lifeEvents = [];
+			// var currentFilterObj = {};
+			// currentFilterObj.lifeEvents = [];
 			EventService = {};
 			EventService.allLifeEvents = [
 				{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
@@ -209,6 +209,20 @@ describe('Services:', function() {
 			 var date2 = new Date(2014, 1, 16, 15);
 
 			 expect((FilterService.customFilterLifeEvents(date1, date2).length)).toEqual(4);
+		})
+
+		it("filterLifeEvents should take one time input, return anything within that time", function() {
+			EventService = {};
+			EventService.allLifeEvents = [
+				{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
+				{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise", "opacity": 3, "size": 5}, 
+				{"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
+				{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
+				{"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
+				{"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
+			];
+			expect((FilterService.filterLifeEvents('week').length)).toEqual(2);
+			// this test may fail by next week -_-, gotta write a better one
 		})
 
 	});

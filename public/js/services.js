@@ -77,7 +77,7 @@ angular.module('app.services', [])
 			for (prop in EventService.allLifeEvents) {
 				var obj = EventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
-				console.log(obj)
+				// console.log(obj)
 				if ((dateOfProp >= first) && (dateOfProp <= second)) {
 					arr.push(obj[prop])
 				}
