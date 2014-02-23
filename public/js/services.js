@@ -66,6 +66,18 @@ angular.module('app.services', [])
 			return arr;
 		} 
 
+		function filterCustomDuration(first, second, arr) {
+			for (prop in EventService.allLifeEvents) {
+				var obj = EventService.allLifeEvents;
+				var dateOfProp = obj[prop].date.valueOf();
+				console.log(obj)
+				if ((dateOfProp > first) && (dateOfProp < second)) {
+					arr.push(obj[prop])
+				}
+			}
+			return arr;
+		}
+
 		return {
 			filterLifeEvents: function(time) {
 				currentFilterObj.time = time; // set currentFilterObj.time to what was passed
@@ -77,6 +89,12 @@ angular.module('app.services', [])
 			},
 			sortTime: function(arr) {
 				sortTime(arr);
+			},
+			customFilterLifeEvents: function(first, second) {
+				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
+				var results = filterCustomDuration(first, second, currentFilterObj.lifeEvents);
+				currentFilterObj.lifeEvents = sortTime(results); 
+				return currentFilterObj.lifeEvents;
 			},
 			currentFilterObj: currentFilterObj,
 		}

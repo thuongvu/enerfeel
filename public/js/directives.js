@@ -242,6 +242,10 @@ angular.module('app.directives', [])
 	$scope.calendar.firstDate = new Date();
 	$scope.calendar.secondDate = new Date();
 
+	$scope.customLengthTime = function(first, second) {
+		$scope.lifeEventsInView = $scope.filterService.customFilterLifeEvents(first, second);
+	};
+
 	
 }])
 .directive('filterdir', ['EventService', 'FilterService', function (EventService, FilterService) {
