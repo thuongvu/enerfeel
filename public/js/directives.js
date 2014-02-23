@@ -96,39 +96,15 @@ function AddController ($scope, $timeout) {
 		pushDataIntoServices(eventData);
 		$scope.showAddFunc();
 		clearInputs();
-		showHideCategories('all');
+		$scope.showHideCategories('all');
 	};
 
-	// DATEPICKER LOGIC
-	// $scope.dateTimePicked = new Date();
-	// $scope.wakeTime = new Date();
-	// setTime();
+} 
 
-	// var timeIntervalFunction = function() {
-	// 	cancelRefresh = $timeout(function createNewDateObj() {
-	// 		$scope.dateTimePicked = new Date();
-	// 		// console.log("the new time is " + $scope.dateTimePicked);
-	// 		cancelRefresh = $timeout(createNewDateObj, 60000);
-	// 	}, 60000);
-	// };
-
-	// function setTime() {
-	// 	var currentTime = new Date();
-	// 	var currentTimeSeconds = currentTime.getSeconds();
-	// 	var secsUntilNextMin = (60 - currentTimeSeconds) * 1000;
-	// 	// console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
-	// 	$timeout(function() {
-	// 		$scope.dateTimePicked = new Date();
-	// 		timeIntervalFunction()
-	// 	}, secsUntilNextMin)
-	// };
-
-	// $scope.$on('destroy', function(e) {
-	// 	$timeout.cancel(cancelRefresh);
-	// });
-
+function categoryController($scope) {
+	console.log("show me once")
 	// CATEGORIES SHOW/HIDE + LOGIC
-	function showHideCategories(cat) {
+	 $scope.showHideCategories = function(cat) {
 		for (category in $scope.show) {
 			if (category !== cat) {
 				$scope.show[category] = false;
@@ -137,19 +113,18 @@ function AddController ($scope, $timeout) {
 			}
 		}
 	}
-
+	// $scope.show = {};
 	$scope.show.meal = false;
 	$scope.show.exercise = false;
 	$scope.show.work = false;
 	$scope.show.sleep = false;
 
 	function watchCategory() {
-		showHideCategories($scope.input.category);
+		$scope.showHideCategories($scope.input.category);
 	}
 
 	$scope.$watch('input.category', watchCategory, true )
-
-} 
+}
 
 function timeController ($scope, $timeout) {
 	$scope.dateTimePicked = new Date();
@@ -204,6 +179,16 @@ angular.module('app.directives', [])
 	};
 }])
 // ----------------------------------------------------------------------------
+.directive('categorydir', [function () {
+	return {
+		restrict: 'EA',
+		// scope: {},
+		controller: categoryController,
+		// link: function (scope, iElement, iAttrs) {
+		// },
+		templateUrl: 'directiveTemplates/categoryTemplate.html'
+	};
+}])
 // ----------------------------------------------------------------------------
 
 	.directive('modify', ['EventService', 'FilterService', function (EventService, FilterService) {
