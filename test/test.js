@@ -94,30 +94,6 @@
 // })
 
 
-describe('Directives', function() {
-	beforeEach(module("app"));
-	
-	var element, scope, controller;
-
-	beforeEach(module('public/directiveTemplates/addTemplate.html'));
-
-	describe('just the controller', function() {
-		var scope, ctrl;
-		beforeEach(inject(function($controller, $rootScope) {
-			scope = $rootScope;
-
-			ctrl = $controller(AddController, {$scope: scope});
-		}))
-
-		it('should show me the controller', function() {
-			// console.log(scope.input.checkbox.checked)
-			expect(scope.input.checkbox.checked).toEqual(0)
-		})
-	})
-
-})
-
-
 
 
 

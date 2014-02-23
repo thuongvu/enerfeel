@@ -225,7 +225,26 @@ angular.module('app.directives', [])
 			templateUrl: 'directiveTemplates/modifyTemplate.html'
 		}
 	}])
+// ----------------------------------------------------------------------------
+.controller('filterController', ['EventService', 'FilterService', '$scope', function (EventService, FilterService, $scope) {
+	$scope.filterTime = function(time) {
+		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
+	}
 
+	$scope.filterCategory = function(category) {
+		$scope.category.setTo = category;
+	}
+	
+	
+	
+}])
+.directive('filterdir', ['EventService', 'FilterService', function (EventService, FilterService) {
+	return {
+		restrict: 'EA',
+		controller: 'filterController',
+		templateUrl: 'directiveTemplates/filterTemplate.html'
+	}
+}])
 
 
 

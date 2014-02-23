@@ -7,13 +7,13 @@ angular.module('app.controllers', [])
 		$scope.category = {};
 		$scope.category.setTo = 'null';
 
-		$scope.filterTime = function(time) {
-			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
-		}
+		// $scope.filterTime = function(time) {
+		// 	$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
+		// }
 
-		$scope.filterCategory = function(category) {
-			$scope.category.setTo = category;
-		}
+		// $scope.filterCategory = function(category) {
+		// 	$scope.category.setTo = category;
+		// }
 		
 		$scope.name = "Thuongvu";
 
