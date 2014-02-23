@@ -260,12 +260,19 @@ describe('Services:', function() {
 			expect(CategoryService.categoriesObj.list).toContain('work');
 			expect(CategoryService.categoriesObj.list).toContain('sleep');
 			expect(CategoryService.categoriesObj.list).not.toContain('dog');
-		})
+		});
 
 		it('addCategory should add an item to the categoriesObj.list', function() {
 			expect(CategoryService.categoriesObj.list).not.toContain('dog');
 			CategoryService.addCategory('dog');
 			expect(CategoryService.categoriesObj.list).toContain('dog');
+		});
+
+		it('deleteCategory should delete specified item from categoriesObj.list', function() {
+			expect(CategoryService.categoriesObj.list).toContain('meal');
+			CategoryService.deleteCategory('meal');
+			expect(CategoryService.categoriesObj.list).not.toContain('meal');
+
 		})
 
 	})

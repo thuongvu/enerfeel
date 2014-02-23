@@ -115,6 +115,21 @@ angular.module('app.services', [])
 		var categoriesObj = {};
 		categoriesObj.list = ['meal', 'exercise', 'work', 'sleep']
 		return {
+			addCategory: function(category) {
+				if (typeof category === 'string') {
+					categoriesObj.list.push(category);
+				};
+				return categoriesObj.list;
+			},
+			deleteCategory: function (category) {
+				if (typeof category === 'string') {
+					if (categoriesObj.list.indexOf(category) !== -1) {
+						var pos = categoriesObj.list.indexOf(category);
+						categoriesObj.list.splice(pos, 1);
+					}
+					return categoriesObj.list;
+				};
+			},
 			categoriesObj: categoriesObj
 		};
 	}])
