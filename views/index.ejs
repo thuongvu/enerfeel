@@ -9,6 +9,9 @@
 	</head>
 	<body>
 		<div ng-controller="mainCtrl">
+			<div ng-repeat="cat in cats.list">
+				<button ng-click="filterTime(cat)">{{cat}}</button>
+			</div>
 			<!-- <div>
 				Time Filters
 				<button ng-click="filterTime('day')">Day</button>

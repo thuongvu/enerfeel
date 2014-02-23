@@ -231,6 +231,7 @@ angular.module('app.directives', [])
 	$scope.category.setTo = 'null';
 
 	$scope.filterTime = function(time) {
+		console.log(time)
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
 	}
 

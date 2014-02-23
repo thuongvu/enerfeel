@@ -24,4 +24,7 @@ angular.module('app.controllers', [])
 		$scope.calendar = {};
 		$scope.calendar.firstDate = new Date();
 		$scope.calendar.secondDate = new Date();
+
+		$scope.cats = {};
+		$scope.cats.list = ['month', 'week'];
 	}])
