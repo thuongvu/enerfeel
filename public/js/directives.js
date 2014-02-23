@@ -259,7 +259,7 @@ angular.module('app.directives', [])
 }])
 // ----------------------------------------------------------------------------
 .controller('categoryInputController', ['CategoryService', '$scope', function (CategoryService, $scope) {
-
+	$scope.categoryService = CategoryService;
 }])
 .directive('categoryInput', ['CategoryService', function (CategoryService) {
 	return {

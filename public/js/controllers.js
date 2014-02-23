@@ -6,7 +6,7 @@ angular.module('app.controllers', [])
 		$scope.input = {};
 		$scope.category = {};
 		$scope.category.setTo = 'null';
-		$scope.categoryService = CategoryService;
+		// $scope.categoryService = CategoryService;
 		console.log($scope.categoryService)
 
 

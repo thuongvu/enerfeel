@@ -298,11 +298,12 @@ describe('Services:', function() {
 describe('Directives', function() {
 	beforeEach(module("app"));
 	
-	var element, scope, template;
+	var element, scope, template, CategoryService;
 
 	beforeEach(module('templates'));
 
-	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector) {
+		CategoryService = $injector.get('CategoryService')
 		template = $templateCache.get('public/directiveTemplates/categoryInputTemplate.html');
 		$templateCache.put('directiveTemplates/categoryInputTemplate.html', template);
 		
@@ -311,9 +312,9 @@ describe('Directives', function() {
 	}))	
 
 	it('should make showAdd true', function() {
-		var categoryService = {};
-		categoryService.categoriesObj = {};
-		categoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep']
+		// var categoryService = {};
+		// categoryService.categoriesObj = {};
+		// categoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep']
 		var elementPreDigest = angular.element('<div category-input></div>');
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
@@ -323,6 +324,4 @@ describe('Directives', function() {
 	})
 
 })
-
-
 
