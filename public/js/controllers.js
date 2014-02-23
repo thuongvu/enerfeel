@@ -21,4 +21,7 @@ angular.module('app.controllers', [])
 			$scope.greeting = "Hello " + $scope.name;
 		}
 
+		$scope.calendar = {};
+		$scope.calendar.firstDate = new Date();
+		$scope.calendar.secondDate = new Date();
 	}])

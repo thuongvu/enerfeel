@@ -14,6 +14,8 @@
 				<button ng-click="filterTime('day')">Day</button>
 				<button ng-click="filterTime('week')">Week</button>
 				<button ng-click="filterTime('month')">Month</button>
+				<datepicker ng-model="calendar.firstDate"></datepicker>
+				<datepicker ng-model="calendar.secondDate"></datepicker>
 			</div>
 			<div>
 				Activity Filters
@@ -25,6 +27,7 @@
 			</div>
 			<div modify></div>
 			<div add></div>
+
 			
 			<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>
 		</div>

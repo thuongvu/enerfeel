@@ -179,12 +179,6 @@ angular.module('app.directives', [])
 .directive('categorydir', [function () {
 	return {
 		restrict: 'EA',
-		// scope: {},
-		// controller: categoryController,
-		// link: function (scope, iElement, iAttrs) {
-		// },
-		// controller: function($scope) {
-		// },
 		controller: 'categoryController',
 		templateUrl: 'directiveTemplates/categoryTemplate.html'
 	};
