@@ -298,17 +298,20 @@ describe('Services:', function() {
 describe('Directives', function() {
 	beforeEach(module("app"));
 	
-	var element, scope, template, CategoryService;
+	var element, scope, template, CategoryService, ctrl;
 
 	beforeEach(module('templates'));
 
-	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector) {
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector, $controller) {
 		CategoryService = $injector.get('CategoryService')
 		template = $templateCache.get('public/directiveTemplates/categoryInputTemplate.html');
 		$templateCache.put('directiveTemplates/categoryInputTemplate.html', template);
 		
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
+		ctrl = $controller('mainCtrl', {
+			$scope: scope
+		});
 	}))	
 
 	it('should make showAdd true', function() {
@@ -318,7 +321,9 @@ describe('Directives', function() {
 		var elementPreDigest = angular.element('<div category-input></div>');
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
-		console.log(element)
+		// console.log($rootScope)
+		// console.log(element)
+		console.log(ctrl)
 		// console.log(element.find('input'));
 		// expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
 	})
