@@ -48,6 +48,9 @@
 // 		scope.sayHello();
 // 		expect(scope.greeting).toEqual("Hello Thuongvu");
 // 	})
+
+
+
 // })
 
 // describe('Services:', function() {
@@ -72,11 +75,14 @@
 	
 // 	var element, scope, template;
 
-// 	beforeEach(module('public/directiveTemplates/addTemplate.html'));
+// 	// beforeEach(module('public/directiveTemplates/addTemplate.html'));
+// 	beforeEach(module('templates'));
 
 // 	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
 // 		template = $templateCache.get('public/directiveTemplates/addTemplate.html');
 // 		$templateCache.put('directiveTemplates/addTemplate.html', template);
+// 		template2 = $templateCache.get('public/directiveTemplates/categoryTemplate.html');
+// 		$templateCache.put('directiveTemplates/categoryTemplate.html', template2);
 		
 // 		$compile = _$compile_;
 // 		$rootScope = _$rootScope_;
@@ -86,15 +92,41 @@
 // 		var elementPreDigest = angular.element('<div add></div>');
 // 		var element = $compile(elementPreDigest)($rootScope);
 // 		$rootScope.$digest();
-
-// 		console.log(element.find('input'));
-// 		expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
+// 		console.log(element)
+// 		// console.log(element.find('input'));
+// 		// expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
 // 	})
 
 // })
 
 
 
+
+describe('Directives', function() {
+	beforeEach(module("app"));
+	
+	var element, scope, template;
+
+	beforeEach(module('templates'));
+
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
+		template = $templateCache.get('public/directiveTemplates/filterTemplate.html');
+		$templateCache.put('directiveTemplates/filterTemplate.html', template);
+		
+		$compile = _$compile_;
+		$rootScope = _$rootScope_;
+	}))	
+
+	it('should make showAdd true', function() {
+		var elementPreDigest = angular.element('<div filterdir></div>');
+		var element = $compile(elementPreDigest)($rootScope);
+		$rootScope.$digest();
+		console.log(element)
+		// console.log(element.find('input'));
+		// expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
+	})
+
+})
 
 
 

@@ -153,7 +153,7 @@ angular.module('app.directives', [])
 }])
 // ----------------------------------------------------------------------------
 .controller('categoryController', ['$scope', function ($scope) {
-	console.log("show me once")
+	// console.log("show me once")
 	// CATEGORIES SHOW/HIDE + LOGIC
 	 $scope.showHideCategories = function(cat) {
 		for (category in $scope.show) {
@@ -164,7 +164,7 @@ angular.module('app.directives', [])
 			}
 		}
 	}
-	// $scope.show = {};
+	$scope.show = {};
 	$scope.show.meal = false;
 	$scope.show.exercise = false;
 	$scope.show.work = false;
@@ -235,7 +235,10 @@ angular.module('app.directives', [])
 		$scope.category.setTo = category;
 	}
 	
-	
+	$scope.calendar = {};
+	$scope.calendar.firstDate = new Date();
+	$scope.calendar.secondDate = new Date();
+
 	
 }])
 .directive('filterdir', ['EventService', 'FilterService', function (EventService, FilterService) {
