@@ -227,6 +227,9 @@ angular.module('app.directives', [])
 	}])
 // ----------------------------------------------------------------------------
 .controller('filterController', ['EventService', 'FilterService', '$scope', function (EventService, FilterService, $scope) {
+	$scope.category = {};
+	$scope.category.setTo = 'null';
+
 	$scope.filterTime = function(time) {
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
 	}

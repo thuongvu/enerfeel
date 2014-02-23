@@ -102,35 +102,64 @@
 
 
 
-describe('Directives', function() {
-	beforeEach(module("app"));
+// describe('Directives', function() {
+// 	beforeEach(module("app"));
 	
-	var element, scope, template;
+// 	var element, scope, template;
 
-	beforeEach(module('templates'));
+// 	beforeEach(module('templates'));
 
-	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
-		template = $templateCache.get('public/directiveTemplates/filterTemplate.html');
-		$templateCache.put('directiveTemplates/filterTemplate.html', template);
+// 	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {
+// 		template = $templateCache.get('public/directiveTemplates/filterTemplate.html');
+// 		$templateCache.put('directiveTemplates/filterTemplate.html', template);
 		
-		$compile = _$compile_;
-		$rootScope = _$rootScope_;
-	}))	
+// 		$compile = _$compile_;
+// 		$rootScope = _$rootScope_;
+// 	}))	
 
-	it('should make showAdd true', function() {
-		var elementPreDigest = angular.element('<div filterdir></div>');
-		var element = $compile(elementPreDigest)($rootScope);
-		$rootScope.$digest();
-		console.log(element)
-		// console.log(element.find('input'));
-		// expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
+// 	it('should make showAdd true', function() {
+// 		var elementPreDigest = angular.element('<div filterdir></div>');
+// 		var element = $compile(elementPreDigest)($rootScope);
+// 		$rootScope.$digest();
+// 		console.log(element)
+// 		// console.log(element.find('input'));
+// 		// expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
+// 	})
+
+// })
+
+
+describe("Unit: filterController", function() {
+
+	beforeEach(function() {
+		module("app");
+	})	
+	
+	var ctrl, scope;
+
+	beforeEach(inject(function($controller, $rootScope) {
+		scope = $rootScope.$new();
+
+		ctrl = $controller('filterController', {
+			$scope: scope
+		});
+	}))
+
+	it("should change category to 'hello'", function() {
+		expect(scope.category.setTo).toEqual('null')
+		scope.filterCategory('hello');
+		expect(scope.category.setTo).toEqual("hello");
+	})
+
+	it("should have a defined firstDate", function() {
+		expect(scope.calendar.firstDate).toBeDefined()
+	})
+
+	it("should have a defined secondDate", function() {
+		expect(scope.calendar.secondDate).toBeDefined()
 	})
 
 })
-
-
-
-
 
 
 
