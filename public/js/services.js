@@ -111,3 +111,11 @@ angular.module('app.services', [])
 			currentFilterObj: currentFilterObj,
 		}
 	}])
+	.factory('CategoryService', [function () {
+		var categoriesObj = {};
+		categoriesObj.list = ['meal', 'exercise', 'work', 'sleep']
+		return {
+			categoriesObj: categoriesObj
+		};
+	}])
+

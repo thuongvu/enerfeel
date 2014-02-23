@@ -153,6 +153,9 @@ angular.module('app.directives', [])
 }])
 // ----------------------------------------------------------------------------
 .controller('categoryController', ['$scope', function ($scope) {
+	$scope.category = {};
+	$scope.category.setTo = 'null';
+	
 	// console.log("show me once")
 	// CATEGORIES SHOW/HIDE + LOGIC
 	 $scope.showHideCategories = function(cat) {

@@ -23,7 +23,7 @@ module.exports = function(config) {
       {pattern: 'public/bower_components/ngQuickDate/dist/ng-quick-date.min.js', watched: false},
       {pattern: 'public/bower_components/d3module.js', watched: false},
       {pattern: 'public/directiveTemplates/*.html', watched: false},
-      {pattern: 'public/js/*.js', watched: false},
+      {pattern: 'public/js/*.js', watched: true},
       {pattern: 'test/*.js'}
     ],
 
