@@ -434,22 +434,30 @@ describe('Directive: categorydir', function() {
 		expect(category.eq(0)).not.toBeNull();
 	})
 
-	it("should ng-show the right thing after you change categories.selected.category, invoking categoryChange, showHideCategories", function() {
-		var elementPreDigest = angular.element('<div categorydir></div>');
-		var element = $compile(elementPreDigest)($rootScope);
-		expect(scope.show.exercise).toBeFalsy();
-		scope.categories.selected.category = scope.categories.list[2];
-		scope.$apply();
-		// console.log(scope.categories.list[2])
-		console.log(scope.show)
-		// console.log(element.find('.exercise').hasClass('ng-hide'))
-		// console.log(element.find('.exercise:visible').length)
-		// expect(element.find('.meal').hasClass('ng-hide')).toBeTruthy();
-		// expect(scope.show.exercise).toBeTruthy();
-		// expect(element.find()
-			console.log(element)
+	// it("should ng-show the right thing after you change categories.selected.category, invoking categoryChange, showHideCategories", function() {
+	// 	expect(scope.show.exercise).toBeFalsy();
+	// 	scope.categories.selected.category = scope.categories.list[2];
+	// 	scope.$apply();
+	// 	// $rootScope.$digest();
+	// 	console.log(scope.categories.list[2])
+	// 	console.log(scope.show.exercise)
 
-	})
+	// 	var elementPreDigest = angular.element('<div categorydir></div>');
+	// 	var element = $compile(elementPreDigest)($rootScope);
+
+	// 	// scope.showHideCategories('exercise');
+	// 	scope.$apply();
+	// 	// scope.$digest();
+	// 	// scope.$apply();
+		
+	// 	// console.log(element.find('.exercise').hasClass('ng-hide'))
+	// 	// console.log(element.find('.exercise:visible').length)
+	// 	// expect(element.find('.meal').hasClass('ng-hide')).toBeTruthy();
+	// 	// expect(scope.show.exercise).toBeTruthy();
+	// 	// expect(element.find()
+	// 		console.log(element.find('.exercise').eq(0))
+	// 		// console.log(scope.show)
+	// })
 
 
 
