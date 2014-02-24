@@ -1,3 +1,19 @@
-<div ng-repeat="category in categoryService.categoriesObj.list">
-	{{category}}
+<!-- <div ng-repeat="category in categoryService.categoriesObj.list">
+	<span>{{category}}</span>
 </div>
+ -->
+ <!-- <select> -->
+<!--  <div ng-repeat="category in categoryService.categoriesObj.list">
+ 	<select>
+	 	<option value="category">{{category}}</option>
+	 </select>
+ </div> -->
+
+ <!-- <select ng-options="category in categoryService.categoriesObj.list"> -->
+ 		<!-- <option value="category">{{category}}</option> -->
+ <!-- </select> -->
+
+<!--  <select ng-model="selection.category" ng-options="category as category.label for category in categoriesList">
+ </select> -->
+ <select ng-model="categories.selected.category" ng-options="category as category.label for category in categories.list">
+ </select>

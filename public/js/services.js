@@ -113,7 +113,13 @@ angular.module('app.services', [])
 	}])
 	.factory('CategoryService', [function () {
 		var categoriesObj = {};
-		categoriesObj.list = ['meal', 'exercise', 'work', 'sleep']
+		categoriesObj.list = [
+		{label:'Choose a category', value: 'noCategoryChosen'},
+		{label:'meal', value: 'meal'},
+		{label: 'exercise', value: 'meal'},
+		{label: 'work', value: 'work'},
+		{label: 'sleep', value: 'sleep'}
+		];
 		return {
 			addCategory: function(category) {
 				if (typeof category === 'string') {

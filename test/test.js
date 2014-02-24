@@ -295,7 +295,7 @@ describe('Services:', function() {
 	
 })
 
-describe('Directives', function() {
+describe('Directive: CategoryInput', function() {
 	beforeEach(module("app"));
 	
 	var element, scope, template, CategoryService;
@@ -311,21 +311,15 @@ describe('Directives', function() {
 		$rootScope = _$rootScope_;
 	}))	
 
-	it('should make showAdd true', function() {
-		// var categoryService = {};
-		// categoryService.categoriesObj = {};
-		// categoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep']
+	it('should do an ng-repeat', function() {
 		var elementPreDigest = angular.element('<div category-input></div>');
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
-		// console.log($rootScope)
-		// console.log(element)
-		$rootScope.$apply(function() {
-			CategoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep'];
-		})
+		// $rootScope.$apply(function() {
+			// CategoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep'];
+			// return CategoryService;
+		// })
 		console.log(element)
-		// console.log(element.find('input'));
-		// expect(scope.showAdd).toBeTruthy(); // this will fail, but i got the directive working
 	})
 
 })
