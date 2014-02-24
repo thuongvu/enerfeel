@@ -417,7 +417,7 @@ describe('Directive: categorydir', function() {
 		$rootScope.$digest();
 		expect(pre).not.toEqual(element);
 		// console.log(element.find(''));
-		var elm = element.find('div');
+		var elm = elementPreDigest.find('div.cat');
 		console.log(elm)
 	})
 
