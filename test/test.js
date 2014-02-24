@@ -410,15 +410,13 @@ describe('Directive: categorydir', function() {
 		$rootScope = _$rootScope_;
 	}))	
 
-	it('should render compile into something', function() {
+	it('should render 5 ng-repeat ".cat"s ', function() {
 		var pre = angular.element('<div categorydir></div>');
 		var elementPreDigest = angular.element('<div categorydir></div>');
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
 		expect(pre).not.toEqual(element);
-		// console.log(element.find(''));
-		var elm = elementPreDigest.find('div.cat');
-		console.log(elm)
+		expect(element.find('div.cat').length).toEqual(5);
 	})
 
 })

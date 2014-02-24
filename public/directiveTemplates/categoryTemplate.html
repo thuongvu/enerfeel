@@ -9,11 +9,10 @@
 		<input ng-model="input.checkbox.vegetables" type="checkbox">Vegetables</input>
 	</form>
 </div>
-<div ng-repeat="category in categories.list">
+<div ng-repeat="category in categories.list" class="cat">
 	<div ng-show="{{category.show}}">
 		{{category.label}}
 		<input ng-model="input.size" type="number" placeholder="{{category.size}}"></input>
 		<input ng-model="input.opacity" type="number" placeholder="{{category.opacity}}"></input>
 	</div>
 </div>
-<div id="cat"><ul></ul></div>
