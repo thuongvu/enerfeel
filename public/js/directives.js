@@ -156,12 +156,14 @@ angular.module('app.directives', [])
 	$scope.categories = {};
 	$scope.categories.categoryService = CategoryService;
 	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
-	$scope.categories.selected = {};
-	$scope.categories.selected.category = $scope.categories.list[0];
 	$scope.show = {};
 	for (var i = 0; i < $scope.categories.list.length; i++) {
-		$scope.show[$scope.categories.list[i].label] = false;
+		if ($scope.show[$scope.categories.list[i].label] == null) {
+			$scope.show[$scope.categories.list[i].label] = false;
+		}
 	}
+	$scope.categories.selected = {};
+	$scope.categories.selected.category = $scope.categories.list[0];
 
 	 $scope.showHideCategories = function(cat) {
 		for (category in $scope.show) {
@@ -188,6 +190,8 @@ angular.module('app.directives', [])
 
 	$scope.categories.newCategory = {};
 	// $scope.categories.newCategory.label
+
+	$scope.testshow = false;
 	
 
 }])
