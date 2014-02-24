@@ -255,23 +255,19 @@ describe('Services:', function() {
 		});
 
 		it('should contain an categoriesObj that has a list of items', function() {
-			expect(CategoryService.categoriesObj.list).toContain('meal');
-			expect(CategoryService.categoriesObj.list).toContain('exercise');
-			expect(CategoryService.categoriesObj.list).toContain('work');
-			expect(CategoryService.categoriesObj.list).toContain('sleep');
-			expect(CategoryService.categoriesObj.list).not.toContain('dog');
+			expect(CategoryService.categoriesObj.list[0].label).toMatch('Choose a category');
 		});
 
 		it('addCategory should add an item to the categoriesObj.list', function() {
-			expect(CategoryService.categoriesObj.list).not.toContain('dog');
+			expect(CategoryService.categoriesObj.list[5]).toBeUndefined();
 			CategoryService.addCategory('dog');
-			expect(CategoryService.categoriesObj.list).toContain('dog');
+			expect(CategoryService.categoriesObj.list[5].label).toMatch('dog');
 		});
 
 		it('deleteCategory should delete specified item from categoriesObj.list', function() {
-			expect(CategoryService.categoriesObj.list).toContain('meal');
+			expect(CategoryService.categoriesObj.list[1].label).toContain('meal');
 			CategoryService.deleteCategory('meal');
-			expect(CategoryService.categoriesObj.list).not.toContain('meal');
+			expect(CategoryService.categoriesObj.list[1].label).not.toMatch('meal');
 		});
 
 	});
@@ -295,32 +291,32 @@ describe('Services:', function() {
 	
 })
 
-describe('Directive: CategoryInput', function() {
-	beforeEach(module("app"));
+// describe('Directive: CategoryInput', function() {
+// 	beforeEach(module("app"));
 	
-	var element, scope, template, CategoryService;
+// 	var element, scope, template, CategoryService;
 
-	beforeEach(module('templates'));
+// 	beforeEach(module('templates'));
 
-	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector) {
-		CategoryService = $injector.get('CategoryService')
-		template = $templateCache.get('public/directiveTemplates/categoryInputTemplate.html');
-		$templateCache.put('directiveTemplates/categoryInputTemplate.html', template);
+// 	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector) {
+// 		CategoryService = $injector.get('CategoryService')
+// 		template = $templateCache.get('public/directiveTemplates/categoryInputTemplate.html');
+// 		$templateCache.put('directiveTemplates/categoryInputTemplate.html', template);
 		
-		$compile = _$compile_;
-		$rootScope = _$rootScope_;
-	}))	
+// 		$compile = _$compile_;
+// 		$rootScope = _$rootScope_;
+// 	}))	
 
-	it('should do an ng-repeat', function() {
-		var elementPreDigest = angular.element('<div category-input></div>');
-		var element = $compile(elementPreDigest)($rootScope);
-		$rootScope.$digest();
-		// $rootScope.$apply(function() {
-			// CategoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep'];
-			// return CategoryService;
-		// })
-		console.log(element)
-	})
+// 	it('should do an ng-repeat', function() {
+// 		var elementPreDigest = angular.element('<div category-input></div>');
+// 		var element = $compile(elementPreDigest)($rootScope);
+// 		$rootScope.$digest();
+// 		// $rootScope.$apply(function() {
+// 			// CategoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep'];
+// 			// return CategoryService;
+// 		// })
+// 		console.log(element)
+// 	})
 
-})
+// })
 

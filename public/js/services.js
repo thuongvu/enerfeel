@@ -123,16 +123,18 @@ angular.module('app.services', [])
 		return {
 			addCategory: function(category) {
 				if (typeof category === 'string') {
-					categoriesObj.list.push(category);
+					categoriesObj.list.push({label: category, value: category});
 				};
 				return categoriesObj.list;
 			},
 			deleteCategory: function (category) {
 				if (typeof category === 'string') {
-					if (categoriesObj.list.indexOf(category) !== -1) {
-						var pos = categoriesObj.list.indexOf(category);
-						categoriesObj.list.splice(pos, 1);
-					}
+					for (var i = 0; i < categoriesObj.list.length; i++) {
+						if (categoriesObj.list[i].label === 'meal') {
+							categoriesObj.list.splice(i, 1);
+							break;
+						}
+					};
 					return categoriesObj.list;
 				};
 			},
