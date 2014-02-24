@@ -153,6 +153,16 @@ angular.module('app.directives', [])
 }])
 // ----------------------------------------------------------------------------
 .controller('categoryController', ['$scope', 'CategoryService', function ($scope, CategoryService) {
+	$scope.categories = {};
+	$scope.categories.categoryService = CategoryService;
+	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
+	$scope.categories.selected = {};
+	$scope.categories.selected.category = $scope.categories.list[0];
+	$scope.show = {};
+	for (var i = 0; i < $scope.categories.list.length; i++) {
+		$scope.show[$scope.categories.list[i].label] = false;
+	}
+
 	 $scope.showHideCategories = function(cat) {
 		for (category in $scope.show) {
 			if (category !== cat) {
@@ -161,18 +171,6 @@ angular.module('app.directives', [])
 				$scope.show[category] = true;
 			}
 		}
-	}
-
-	$scope.show = {};
-
-	$scope.categories = {};
-	$scope.categories.categoryService = CategoryService;
-	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
-	$scope.categories.selected = {};
-	$scope.categories.selected.category = $scope.categories.list[0];
-
-	for (var i = 0; i < $scope.categories.list.length; i++) {
-		$scope.show[$scope.categories.list[i].label] = false;
 	}
 
 	function categoryChange() {
@@ -185,7 +183,7 @@ angular.module('app.directives', [])
 		$scope.categories.list = $scope.categories.categoryService.addCategory(newCategory);
 		$scope.show[newCategory.label] = false;
 		// console.log($scope.categories.list[5])
-		console.log($scope.show);
+		// console.log($scope.show);
 	};
 
 	$scope.categories.newCategory = {};

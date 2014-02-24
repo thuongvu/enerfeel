@@ -377,9 +377,19 @@ describe("On the categoryController,", function() {
 		scope.categories.add(obj);
 		expect(scope.categories.list.length).toEqual(6);
 		expect(scope.categories.list[5]).toEqual({label: 'blue', value: 'blue', size:'intensity', opacity:'hue', show: 'show.blue'});
-	
-		// AND HERE REMEMBER TO ADD IT TO THE SHOW. CHECK THE $SCOPE.SHOW WHEN YOU ADD SOMETHING
 	});
+
+	it("should have $scope.show[newCategory] = false, on addCategory", function() {	
+		for (prop in scope.show) {
+			expect(scope.show[prop]).toBeFalsy();
+		};
+		var obj = {label: 'blue', size: 'intensity', opacity:'hue'};
+		scope.categories.add(obj);
+		for (prop in scope.show) {
+			expect(scope.show[prop]).toBeFalsy();
+		};
+	});
+
 
 });
 
@@ -406,6 +416,9 @@ describe('Directive: categorydir', function() {
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
 		expect(pre).not.toEqual(element);
+		// console.log(element.find(''));
+		var elm = element.find('div');
+		console.log(elm)
 	})
 
 })
