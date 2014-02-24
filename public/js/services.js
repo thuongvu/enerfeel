@@ -116,7 +116,7 @@ angular.module('app.services', [])
 		categoriesObj.list = [
 		{label:'Choose a category', value: 'noCategoryChosen'},
 		{label:'meal', value: 'meal'},
-		{label: 'exercise', value: 'meal'},
+		{label: 'exercise', value: 'exercise'},
 		{label: 'work', value: 'work'},
 		{label: 'sleep', value: 'sleep'}
 		];

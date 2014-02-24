@@ -153,10 +153,6 @@ angular.module('app.directives', [])
 }])
 // ----------------------------------------------------------------------------
 .controller('categoryController', ['$scope', 'CategoryService', function ($scope, CategoryService) {
-	$scope.category = {};
-	$scope.category.setTo = 'null';
-
-	// console.log("show me once")
 	// CATEGORIES SHOW/HIDE + LOGIC
 	 $scope.showHideCategories = function(cat) {
 		for (category in $scope.show) {
@@ -167,26 +163,24 @@ angular.module('app.directives', [])
 			}
 		}
 	}
+
 	$scope.show = {};
-	$scope.show.meal = false;
-	$scope.show.exercise = false;
-	$scope.show.work = false;
-	$scope.show.sleep = false;
 
-	// $scope.input.category = 'hello'
-	function watchCategory() {
-		console.log($scope.input.category);
-		$scope.showHideCategories($scope.input.category);
-	}
-
-	$scope.$watch('input.category', watchCategory, true)
-
-	// ++++++++++++++++++++++++++++++++++++++++++
+	$scope.categories = {};
 	$scope.categories.categoryService = CategoryService;
 	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
+	$scope.categories.selected = {};
+	$scope.categories.selected.category = $scope.categories.list[0];
 
-	console.log($scope.categories.list);
+	for (var i = 0; i < $scope.categories.list.length; i++) {
+		$scope.show[$scope.categories.list[i].label] = false;
+	}
 
+	function categoryChange() {
+		$scope.showHideCategories($scope.categories.selected.category.value);
+	};
+
+	$scope.$watch('categories.selected.category', categoryChange, true);
 
 }])
 .directive('categorydir', [function () {
@@ -216,14 +210,14 @@ angular.module('app.directives', [])
 
 		$scope.deleteEvent = function (event) {
 			$scope.eventService.deleteLifeEvent(event.selected);
-			console.log($scope.filterService.currentFilterObj.time);
+			// console.log($scope.filterService.currentFilterObj.time);
 			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
 		};
 
 		$scope.updateEvent = function (event) {
 			if (event) {
-				console.log(event.selected)
-				$scope.eventService.updateLifeEvent(event.selected);
+				// console.log(event.selected)
+				$scope.eventService.updateLifeEvent(event.selected); // might need to disable that
 				$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
 			}
 		};
@@ -244,7 +238,7 @@ angular.module('app.directives', [])
 	$scope.category.setTo = 'null';
 
 	$scope.filterTime = function(time) {
-		console.log(time)
+		// console.log(time)
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
 	}
 
@@ -275,7 +269,7 @@ angular.module('app.directives', [])
 	$scope.categories.selected = {};
 	$scope.categories.selected.category = $scope.categories.list[0];
 	function onCategoryChange() {
-		console.log($scope.categories.selected.category);
+		// console.log($scope.categories.selected.category);
 	};
 	$scope.$watch('categories.selected.category', onCategoryChange, true);
 }])

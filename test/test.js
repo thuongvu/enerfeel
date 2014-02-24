@@ -316,10 +316,57 @@ describe('Directive: CategoryInput', function() {
 			// CategoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep'];
 			// return CategoryService;
 		// })
-		console.log(pre)
-		console.log(element)
 		expect(pre).not.toEqual(element)
 	})
 
 })
+
+
+
+// ==========
+describe("On the categoryController,", function() {
+	var ctrl, scope;
+
+	beforeEach(module('app'))
+	beforeEach(inject(function($controller, $rootScope) {
+		scope = $rootScope.$new();
+
+		ctrl = $controller('categoryController', {
+			$scope: scope
+		});
+	}));
+
+	it("should receive a list of 5 items from CategoryService", function() {
+		expect(scope.categories.list.length).toEqual(5);
+	});
+
+	it("$scope.categories.selected.category input should start w/ a obj message saying 'Choose a category'", function() {
+		expect(scope.categories.selected.category).toMatch(scope.categories.list[0]);
+	});
+
+	it('scope.show should not be null', function() {
+		expect(scope.show).not.toBeNull();
+	});
+
+	it("scope.show should have categories.show all be false", function() {
+		for (prop in scope.show) {
+			expect(scope.show[prop]).toBeFalsy();
+		}
+	});
+
+	it("should have a working $scope.showHideCategories", function() {
+		expect(scope.show.exercise).toBeFalsy();
+		scope.showHideCategories('exercise');
+		expect(scope.show.exercise).toBeTruthy();
+	})
+
+	it("scope.watch should invoke categoryChange", function() {
+		expect(scope.show.exercise).toBeFalsy();
+		scope.categories.selected.category = scope.categories.list[2];
+		scope.$apply();
+		expect(scope.show.exercise).toBeTruthy();
+	})
+
+
+});
 
