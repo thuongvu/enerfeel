@@ -123,9 +123,9 @@ angular.module('app.services', [])
 		categoriesObj.list = [
 		{label:'Choose a category', value: 'noCategoryChosen'},
 		{label:'meal', value: 'meal'},
-		{label: 'exercise', value: 'exercise', size: 'Minutes', opacity: 'Intensity Level, 1-5'},
-		{label: 'work', value: 'work', size: 'Productivity, 1-5', opacity: 'Stress Level, 1-5, 5 most'},
-		{label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality, 1-5, 5 high'}
+		{label: 'exercise', value: 'exercise', size: 'Minutes', opacity: 'Intensity Level, 1-5', show: 'show.exercise'},
+		{label: 'work', value: 'work', size: 'Productivity, 1-5', opacity: 'Stress Level, 1-5, 5 most', show: 'show.work'},
+		{label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality, 1-5, 5 high', show: 'show.sleep'}
 		];
 		return {
 			addCategory: function(category) {

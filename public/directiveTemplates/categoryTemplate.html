@@ -27,3 +27,8 @@
 			<datepicker ng-model='wakeTime' placeholder="Wake time"></datepicker>
 		</div>
 	</div>
+	<div ng-repeat="category in categories.list">
+		<div ng-show="{{category.show}}">
+			{{category.label}}
+		</div>
+	</div>
