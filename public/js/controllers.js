@@ -7,7 +7,7 @@ angular.module('app.controllers', [])
 		$scope.category = {};
 		$scope.category.setTo = 'null';
 		// $scope.categoryService = CategoryService;
-		console.log($scope.categoryService)
+		// console.log($scope.categoryService)
 
 
 		// $scope.filterTime = function(time) {

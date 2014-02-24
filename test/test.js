@@ -152,7 +152,7 @@
 // 	}))
 
 // 	it("should change category to 'hello'", function() {
-// 		expect(scope.category.setTo).toEqual('null')
+		// expect(scope.category.setTo).toEqual('null')
 // 		scope.filterCategory('hello');
 // 		expect(scope.category.setTo).toEqual("hello");
 // 	})

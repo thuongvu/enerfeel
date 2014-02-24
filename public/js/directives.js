@@ -173,7 +173,9 @@ angular.module('app.directives', [])
 	$scope.show.work = false;
 	$scope.show.sleep = false;
 
+	// $scope.input.category = 'hello'
 	function watchCategory() {
+		console.log($scope.input.category);
 		$scope.showHideCategories($scope.input.category);
 	}
 
@@ -262,23 +264,22 @@ angular.module('app.directives', [])
 	$scope.categories = {};
 	$scope.categories.categoryService = CategoryService;
 	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
-	// $scope.categoriesList =  $scope.categories.categoryService.categoriesObj.list;
 	$scope.categories.selected = {};
 	$scope.categories.selected.category = $scope.categories.list[0];
+	// function one() {
+	// 	$scope.categories = {};
+	// 	$scope.categories.categoryService = CategoryService;
+	// 	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
+	// 	$scope.categories.selected = {};
+	// 	$scope.categories.selected.category = $scope.categories.list[0];
+	// }
+	// one();
 	function onCategoryChange() {
 		console.log($scope.categories.selected.category);
 	};
 	$scope.$watch('categories.selected.category', onCategoryChange, true);
-	// $scope.categoryService = CategoryService;
-	// $scope.categoriesList =  $scope.categoryService.categoriesObj.list;
-	// $scope.selection = {};
-	// $scope.selection.category = $scope.categoriesList[0];
-	// function onCatChange() {
-	// 	console.log($scope.selection.category);
-	// }
-	// $scope.$watch('categories.selection', onCatChange, true);
 }])
-.directive('categoryInput', ['CategoryService', function (CategoryService) {
+.directive('categoryInput', [function () {
 	return {
 		restrict: 'EA',
 		controller: 'categoryInputController',
