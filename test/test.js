@@ -376,7 +376,9 @@ describe("On the categoryController,", function() {
 		var obj = {label: 'blue', size: 'intensity', opacity:'hue'};
 		scope.categories.add(obj);
 		expect(scope.categories.list.length).toEqual(6);
-		expect(scope.categories.list[5]).toEqual({label: 'blue', value: 'blue', size:'intensity', opacity:'hue'});
+		expect(scope.categories.list[5]).toEqual({label: 'blue', value: 'blue', size:'intensity', opacity:'hue', show: 'show.blue'});
+	
+		// AND HERE REMEMBER TO ADD IT TO THE SHOW. CHECK THE $SCOPE.SHOW WHEN YOU ADD SOMETHING
 	});
 
 });

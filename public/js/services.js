@@ -136,8 +136,10 @@ angular.module('app.services', [])
 						label: category.label,
 						value: category.label,
 						size: category.size,
-						opacity: category.opacity
+						opacity: category.opacity,
+						show: 'show.' + category.label
 					};
+					console.log(obj);
 					categoriesObj.list.push(obj);
 				};
 				return categoriesObj.list;
