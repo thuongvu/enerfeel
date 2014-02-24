@@ -181,9 +181,9 @@ angular.module('app.directives', [])
 
 	$scope.$watch('categories.selected.category', categoryChange, true);
 
-	$scope.categories.add = function(newCategory, size, opacity) {
-		$scope.categories.list = $scope.categories.categoryService.addCategory(newCategory, size, opacity);
-		
+	$scope.categories.add = function(newCategory) {
+		$scope.categories.list = $scope.categories.categoryService.addCategory(newCategory);
+		// console.log($scope.categories.list[5])
 	};
 
 	$scope.categories.newCategory = {};

@@ -260,8 +260,9 @@ describe('Services:', function() {
 
 		it('addCategory should add an item to the categoriesObj.list', function() {
 			expect(CategoryService.categoriesObj.list[5]).toBeUndefined();
-			CategoryService.addCategory('dog');
-			expect(CategoryService.categoriesObj.list[5].label).toMatch('dog');
+			var obj = {label: 'blue', size: 'intensity', opacity:'hue'};
+			CategoryService.addCategory(obj);
+			expect(CategoryService.categoriesObj.list[5]).toMatch({label: 'blue', size: 'intensity', opacity:'hue'});
 		});
 
 		it('deleteCategory should delete specified item from categoriesObj.list', function() {
@@ -372,7 +373,8 @@ describe("On the categoryController,", function() {
 
 	it("should have addCategory add a new category with a service", function() {
 		expect(scope.categories.list.length).toEqual(5);
-		scope.categories.add('blue', 'intensity', 'hue');
+		var obj = {label: 'blue', size: 'intensity', opacity:'hue'};
+		scope.categories.add(obj);
 		expect(scope.categories.list.length).toEqual(6);
 		expect(scope.categories.list[5]).toEqual({label: 'blue', value: 'blue', size:'intensity', opacity:'hue'});
 	});

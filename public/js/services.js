@@ -128,9 +128,17 @@ angular.module('app.services', [])
 		{label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality, 1-5, 5 high'}
 		];
 		return {
-			addCategory: function(category, size, opacity) {
-				if (typeof category === 'string') {
-					categoriesObj.list.push({label: category, value: category, size: size, opacity: opacity});
+			addCategory: function(category) {
+				if (typeof category === 'object') {
+					// console.log("thrown in")
+					// console.log(category)
+					var obj = {
+						label: category.label,
+						value: category.label,
+						size: category.size,
+						opacity: category.opacity
+					};
+					categoriesObj.list.push(obj);
 				};
 				return categoriesObj.list;
 			},
