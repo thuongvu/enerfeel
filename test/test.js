@@ -358,14 +358,23 @@ describe("On the categoryController,", function() {
 		expect(scope.show.exercise).toBeFalsy();
 		scope.showHideCategories('exercise');
 		expect(scope.show.exercise).toBeTruthy();
+		scope.showHideCategories('meal');
+		expect(scope.show.exercise).toBeFalsy();
+		expect(scope.show.meal).toBeTruthy();
 	})
 
-	it("scope.watch should invoke categoryChange", function() {
+	it("scope.watch should invoke categoryChange, which invokes showHideCategories", function() {
 		expect(scope.show.exercise).toBeFalsy();
 		scope.categories.selected.category = scope.categories.list[2];
 		scope.$apply();
 		expect(scope.show.exercise).toBeTruthy();
 	})
+
+	it("should have addCategory add a new category with a service", function() {
+		expect(scope.categories.list.length).toEqual(5);
+		scope.categories.add('blue');
+		expect(scope.categories.list.length).toEqual(6);
+	});
 
 
 });

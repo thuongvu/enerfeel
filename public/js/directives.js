@@ -153,7 +153,6 @@ angular.module('app.directives', [])
 }])
 // ----------------------------------------------------------------------------
 .controller('categoryController', ['$scope', 'CategoryService', function ($scope, CategoryService) {
-	// CATEGORIES SHOW/HIDE + LOGIC
 	 $scope.showHideCategories = function(cat) {
 		for (category in $scope.show) {
 			if (category !== cat) {
@@ -181,6 +180,14 @@ angular.module('app.directives', [])
 	};
 
 	$scope.$watch('categories.selected.category', categoryChange, true);
+
+	$scope.categories.add = function(newCategory) {
+		
+		$scope.categories.categoryService.addCategory(newCategory);
+		console.log($scope.categories.categoryService);
+	};
+	// $scope.categories.newCategory;
+	
 
 }])
 .directive('categorydir', [function () {
