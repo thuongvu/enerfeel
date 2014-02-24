@@ -325,7 +325,7 @@ describe('Directive: CategoryInput', function() {
 
 
 // ==========
-describe("On the categoryController,", function() {
+describe("On the categoryController (of categoryDir),", function() {
 	var ctrl, scope;
 
 	beforeEach(module('app'))
@@ -390,24 +390,31 @@ describe("On the categoryController,", function() {
 		};
 	});
 
+	// ADD DELETE CATEGORY FUNCTION
 
 });
+
+
 
 
 describe('Directive: categorydir', function() {
 	beforeEach(module("app"));
 	
-	var element, scope, template, CategoryService;
+	var element, scope, template, CategoryService, ctrl;
 
 	beforeEach(module('templates'));
 
-	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector) {
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector, $controller) {
 		CategoryService = $injector.get('CategoryService')
 		template = $templateCache.get('public/directiveTemplates/categoryTemplate.html');
 		$templateCache.put('directiveTemplates/categoryTemplate.html', template);
 		
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
+		scope = $rootScope.$new();
+		ctrl = $controller('categoryController', {
+			$scope: scope
+		});
 	}))	
 
 	it('should render 5 ng-repeat ".cat"s', function() {
@@ -424,9 +431,34 @@ describe('Directive: categorydir', function() {
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
 		var category = element.find('.meal');
-		// console.log(category.eq(0))
 		expect(category.eq(0)).not.toBeNull();
 	})
+
+	it("should ng-show the right thing after you change categories.selected.category, invoking categoryChange, showHideCategories", function() {
+		var elementPreDigest = angular.element('<div categorydir></div>');
+		var element = $compile(elementPreDigest)($rootScope);
+		expect(scope.show.exercise).toBeFalsy();
+		scope.categories.selected.category = scope.categories.list[2];
+		scope.$apply();
+		// console.log(scope.categories.list[2])
+		console.log(scope.show)
+		// console.log(element.find('.exercise').hasClass('ng-hide'))
+		// console.log(element.find('.exercise:visible').length)
+		// expect(element.find('.meal').hasClass('ng-hide')).toBeTruthy();
+		// expect(scope.show.exercise).toBeTruthy();
+		// expect(element.find()
+			console.log(element)
+
+	})
+
+
+
+
+	// test if ng-show works correctly
+	// expect(element('.value-entry input').hasClass('ng-hide')).toBe(true); // if you do X, then it should show Y, but not Z.
+	
+
+	// make sure the input clears after newCategory is added. dont want any sticklers.
 
 })
 
