@@ -437,60 +437,35 @@ describe('Directive: categorydir', function() {
 	it("should ng-show the right thing after you change categories.selected.category, invoking categoryChange, showHideCategories", function() {
 		var elementPreDigest = angular.element('<div categorydir></div>');
 		var element = $compile(elementPreDigest)($rootScope);
-		scope.categories.selected.category = scope.categories.list[2];
-
-
-
-		// scope.$apply();
-
-		// expect(scope.show.exercise).toBeFalsy();
 		// scope.categories.selected.category = scope.categories.list[2];
-		// scope.$apply();
-		// $rootScope.$digest();
-		
-		scope.$digest();
-		// $rootScope.$apply()
-		// scope.$apply();
-	
+		// $rootScope.$digest(function() {
+		// 	scope.categories.selected.category = scope.categories.list[2];
+		// 	scope.testshow = true;
+		// });
+		// scope.$digest(function() {
+		// 	scope.categories.selected.category = scope.categories.list[2];
+		// 	scope.testshow = true;
+		// });
 
-		// scope.show.exercise = true;
-		// scope.$digest();
+		// console.log(scope.show)
 		// scope.$apply();
-		// scope.showHideCategories('exercise');
-		
-		console.log(scope.show)
-
-		console.log(scope.categories.list[2])
-		// console.log(scope.show.exercise)
-		
-		// scope.$digest()
-
-		// // scope.showHideCategories('exercise');
-		// scope.categories.selected.category = scope.categories.list[2];
+		// scope.$digest(); // if i do a digest, i don't get the entire list.
 		// console.log(scope.show)
 
 		// console.log(scope.categories.list[2])
-		// console.log(element.find('.exercise').hasClass('ng-hide'))
-		// console.log(element.find('.exercise:visible').length)
-		// expect(element.find('.meal').hasClass('ng-hide')).toBeTruthy();
-		// expect(scope.show.exercise).toBeTruthy();
-		// expect(element.find()
+		// scope.$apply();
+		// console.log(categories)
+		// console.log(scope.categories.list)
+		// console.log(element)
+		// 	scope.testshow = true;
+		// 	scope.$digest();
+		// 	console.log(scope.testshow)
+		// console.log(element)
 
-
-			console.log(element.find('.exercise').eq(0))
-			// console.log(element.find('.lol').eq(0))
-			// scope.testshow = true;
-			// scope.$digest();
-			// console.log(scope.testshow)
-			// console.log(element.find('.lol').eq(0))
+		// console.log(element.find('.exercise').eq(0))
+		// console.log(element.find('.lol').eq(0))
 	})
 
-
-
-
-	// test if ng-show works correctly
-	// expect(element('.value-entry input').hasClass('ng-hide')).toBe(true); // if you do X, then it should show Y, but not Z.
-	
 
 	// make sure the input clears after newCategory is added. dont want any sticklers.
 
