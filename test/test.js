@@ -410,13 +410,22 @@ describe('Directive: categorydir', function() {
 		$rootScope = _$rootScope_;
 	}))	
 
-	it('should render 5 ng-repeat ".cat"s ', function() {
+	it('should render 5 ng-repeat ".cat"s', function() {
 		var pre = angular.element('<div categorydir></div>');
 		var elementPreDigest = angular.element('<div categorydir></div>');
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
 		expect(pre).not.toEqual(element);
 		expect(element.find('div.cat').length).toEqual(5);
+	})
+
+	it('there will be one ng-repeated div that has class "meal"', function() {
+		var elementPreDigest = angular.element('<div categorydir></div>');
+		var element = $compile(elementPreDigest)($rootScope);
+		$rootScope.$digest();
+		var category = element.find('.meal');
+		// console.log(category.eq(0))
+		expect(category.eq(0)).not.toBeNull();
 	})
 
 })

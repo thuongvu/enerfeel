@@ -10,7 +10,7 @@
 	</form>
 </div>
 <div ng-repeat="category in categories.list" class="cat">
-	<div ng-show="{{category.show}}">
+	<div ng-show="{{category.show}}" class="{{category.label}}">
 		{{category.label}}
 		<input ng-model="input.size" type="number" placeholder="{{category.size}}"></input>
 		<input ng-model="input.opacity" type="number" placeholder="{{category.opacity}}"></input>
