@@ -152,7 +152,7 @@ angular.module('app.directives', [])
 	};
 }])
 // ----------------------------------------------------------------------------
-.controller('categoryController', ['$scope', function ($scope) {
+.controller('categoryController', ['$scope', 'CategoryService', function ($scope, CategoryService) {
 	$scope.category = {};
 	$scope.category.setTo = 'null';
 
@@ -180,6 +180,14 @@ angular.module('app.directives', [])
 	}
 
 	$scope.$watch('input.category', watchCategory, true)
+
+	// ++++++++++++++++++++++++++++++++++++++++++
+	$scope.categories.categoryService = CategoryService;
+	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
+
+	console.log($scope.categories.list);
+
+
 }])
 .directive('categorydir', [function () {
 	return {
@@ -266,14 +274,6 @@ angular.module('app.directives', [])
 	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
 	$scope.categories.selected = {};
 	$scope.categories.selected.category = $scope.categories.list[0];
-	// function one() {
-	// 	$scope.categories = {};
-	// 	$scope.categories.categoryService = CategoryService;
-	// 	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
-	// 	$scope.categories.selected = {};
-	// 	$scope.categories.selected.category = $scope.categories.list[0];
-	// }
-	// one();
 	function onCategoryChange() {
 		console.log($scope.categories.selected.category);
 	};

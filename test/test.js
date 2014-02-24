@@ -291,32 +291,35 @@ describe('Services:', function() {
 	
 })
 
-// describe('Directive: CategoryInput', function() {
-// 	beforeEach(module("app"));
+describe('Directive: CategoryInput', function() {
+	beforeEach(module("app"));
 	
-// 	var element, scope, template, CategoryService;
+	var element, scope, template, CategoryService;
 
-// 	beforeEach(module('templates'));
+	beforeEach(module('templates'));
 
-// 	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector) {
-// 		CategoryService = $injector.get('CategoryService')
-// 		template = $templateCache.get('public/directiveTemplates/categoryInputTemplate.html');
-// 		$templateCache.put('directiveTemplates/categoryInputTemplate.html', template);
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector) {
+		CategoryService = $injector.get('CategoryService')
+		template = $templateCache.get('public/directiveTemplates/categoryInputTemplate.html');
+		$templateCache.put('directiveTemplates/categoryInputTemplate.html', template);
 		
-// 		$compile = _$compile_;
-// 		$rootScope = _$rootScope_;
-// 	}))	
+		$compile = _$compile_;
+		$rootScope = _$rootScope_;
+	}))	
 
-// 	it('should do an ng-repeat', function() {
-// 		var elementPreDigest = angular.element('<div category-input></div>');
-// 		var element = $compile(elementPreDigest)($rootScope);
-// 		$rootScope.$digest();
-// 		// $rootScope.$apply(function() {
-// 			// CategoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep'];
-// 			// return CategoryService;
-// 		// })
-// 		console.log(element)
-// 	})
+	it('should do an ng-options', function() {
+		var pre = angular.element('<div category-input></div>');
+		var elementPreDigest = angular.element('<div category-input></div>');
+		var element = $compile(elementPreDigest)($rootScope);
+		$rootScope.$digest();
+		// $rootScope.$apply(function() {
+			// CategoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep'];
+			// return CategoryService;
+		// })
+		console.log(pre)
+		console.log(element)
+		expect(pre).not.toEqual(element)
+	})
 
-// })
+})
 
