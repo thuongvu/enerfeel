@@ -113,17 +113,24 @@ angular.module('app.services', [])
 	}])
 	.factory('CategoryService', [function () {
 		var categoriesObj = {};
+		// categoriesObj.list = [
+		// {label:'Choose a category', value: 'noCategoryChosen'},
+		// {label:'meal', value: 'meal'},
+		// {label: 'exercise', value: 'exercise'},
+		// {label: 'work', value: 'work'},
+		// {label: 'sleep', value: 'sleep'}
+		// ];
 		categoriesObj.list = [
 		{label:'Choose a category', value: 'noCategoryChosen'},
 		{label:'meal', value: 'meal'},
-		{label: 'exercise', value: 'exercise'},
-		{label: 'work', value: 'work'},
-		{label: 'sleep', value: 'sleep'}
+		{label: 'exercise', value: 'exercise', size: 'Minutes', opacity: 'Intensity Level, 1-5'},
+		{label: 'work', value: 'work', size: 'Productivity, 1-5', opacity: 'Stress Level, 1-5, 5 most'},
+		{label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality, 1-5, 5 high'}
 		];
 		return {
-			addCategory: function(category) {
+			addCategory: function(category, size, opacity) {
 				if (typeof category === 'string') {
-					categoriesObj.list.push({label: category, value: category});
+					categoriesObj.list.push({label: category, value: category, size: size, opacity: opacity});
 				};
 				return categoriesObj.list;
 			},

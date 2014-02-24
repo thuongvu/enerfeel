@@ -372,10 +372,37 @@ describe("On the categoryController,", function() {
 
 	it("should have addCategory add a new category with a service", function() {
 		expect(scope.categories.list.length).toEqual(5);
-		scope.categories.add('blue');
+		scope.categories.add('blue', 'intensity', 'hue');
 		expect(scope.categories.list.length).toEqual(6);
+		expect(scope.categories.list[5]).toEqual({label: 'blue', value: 'blue', size:'intensity', opacity:'hue'});
 	});
 
-
 });
+
+
+describe('Directive: categorydir', function() {
+	beforeEach(module("app"));
+	
+	var element, scope, template, CategoryService;
+
+	beforeEach(module('templates'));
+
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector) {
+		CategoryService = $injector.get('CategoryService')
+		template = $templateCache.get('public/directiveTemplates/categoryTemplate.html');
+		$templateCache.put('directiveTemplates/categoryTemplate.html', template);
+		
+		$compile = _$compile_;
+		$rootScope = _$rootScope_;
+	}))	
+
+	it('should render compile into something', function() {
+		var pre = angular.element('<div categorydir></div>');
+		var elementPreDigest = angular.element('<div categorydir></div>');
+		var element = $compile(elementPreDigest)($rootScope);
+		$rootScope.$digest();
+		expect(pre).not.toEqual(element);
+	})
+
+})
 
