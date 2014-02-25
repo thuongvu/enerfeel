@@ -3,9 +3,14 @@
 	<button ng-click="filterTime('day')">Day</button>
 	<button ng-click="filterTime('week')">Week</button>
 	<button ng-click="filterTime('month')">Month</button>
-	<datepicker ng-model="calendar.firstDate"></datepicker>
+	<button ng-click="showCustomTime = !showCustomTime">Custom timeframe</button>
+	<span ng-show="showCustomTime" class="customTime">
+		<span custom-time-filter></span>
+	</span>
+	
+	<!-- <datepicker ng-model="calendar.firstDate"></datepicker>
 	<datepicker ng-model="calendar.secondDate"></datepicker>
-	<button ng-click="customLengthTime(calendar.firstDate, calendar.secondDate)">Custom</button>
+	<button ng-click="customLengthTime(calendar.firstDate, calendar.secondDate)">Custom</button> -->
 </div>
 <div>
 	Activity Filters

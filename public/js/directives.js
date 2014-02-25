@@ -277,7 +277,14 @@ angular.module('app.directives', [])
 		restrict: 'EA',
 		controller: 'filterController',
 		templateUrl: 'directiveTemplates/filterTemplate.html'
-	}
+	};
+}])
+.directive('customTimeFilter', [function() {
+	return {
+		restrict: 'EA',
+		controller: 'filterController',
+		templateUrl: 'directiveTemplates/customTimeFilterTemplate.html'
+	};
 }])
 // ----------------------------------------------------------------------------
 .controller('categoryOptionsListController', ['CategoryService', '$scope', function (CategoryService, $scope) {

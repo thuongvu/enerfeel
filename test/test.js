@@ -133,110 +133,158 @@
 
 // })
 
+
+describe('Directive: customTimeFilter', function() {
+	beforeEach(module("app"));
+	
+	var element, scope, template, EventService, FilterService, ctrl, filterTemplate;
+
+	beforeEach(module('templates'));
+
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector, $controller) {
+		EventService = $injector.get('EventService');
+		CategoryService = $injector.get('CategoryService');
+		template = $templateCache.get('public/directiveTemplates/customTimeFilterTemplate.html');
+		$templateCache.put('directiveTemplates/customTimeFilterTemplate.html', template);
+		
+		filterTemplate = $templateCache.get('public/directiveTemplates/filterTemplate.html');
+		$templateCache.put('directiveTemplates/filterTemplate.html', filterTemplate);
+
+		$compile = _$compile_;
+		$rootScope = _$rootScope_;
+		scope = $rootScope.$new();
+		ctrl = $controller('filterController', {
+			$scope: scope
+		});
+	}));
+
+	it("should render the element with the class, customTime ", function() {
+		var elementPreDigest = angular.element('<div custom-time-filter></div>');
+		var element = $compile(elementPreDigest)($rootScope);
+		$rootScope.$digest();
+		expect(element.find('span').hasClass("customTime")).toBeTruthy();
+	});
+
+	it("should show custom-time-filter when showCustomTime = true", function() {
+		var elementPreDigest = angular.element('<div filterdir></div>');
+		var element = $compile(elementPreDigest)(scope);
+		scope.$apply();
+		expect(element.find('.ng-hide').eq(0).length).toEqual(1);
+		scope.showCustomTime = true;
+		scope.$apply();
+		expect(element.find('.ng-hide').eq(0).length).toEqual(0);
+	})
+
+});
+
+
+
 // ----------------------------------------------------------------------------
 
-// describe("Unit: filterController", function() {
+describe("Unit: filterController", function() {
 
-// 	beforeEach(function() {
-// 		module("app");
-// 	})	
+	beforeEach(function() {
+		module("app");
+	})	
 	
-// 	var ctrl, scope;
+	var ctrl, scope;
 
-// 	beforeEach(inject(function($controller, $rootScope) {
-// 		scope = $rootScope.$new();
+	beforeEach(inject(function($controller, $rootScope) {
+		scope = $rootScope.$new();
 
-// 		ctrl = $controller('filterController', {
-// 			$scope: scope
-// 		});
-// 	}))
+		ctrl = $controller('filterController', {
+			$scope: scope
+		});
+	}))
 
-// 	it("should change category to 'hello'", function() {
-		// expect(scope.category.setTo).toEqual('null')
-// 		scope.filterCategory('hello');
-// 		expect(scope.category.setTo).toEqual("hello");
-// 	})
+	it("should change category to 'hello'", function() {
+		expect(scope.category.setTo).toEqual('null')
+		scope.filterCategory('hello');
+		expect(scope.category.setTo).toEqual("hello");
+	})
 
-// 	it("should have a defined firstDate", function() {
-// 		expect(scope.calendar.firstDate).toBeDefined()
-// 	})
+	it("should have a defined firstDate", function() {
+		expect(scope.calendar.firstDate).toBeDefined()
+	})
 
-// 	it("should have a defined secondDate", function() {
-// 		expect(scope.calendar.secondDate).toBeDefined()
-// 	})
+	it("should have a defined secondDate", function() {
+		expect(scope.calendar.secondDate).toBeDefined()
+	})
 
-// })
+});
+
+
 
 
 
 // ----------------------------------------------------------------------------
 
-// describe('Services:', function() {
-// 	beforeEach(module('app'));
+describe('Services:', function() {
+	beforeEach(module('app'));
 
-// 	describe('FilterService:', function() {
-// 		var FilterService;
-// 		beforeEach(inject(function($injector) {
-// 			FilterService = $injector.get('FilterService');
-// 		}))
+	describe('FilterService:', function() {
+		var FilterService;
+		beforeEach(inject(function($injector) {
+			FilterService = $injector.get('FilterService');
+		}))
 
-// 		it('should not be null', function() {
-// 			FilterService.test();
-// 			expect(FilterService).not.toBeNull();
-// 		});
+		it('should not be null', function() {
+			FilterService.test();
+			expect(FilterService).not.toBeNull();
+		});
 
-// 		it('"test" function should return "blah', function() {
-// 			expect(FilterService.test()).toMatch("blah");
-// 		});
+		it('"test" function should return "blah', function() {
+			expect(FilterService.test()).toMatch("blah");
+		});
 
-// 		it('sortTime should sort time', function() {
-// 			var data = [
-// 			 {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
-// 			 {"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise", "opacity": 3, "size": 5}, 
-// 			 {"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
-// 			 {"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
-// 			 {"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
-// 			 {"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
-// 			 ];
-// 			var filteredData = FilterService.sortTime(data);
-// 			expect(filteredData[0].note).toMatch("last month, ate food");
-// 		});
+		it('sortTime should sort time', function() {
+			var data = [
+			 {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
+			 {"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise", "opacity": 3, "size": 5}, 
+			 {"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
+			 {"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
+			 {"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
+			 {"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
+			 ];
+			var filteredData = FilterService.sortTime(data);
+			expect(filteredData[0].note).toMatch("last month, ate food");
+		});
 
-// 		it('customFilterLifeEvents should take two dates and check if fitting', function() {
-// 			// var currentFilterObj = {};
-// 			// currentFilterObj.lifeEvents = [];
-// 			EventService = {};
-// 			EventService.allLifeEvents = [
-// 				{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
-// 				{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise", "opacity": 3, "size": 5}, 
-// 				{"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
-// 				{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
-// 				{"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
-// 				{"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
-// 			];
-// 			 var date1 = new Date(2014, 1, 14, 18);
-// 			 var date2 = new Date(2014, 1, 16, 15);
+		it('customFilterLifeEvents should take two dates and check if fitting', function() {
+			// var currentFilterObj = {};
+			// currentFilterObj.lifeEvents = [];
+			EventService = {};
+			EventService.allLifeEvents = [
+				{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
+				{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise", "opacity": 3, "size": 5}, 
+				{"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
+				{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
+				{"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
+				{"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
+			];
+			 var date1 = new Date(2014, 1, 14, 18);
+			 var date2 = new Date(2014, 1, 16, 15);
 
-// 			 expect((FilterService.customFilterLifeEvents(date1, date2).length)).toEqual(4);
-// 		})
+			 expect((FilterService.customFilterLifeEvents(date1, date2).length)).toEqual(4);
+		})
 
-// 		it("filterLifeEvents should take one time input, return anything within that time", function() {
-// 			EventService = {};
-// 			EventService.allLifeEvents = [
-// 				{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
-// 				{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise", "opacity": 3, "size": 5}, 
-// 				{"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
-// 				{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
-// 				{"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
-// 				{"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
-// 			];
-// 			expect((FilterService.filterLifeEvents('week').length)).toEqual(2);
-// 			// this test may fail by next week -_-, gotta write a better one
-// 		})
+		// it("filterLifeEvents should take one time input, return anything within that time", function() {
+		// 	EventService = {};
+		// 	EventService.allLifeEvents = [
+		// 		{"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
+		// 		{"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise", "opacity": 3, "size": 5}, 
+		// 		{"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
+		// 		{"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
+		// 		{"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
+		// 		{"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
+		// 	];
+		// 	expect((FilterService.filterLifeEvents('week').length)).toEqual(2);
+		// 	// this test may fail by next week -_-, gotta write a better one
+		// })
 
-// 	});
+	});
 	
-// });
+});
 
 
 // ----------------------------------------------------------------------------
