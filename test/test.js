@@ -496,6 +496,17 @@ describe('Directive: addCategory', function() {
 		};
 	});
 
+	it('when clicking showAddCategories button, it should make a span show and hide', function() {
+		var elementPreDigest = angular.element('<div add-category></div>');
+		var element = $compile(elementPreDigest)(scope);
+		scope.$digest();
+		expect(element.find('span').eq(0).hasClass('ng-hide')).toBeTruthy();
+		scope.showAddCategories = true;
+		scope.$digest();
+		expect(element.find('span').eq(0).hasClass('ng-hide')).toBeFalsy();
+	})
+
+
 
 });
 
