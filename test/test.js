@@ -322,14 +322,14 @@ describe('Directive: CategoryInput', function() {
 
 
 // ==========
-describe("On the categoryController (of categoryDir),", function() {
+describe("On the moreCategoryInputsController (of moreCategoryInputs),", function() {
 	var ctrl, scope;
 
 	beforeEach(module('app'))
 	beforeEach(inject(function($controller, $rootScope) {
 		scope = $rootScope.$new();
 
-		ctrl = $controller('categoryController', {
+		ctrl = $controller('moreCategoryInputsController', {
 			$scope: scope
 		});
 	}));
@@ -397,7 +397,7 @@ describe("On the categoryController (of categoryDir),", function() {
 
 
 
-describe('Directive: categorydir', function() {
+describe('Directive: moreCategoryInputs', function() {
 	beforeEach(module("app"));
 	
 	var element, scope, template, CategoryService, ctrl;
@@ -406,20 +406,20 @@ describe('Directive: categorydir', function() {
 
 	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector, $controller) {
 		CategoryService = $injector.get('CategoryService')
-		template = $templateCache.get('public/directiveTemplates/categoryTemplate.html');
-		$templateCache.put('directiveTemplates/categoryTemplate.html', template);
+		template = $templateCache.get('public/directiveTemplates/moreCategoryInputsTemplate.html');
+		$templateCache.put('directiveTemplates/moreCategoryInputsTemplate.html', template);
 		
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
 		scope = $rootScope.$new();
-		ctrl = $controller('categoryController', {
+		ctrl = $controller('moreCategoryInputsController', {
 			$scope: scope
 		});
 	}))	
 
 	it('should render 5 ng-repeat ".cat"s', function() {
-		var pre = angular.element('<div categorydir></div>');
-		var elementPreDigest = angular.element('<div categorydir></div>');
+		var pre = angular.element('<div more-category-inputs></div>');
+		var elementPreDigest = angular.element('<div more-category-inputs></div>');
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
 		expect(pre).not.toEqual(element);
@@ -427,7 +427,7 @@ describe('Directive: categorydir', function() {
 	})
 
 	it('there will be one ng-repeated div that has class "meal"', function() {
-		var elementPreDigest = angular.element('<div categorydir></div>');
+		var elementPreDigest = angular.element('<div more-category-inputs></div>');
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
 		var category = element.find('.meal');
@@ -441,7 +441,7 @@ describe('Directive: categorydir', function() {
 		// produces a template function
 		// then it can link the scope and template together
 
-		var elementPreDigest = angular.element('<div categorydir></div>');
+		var elementPreDigest = angular.element('<div more-category-inputs></div>');
 		var element = $compile(elementPreDigest)(scope); //A 
 
 		// 1. i need at least 1 $apply, because it calls $rootScope.$digest

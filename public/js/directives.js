@@ -152,7 +152,7 @@ angular.module('app.directives', [])
 	};
 }])
 // ----------------------------------------------------------------------------
-.controller('categoryController', ['$scope', 'CategoryService', function ($scope, CategoryService) {
+.controller('moreCategoryInputsController', ['$scope', 'CategoryService', function ($scope, CategoryService) {
 	$scope.categories = {};
 	$scope.categories.categoryService = CategoryService;
 	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
@@ -192,11 +192,11 @@ angular.module('app.directives', [])
 	
 
 }])
-.directive('categorydir', [function () {
+.directive('moreCategoryInputs', [function () {
 	return {
 		restrict: 'EA',
-		controller: 'categoryController',
-		templateUrl: 'directiveTemplates/categoryTemplate.html'
+		controller: 'moreCategoryInputsController',
+		templateUrl: 'directiveTemplates/moreCategoryInputsTemplate.html'
 	};
 }])
 
