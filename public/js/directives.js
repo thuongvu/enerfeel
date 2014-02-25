@@ -176,6 +176,7 @@ angular.module('app.directives', [])
 	}
 
 	function categoryChange() {
+		console.log($scope.show);
 		$scope.showHideCategories($scope.categories.selected.category.value);
 	};
 
@@ -211,11 +212,19 @@ angular.module('app.directives', [])
 	}
 	$scope.categories.newCategory = {};
 
-	$scope.categories.add = function(newCategory) {
+	$scope.add = function(newCategory) {
+		console.log("should add ");
+		console.log($scope.categories.newCategory);
+
 		$scope.categories.list = $scope.categories.categoryService.addCategory(newCategory);
+		console.log($scope.categories);
 		$scope.show[newCategory.label] = false;
 		$scope.categories.newCategory = {};
 	};
+
+	$scope.log = function() {
+		console.log("this should log")
+	}
 
 }])
 .directive('addCategory', [function() {
@@ -307,6 +316,7 @@ angular.module('app.directives', [])
 		// console.log($scope.categories.selected.category);
 	};
 	$scope.$watch('categories.selected.category', onCategoryChange, true);
+
 }])
 .directive('categoryOptionsList', [function () {
 	return {
