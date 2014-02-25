@@ -442,12 +442,18 @@ describe('Directive: categorydir', function() {
 		// 	scope.categories.selected.category = scope.categories.list[2];
 		// 	scope.testshow = true;
 		// });
-		// scope.$digest(function() {
-		// 	scope.categories.selected.category = scope.categories.list[2];
-		// 	scope.testshow = true;
-		// });
-
-		// console.log(scope.show)
+		$rootScope.categories = scope.categories;
+		$rootScope.show = scope.show;
+		// console.log($rootScope.categories)
+		
+		scope.$apply(function() {
+			// scope.categories.selected.category = scope.categories.list[2];
+			$rootScope.show.exercise = true;
+			// scope.testshow = true;
+		});
+		// console.log(elemen)
+			// console.log($rootScope.show)
+				// console.log(scope.show)
 		// scope.$apply();
 		// scope.$digest(); // if i do a digest, i don't get the entire list.
 		// console.log(scope.show)
@@ -456,14 +462,14 @@ describe('Directive: categorydir', function() {
 		// scope.$apply();
 		// console.log(categories)
 		// console.log(scope.categories.list)
-		// console.log(element)
+				// console.log(element)
 		// 	scope.testshow = true;
 		// 	scope.$digest();
 		// 	console.log(scope.testshow)
 		// console.log(element)
 
-		// console.log(element.find('.exercise').eq(0))
-		// console.log(element.find('.lol').eq(0))
+		console.log(element.find('.exercise').eq(0))
+		console.log(element.find('.lol').eq(0))
 	})
 
 
