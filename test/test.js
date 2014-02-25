@@ -552,3 +552,49 @@ describe('Directive: addCategory', function() {
 
 });
 
+
+// -------------------
+
+describe('Directive: Add', function() {
+	beforeEach(module("app"));
+	
+	var element, scope, template, CategoryService, ctrl, addCategoryTemplate, categoryOptionsListTemplate,
+	moreCategoryInputsTemplate;
+
+	beforeEach(module('templates'));
+
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector, $controller) {
+		CategoryService = $injector.get('CategoryService')
+		template = $templateCache.get('public/directiveTemplates/addTemplate.html');
+		$templateCache.put('directiveTemplates/addTemplate.html', template);
+
+		addCategoryTemplate = $templateCache.get('public/directiveTemplates/addCategoryTemplate.html');
+		$templateCache.put('directiveTemplates/addCategoryTemplate.html', addCategoryTemplate);
+
+		categoryOptionsListTemplate = $templateCache.get('public/directiveTemplates/categoryOptionsListTemplate.html');
+		$templateCache.put('directiveTemplates/categoryOptionsListTemplate.html', categoryOptionsListTemplate);
+
+		moreCategoryInputsTemplate = $templateCache.get('public/directiveTemplates/moreCategoryInputsTemplate.html');
+		$templateCache.put('directiveTemplates/moreCategoryInputsTemplate.html', moreCategoryInputsTemplate);
+		
+		$compile = _$compile_;
+		$rootScope = _$rootScope_;
+		scope = $rootScope.$new();
+		ctrl = $controller('AddController', {
+			$scope: scope
+		});
+	}));
+
+	it(" has Add Event button that !showAdd, showing a div w/ class 'showAdd' tons of stuff", function() {
+		var elementPreDigest = angular.element('<div add></div>');
+		var element = $compile(elementPreDigest)(scope);
+		scope.$digest();
+		expect(element.find('.ng-hide.showAdd').eq(0).length).toEqual(1);
+		scope.showAdd = true;
+		scope.$digest();
+		expect(element.find('.ng-hide.showAdd').eq(0).length).toEqual(0);
+	});
+
+
+});
+

@@ -1,19 +1,19 @@
 angular.module('app.directives', [])
 	.controller('AddController', ['$scope', '$timeout', 'CategoryService', function($scope, $timeout, CategoryService) {
-		$scope.showAdd = false;
+		// $scope.showAdd = false;
 		$scope.show = {};
 		$scope.input = {};
 		$scope.input.checkbox = {};
 		$scope.input.checkbox.checked = 0;
 
 		// show the ADD div or not
-		$scope.showAddFunc = function() {
-			if ($scope.showAdd === true) {
-				$scope.showAdd = false; 
-			} else {
-				$scope.showAdd = true;
-			}
-		};
+		// $scope.showAddFunc = function() {
+		// 	if ($scope.showAdd === true) {
+		// 		$scope.showAdd = false; 
+		// 	} else {
+		// 		$scope.showAdd = true;
+		// 	}
+		// };
 
 		// ADDING LOGIC
 		function addIfMeal() {
@@ -94,7 +94,7 @@ angular.module('app.directives', [])
 
 			catchEmptyInputs();
 			var eventData = createEventDataObj(energyLevel, note, category);
-console.log(eventData);
+// console.log(eventData);
 			pushDataIntoServices(eventData);
 			$scope.showAddFunc();
 			clearInputs();

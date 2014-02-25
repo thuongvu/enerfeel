@@ -1,6 +1,6 @@
-<button ng-click="showAddFunc()">Add Event</button>
-<div add-category></div>
-<div ng-show="showAdd">
+<button ng-click="showAdd = !showAdd">Add Event</button>
+<!-- <div add-category></div> -->
+<div ng-show="showAdd" class="showAdd">
 	<input ng-model="input.level" type="number" placeholder="0"></input>
 	<input ng-model="input.note" type="text" placeholder="note"></input>
 	<button ng-click="addEvent(input.level, input.note, categories.selected.category.value)">Add</button>
