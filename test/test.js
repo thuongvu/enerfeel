@@ -434,43 +434,25 @@ describe('Directive: categorydir', function() {
 		expect(category.eq(0)).not.toBeNull();
 	})
 
-	it("should ng-show the right thing after you change categories.selected.category, invoking categoryChange, showHideCategories", function() {
-		var elementPreDigest = angular.element('<div categorydir></div>');
-		var element = $compile(elementPreDigest)($rootScope);
-		// scope.categories.selected.category = scope.categories.list[2];
-		// $rootScope.$digest(function() {
-		// 	scope.categories.selected.category = scope.categories.list[2];
-		// 	scope.testshow = true;
-		// });
-		$rootScope.categories = scope.categories;
-		$rootScope.show = scope.show;
-		// console.log($rootScope.categories)
+	// it("should ng-show the right thing after you change categories.selected.category, invoking categoryChange, showHideCategories", function() {
+	// 	var elementPreDigest = angular.element('<div categorydir></div>');
+	// 	var element = $compile(elementPreDigest)($rootScope);
+	// 	scope.$apply(function() {
+
+	// 	});
+	// 		scope.show.exercise = true;
+	// 		scope.testshow = true;
+	// 	scope.$digest(function() {
+			
+	// 	});
 		
-		scope.$apply(function() {
-			// scope.categories.selected.category = scope.categories.list[2];
-			$rootScope.show.exercise = true;
-			// scope.testshow = true;
-		});
-		// console.log(elemen)
-			// console.log($rootScope.show)
-				// console.log(scope.show)
-		// scope.$apply();
-		// scope.$digest(); // if i do a digest, i don't get the entire list.
-		// console.log(scope.show)
+	// 	console.log(scope.show)
 
-		// console.log(scope.categories.list[2])
-		// scope.$apply();
-		// console.log(categories)
-		// console.log(scope.categories.list)
-				// console.log(element)
-		// 	scope.testshow = true;
-		// 	scope.$digest();
-		// 	console.log(scope.testshow)
-		// console.log(element)
 
-		console.log(element.find('.exercise').eq(0))
-		console.log(element.find('.lol').eq(0))
-	})
+
+	// 	console.log(element.find('.exercise').eq(0))
+	// 	console.log(element.find('.lol').eq(0))
+	// })
 
 
 	// make sure the input clears after newCategory is added. dont want any sticklers.
