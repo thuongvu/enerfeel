@@ -184,13 +184,10 @@ angular.module('app.directives', [])
 	$scope.categories.add = function(newCategory) {
 		$scope.categories.list = $scope.categories.categoryService.addCategory(newCategory);
 		$scope.show[newCategory.label] = false;
-		// console.log($scope.categories.list[5])
-		// console.log($scope.show);
 		$scope.categories.newCategory = {};
 	};
 
 	$scope.categories.newCategory = {};
-	// $scope.categories.newCategory.label
 
 	
 
@@ -274,7 +271,7 @@ angular.module('app.directives', [])
 	}
 }])
 // ----------------------------------------------------------------------------
-.controller('categoryInputController', ['CategoryService', '$scope', function (CategoryService, $scope) {
+.controller('categoryOptionsListController', ['CategoryService', '$scope', function (CategoryService, $scope) {
 	$scope.categories = {};
 	$scope.categories.categoryService = CategoryService;
 	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
@@ -285,11 +282,11 @@ angular.module('app.directives', [])
 	};
 	$scope.$watch('categories.selected.category', onCategoryChange, true);
 }])
-.directive('categoryInput', [function () {
+.directive('categoryOptionsList', [function () {
 	return {
 		restrict: 'EA',
-		controller: 'categoryInputController',
-		templateUrl: 'directiveTemplates/categoryInputTemplate.html'
+		controller: 'categoryOptionsListController',
+		templateUrl: 'directiveTemplates/categoryOptionsListTemplate.html'
 	};
 }])
 

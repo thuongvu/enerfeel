@@ -9,14 +9,8 @@
 	<input ng-model="input.level" type="number" placeholder="0"></input>
 	<input ng-model="input.note" type="text" placeholder="note"></input>
 	<button ng-click="addEvent(input.level, input.note, input.category)">Add</button>
-	<!-- <select name="categorytoAdd" ng-model="input.category">
-		<option value="">Select an option</option>
-		<option value="meal">Meal</option>
-		<option value="exercise">Exercise</option>
-		<option value="work">Work</option>
-		<option value="sleep">Sleep</option>
-	</select> -->
-	<span category-input></span>
+
+	<span category-options-list></span>
 	<span time></span>
 	<div categoryDir></div>
 </div>

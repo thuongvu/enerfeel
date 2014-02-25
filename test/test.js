@@ -301,24 +301,21 @@ describe('Directive: CategoryInput', function() {
 
 	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector) {
 		CategoryService = $injector.get('CategoryService')
-		template = $templateCache.get('public/directiveTemplates/categoryInputTemplate.html');
-		$templateCache.put('directiveTemplates/categoryInputTemplate.html', template);
+		template = $templateCache.get('public/directiveTemplates/categoryOptionsListTemplate.html');
+		$templateCache.put('directiveTemplates/categoryOptionsListTemplate.html', template);
 		
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
 	}))	
 
 	it('should do an ng-options', function() {
-		var pre = angular.element('<div category-input></div>');
-		var elementPreDigest = angular.element('<div category-input></div>');
+		var pre = angular.element('<div category-options-list></div>');
+		var elementPreDigest = angular.element('<div category-options-list></div>');
 		var element = $compile(elementPreDigest)($rootScope);
 		$rootScope.$digest();
-		// $rootScope.$apply(function() {
-			// CategoryService.categoriesObj.list = ['meal', 'exercise', 'work', 'sleep'];
-			// return CategoryService;
-		// })
-		expect(pre).not.toEqual(element)
-	})
+		expect(pre.find('select').length).toEqual(0);
+		expect(element.find('select').length).toBeGreaterThan(0);
+	});
 
 })
 
