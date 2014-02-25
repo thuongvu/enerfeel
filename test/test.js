@@ -435,32 +435,36 @@ describe('Directive: categorydir', function() {
 	})
 
 	it("should ng-show the right thing after you change categories.selected.category, invoking categoryChange, showHideCategories", function() {
-		var elementPreDigest = angular.element('<div categorydir></div>');
-		var element = $compile(elementPreDigest)(scope);
-		scope.$apply(function() {
-
-		});
-			scope.show.exercise = true;
-			scope.testshow = true;
-		scope.$digest(function() {
-			
-		});
 		
-		console.log(scope.show)
+		// A. on scope instead of rootscope this time
+		// $compile compiles an html string into a template
+		// produces a template function
+		// then it can link the scope and template together
 
+		var elementPreDigest = angular.element('<div categorydir></div>');
+		var element = $compile(elementPreDigest)(scope); //A 
 
+		// 1. i need at least 1 $apply, because it calls $rootScope.$digest
+		// ng-repeat needs to do that, because it creates child scopes for each iteration
+		
+		// 2. change some vars that will change the dom!
 
-		console.log(element.find('.exercise').eq(0))
-		console.log(element.find('.lol').eq(0))
-	})
+		// 3. scope.$digest runs watchers on the current scope
+		// no need to go up all the way the tree like scope.apply did.
+		// i know my changes are only on this scope, w/ show.exercise = true
 
-	// it("testing another one", function() {
-	// 	// var scope = $rootScope.$new();
-	// 	var e = $compile('<div><ul><li ng-repeat="item in [1,3,5,7,9]">{{item}}</li></ul></div>')(scope);
-	// 	scope.$digest();
-	// 	console.log(e.html());
-	// })
-	// make sure the input clears after newCategory is added. dont want any sticklers.
+		//1
+		scope.$apply();  
+		// 2
+		scope.show.exercise = true;
+		scope.testshow = true;
+		//3
+		scope.$digest();
+		
+		expect(element.find('.exercise').eq(0).hasClass('ng-hide')).toBeFalsy();
+		expect(element.find('.meal').eq(0).hasClass('ng-hide')).toBeTruthy();
+
+	});
 
 })
 
