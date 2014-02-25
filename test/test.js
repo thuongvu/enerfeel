@@ -366,29 +366,7 @@ describe("On the moreCategoryInputsController (of moreCategoryInputs),", functio
 		scope.categories.selected.category = scope.categories.list[2];
 		scope.$apply();
 		expect(scope.show.exercise).toBeTruthy();
-	})
-
-	it("should have addCategory add a new category with a service, clear newCategory obj after", function() {
-		expect(scope.categories.list.length).toEqual(5);
-		scope.categories.newCategory = {label: 'blue', size: 'intensity', opacity:'hue'};
-		scope.categories.add(scope.categories.newCategory);
-		expect(scope.categories.list.length).toEqual(6);
-		expect(scope.categories.list[5]).toEqual({label: 'blue', value: 'blue', size:'intensity', opacity:'hue', show: 'show.blue'});
-		expect(scope.categories.newCategory).toEqual({});
-	});
-
-	it("should have $scope.show[newCategory] = false, on addCategory", function() {	
-		for (prop in scope.show) {
-			expect(scope.show[prop]).toBeFalsy();
-		};
-		var obj = {label: 'blue', size: 'intensity', opacity:'hue'};
-		scope.categories.add(obj);
-		for (prop in scope.show) {
-			expect(scope.show[prop]).toBeFalsy();
-		};
-	});
-
-	
+	});	
 
 	// ADD DELETE CATEGORY FUNCTION
 
@@ -466,5 +444,58 @@ describe('Directive: moreCategoryInputs', function() {
 	});
 
 	
-})
+});
+
+
+
+// --------------------------
+describe('Directive: addCategory', function() {
+	beforeEach(module("app"));
+	
+	var element, scope, template, CategoryService, ctrl;
+
+	beforeEach(module('templates'));
+
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector, $controller) {
+		CategoryService = $injector.get('CategoryService')
+		template = $templateCache.get('public/directiveTemplates/addCategoryTemplate.html');
+		$templateCache.put('directiveTemplates/addCategoryTemplate.html', template);
+		
+		$compile = _$compile_;
+		$rootScope = _$rootScope_;
+		scope = $rootScope.$new();
+		ctrl = $controller('addCategoryController', {
+			$scope: scope
+		});
+	}));
+
+	it('should render a bunch of inputs', function() {
+		var elementPreDigest = angular.element('<div add-category></div>');
+		var element = $compile(elementPreDigest)($rootScope);
+		$rootScope.$digest();
+		expect(element.find('input').length).toBeGreaterThan(0)
+	})
+
+	it("should have addCategory add a new category with a service, clear newCategory obj after", function() {
+		expect(scope.categories.list.length).toEqual(5);
+		scope.categories.newCategory = {label: 'blue', size: 'intensity', opacity:'hue'};
+		scope.categories.add(scope.categories.newCategory);
+		expect(scope.categories.list.length).toEqual(6);
+		expect(scope.categories.list[5]).toEqual({label: 'blue', value: 'blue', size:'intensity', opacity:'hue', show: 'show.blue'});
+		expect(scope.categories.newCategory).toEqual({});
+	});
+
+	it("should have $scope.show[newCategory] = false, on addCategory", function() {	
+		for (prop in scope.show) {
+			expect(scope.show[prop]).toBeFalsy();
+		};
+		var obj = {label: 'blue', size: 'intensity', opacity:'hue'};
+		scope.categories.add(obj);
+		for (prop in scope.show) {
+			expect(scope.show[prop]).toBeFalsy();
+		};
+	});
+
+
+});
 

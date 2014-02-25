@@ -181,13 +181,13 @@ angular.module('app.directives', [])
 
 	$scope.$watch('categories.selected.category', categoryChange, true);
 
-	$scope.categories.add = function(newCategory) {
-		$scope.categories.list = $scope.categories.categoryService.addCategory(newCategory);
-		$scope.show[newCategory.label] = false;
-		$scope.categories.newCategory = {};
-	};
+	// $scope.categories.add = function(newCategory) {
+	// 	$scope.categories.list = $scope.categories.categoryService.addCategory(newCategory);
+	// 	$scope.show[newCategory.label] = false;
+	// 	$scope.categories.newCategory = {};
+	// };
 
-	$scope.categories.newCategory = {};
+	// $scope.categories.newCategory = {};
 
 	
 
@@ -197,6 +197,32 @@ angular.module('app.directives', [])
 		restrict: 'EA',
 		controller: 'moreCategoryInputsController',
 		templateUrl: 'directiveTemplates/moreCategoryInputsTemplate.html'
+	};
+}])
+.controller('addCategoryController', ['$scope', 'CategoryService', function ($scope, CategoryService) {
+	$scope.categories = {};
+	$scope.categories.categoryService = CategoryService;
+	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
+	$scope.show = {};
+	for (var i = 0; i < $scope.categories.list.length; i++) {
+		if ($scope.show[$scope.categories.list[i].label] == null) {
+			$scope.show[$scope.categories.list[i].label] = false;
+		}
+	}
+	$scope.categories.newCategory = {};
+
+	$scope.categories.add = function(newCategory) {
+		$scope.categories.list = $scope.categories.categoryService.addCategory(newCategory);
+		$scope.show[newCategory.label] = false;
+		$scope.categories.newCategory = {};
+	};
+
+}])
+.directive('addCategory', [function() {
+	return {
+		restrict: 'EA',
+		controller: 'addCategoryController',
+		templateUrl: 'directiveTemplates/addCategoryTemplate.html'
 	};
 }])
 
