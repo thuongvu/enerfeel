@@ -585,7 +585,7 @@ describe('Directive: Add', function() {
 		});
 	}));
 
-	it(" has Add Event button that !showAdd, showing a div w/ class 'showAdd' tons of stuff", function() {
+	it(" has Add Event button that !showAdd, renders a div w/ class 'showAdd'", function() {
 		var elementPreDigest = angular.element('<div add></div>');
 		var element = $compile(elementPreDigest)(scope);
 		scope.$digest();
@@ -595,6 +595,51 @@ describe('Directive: Add', function() {
 		expect(element.find('.ng-hide.showAdd').eq(0).length).toEqual(0);
 	});
 
+	// it("can use createEventDataObj", function() {
+	// 	// console.log(scope.addEvent);
+	// 	scope.addEvent(3, 'hello', 'meal');
+
+	// })
+
+});
+
+describe("AddController ", function() {
+	var ctrl, scope, EventService, FilterService;
+
+	beforeEach(module('app'))
+	beforeEach(inject(function($controller, $rootScope, $injector) {
+		scope = $rootScope.$new();
+
+		ctrl = $controller('AddController', {
+			$scope: scope
+		});
+		EventService = $injector.get('EventService');
+		FilterService = $injector.get('FilterService');
+	}));
+
+	it("addEvent adds an event to the eventService", function() {
+		scope.eventService = EventService;
+		scope.filterService = FilterService;
+		scope.lifeEventsInView = scope.filterService.filterLifeEvents("month");
+		scope.showHideCategories = function(cat) {
+				for (category in scope.show) {
+					if (category !== cat) {
+						scope.show[category] = false;
+					} else {
+						scope.show[category] = true;
+					}
+				}
+			};
+		scope.categories = {};
+		scope.categories.selected = {};
+		scope.categories.list = [];
+		scope.categories.list[0] = {label:'Choose a category', value: 'noCategoryChosen'};
+
+		scope.dateTimePicked = new Date();
+		scope.addEvent(3, 'hello', 'meal');
+		expect(scope.eventService.allLifeEvents[scope.eventService.allLifeEvents.length - 1])
+		.toMatch({energylevel: 3, note: 'hello', date: scope.dateTimePicked, category: 'meal', opacity: 3, size: 3})
+	});
 
 });
 
