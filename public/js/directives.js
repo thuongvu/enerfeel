@@ -96,7 +96,8 @@ angular.module('app.directives', [])
 			var eventData = createEventDataObj(energyLevel, note, category);
 // console.log(eventData);
 			pushDataIntoServices(eventData);
-			$scope.showAddFunc();
+			// $scope.showAddFunc();
+			$scope.showAdd = false;
 			clearInputs();
 			$scope.showHideCategories('all');
 			$scope.categories.selected.category = $scope.categories.list[0];
