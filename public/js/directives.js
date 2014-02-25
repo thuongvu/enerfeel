@@ -1,5 +1,5 @@
 angular.module('app.directives', [])
-	.controller('AddController', ['$scope', '$timeout', function($scope, $timeout) {
+	.controller('AddController', ['$scope', '$timeout', 'CategoryService', function($scope, $timeout, CategoryService) {
 		$scope.showAdd = false;
 		$scope.show = {};
 		$scope.input = {};
@@ -99,6 +99,7 @@ console.log(eventData);
 			$scope.showAddFunc();
 			clearInputs();
 			$scope.showHideCategories('all');
+			$scope.categories.selected.category = $scope.categories.list[0];
 		};
 
 	}])
