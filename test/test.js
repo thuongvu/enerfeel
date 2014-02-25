@@ -284,14 +284,6 @@ describe('Services:', function() {
 
 	});
 	
-});
-
-
-// ----------------------------------------------------------------------------
-
-describe('Services:', function() {
-	beforeEach(module('app'))
-
 	describe('CategoryService', function() {
 		var CategoryService;
 		beforeEach(inject(function($injector) {
@@ -319,28 +311,30 @@ describe('Services:', function() {
 			expect(CategoryService.categoriesObj.list[1].label).not.toMatch('meal');
 		});
 
-	});
+		describe("On the mainCtrl,", function() {
+			var ctrl, scope;
 
-	describe("On the mainCtrl,", function() {
-		var ctrl, scope;
+			beforeEach(inject(function($controller, $rootScope) {
+				scope = $rootScope.$new();
 
-		beforeEach(inject(function($controller, $rootScope) {
-			scope = $rootScope.$new();
+				ctrl = $controller('mainCtrl', {
+					$scope: scope
+				});
+			}));
 
-			ctrl = $controller('mainCtrl', {
-				$scope: scope
+			it("categoryService should be injected within", function() {
+				expect(scope.categoryService).not.toBeNull();
 			});
-		}));
-
-		it("categoryService should be injected within", function() {
-			expect(scope.categoryService).not.toBeNull();
 		});
-
 	});
-	
-})
 
-describe('Directive: CategoryInput', function() {
+});
+
+
+// ----------------------------------------------------------------------------
+
+
+describe('Directive: moreCategoryInputs', function() {
 	beforeEach(module("app"));
 	
 	var element, scope, template, CategoryService;

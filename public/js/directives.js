@@ -85,7 +85,7 @@ angular.module('app.directives', [])
 
 		// WHERE ALL THESE ADD FUNCTIONS COME TOGETHER
 		$scope.addEvent = function(energyLevel, note, category) {
-			
+
 			if (category === 'meal') {
 				addIfMeal();
 			} else if (category === 'sleep') {
@@ -94,6 +94,7 @@ angular.module('app.directives', [])
 
 			catchEmptyInputs();
 			var eventData = createEventDataObj(energyLevel, note, category);
+console.log(eventData);
 			pushDataIntoServices(eventData);
 			$scope.showAddFunc();
 			clearInputs();
@@ -178,6 +179,7 @@ angular.module('app.directives', [])
 	function categoryChange() {
 		// console.log($scope.show);
 		// console.log($scope.categories.list[0])
+		$scope.input.category = $scope.categories.selected.category.value;
 		$scope.showHideCategories($scope.categories.selected.category.value);
 	};
 
