@@ -371,12 +371,13 @@ describe("On the categoryController (of categoryDir),", function() {
 		expect(scope.show.exercise).toBeTruthy();
 	})
 
-	it("should have addCategory add a new category with a service", function() {
+	it("should have addCategory add a new category with a service, clear newCategory obj after", function() {
 		expect(scope.categories.list.length).toEqual(5);
-		var obj = {label: 'blue', size: 'intensity', opacity:'hue'};
-		scope.categories.add(obj);
+		scope.categories.newCategory = {label: 'blue', size: 'intensity', opacity:'hue'};
+		scope.categories.add(scope.categories.newCategory);
 		expect(scope.categories.list.length).toEqual(6);
 		expect(scope.categories.list[5]).toEqual({label: 'blue', value: 'blue', size:'intensity', opacity:'hue', show: 'show.blue'});
+		expect(scope.categories.newCategory).toEqual({});
 	});
 
 	it("should have $scope.show[newCategory] = false, on addCategory", function() {	
@@ -389,6 +390,8 @@ describe("On the categoryController (of categoryDir),", function() {
 			expect(scope.show[prop]).toBeFalsy();
 		};
 	});
+
+	
 
 	// ADD DELETE CATEGORY FUNCTION
 
@@ -449,7 +452,7 @@ describe('Directive: categorydir', function() {
 		
 		// 2. change some vars that will change the dom!
 
-		// 3. scope.$digest runs watchers on the current scope
+		// 3. scope.$digest runs watchers on the current scope // might want to change it to scope.apply if any problems
 		// no need to go up all the way the tree like scope.apply did.
 		// i know my changes are only on this scope, w/ show.exercise = true
 
@@ -457,7 +460,6 @@ describe('Directive: categorydir', function() {
 		scope.$apply();  
 		// 2
 		scope.show.exercise = true;
-		scope.testshow = true;
 		//3
 		scope.$digest();
 		
@@ -466,5 +468,6 @@ describe('Directive: categorydir', function() {
 
 	});
 
+	
 })
 

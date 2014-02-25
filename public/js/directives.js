@@ -186,12 +186,12 @@ angular.module('app.directives', [])
 		$scope.show[newCategory.label] = false;
 		// console.log($scope.categories.list[5])
 		// console.log($scope.show);
+		$scope.categories.newCategory = {};
 	};
 
 	$scope.categories.newCategory = {};
 	// $scope.categories.newCategory.label
 
-	$scope.testshow = false;
 	
 
 }])
