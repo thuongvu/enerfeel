@@ -434,27 +434,32 @@ describe('Directive: categorydir', function() {
 		expect(category.eq(0)).not.toBeNull();
 	})
 
-	// it("should ng-show the right thing after you change categories.selected.category, invoking categoryChange, showHideCategories", function() {
-	// 	var elementPreDigest = angular.element('<div categorydir></div>');
-	// 	var element = $compile(elementPreDigest)($rootScope);
-	// 	scope.$apply(function() {
+	it("should ng-show the right thing after you change categories.selected.category, invoking categoryChange, showHideCategories", function() {
+		var elementPreDigest = angular.element('<div categorydir></div>');
+		var element = $compile(elementPreDigest)(scope);
+		scope.$apply(function() {
 
-	// 	});
-	// 		scope.show.exercise = true;
-	// 		scope.testshow = true;
-	// 	scope.$digest(function() {
+		});
+			scope.show.exercise = true;
+			scope.testshow = true;
+		scope.$digest(function() {
 			
-	// 	});
+		});
 		
-	// 	console.log(scope.show)
+		console.log(scope.show)
 
 
 
-	// 	console.log(element.find('.exercise').eq(0))
-	// 	console.log(element.find('.lol').eq(0))
+		console.log(element.find('.exercise').eq(0))
+		console.log(element.find('.lol').eq(0))
+	})
+
+	// it("testing another one", function() {
+	// 	// var scope = $rootScope.$new();
+	// 	var e = $compile('<div><ul><li ng-repeat="item in [1,3,5,7,9]">{{item}}</li></ul></div>')(scope);
+	// 	scope.$digest();
+	// 	console.log(e.html());
 	// })
-
-
 	// make sure the input clears after newCategory is added. dont want any sticklers.
 
 })
