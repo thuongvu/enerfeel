@@ -175,11 +175,11 @@ console.log(eventData);
 			}
 		}
 	}
-
+	// $scope.input = {}; // using this to make a local copy so i
 	function categoryChange() {
 		// console.log($scope.show);
 		// console.log($scope.categories.list[0])
-		$scope.input.category = $scope.categories.selected.category.value;
+		// $scope.input.category = $scope.categories.selected.category.value;
 		$scope.showHideCategories($scope.categories.selected.category.value);
 	};
 
