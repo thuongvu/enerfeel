@@ -9,31 +9,9 @@
 	</head>
 	<body>
 		<div ng-controller="mainCtrl">
-			<!-- <div category-input></div> -->
-			<div ng-repeat="cat in cats.list">
-				<button ng-click="filterTime(cat)">{{cat}}</button>
-			</div>
-			<!-- <div>
-				Time Filters
-				<button ng-click="filterTime('day')">Day</button>
-				<button ng-click="filterTime('week')">Week</button>
-				<button ng-click="filterTime('month')">Month</button>
-				<datepicker ng-model="calendar.firstDate"></datepicker>
-				<datepicker ng-model="calendar.secondDate"></datepicker>
-			</div>
-			<div>
-				Activity Filters
-				<button ng-click="filterCategory('meal')">Meal</button>
-				<button ng-click="filterCategory('exercise')">Exercise</button>
-				<button ng-click="filterCategory('work')">Work</button>
-				<button ng-click="filterCategory('sleep')">Sleep</button>
-				<button ng-click="filterCategory('null')">None</button>
-			</div> -->
 			<div filterdir></div>
 			<div modify></div>
 			<div add></div>
-
-			
 			<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>
 		</div>
 

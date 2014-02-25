@@ -464,7 +464,7 @@ describe('Directive: addCategory', function() {
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
 		scope = $rootScope.$new();
-		ctrl = $controller('addCategoryController', {
+		ctrl = $controller('moreCategoryInputsController', {
 			$scope: scope
 		});
 	}));
