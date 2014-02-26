@@ -37,11 +37,17 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				// 	console.log(data);
 				// })
 			},
-			postData: function() {
-				var sampleData = {energylevel: 3, note: 'lol', date: new Date(), category: 'meal', opacity: 1, size: 3};
+			postData: function(sampleData) {
 				$http.post('/post', sampleData).success(function(data) {
-					console.log(data);
-				})
+					// console.log(data);
+					return data;
+				});
+			},
+			getData: function() {
+				$http.get('/get').success(function(data) {
+					console.log(data)
+					return data;
+				});
 			},
 			allLifeEvents: data
 		}

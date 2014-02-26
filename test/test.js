@@ -73,11 +73,20 @@ describe('Services:', function() {
 			// console.log(EventService);
 		});
 
-		it("should make a request to the backend", function() {
-			$httpBackend.expect('POST', '/post').respond('200', {data: "here's some data"});
-			EventService.postData();
+		it("should make a POST request to the backend", function() {
+			// took out date because test fails if i include it, date obj ==!
+			$httpBackend.expect('POST', '/post', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3}).respond(200, {data: "successful post request"});
+			EventService.postData({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
 			$httpBackend.flush();
 		});
+
+		it("should make a GET request to the backend", function() {
+			$httpBackend.expect('GET', '/get').respond(200, {data: {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3, date: new Date()}});
+			EventService.getData();
+			$httpBackend.flush();
+
+		});
+
 
 	});
 	
