@@ -1,5 +1,5 @@
-angular.module('app.services', [])
-	.factory('EventService', function() {
+angular.module('app.services', []) // remember to change this so it can be minified
+	.factory('EventService', function ($http) {
 		var data = [
 		 {"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
 		 {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
@@ -31,6 +31,17 @@ angular.module('app.services', [])
 			},
 			addLifeEvent: function(eventData) {
 				data.push(eventData);
+				// console.log(eventData);
+				// console.log("what")
+				// $http.post('/post', eventData).success(function(data) {
+				// 	console.log(data);
+				// })
+			},
+			postData: function() {
+				var sampleData = {energylevel: 3, note: 'lol', date: new Date(), category: 'meal', opacity: 1, size: 3};
+				$http.post('/post', sampleData).success(function(data) {
+					console.log(data);
+				})
 			},
 			allLifeEvents: data
 		}
@@ -161,4 +172,4 @@ angular.module('app.services', [])
 			categoriesObj: categoriesObj
 		};
 	}])
-	// .factory('')
+	// .factory('htt')

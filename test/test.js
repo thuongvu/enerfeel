@@ -57,21 +57,31 @@
 
 // ----------------------------------------------------------------------------
 
-// describe('Services:', function() {
-// 	beforeEach(module('app'))
+describe('Services:', function() {
+	beforeEach(module('app'))
 
-// 	describe('EventService', function() {
-// 		var EventService;
-// 		beforeEach(inject(function($injector) {
-// 			EventService = $injector.get('EventService')
-// 		}))
+	describe('EventService', function() {
+		var EventService, $httpBackend, $rootScope;
+		beforeEach(inject(function($injector, _$httpBackend_, _$rootScope_) {
+			$httpBackend = _$httpBackend_;
+			$rootScope = _$rootScope_;
+			EventService = $injector.get('EventService');
+		}));
 
-// 		it('should not be null', function() {
-// 			expect(EventService).not.toBeNull()
-// 		})
-// 	})
+		it('should not be null', function() {
+			expect(EventService).not.toBeNull();
+			// console.log(EventService);
+		});
+
+		it("should make a request to the backend", function() {
+			$httpBackend.expect('POST', '/post').respond('200', {data: "here's some data"});
+			EventService.postData();
+			$httpBackend.flush();
+		});
+
+	});
 	
-// })
+})
 
 // ----------------------------------------------------------------------------
 
