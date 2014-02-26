@@ -29,6 +29,9 @@ angular.module('app.services', [])
 					}
 				}
 			},
+			addLifeEvent: function(eventData) {
+				data.push(eventData);
+			},
 			allLifeEvents: data
 		}
 	})
@@ -158,4 +161,4 @@ angular.module('app.services', [])
 			categoriesObj: categoriesObj
 		};
 	}])
-
+	// .factory('')

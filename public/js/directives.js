@@ -60,7 +60,8 @@ angular.module('app.directives', [])
 		}
 
 		function pushDataIntoServices(eventData) {
-			$scope.eventService.allLifeEvents.push(eventData);
+			// $scope.eventService.allLifeEvents.push(eventData);
+			$scope.eventService.addLifeEvent(eventData);
 			$scope.lifeEventsInView.push(eventData)
 			$scope.filterService.sortTime($scope.lifeEventsInView);
 		}
