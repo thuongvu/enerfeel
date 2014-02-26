@@ -9,6 +9,20 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		 {"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
 		 // {"date": new Date(2014, 1, 20, 1), "energylevel":4, "note":"slept for a long time", "category": "sleep", "opacity": 1, "size": 10},
 		 ];
+
+		function postData(sampleData) {
+			$http.post('/post', sampleData).success(function(data) {
+				// console.log(data);
+				return data;
+			});
+
+		};
+		function getData() {
+			$http.get('/get').success(function(data) {
+				console.log(data)
+				return data;
+			});
+		}
 		return {
 			deleteLifeEvent: function (event) {
 				for (var i = 0; i < data.length; i++) {
@@ -38,16 +52,19 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				// })
 			},
 			postData: function(sampleData) {
-				$http.post('/post', sampleData).success(function(data) {
-					// console.log(data);
-					return data;
-				});
+				// $http.post('/post', sampleData).success(function(data) {
+				// 	// console.log(data);
+				// 	return data;
+				// });
+				return postData(sampleData);
 			},
 			getData: function() {
-				$http.get('/get').success(function(data) {
-					console.log(data)
-					return data;
-				});
+				// $http.get('/get').success(function(data) {
+				// 	console.log(data)
+				// 	return data;
+				// });
+
+				return getData();
 			},
 			allLifeEvents: data
 		}
