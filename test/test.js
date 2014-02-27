@@ -80,11 +80,11 @@ describe('Services:', function() {
 			$httpBackend.flush();
 		});
 
-		// it("should make a GET request to the backend", function() {
-		// 	$httpBackend.expect('GET', '/get').respond(200, {data: {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3, date: new Date()}});
-		// 	EventService.getData();
-		// 	$httpBackend.flush();
-		// });
+		it("should make a GET request to the backend", function() {
+			$httpBackend.expect('GET', '/get').respond(200, {data: {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3, date: new Date()}});
+			EventService.getData(function(data) {console.log(data)});
+			$httpBackend.flush();
+		});
 
 		it("should have addLifeEvent POST data", function() {
 			$httpBackend.expect('POST', '/post', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3}).respond(200, {data: "successful post request"});
