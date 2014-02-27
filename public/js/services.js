@@ -29,7 +29,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				}
 				console.log(data)
 				callback(newData);
-				return newData;
+				// return newData;
 			});
 		}
 		return {

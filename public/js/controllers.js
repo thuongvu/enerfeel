@@ -7,7 +7,10 @@ angular.module('app.controllers', [])
 				for (var i = 0; i < newData.length; i++) {
 					$scope.lifeEventsInView.push(newData[i]);
 				};
+				$scope.filterService.sortTime($scope.lifeEventsInView);
+				console.log($scope.lifeEventsInView);
 			});
+
 		}
 
 
