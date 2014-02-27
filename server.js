@@ -25,10 +25,21 @@ app.get("/", function(req,res) {
 })
 
 app.get("/get", function (req, res) {
-	db.lifeEventsCollection.find(function(err, data) {
-		console.log(data);
-		res.json(data);
-	})
+	// db.lifeEventsCollection.find(function(err, data) {
+	// 	console.log(data);
+	// 	res.json(data);
+	// })
+	
+	db.lifeEventsCollection.find().stream().pipe(res);
+	// var stream = db.lifeEventsCollection.find().stream();
+
+	// stream.on('data', function(data) {
+
+	// }).on('error', function(err) {
+
+	// }).on('close', function() {
+	// 	res.send(data);
+	// });
 	// var sampleData = [
 	//  {"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
 	//  {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
