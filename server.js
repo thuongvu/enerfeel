@@ -11,6 +11,7 @@ var passport = require('passport')
 var flash = require('connect-flash');
 var configDB = require('./config/database.js');
 var db = mongojs('enerfeel', ['lifeEventsCollection']);
+var ObjectId = mongojs.ObjectId;
 mongoose.connect(configDB.url);
 app.use(express.logger('dev')); 
 app.use(express.bodyParser()); 
@@ -48,7 +49,10 @@ app.post('/post', function (req, res) {
 
 app.del('/delete', function (req, res) {
 	console.log(req.body);
-	res.send(200, "did this really delete?")
+	console.log(req.body._id);
+	db.lifeEventsCollection.remove({_id: ObjectId(req.body._id)});
+	res.send(200, "maybeeee")
+	// res.send(300, "ERROR")
 });
 
 
