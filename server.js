@@ -24,7 +24,7 @@ app.get("/", function(req,res) {
 })
 
 app.get("/get", function (req, res) {
-	res.send([{"date": new Date(2014, 2, 26, 1), "energylevel":5, "note":"ate sensu bean", "category": "meal", "opacity": 4, "size": 5}]);
+	res.send([{"date": new Date(2014, 1, 26, 1), "energylevel":5, "note":"ate sensu bean", "category": "meal", "opacity": 4, "size": 5}]);
 })
 
 

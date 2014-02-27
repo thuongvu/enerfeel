@@ -6,10 +6,11 @@ angular.module('app.controllers', [])
 			console.log("eventService.getData callback");
 			for (var i = 0; i < newData.length; i++) {
 				console.log(newData[i]);
-				// $scope.lifeEventsInView.push(newData[i]);
+				$scope.lifeEventsInView.push(newData[i]);
 			}
+			console.log($scope.lifeEventsInView)
 			// $scope.lifeEventsInView.push(newData)
-			$scope.filterService.sortTime($scope.lifeEventsInView);
+			// $scope.filterService.sortTime($scope.lifeEventsInView);
 		});
 		// console.log($scope.lifeEventsInView)
 
