@@ -12,14 +12,15 @@ angular.module('app.services', []) // remember to change this so it can be minif
 
 		function postData(sampleData) {
 			$http.post('/post', sampleData).success(function(data) {
-				// console.log(data);
+				console.log("this comes from postData")
+				console.log(data);
 				return data;
 			});
 
 		};
 		function getData() {
 			$http.get('/get').success(function(data) {
-				console.log(data)
+				console.log(data);
 				return data;
 			});
 		}
@@ -50,6 +51,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				// $http.post('/post', eventData).success(function(data) {
 				// 	console.log(data);
 				// })
+				postData(eventData);
 			},
 			postData: function(sampleData) {
 				// $http.post('/post', sampleData).success(function(data) {
