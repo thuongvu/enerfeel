@@ -34,13 +34,15 @@ app.get("/get", function (req, res) {
 	 {"date": new Date(), "energylevel":4, "note":"slept for a long time", "category": "sleep", "opacity": 1, "size": 10},
 	 {"date": new Date(), "energylevel":5, "note":"ate sensu bean", "category": "meal", "opacity": 4, "size": 5}
 	 ];
-	// var obj = {"date": new Date(), "energylevel":5, "note":"ate sensu bean", "category": "meal", "opacity": 4, "size": 5}
 	res.json(sampleData);
 });
+
+app.post('/post', function (req, res) {
+	console.log(req.body);
+	res.send(200, "aloha");
+})
 
 
 http.listen(app.get("port"), function () {
 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));
-	var date = new Date();
-	console.log(date);
 });
