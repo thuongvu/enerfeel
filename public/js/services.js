@@ -18,10 +18,15 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			});
 
 		};
-		function getData() {
-			$http.get('/get').success(function(data) {
-				console.log(data);
-				return data;
+		function getData(callback) {
+			$http.get('/get').success(function(newData) {
+				console.log(newData);
+				for (var i = 0; i < newData.length; i++) {
+					data.push(newData[i]);
+				}
+				console.log(data)
+				callback(newData);
+				return newData;
 			});
 		}
 		return {
@@ -60,13 +65,13 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				// });
 				return postData(sampleData);
 			},
-			getData: function() {
+			getData: function(callback) {
 				// $http.get('/get').success(function(data) {
 				// 	console.log(data)
 				// 	return data;
 				// });
 
-				return getData();
+				return getData(callback);
 			},
 			allLifeEvents: data
 		}

@@ -65,6 +65,7 @@ angular.module('app.directives', [])
 			$scope.lifeEventsInView.push(eventData)
 			$scope.filterService.sortTime($scope.lifeEventsInView);
 		}
+		console.log($scope.lifeEventsInView)
 
 		function clearInputs() {
 			for (prop in $scope.input) {

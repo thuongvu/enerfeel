@@ -23,6 +23,10 @@ app.get("/", function(req,res) {
 	res.render("index.ejs");
 })
 
+app.get("/get", function (req, res) {
+	res.send([{"date": new Date(2014, 2, 26, 1), "energylevel":5, "note":"ate sensu bean", "category": "meal", "opacity": 4, "size": 5}]);
+})
+
 
 http.listen(app.get("port"), function () {
 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));
