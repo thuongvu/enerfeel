@@ -20,8 +20,12 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		};
 		function getData(callback) {
 			$http.get('/get').success(function(newData) {
-				console.log(newData);
+				// console.log(newData);
 				for (var i = 0; i < newData.length; i++) {
+					console.log(newData[i])
+					if (typeof newData[i].date === 'string') {
+						newData[i].date = new Date(newData[i].date)
+					} 
 					data.push(newData[i]);
 				}
 				console.log(data)

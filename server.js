@@ -24,10 +24,13 @@ app.get("/", function(req,res) {
 })
 
 app.get("/get", function (req, res) {
-	res.send([{"date": new Date(2014, 1, 26, 1), "energylevel":5, "note":"ate sensu bean", "category": "meal", "opacity": 4, "size": 5}]);
-})
+	var obj = {"date": new Date(), "energylevel":5, "note":"ate sensu bean", "category": "meal", "opacity": 4, "size": 5}
+	res.json([obj]);
+});
 
 
 http.listen(app.get("port"), function () {
 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));
+	var date = new Date();
+	console.log(date);
 });
