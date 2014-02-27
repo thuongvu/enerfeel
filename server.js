@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var passport = require('passport')
 var flash = require('connect-flash');
 var configDB = require('./config/database.js');
+var db = mongojs('enerfeel', ['lifeEventsCollection']);
 mongoose.connect(configDB.url);
 app.use(express.logger('dev')); 
 app.use(express.bodyParser()); 
@@ -39,8 +40,18 @@ app.get("/get", function (req, res) {
 
 app.post('/post', function (req, res) {
 	console.log(req.body);
-	res.send(200, "aloha");
-})
+	// remember to sanitize this object!!!!!
+	var obj = req.body;
+	db.lifeEventsCollection.save({lifeEvent: obj}, function(err, saved) {
+		if (err || !saved) {
+			console.log("didnt save");
+			res.send(200, "SHIT");
+		} else {
+			console.log("saved");
+			res.send(200, "aloha");
+		};
+	});
+});
 
 
 http.listen(app.get("port"), function () {

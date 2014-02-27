@@ -26,7 +26,8 @@
     "connect-flash": "0.1.1",
     "passport": "0.1.18",
     "passport-facebook": "1.0.2",
-    "karma": "0.10.9"
+    "karma": "0.10.9",
+    "sanitizer": "~0.1.1"
   },
   "devDependencies": {
     "karma-script-launcher": "~0.1.0",
@@ -41,6 +42,7 @@
     "karma-jasmine": "~0.1.5",
     "karma-ie-launcher": "~0.1.1",
     "karma-safari-launcher": "~0.1.1",
-    "karma-ng-html2js-preprocessor": "~0.1.0"
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "sanitizer": "~0.1.1"
   }
 }
