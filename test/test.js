@@ -86,17 +86,24 @@ describe('Services:', function() {
 		// 	$httpBackend.flush();
 		// });
 
-		it("should have addLifeEvent post data", function() {
+		it("should have addLifeEvent POST data", function() {
 			$httpBackend.expect('POST', '/post', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3}).respond(200, {data: "successful post request"});
 			EventService.addLifeEvent({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
 			$httpBackend.flush();
 		});
 
-		it("should have deleteData delete data", function() {
+		it("should have deleteData DELETE data", function() {
 			$httpBackend.expectDELETE('/delete').respond(200, {data: 'successful delete request'});
 			EventService.deleteLifeEvent({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
 			$httpBackend.flush();
 		})
+
+		it("should have updateLifeEvent PUT data", function() {
+			$httpBackend.expectPUT('/put').respond(200, {data: 'successful PUT request'});
+			EventService.updateLifeEvent({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
+			$httpBackend.flush();
+		})
+
 
 
 	});
