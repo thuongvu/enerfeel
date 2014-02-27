@@ -55,6 +55,18 @@ app.del('/delete', function (req, res) {
 	// res.send(300, "ERROR")
 });
 
+app.put('/put', function (req, res) {
+	console.log(req.body);
+	console.log(req.body._id);
+	console.log(req.body.note);
+	db.lifeEventsCollection.findAndModify({
+		query: {_id: ObjectId(req.body._id)},
+		update: {energylevel: req.body.energylevel, note: req.body.note, date: req.body.date, category: req.body.category, opacity: req.body.opacity, size: req.body.size},
+		new: true
+	})
+	res.send(200, 'modded it!')
+})
+
 
 http.listen(app.get("port"), function () {
 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));

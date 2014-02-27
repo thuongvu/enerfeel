@@ -47,6 +47,18 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				console.log(status);
 			})
 		};
+		function mod (event) {
+			$http({
+			    method: 'PUT',
+			    url: '/put',
+			    headers: {
+			        'Content-type': 'application/json'
+			    },
+			    data: event
+			}).success(function(status) {
+				console.log(status);
+			})
+		};
 		return {
 			deleteLifeEvent: function (event) {
 				console.log(event)
@@ -64,6 +76,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 
 			},
 			updateLifeEvent: function(event) { // i think this is redundant for angular, but it will be important when there's a REST api
+				mod(event);
 				for (var i = 0; i < data.length; i++) {
 					if (event.date === data[i].date) {
 						data.splice(i,1, event);
