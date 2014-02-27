@@ -13,21 +13,6 @@ angular.module('app.controllers', [])
 
 		}
 
-
-		// $scope.eventService.getData(function(newData) {
-		// 	console.log("eventService.getData callback");
-		// 	for (var i = 0; i < newData.length; i++) {
-		// 		// console.log(newData[i]);
-		// 		$scope.lifeEventsInView.push(newData[i]);
-		// 	}
-		// 	// console.log($scope.lifeEventsInView)
-		// 	// $scope.lifeEventsInView.push(newData)
-		// 	// $scope.filterService.sortTime($scope.lifeEventsInView);
-		// });
-		// // console.log($scope.lifeEventsInView)
-
-
-
 		// $scope.eventService.allLifeEvents = $scope.eventService.getData(); // LETS HOPE THIS WORKS
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("month");
 		$scope.input = {};

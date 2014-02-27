@@ -24,16 +24,20 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				for (var i = 0; i < newData.length; i++) {
 					if (typeof newData[i].date === 'string') {
 						newData[i].date = new Date(newData[i].date)
-					} 
+					};
 					data.push(newData[i]);
-				}
-				console.log(data)
+				};
 				callback(newData);
-				// return newData;
 			});
-		}
+		};
+		function deleteData(event) {
+			$http.delete('/delete', event).success(function(status) {
+				console.log(status)
+			});
+		};
 		return {
 			deleteLifeEvent: function (event) {
+				deleteData(event);
 				for (var i = 0; i < data.length; i++) {
 					if (event.date === data[i].date) {
 						console.log(data.length)
@@ -41,8 +45,9 @@ angular.module('app.services', []) // remember to change this so it can be minif
 						data.splice(i, 1);
 						console.log(data.length)
 						break;
-					}
-				}
+					};
+				};
+
 			},
 			updateLifeEvent: function(event) { // i think this is redundant for angular, but it will be important when there's a REST api
 				for (var i = 0; i < data.length; i++) {
