@@ -19,8 +19,26 @@ angular.module('app.services', []) // remember to change this so it can be minif
 
 		};
 		function getData(callback) {
-			$http.get('/get').success(function(newData) {
-				// console.log(newData);
+			// $http.get('/get').success(function(newData) {
+			// 	// console.log(newData);
+			// 	for (var i = 0; i < newData.length; i++) {
+			// 		if (typeof newData[i].date === 'string') {
+			// 			newData[i].date = new Date(newData[i].date)
+			// 		};
+			// 		data.push(newData[i]);
+			// 	};
+			// 	callback(newData);
+			// });
+
+			$http({
+			    method: 'GET',
+			    url: '/get',
+			    headers: {
+			        'Content-type': 'application/json'
+			    },
+			    data: {id: "ID YO"}
+			})
+			.success(function(newData) {
 				for (var i = 0; i < newData.length; i++) {
 					if (typeof newData[i].date === 'string') {
 						newData[i].date = new Date(newData[i].date)

@@ -26,6 +26,7 @@ app.get("/", function(req,res) {
 })
 
 app.get("/get", function (req, res) {
+	console.log(req.body);
 	db.lifeEventsCollection.find(function(err, data) {
 		console.log(data);
 		res.json(data);
