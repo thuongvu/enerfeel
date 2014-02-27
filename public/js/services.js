@@ -30,14 +30,28 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				callback(newData);
 			});
 		};
-		function deleteData(event) {
-			$http.delete('/delete', event).success(function(status) {
-				console.log(status)
-			});
+		function del(event) {
+			console.log("this is the event");
+			console.log(event);
+			// $http.delete('/delete', {data: {foo: "bar"}}).success(function(status) {
+			// 	console.log(status)
+			// });
+			$http({
+			    method: 'DELETE',
+			    url: '/delete',
+			    headers: {
+			        'Content-type': 'application/json'
+			    },
+			    data: event
+			}).success(function(status) {
+				console.log(status);
+			})
 		};
 		return {
 			deleteLifeEvent: function (event) {
-				deleteData(event);
+				console.log(event)
+				console.log("deleteLifeEvent from service")
+				del(event);
 				for (var i = 0; i < data.length; i++) {
 					if (event.date === data[i].date) {
 						console.log(data.length)

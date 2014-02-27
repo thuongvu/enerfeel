@@ -46,6 +46,11 @@ app.post('/post', function (req, res) {
 	});
 });
 
+app.del('/delete', function (req, res) {
+	console.log(req.body);
+	res.send(200, "did this really delete?")
+});
+
 
 http.listen(app.get("port"), function () {
 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));

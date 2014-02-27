@@ -93,7 +93,7 @@ describe('Services:', function() {
 		});
 
 		it("should have deleteData delete data", function() {
-			$httpBackend.expectDELETE('/delete', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3}).respond(200, {data: 'successful delete request'});
+			$httpBackend.expectDELETE('/delete').respond(200, {data: 'successful delete request'});
 			EventService.deleteLifeEvent({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
 			$httpBackend.flush();
 		})
