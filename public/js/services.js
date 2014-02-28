@@ -36,11 +36,13 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    headers: {
 			        'Content-type': 'application/json'
 			    },
-			    data: {"id": "ID YO"}
+			    data: {"id": "ID YO"} 	
+// ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID 											
 			})
 			.success(function(data) {
 				var newData =  data[0].lifeEvents;
-				console.log(data[0].lifeEvents);
+				// console.log(data[0].lifeEvents);
+
 				for (var i = 0; i < newData.length; i++) {
 					if (typeof newData[i].date === 'string') {
 						newData[i].date = new Date(newData[i].date)

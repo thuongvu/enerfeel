@@ -38,15 +38,21 @@ app.post('/post', function (req, res) {
 	console.log(req.body);
 	// remember to sanitize this object!!!!!
 	var obj = req.body;
-	db.lifeEventsCollection.save(obj, function(err, saved) {
-		if (err || !saved) {
-			console.log("didnt save");
-			res.send(200, "SHIT");
-		} else {
-			console.log("saved");
-			res.send(200, "aloha");
-		};
-	});
+	// db.lifeEventsCollection.save(obj, function(err, saved) {
+	// 	if (err || !saved) {
+	// 		console.log("didnt save");
+	// 		res.send(200, "SHIT");
+	// 	} else {
+	// 		console.log("saved");
+	// 		res.send(200, "aloha");
+	// 	};
+	// });
+
+	db.lifeEventsCollection.update(
+		{_id: ObjectId("530fb759b3276947eb23894d")},
+		{$push: {lifeEvents: obj}}
+	)
+
 });
 
 app.del('/delete', function (req, res) {
