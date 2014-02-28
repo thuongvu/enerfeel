@@ -6,3 +6,5 @@ var userSchema = mongoose.Schema({
 		name: String,
 		lifeEvents: []
 });
+
+module.exports = mongoose.model('User', userSchema);
