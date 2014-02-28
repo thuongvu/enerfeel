@@ -53,6 +53,8 @@ app.post('/post', function (req, res) {
 		{$push: {lifeEvents: obj}}
 	)
 
+	// db.lifeEventsCollection.insert({})
+
 });
 
 app.del('/delete', function (req, res) {
@@ -67,11 +69,19 @@ app.put('/put', function (req, res) {
 	console.log(req.body);
 	console.log(req.body._id);
 	console.log(req.body.note);
-	db.lifeEventsCollection.findAndModify({
-		query: {_id: ObjectId(req.body._id)},
-		update: {energylevel: req.body.energylevel, note: req.body.note, date: req.body.date, category: req.body.category, opacity: req.body.opacity, size: req.body.size},
-		new: true
-	})
+	// db.lifeEventsCollection.findAndModify({
+	// 	query: {_id: ObjectId(req.body._id)},
+	// 	update: {energylevel: req.body.energylevel, note: req.body.note, date: req.body.date, category: req.body.category, opacity: req.body.opacity, size: req.body.size},
+	// 	new: true
+	// })
+	
+
+	db.lifeEventsCollection.update(
+		{_id: ObjectId("530fb759b3276947eb23894d"), "lifeEvents.date": req.body.date }, 
+		{$set: {"lifeEvents.$.energylevel": req.body.energylevel, "lifeEvents.$.note": req.body.note, "lifeEvents.$.date": req.body.date, "lifeEvents.$.category": req.body.category, "lifeEvents.$.opacity": req.body.opacity, "lifeEvents.$.size": req.body.size}}
+		)};
+
+
 	res.send(200, 'modded it!')
 })
 
