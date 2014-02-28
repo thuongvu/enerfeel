@@ -1,5 +1,5 @@
 // var FB 
-var User = require('../models/user');
+var User = require('../models/user.js');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var configAuth = require('./auth');
 
@@ -23,7 +23,7 @@ module.exports = function(passport) {
 
 	function(token, refreshToken, profile, done) {
 		process.nextTick(function() {
-			User.findOne('id': profile.id, function(err, user) {
+			User.findOne({'id' : profile.id}, function(err, user) {
 				if (err) {
 					return done(err);
 				}

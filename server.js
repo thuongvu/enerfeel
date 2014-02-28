@@ -7,12 +7,13 @@ var https = require('https');
 var fs = require('fs');
 var port = process.env.PORT || 8080;
 var mongoose = require('mongoose');
-var passport = require('passport')
+var passport = require('passport');
 var flash = require('connect-flash');
 var configDB = require('./config/database.js');
 var db = mongojs('enerfeel', ['lifeEventsCollection']);
 var ObjectId = mongojs.ObjectId;
 mongoose.connect(configDB.url);
+require ('./config/passport')(passport);
 app.use(express.logger('dev')); 
 app.use(express.bodyParser()); 
 app.set('view engine', 'ejs'); 

@@ -31,11 +31,11 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			// });
 
 			$http({
-			    method: 'POST',
-			    url: '/get',
-			    headers: {
-			        'Content-type': 'application/json'
-			    },
+			    method: 'get',
+			    url: '/auth',
+			    // headers: {
+			    //     'Content-type': 'application/json'
+			    // },
 			    data: {"id": "ID YO"} 	
 // ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID 											
 			})
