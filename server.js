@@ -60,7 +60,14 @@ app.post('/post', function (req, res) {
 app.del('/delete', function (req, res) {
 	console.log(req.body);
 	console.log(req.body._id);
-	db.lifeEventsCollection.remove({_id: ObjectId(req.body._id)});
+	// db.lifeEventsCollection.remove({_id: ObjectId(req.body._id)});
+
+
+	db.lifeEventsCollection.update(
+		{_id: ObjectId("530fb759b3276947eb23894d")}, {$pull: {'lifeEvents': {'date': req.body.date}}}
+		);
+
+
 	res.send(200, "maybeeee")
 	// res.send(300, "ERROR")
 });
