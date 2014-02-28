@@ -79,7 +79,7 @@ app.put('/put', function (req, res) {
 	db.lifeEventsCollection.update(
 		{_id: ObjectId("530fb759b3276947eb23894d"), "lifeEvents.date": req.body.date }, 
 		{$set: {"lifeEvents.$.energylevel": req.body.energylevel, "lifeEvents.$.note": req.body.note, "lifeEvents.$.date": req.body.date, "lifeEvents.$.category": req.body.category, "lifeEvents.$.opacity": req.body.opacity, "lifeEvents.$.size": req.body.size}}
-		)};
+		);
 
 
 	res.send(200, 'modded it!')

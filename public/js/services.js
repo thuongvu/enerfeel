@@ -39,8 +39,8 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    data: {"id": "ID YO"} 	
 // ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID 											
 			})
-			.success(function(data) {
-				var newData =  data[0].lifeEvents;
+			.success(function(info) {
+				var newData =  info[0].lifeEvents;
 				// console.log(data[0].lifeEvents);
 
 				for (var i = 0; i < newData.length; i++) {

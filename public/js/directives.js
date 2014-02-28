@@ -215,7 +215,7 @@ angular.module('app.directives', [])
 }])
 
 // ----------------------------------------------------------------------------
-	.controller('modifyController', ['$scope', function ($scope) {
+	.controller('modifyController', ['$scope', 'FilterService', function ($scope, FilterService) {
 		$scope.event = {};
 		$scope.event.selected;
 		$scope.showModify = false;
@@ -241,7 +241,8 @@ angular.module('app.directives', [])
 			if (event) {
 				// console.log(event.selected)
 				$scope.eventService.updateLifeEvent(event.selected); // might need to disable that
-				$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+				// $scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+				$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(FilterService.currentFilterObj.time);
 			}
 		};
 	}])
