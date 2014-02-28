@@ -27,7 +27,8 @@ app.get("/", function(req,res) {
 
 app.post("/get", function (req, res) {
 	console.log(req.body);
-	// console.log(req);
+
+	// this needs to be updated to only get the current user's.  oauth2 will take care of this.  
 	db.lifeEventsCollection.find(function(err, data) {
 		console.log(data);
 		res.json(data);
@@ -48,21 +49,18 @@ app.post('/post', function (req, res) {
 	// 	};
 	// });
 
+	// client will send TWO objects. 1. objectId of the user. 2. lifeEvent Object w/ data TO ADD
 	db.lifeEventsCollection.update(
 		{_id: ObjectId("530fb759b3276947eb23894d")},
 		{$push: {lifeEvents: obj}}
-	)
-
-	// db.lifeEventsCollection.insert({})
-
+	);
 });
 
 app.del('/delete', function (req, res) {
 	console.log(req.body);
-	console.log(req.body._id);
 	// db.lifeEventsCollection.remove({_id: ObjectId(req.body._id)});
 
-
+	// client will send TWO objects. 1. objectId of the user. 2. lifeEvent Object w/ data TO DELETE
 	db.lifeEventsCollection.update(
 		{_id: ObjectId("530fb759b3276947eb23894d")}, {$pull: {'lifeEvents': {'date': req.body.date}}}
 		);
@@ -74,15 +72,13 @@ app.del('/delete', function (req, res) {
 
 app.put('/put', function (req, res) {
 	console.log(req.body);
-	console.log(req.body._id);
-	console.log(req.body.note);
 	// db.lifeEventsCollection.findAndModify({
 	// 	query: {_id: ObjectId(req.body._id)},
 	// 	update: {energylevel: req.body.energylevel, note: req.body.note, date: req.body.date, category: req.body.category, opacity: req.body.opacity, size: req.body.size},
 	// 	new: true
 	// })
 	
-
+	// client will send TWO objects. 1. objectId of the user. 2. lifeEvent Object w/ data TO MODIFY
 	db.lifeEventsCollection.update(
 		{_id: ObjectId("530fb759b3276947eb23894d"), "lifeEvents.date": req.body.date }, 
 		{$set: {"lifeEvents.$.energylevel": req.body.energylevel, "lifeEvents.$.note": req.body.note, "lifeEvents.$.date": req.body.date, "lifeEvents.$.category": req.body.category, "lifeEvents.$.opacity": req.body.opacity, "lifeEvents.$.size": req.body.size}}

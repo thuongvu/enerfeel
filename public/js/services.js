@@ -41,6 +41,8 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			})
 			.success(function(info) {
 				var newData =  info[0].lifeEvents;
+				var userID = info[0]._id;
+				console.log(userID);
 				// console.log(data[0].lifeEvents);
 
 				for (var i = 0; i < newData.length; i++) {
