@@ -21,6 +21,15 @@ app.set("port", 8080);
 app.set("views", __dirname + "/views");
 app.use(express.static("public", __dirname + "/public"));
 
+app.use(express.cookieParser());
+app.use(express.session({secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough'}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+require('./routes.js')(app, passport);
+
+
+
 app.get("/", function(req,res) {
 	res.render("index.ejs");
 })
