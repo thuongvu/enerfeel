@@ -1,5 +1,5 @@
 // var FB 
-var User = require('../models/user.js');
+var User = require('../models/user');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var configAuth = require('./auth');
 

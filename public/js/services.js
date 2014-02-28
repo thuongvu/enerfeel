@@ -1,5 +1,5 @@
 angular.module('app.services', []) // remember to change this so it can be minified
-	.factory('EventService', function ($http) {
+	.factory('EventService', function ($http, $window) {
 		var data = [
 		 // {"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
 		 // {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
@@ -30,29 +30,43 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			// 	callback(newData);
 			// });
 
-			$http({
-			    method: 'get',
-			    url: '/auth',
-			    // headers: {
-			    //     'Content-type': 'application/json'
-			    // },
-			    data: {"id": "ID YO"} 	
-// ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID 											
-			})
-			.success(function(info) {
-				var newData =  info[0].lifeEvents;
-				var userID = info[0]._id;
-				console.log(userID);
-				// console.log(data[0].lifeEvents);
+			// TEMPORARY TEST
+			// $http({
+			//     method: 'get',
+			//     url: '/auth/facebook/callback'
+			//     // headers: {'Content-type': 'application/json'},
+			//     // data: {"id": "ID YO"} 	
+			// }).success(function(info) {
+			// 	console.log(info);
+			// })
+		$window.location.href = '/auth/facebook/callback';
 
-				for (var i = 0; i < newData.length; i++) {
-					if (typeof newData[i].date === 'string') {
-						newData[i].date = new Date(newData[i].date)
-					};
-					data.push(newData[i]);
-				};
-				callback(newData);
-			});
+
+// 			$http({
+// 			    method: 'POST',
+// 			    url: '/get',
+// 			    headers: {
+// 			        'Content-type': 'application/json'
+// 			    },
+// 			    data: {"id": "ID YO"} 	
+// // ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID 											
+// 			})
+// 			.success(function(info) {
+// 				var newData =  info[0].lifeEvents;
+// 				var userID = info[0]._id;
+// 				console.log(userID);
+// 				// console.log(data[0].lifeEvents);
+
+// 				for (var i = 0; i < newData.length; i++) {
+// 					if (typeof newData[i].date === 'string') {
+// 						newData[i].date = new Date(newData[i].date)
+// 					};
+// 					data.push(newData[i]);
+// 				};
+// 				callback(newData);
+// 			});
+
+
 		};
 		function del(event) {
 			console.log("this is the event");
