@@ -23,7 +23,7 @@ module.exports = function(passport) {
 
 	function(token, refreshToken, profile, done) {
 		process.nextTick(function() {
-			User.findOne({'id' : profile.id}, function(err, user) {
+			User.findOne({'fbID' : profile.id}, function(err, user) {
 				if (err) {
 					return done(err);
 				}
@@ -35,7 +35,7 @@ module.exports = function(passport) {
 				} else {
 					var newUser = new User();
 
-					newUser.id = profile.id;
+					newUser.fbID = profile.id;
 					newUser.token = token;
 					newUser.name = profile.name.givenName;
 

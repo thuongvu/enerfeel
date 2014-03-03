@@ -6,10 +6,18 @@ module.exports = function(app, passport) {
 		passport.authenticate('facebook'), function(req, res) {
 			console.log("user authenticated");
 			console.log("mongo query");
-			console.log("req.user");
+			// console.log("req.user");
 			console.log(req.user);
-			res.redirect('/');
-			res.json({"send": "user data"});
+			console.log("res")
+			// console.log(res);
+
+			// res.redirect('/')
+			res.send({"info": "moreinfo"})
+			// res.redirect('/');
+			// console.log("res");
+			// console.log(res);
+			// res.redirect('/');
+			// res.json({"send": "user data"});
 			// console.log("res");
 			// console.log(res);
 			// res.send({"send": "user data"});

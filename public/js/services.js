@@ -41,6 +41,14 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			// })
 		$window.location.href = '/auth/facebook/callback';
 
+			// $http({
+			// 	method: 'GET',
+			// 	url: '/auth/facebook/callback',
+			// }).success(function(data) {
+			// 	console.log(data);
+			// });
+
+
 
 // 			$http({
 // 			    method: 'POST',
