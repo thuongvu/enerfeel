@@ -12,8 +12,10 @@ module.exports = function(app, passport) {
 			// console.log(res);
 
 			// res.redirect('/')
-			res.send({"info": "moreinfo"})
-			// res.redirect('/');
+			res.cookie('lololol')
+
+			res.redirect('/');
+			res.send("blah")
 			// console.log("res");
 			// console.log(res);
 			// res.redirect('/');

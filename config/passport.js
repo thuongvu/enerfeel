@@ -31,6 +31,14 @@ module.exports = function(passport) {
 					// what if i saved the new access token here every time
 					// and then the user used that as a way to access their userdata?
 					// so it changes every time you login?  wouldnt that be safer?
+
+					// User.update({'token': token});
+					user.token = token;
+					user.save(function(err, success) {
+
+					});
+					// User.save();
+
 					return done(null, user);
 				} else {
 					var newUser = new User();
