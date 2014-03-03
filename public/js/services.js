@@ -19,6 +19,12 @@ angular.module('app.services', []) // remember to change this so it can be minif
 
 		};
 		function getData(callback) {
+// CHANGES A
+// GETDATA GETS BACK DATA
+// IF STATEMENT TO FIGURE OUT IF USER IS LOGGED IN OR NOT
+// IF NOT LOGGED IN, ASK USER TO LOG IN
+// JSON REQUEST W/ DATA FROM COOKIE
+
 			// $http.get('/get').success(function(newData) {
 			// 	// console.log(newData);
 			// 	for (var i = 0; i < newData.length; i++) {
@@ -154,6 +160,13 @@ angular.module('app.services', []) // remember to change this so it can be minif
 
 				return getData(callback);
 			},
+// CHANGES B
+// MAKE A LOGIN FUNCTION SPECIFICALLY FOR LOGGING IN AND GETTING THE COOKIE/DESTROYING IT
+// THEN VALUE FROM COOKIE SETS THE STATE ON AN OBJECT
+// ADD A NEW OBJECT CALLED USERSTATE, WILL HAVE ISAUTHENTICATED TRUE
+// THEN IT WILL HAVE TOKEN AS A STRING
+// ON ANY OF THESE REQUESTS, IT WILL USE THAT TOKEN AS A 2ND PARAM IN EACH REQUEST
+			// ISLOGGEDIN : USERSTATE
 			allLifeEvents: data
 		}
 	})
