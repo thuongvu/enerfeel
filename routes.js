@@ -2,13 +2,19 @@ module.exports = function(app, passport) {
 	app.get('/auth', passport.authenticate('facebook'));
 
 	// this is my way, because i need to do it this way for an SPA
-	app.get('/auth/facebook/callback', passport.authenticate('facebook', function(req, res) {
-			console.log("user authenticated")
-			console.log("mongo query")
-			res.send({"send": "user data"});
+	app.get('/auth/facebook/callback', 
+		passport.authenticate('facebook'), function(req, res) {
+			console.log("user authenticated");
+			console.log("mongo query");
+			console.log("req");
+			console.log(req);
+			// req.send({"send": "user data"});
+			console.log("res");
+			console.log(res);
+			// res.send({"send": "user data"});
 			// make a mongodb query w/ id
 			// send user data
-	}));
+	});
 
 	
 
