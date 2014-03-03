@@ -6,22 +6,35 @@ module.exports = function(app, passport) {
 		passport.authenticate('facebook'), function(req, res) {
 			console.log("user authenticated");
 			console.log("mongo query");
-			console.log("req");
-			console.log(req);
-			// req.send({"send": "user data"});
-			console.log("res");
-			console.log(res);
+			console.log("req.user");
+			console.log(req.user);
+			res.redirect('/');
+			res.json({"send": "user data"});
+			// console.log("res");
+			// console.log(res);
 			// res.send({"send": "user data"});
 			// make a mongodb query w/ id
 			// send user data
 	});
 
-	
 
 	app.get('/logout', function (req, res) {
 		req.logout();
 		res.redirect('/'); // can i even do that in an spa? more likely that i send a json w/ data
 	});
+
+
+
+
+
+
+
+	// TEST AN ENDPOINT USING ISLOGGEDIN <------------------------------ ******
+
+
+
+
+
 
 	// // i don't think i need this one because it's an spa. i'll deal with it clientside?
 	// function isLoggedIn(req, res, next) {
