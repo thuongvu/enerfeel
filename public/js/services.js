@@ -37,7 +37,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			        'Content-type': 'application/json',
 			        'token': Auth.token
 			    },
-			    data: sampledata
+			    data: sampleData
 			}).success(function(returnedData) {
 				console.log(returnedData);
 				return returnedData;

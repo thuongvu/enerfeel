@@ -7,7 +7,7 @@ module.exports = function(app, passport) {
 	// this is my way, because i need to do it this way for an SPA
 	app.get('/auth/facebook/callback', 
 		passport.authenticate('facebook'), function(req, res) {
-			console.log("req.user");
+			console.log("/auth/facebook/callback req.user");
 			console.log(req.user);
 			res.cookie('user', JSON.stringify({
 				'token': req.user.token,
@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/get', isLoggedIn, function(req, res) {
-		console.log("req.headers");
+		console.log("/get req.headers");
 		console.log(req.headers);
 		if (req.headers.token !== 'null') {
 			db.users.findOne({'token' : req.headers.token}, function(err, data) {
@@ -29,14 +29,13 @@ module.exports = function(app, passport) {
 		};
 	});
 
-
 	app.get('/logout', function (req, res) {
 		req.logout();
-		res.redirect('/'); // can i even do that in an spa? more likely that i send a json w/ data
+		res.redirect('/');
 	});
 
 	app.del('/delete', function (req, res) {
-		console.log("req.headers");
+		console.log("/delete req.headers");
 		console.log(req.headers);
 
 		if (req.headers.token !== 'null') {
@@ -44,6 +43,20 @@ module.exports = function(app, passport) {
 				{token: req.headers.token}, {$pull: {'lifeEvents': {'date': req.body.date}}}
 				);
 			res.send(200, "maybeeee")
+		};
+		
+	});
+
+	app.post('/post', function (req, res) {
+		console.log('/post req.body');
+		console.log(req.body);
+
+		if (req.headers.token !== 'null') {
+			var obj = req.body;
+			db.users.update(
+				{token: req.headers.token},
+				{$push: {lifeEvents: obj}}
+			);
 		};
 		
 	});
