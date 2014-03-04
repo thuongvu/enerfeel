@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
 			res.redirect('/');
 	});
 
-	app.get('/get', isLoggedIn, function(req, res) {
+	app.get('/get/events', isLoggedIn, function(req, res) {
 		console.log("/get req.headers");
 		console.log(req.headers);
 		if (req.headers.token !== 'null') {
@@ -37,7 +37,7 @@ module.exports = function(app, passport) {
 		res.redirect('/');
 	});
 
-	app.del('/delete', isLoggedIn, function (req, res) {
+	app.del('/delete/event', isLoggedIn, function (req, res) {
 		console.log("/delete req.headers");
 		console.log(req.headers);
 
@@ -50,7 +50,7 @@ module.exports = function(app, passport) {
 		
 	});
 
-	app.post('/post', isLoggedIn, function (req, res) {
+	app.post('/post/event', isLoggedIn, function (req, res) {
 		console.log('/post req.body');
 		console.log(req.body);
 
@@ -64,7 +64,7 @@ module.exports = function(app, passport) {
 		
 	});
 
-	app.put('/put', isLoggedIn, function (req, res) {
+	app.put('/put/event', isLoggedIn, function (req, res) {
 		console.log('/put req.body');
 		console.log(req.body);
 		if (req.headers.token !== 'null') {

@@ -20,7 +20,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		function postData(sampleData) {
 			$http({
 			    method: 'post',
-			    url: '/post',
+			    url: '/post/event',
 			    headers: {
 			        'Content-type': 'application/json',
 			        'token': Auth.token
@@ -34,7 +34,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		function getData(callback) {
 			$http({
 			    method: 'get',
-			    url: '/get',
+			    url: '/get/events',
 			    headers: {
 			        'Content-type': 'application/json',
 			        'token': Auth.token
@@ -57,7 +57,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		function del(event) {
 			$http({
 			    method: 'DELETE',
-			    url: '/delete',
+			    url: '/delete/event',
 			    headers: {
 			        'Content-type': 'application/json',
 			        'token': Auth.token
@@ -70,7 +70,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		function mod(event) {
 			$http({
 			    method: 'PUT',
-			    url: '/put',
+			    url: '/put/event',
 			    headers: {
 			        'Content-type': 'application/json',
 			        'token': Auth.token
@@ -207,15 +207,11 @@ return {
 			setTimeout(function() {
 				if (EventService.categories.list) {
 					categoriesObj.list = EventService.categories.list;
-					// console.log(EventService.categories.list);
-					console.log(categoriesObj.list);
 				};
 			},100);
 		}, true);
 		
 		function addCategoryXHR(obj) {
-			// console.log(EventService.Auth);
-			// console.log(EventService.Auth.token);
 			if (EventService.Auth.authLevel > 0) {
 				$http({
 				    method: 'post',
@@ -226,7 +222,6 @@ return {
 				    },
 				    data: obj
 				}).success(function(returnedData) {
-					console.log(returnedData);
 					// return returnedData;
 				});
 			};
@@ -243,7 +238,6 @@ return {
 				    },
 				    data: obj
 				}).success(function(returnedData) {
-					console.log(returnedData);
 					// return returnedData;
 					callback();
 				});
@@ -253,8 +247,6 @@ return {
 		return {
 			addCategory: function(category) {
 				if (typeof category === 'object') {
-					// console.log("thrown in")
-					// console.log(category)
 					var obj = {
 						label: category.label,
 						value: category.label,
@@ -262,14 +254,12 @@ return {
 						opacity: category.opacity,
 						show: 'show.' + category.label
 					};
-					// console.log(obj);
 					categoriesObj.list.push(obj);
 					addCategoryXHR(obj);
 				};
 				return categoriesObj.list;
 			},
 			deleteCategory: function (category, callback) {
-				console.log(category);
 				if ((category.label !== 'meal') && (category.label !== 'exercise') 
 					&& (category.label !== 'work')  && (category.label !== 'sleep')
 					&& (category.label !== 'Choose a category')) {
@@ -288,4 +278,3 @@ return {
 			categoriesObj: categoriesObj
 		};
 	}])
-	// .factory('htt')
