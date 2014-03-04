@@ -4,7 +4,8 @@ var userSchema = mongoose.Schema({
 		fbID: String,
 		token: String,
 		name: String,
-		lifeEvents: []
+		lifeEvents: [],
+		categories: []
 });
 
 module.exports = mongoose.model('User', userSchema);
