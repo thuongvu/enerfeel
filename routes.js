@@ -95,6 +95,21 @@ module.exports = function(app, passport) {
 		
 	});
 
+	app.del('/delete/category', isLoggedIn, function (req, res) {
+		console.log("/delete/category req.headers");
+		console.log(req.headers);
+		console.log('req.body');
+		console.log(req.body);
+
+		if (req.headers.token !== 'null') {
+			db.users.update(
+				{token: req.headers.token}, {$pull: {'categories': {'label': req.body.label}}}
+				);
+			res.send(200, "maybeeee")
+		};
+		
+	});
+
 
 
 	function isLoggedIn(req, res, next) {

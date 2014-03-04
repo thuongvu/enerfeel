@@ -196,6 +196,14 @@ angular.module('app.directives', [])
 
 	$scope.categories.newCategory = {};
 
+
+	$scope.categories.selected.categoryToDelete = $scope.categories.list[0];
+
+	$scope.categories.delete = function(category) {
+		CategoryService.deleteCategory(category, function() {
+			$scope.categories.selected.categoryToDelete = $scope.categories.list[0];
+		});
+	};
 	
 
 }])

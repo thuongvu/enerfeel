@@ -1,9 +1,14 @@
 <!-- make a button do an ng-show to toggle those options open.  -->
 <button ng-click="showAddCategories = !showAddCategories">showAddCategories</button>
 <span ng-show="showAddCategories">
-	<input ng-model="categories.newCategory.label" type="text" placeholder="name of category"></input>
-	<input ng-model="categories.newCategory.size" type="text" placeholder="size scale"></input>
-	<input ng-model="categories.newCategory.opacity" type="text" placeholder="opacity scale"></input>
-	<button ng-click="categories.add(categories.newCategory)">Add Category</button>
-	<button ng-click="add(categories.newCategory)">log</button>
+	<span>
+		<input ng-model="categories.newCategory.label" type="text" placeholder="name of category"></input>
+		<input ng-model="categories.newCategory.size" type="text" placeholder="size scale"></input>
+		<input ng-model="categories.newCategory.opacity" type="text" placeholder="opacity scale"></input>
+		<button ng-click="categories.add(categories.newCategory)">Add Category</button>
+	</span>
+	<div>
+		<select ng-model="categories.selected.categoryToDelete" ng-options="category as category.label for category in categories.list"></select>
+		<button ng-click="categories.delete(categories.selected.categoryToDelete)">Delete Category</button>
+	</div>
 </span>

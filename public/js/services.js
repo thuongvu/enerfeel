@@ -230,7 +230,24 @@ return {
 					// return returnedData;
 				});
 			};
-			
+		};
+
+		function DeleteCategoryXHR(obj, callback) {
+			if (EventService.Auth.authLevel > 0) {
+				$http({
+				    method: 'delete',
+				    url: '/delete/category',
+				    headers: {
+				        'Content-type': 'application/json',
+				        'token': EventService.Auth.token
+				    },
+				    data: obj
+				}).success(function(returnedData) {
+					console.log(returnedData);
+					// return returnedData;
+					callback();
+				});
+			};
 		};
 
 		return {
@@ -251,14 +268,16 @@ return {
 				};
 				return categoriesObj.list;
 			},
-			deleteCategory: function (category) {
-				if (typeof category === 'string') {
+			deleteCategory: function (category, callback) {
+				console.log(category);
+				if (typeof category === 'object') {
 					for (var i = 0; i < categoriesObj.list.length; i++) {
-						if (categoriesObj.list[i].label === 'meal') {
+						if (categoriesObj.list[i].label === category.label) {
 							categoriesObj.list.splice(i, 1);
 							break;
-						}
+						};
 					};
+					DeleteCategoryXHR(category, callback);
 					return categoriesObj.list;
 				};
 			},
