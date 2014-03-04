@@ -33,7 +33,7 @@ var csrfValue = function(req) {
 
 app.use(express.cookieParser('mysecretheresdfsdf'));
 app.use(express.cookieSession());
-app.use(express.csrf()); 
+// app.use(express.csrf()); // this is unneeded, delete, it was causing a csrf to go twice w/ no value, so no way to use it
 
 app.use(express.csrf({value: csrfValue}));
 app.use(function(req, res, next) {

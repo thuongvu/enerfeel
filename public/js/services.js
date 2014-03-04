@@ -17,6 +17,11 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			$cookieStore.remove('user');
 		};
 
+		// var csrf = $cookieStore.get('XSRF-TOKEN');
+		// console.log(csrf);
+
+
+
 		function postData(sampleData) {
 			$http({
 			    method: 'post',
