@@ -61,6 +61,17 @@ module.exports = function(app, passport) {
 		
 	});
 
+	app.put('/put', function (req, res) {
+		console.log('/put req.body');
+		console.log(req.body);
+		if (req.headers.token !== 'null') {
+			db.users.update(
+				{token: req.headers.token, "lifeEvents.date": req.body.date }, 
+				{$set: {"lifeEvents.$.energylevel": req.body.energylevel, "lifeEvents.$.note": req.body.note, "lifeEvents.$.date": req.body.date, "lifeEvents.$.category": req.body.category, "lifeEvents.$.opacity": req.body.opacity, "lifeEvents.$.size": req.body.size}}
+				);
+		};
+		res.send(200, 'modded it!')
+	});
 
 
 	function isLoggedIn(req, res, next) {
