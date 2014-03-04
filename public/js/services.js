@@ -1,7 +1,7 @@
 angular.module('app.services', []) // remember to change this so it can be minified
-	.factory('EventService', function ($http, $window, $cookieStore) {
+	.factory('EventService', function ($http, $window, $cookieStore, CategoryService) {
 		var data = [];
-		var categories = {};
+		// var categories = {};
 		var Auth = {};
 		Auth.token = null;
 		Auth.authLevel = 0;
@@ -37,7 +37,8 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    }
 			})
 			.success(function(dataReceived) {
-				categories.list = dataReceived.categories;
+				CategoryService.categoriesObj.list = dataReceived.categories;
+				// categories.list = dataReceived.categories;
 				var eventsReceived = dataReceived.lifeEvents;
 				for (var i = 0; i < eventsReceived.length; i++) {
 					if (typeof eventsReceived[i].date === 'string') {
@@ -112,7 +113,7 @@ return {
 			},
 			Auth: Auth,
 			allLifeEvents: data,
-			categories: categories
+			// categories: categories
 		}
 	})
 	.factory('FilterService', ['EventService', function (EventService) {
@@ -194,23 +195,23 @@ return {
 			currentFilterObj: currentFilterObj,
 		}
 	}])
-	.factory('CategoryService', [ 'EventService', '$rootScope', function (EventService, $rootScope) {
+	.factory('CategoryService', [function () {
 		var categoriesObj = {};
 		// setTimeout(function() {
 		// 	console.log(EventService.categories);
 		// },2000)
-		$rootScope.$watch(EventService.categories, function() {
-			console.log(EventService.categories);
-		}, true)
+		// $rootScope.$watch(EventService.categories, function() {
+		// 	console.log(EventService.categories);
+		// }, true)
 		
 		// categoriesObj.list = EventService.categories.list;
 		// console.log(categoriesObj.list);
 		categoriesObj.list = [
 		{label:'Choose a category', value: 'noCategoryChosen'},
-		{label:'meal', value: 'meal'},
-		{label: 'exercise', value: 'exercise', size: 'Minutes', opacity: 'Intensity Level, 1-5', show: 'show.exercise'},
-		{label: 'work', value: 'work', size: 'Productivity, 1-5', opacity: 'Stress Level, 1-5, 5 most', show: 'show.work'},
-		{label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality, 1-5, 5 high', show: 'show.sleep'}
+		// {label:'meal', value: 'meal'},
+		// {label: 'exercise', value: 'exercise', size: 'Minutes', opacity: 'Intensity Level, 1-5', show: 'show.exercise'},
+		// {label: 'work', value: 'work', size: 'Productivity, 1-5', opacity: 'Stress Level, 1-5, 5 most', show: 'show.work'},
+		// {label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality, 1-5, 5 high', show: 'show.sleep'}
 		];
 		return {
 			addCategory: function(category) {
