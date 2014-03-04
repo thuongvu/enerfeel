@@ -35,7 +35,8 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			        'token': Auth.token
 			    }
 			})
-			.success(function(eventsReceived) {
+			.success(function(dataReceived) {
+				var eventsReceived = dataReceived.lifeEvents;
 				for (var i = 0; i < eventsReceived.length; i++) {
 					if (typeof eventsReceived[i].date === 'string') {
 						eventsReceived[i].date = new Date(eventsReceived[i].date)

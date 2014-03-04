@@ -28,7 +28,7 @@ module.exports = function(app, passport) {
 			db.users.findOne({'token' : req.headers.token}, function(err, data) {
 				console.log("user Data");
 				console.log(data);
-				res.send(data.lifeEvents);
+				res.json({'lifeEvents': data.lifeEvents, 'categories': data.categories});
 			});
 		};
 	});
