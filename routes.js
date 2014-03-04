@@ -17,7 +17,7 @@ module.exports = function(app, passport) {
 			res.redirect('/');
 	});
 
-	app.get('/get', function(req, res) {
+	app.get('/get', isLoggedIn, function(req, res) {
 		console.log("req.headers");
 		console.log(req.headers);
 		if (req.headers.token !== 'null') {
@@ -49,13 +49,13 @@ module.exports = function(app, passport) {
 
 
 	// // i don't think i need this one because it's an spa. i'll deal with it clientside?
-	// function isLoggedIn(req, res, next) {
-	// 	if (req.isAuthenticated()) {
-	// 		return next();
-	// 	} else {
-	// 		res.redirect('/');
-	// 	};
-	// };
+	function isLoggedIn(req, res, next) {
+		if (req.isAuthenticated()) {
+			return next();
+		} else {
+			res.redirect('/login');
+		};
+	};
 
 
 };
