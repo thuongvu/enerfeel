@@ -2,6 +2,10 @@ var User = require('./models/user');
 var mongojs = require('mongojs');
 var db = mongojs('enerfeel', ['users']);
 module.exports = function(app, passport) {
+	app.get("/", function (req,res) {
+		res.render("index.ejs");
+	})
+
 	app.get('/auth', passport.authenticate('facebook'));
 
 	// this is my way, because i need to do it this way for an SPA
@@ -34,7 +38,7 @@ module.exports = function(app, passport) {
 		res.redirect('/');
 	});
 
-	app.del('/delete', function (req, res) {
+	app.del('/delete', isLoggedIn, function (req, res) {
 		console.log("/delete req.headers");
 		console.log(req.headers);
 
@@ -47,7 +51,7 @@ module.exports = function(app, passport) {
 		
 	});
 
-	app.post('/post', function (req, res) {
+	app.post('/post', isLoggedIn, function (req, res) {
 		console.log('/post req.body');
 		console.log(req.body);
 
@@ -61,7 +65,7 @@ module.exports = function(app, passport) {
 		
 	});
 
-	app.put('/put', function (req, res) {
+	app.put('/put', isLoggedIn, function (req, res) {
 		console.log('/put req.body');
 		console.log(req.body);
 		if (req.headers.token !== 'null') {
