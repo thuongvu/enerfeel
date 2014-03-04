@@ -12,7 +12,10 @@ module.exports = function(app, passport) {
 			// console.log(res);
 
 			// res.redirect('/')
-			res.cookie('lololol')
+			res.cookie('user', JSON.stringify({
+				'token': req.user.token,
+				'authLevel': 1,
+			}));
 
 			res.redirect('/');
 			res.send("blah")

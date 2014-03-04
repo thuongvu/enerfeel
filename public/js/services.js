@@ -1,5 +1,16 @@
 angular.module('app.services', []) // remember to change this so it can be minified
-	.factory('EventService', function ($http, $window) {
+	.factory('EventService', function ($http, $window, $cookieStore) {
+		var Auth = {};
+		Auth.token = null;
+		Auth.authLevel = 0;
+		var cookie = $cookieStore.get('user');
+		if (cookie) {
+			Auth = cookie;
+			$cookieStore.remove('user');
+		} else {
+			console.log("no cookie yet");
+		}
+
 		var data = [
 		 // {"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
 		 // {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
@@ -160,6 +171,9 @@ angular.module('app.services', []) // remember to change this so it can be minif
 
 				return getData(callback);
 			},
+			login: function() {
+				
+			},
 // CHANGES B
 // MAKE A LOGIN FUNCTION SPECIFICALLY FOR LOGGING IN AND GETTING THE COOKIE/DESTROYING IT
 // THEN VALUE FROM COOKIE SETS THE STATE ON AN OBJECT
@@ -167,6 +181,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 // THEN IT WILL HAVE TOKEN AS A STRING
 // ON ANY OF THESE REQUESTS, IT WILL USE THAT TOKEN AS A 2ND PARAM IN EACH REQUEST
 			// ISLOGGEDIN : USERSTATE
+			Auth: Auth,
 			allLifeEvents: data
 		}
 	})
