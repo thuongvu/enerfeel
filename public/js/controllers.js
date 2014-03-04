@@ -25,4 +25,8 @@ angular.module('app.controllers', [])
 			$scope.greeting = "Hello " + $scope.name;
 		}
 
+		$scope.login = function() {
+			EventService.login();
+		}
+
 	}])

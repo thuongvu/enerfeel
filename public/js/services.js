@@ -6,6 +6,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		var cookie = $cookieStore.get('user');
 		if (cookie) {
 			Auth = cookie;
+			console.log(Auth);
 			$cookieStore.remove('user');
 		} else {
 			console.log("no cookie yet");
@@ -56,7 +57,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			// }).success(function(info) {
 			// 	console.log(info);
 			// })
-		$window.location.href = '/auth/facebook/callback';
+		// $window.location.href = '/auth/facebook/callback';
 
 			// $http({
 			// 	method: 'GET',
@@ -172,7 +173,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				return getData(callback);
 			},
 			login: function() {
-				
+				$window.location.href = '/auth/facebook/callback';
 			},
 // CHANGES B
 // MAKE A LOGIN FUNCTION SPECIFICALLY FOR LOGGING IN AND GETTING THE COOKIE/DESTROYING IT
