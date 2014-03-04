@@ -3,7 +3,13 @@ angular.module('app.controllers', [])
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
 		$scope.loadData = function() {
-			EventService.getData();
+			EventService.getData(function(data) {
+				for (var i = 0; i < data.length; i++) {
+					$scope.lifeEventsInView.push(data[i]);
+				};
+				$scope.filterService.sortTime($scope.lifeEventsInView);
+				console.log($scope.lifeEventsInView);
+			});
 			// EventService.getData(function(newData) {
 			// 	for (var i = 0; i < newData.length; i++) {
 			// 		$scope.lifeEventsInView.push(newData[i]);

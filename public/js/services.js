@@ -104,20 +104,22 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			        'token': Auth.token
 			    },
 			})
-			.success(function(info) {
-				console.log(info);
+			.success(function(eventsReceived) {
+				// console.log(eventsReceived);
 				// var newData =  info[0].lifeEvents;
 				// var userID = info[0]._id;
 				// console.log(userID);
 				// // console.log(data[0].lifeEvents);
 
-				// for (var i = 0; i < newData.length; i++) {
-				// 	if (typeof newData[i].date === 'string') {
-				// 		newData[i].date = new Date(newData[i].date)
-				// 	};
-				// 	data.push(newData[i]);
-				// };
-				// callback(newData);
+				for (var i = 0; i < eventsReceived.length; i++) {
+					if (typeof eventsReceived[i].date === 'string') {
+						eventsReceived[i].date = new Date(eventsReceived[i].date)
+					};
+					data.push(eventsReceived[i]);
+				};
+				// console.log(data);
+				callback(data);
+				// callback(eventsReceived);
 			});
 
 
