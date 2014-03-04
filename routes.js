@@ -8,7 +8,6 @@ module.exports = function(app, passport) {
 
 	app.get('/auth', passport.authenticate('facebook'));
 
-	// this is my way, because i need to do it this way for an SPA
 	app.get('/auth/facebook/callback', 
 		passport.authenticate('facebook'), function(req, res) {
 			console.log("/auth/facebook/callback req.user");
@@ -76,6 +75,26 @@ module.exports = function(app, passport) {
 		};
 		res.send(200, 'modded it!')
 	});
+
+	// ----------------------
+
+	app.post('/post/category', isLoggedIn, function (req, res) {
+		console.log('/post/category req.body');
+		console.log(req.body);
+
+		if (req.headers.token !== 'null') {
+			var obj = req.body;
+			db.users.update(
+				{token: req.headers.token},
+				{$push: {categories: obj}}, 
+				function(err, data) {
+					console.log(data);
+				}
+			);
+		};
+		
+	});
+
 
 
 	function isLoggedIn(req, res, next) {

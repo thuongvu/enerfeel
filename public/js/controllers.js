@@ -13,7 +13,6 @@ angular.module('app.controllers', [])
 						$scope.lifeEventsInView.push(data[i]);
 					};
 					$scope.filterService.sortTime($scope.lifeEventsInView);
-					console.log(EventService.categories);
 				});
 
 			};

@@ -1,7 +1,11 @@
 angular.module('app.services', []) // remember to change this so it can be minified
-	.factory('EventService', function ($http, $window, $cookieStore, CategoryService) {
+	// .factory('Token', ['EventService', function (EventService) {
+	// 	var token = {};
+
+	// }])
+	.factory('EventService', function ($http, $window, $cookieStore) {
 		var data = [];
-		// var categories = {};
+		var categories = {};
 		var Auth = {};
 		Auth.token = null;
 		Auth.authLevel = 0;
@@ -37,8 +41,8 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    }
 			})
 			.success(function(dataReceived) {
-				CategoryService.categoriesObj.list = dataReceived.categories;
-				// categories.list = dataReceived.categories;
+				// CategoryService.categoriesObj.list = dataReceived.categories;
+				categories.list = dataReceived.categories;
 				var eventsReceived = dataReceived.lifeEvents;
 				for (var i = 0; i < eventsReceived.length; i++) {
 					if (typeof eventsReceived[i].date === 'string') {
@@ -113,7 +117,7 @@ return {
 			},
 			Auth: Auth,
 			allLifeEvents: data,
-			// categories: categories
+			categories: categories
 		}
 	})
 	.factory('FilterService', ['EventService', function (EventService) {
@@ -195,24 +199,40 @@ return {
 			currentFilterObj: currentFilterObj,
 		}
 	}])
-	.factory('CategoryService', [function () {
+	.factory('CategoryService', ['EventService', '$rootScope', '$http', function (EventService, $rootScope, $http) {
 		var categoriesObj = {};
-		// setTimeout(function() {
-		// 	console.log(EventService.categories);
-		// },2000)
-		// $rootScope.$watch(EventService.categories, function() {
-		// 	console.log(EventService.categories);
-		// }, true)
+		categoriesObj.list = [ {label:'Choose a category', value: 'noCategoryChosen'} ];
+
+		$rootScope.$watch(EventService.categories, function() {
+			setTimeout(function() {
+				if (EventService.categories.list) {
+					categoriesObj.list = EventService.categories.list;
+					// console.log(EventService.categories.list);
+					console.log(categoriesObj.list);
+				};
+			},100);
+		}, true);
 		
-		// categoriesObj.list = EventService.categories.list;
-		// console.log(categoriesObj.list);
-		categoriesObj.list = [
-		{label:'Choose a category', value: 'noCategoryChosen'},
-		// {label:'meal', value: 'meal'},
-		// {label: 'exercise', value: 'exercise', size: 'Minutes', opacity: 'Intensity Level, 1-5', show: 'show.exercise'},
-		// {label: 'work', value: 'work', size: 'Productivity, 1-5', opacity: 'Stress Level, 1-5, 5 most', show: 'show.work'},
-		// {label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality, 1-5, 5 high', show: 'show.sleep'}
-		];
+		function addCategoryXHR(obj) {
+			// console.log(EventService.Auth);
+			// console.log(EventService.Auth.token);
+			if (EventService.Auth.authLevel > 0) {
+				$http({
+				    method: 'post',
+				    url: '/post/category',
+				    headers: {
+				        'Content-type': 'application/json',
+				        'token': EventService.Auth.token
+				    },
+				    data: obj
+				}).success(function(returnedData) {
+					console.log(returnedData);
+					// return returnedData;
+				});
+			};
+			
+		};
+
 		return {
 			addCategory: function(category) {
 				if (typeof category === 'object') {
@@ -227,6 +247,7 @@ return {
 					};
 					// console.log(obj);
 					categoriesObj.list.push(obj);
+					addCategoryXHR(obj);
 				};
 				return categoriesObj.list;
 			},
