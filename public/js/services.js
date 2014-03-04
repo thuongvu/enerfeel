@@ -1,6 +1,7 @@
 angular.module('app.services', []) // remember to change this so it can be minified
 	.factory('EventService', function ($http, $window, $cookieStore) {
 		var data = [];
+		var categories = {};
 		var Auth = {};
 		Auth.token = null;
 		Auth.authLevel = 0;
@@ -36,6 +37,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    }
 			})
 			.success(function(dataReceived) {
+				categories.list = dataReceived.categories;
 				var eventsReceived = dataReceived.lifeEvents;
 				for (var i = 0; i < eventsReceived.length; i++) {
 					if (typeof eventsReceived[i].date === 'string') {
@@ -109,7 +111,8 @@ return {
 				$window.location.href = '/auth/facebook/callback';
 			},
 			Auth: Auth,
-			allLifeEvents: data
+			allLifeEvents: data,
+			categories: categories
 		}
 	})
 	.factory('FilterService', ['EventService', function (EventService) {
@@ -191,15 +194,17 @@ return {
 			currentFilterObj: currentFilterObj,
 		}
 	}])
-	.factory('CategoryService', [function () {
+	.factory('CategoryService', [ 'EventService', '$rootScope', function (EventService, $rootScope) {
 		var categoriesObj = {};
-		// categoriesObj.list = [
-		// {label:'Choose a category', value: 'noCategoryChosen'},
-		// {label:'meal', value: 'meal'},
-		// {label: 'exercise', value: 'exercise'},
-		// {label: 'work', value: 'work'},
-		// {label: 'sleep', value: 'sleep'}
-		// ];
+		// setTimeout(function() {
+		// 	console.log(EventService.categories);
+		// },2000)
+		$rootScope.$watch(EventService.categories, function() {
+			console.log(EventService.categories);
+		}, true)
+		
+		// categoriesObj.list = EventService.categories.list;
+		// console.log(categoriesObj.list);
 		categoriesObj.list = [
 		{label:'Choose a category', value: 'noCategoryChosen'},
 		{label:'meal', value: 'meal'},

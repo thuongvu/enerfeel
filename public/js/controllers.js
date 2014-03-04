@@ -13,8 +13,9 @@ angular.module('app.controllers', [])
 						$scope.lifeEventsInView.push(data[i]);
 					};
 					$scope.filterService.sortTime($scope.lifeEventsInView);
-					console.log($scope.lifeEventsInView);
+					console.log(EventService.categories);
 				});
+
 			};
 		};
 		// if user is now logged in, invoke $scope.loadData to fill the view
