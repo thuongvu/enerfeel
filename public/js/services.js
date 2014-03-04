@@ -1,35 +1,18 @@
 angular.module('app.services', []) // remember to change this so it can be minified
 	.factory('EventService', function ($http, $window, $cookieStore) {
+		var data = [];
 		var Auth = {};
 		Auth.token = null;
 		Auth.authLevel = 0;
+
 		var cookie = $cookieStore.get('user');
 		if (cookie) {
 			Auth = cookie;
 			console.log(Auth);
 			$cookieStore.remove('user');
-		} else {
-			console.log("no cookie yet");
-		}
-
-		var data = [
-		 // {"date": new Date(2014, 0, 13, 15), "energylevel":3, "note":"last month, ate food", "category": "meal", "opacity": 1, "size": 1},
-		 // {"date": new Date(2014, 1, 13, 15), "energylevel":2, "note":"ate more food", "category": "meal", "opacity": 2, "size": 2},
-		 // {"date": new Date(2014, 1, 14, 18), "energylevel":4, "note": "ran", "category": "exercise", "opacity": 3, "size": 5}, 
-		 // {"date": new Date(2014, 1, 15, 19), "energylevel":3, "note":"swam", "category": "exercise", "opacity": 4, "size": 15},
-		 // {"date": new Date(2014, 1, 16, 4), "energylevel":1, "note":"ate snack", "category": "exercise", "opacity": 5, "size":10},
-		 // {"date": new Date(2014, 1, 16, 15), "energylevel":4, "note":"ate snack", "category": "meal", "opacity": 1, "size": 5},
-		 // {"date": new Date(), "energylevel":4, "note":"slept for a long time", "category": "sleep", "opacity": 1, "size": 10},
-		 ];
+		};
 
 		function postData(sampleData) {
-			// $http.post('/post', sampleData).success(function(data) {
-			// 	console.log("this comes from postData")
-			// 	console.log(data);
-			// 	return data;
-			// });
-
-
 			$http({
 			    method: 'post',
 			    url: '/post',
@@ -39,25 +22,18 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    },
 			    data: sampleData
 			}).success(function(returnedData) {
-				console.log(returnedData);
 				return returnedData;
 			});
-
-
 		};
+
 		function getData(callback) {
-// CHANGES A
-// GETDATA GETS BACK DATA
-// IF STATEMENT TO FIGURE OUT IF USER IS LOGGED IN OR NOT
-// IF NOT LOGGED IN, ASK USER TO LOG IN
-// JSON REQUEST W/ DATA FROM COOKIE
 			$http({
 			    method: 'get',
 			    url: '/get',
 			    headers: {
 			        'Content-type': 'application/json',
 			        'token': Auth.token
-			    },
+			    }
 			})
 			.success(function(eventsReceived) {
 				for (var i = 0; i < eventsReceived.length; i++) {
@@ -69,9 +45,8 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				callback(data);
 			});
 		};
+
 		function del(event) {
-			console.log("deleting event w/ http delete request: ");
-			console.log(event);
 			$http({
 			    method: 'DELETE',
 			    url: '/delete',
@@ -81,10 +56,10 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    },
 			    data: event
 			}).success(function(status) {
-				console.log(status);
+
 			})
 		};
-		function mod (event) {
+		function mod(event) {
 			$http({
 			    method: 'PUT',
 			    url: '/put',
@@ -101,21 +76,16 @@ angular.module('app.services', []) // remember to change this so it can be minif
 
 return {
 			deleteLifeEvent: function (event) {
-				console.log(event)
-				console.log("deleteLifeEvent from service")
 				del(event);
 				for (var i = 0; i < data.length; i++) {
 					if (event.date === data[i].date) {
-						console.log(data.length)
-						console.log(event.date + " IS THE ONE");
 						data.splice(i, 1);
-						console.log(data.length)
 						break;
 					};
 				};
 
 			},
-			updateLifeEvent: function(event) { // i think this is redundant for angular, but it will be important when there's a REST api
+			updateLifeEvent: function(event) { 
 				mod(event);
 				for (var i = 0; i < data.length; i++) {
 					if (event.date === data[i].date) {
@@ -126,38 +96,17 @@ return {
 			},
 			addLifeEvent: function(eventData) {
 				data.push(eventData);
-				// console.log(eventData);
-				// console.log("what")
-				// $http.post('/post', eventData).success(function(data) {
-				// 	console.log(data);
-				// })
 				postData(eventData);
 			},
 			postData: function(sampleData) {
-				// $http.post('/post', sampleData).success(function(data) {
-				// 	// console.log(data);
-				// 	return data;
-				// });
 				return postData(sampleData);
 			},
 			getData: function(callback) {
-				// $http.get('/get').success(function(data) {
-				// 	console.log(data)
-				// 	return data;
-				// });
-
 				return getData(callback);
 			},
 			login: function() {
 				$window.location.href = '/auth/facebook/callback';
 			},
-// CHANGES B
-// MAKE A LOGIN FUNCTION SPECIFICALLY FOR LOGGING IN AND GETTING THE COOKIE/DESTROYING IT
-// THEN VALUE FROM COOKIE SETS THE STATE ON AN OBJECT
-// ADD A NEW OBJECT CALLED USERSTATE, WILL HAVE ISAUTHENTICATED TRUE
-// THEN IT WILL HAVE TOKEN AS A STRING
-// ON ANY OF THESE REQUESTS, IT WILL USE THAT TOKEN AS A 2ND PARAM IN EACH REQUEST
-			// ISLOGGEDIN : USERSTATE
 			Auth: Auth,
 			allLifeEvents: data
 		}
@@ -179,8 +128,6 @@ return {
 		};
 
 		function filterTimeDuration(timeAmount, arr) {
-			console.log("EventService.allLifeEvents")
-			console.log(EventService.allLifeEvents);
 			for (prop in EventService.allLifeEvents) {
 				var obj = EventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
