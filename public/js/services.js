@@ -37,6 +37,8 @@ angular.module('app.services', []) // remember to change this so it can be minif
 // IF NOT LOGGED IN, ASK USER TO LOG IN
 // JSON REQUEST W/ DATA FROM COOKIE
 
+
+
 			// $http.get('/get').success(function(newData) {
 			// 	// console.log(newData);
 			// 	for (var i = 0; i < newData.length; i++) {
@@ -91,6 +93,32 @@ angular.module('app.services', []) // remember to change this so it can be minif
 // 				};
 // 				callback(newData);
 // 			});
+
+
+
+			$http({
+			    method: 'get',
+			    url: '/get',
+			    headers: {
+			        'Content-type': 'application/json',
+			        'token': Auth.token
+			    },
+			})
+			.success(function(info) {
+				console.log(info);
+				// var newData =  info[0].lifeEvents;
+				// var userID = info[0]._id;
+				// console.log(userID);
+				// // console.log(data[0].lifeEvents);
+
+				// for (var i = 0; i < newData.length; i++) {
+				// 	if (typeof newData[i].date === 'string') {
+				// 		newData[i].date = new Date(newData[i].date)
+				// 	};
+				// 	data.push(newData[i]);
+				// };
+				// callback(newData);
+			});
 
 
 		};

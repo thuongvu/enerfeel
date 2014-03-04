@@ -1,3 +1,6 @@
+var User = require('./models/user');
+var mongojs = require('mongojs');
+var db = mongojs('enerfeel', ['users']);
 module.exports = function(app, passport) {
 	app.get('/auth', passport.authenticate('facebook'));
 
@@ -29,6 +32,19 @@ module.exports = function(app, passport) {
 			// make a mongodb query w/ id
 			// send user data
 	});
+
+	app.get('/get', function(req, res) {
+		console.log("req.headers");
+		console.log(req.headers);
+		db.users.findOne({'token' : req.headers.token}, function(err, data) {
+			console.log("user Data");
+			console.log(data);
+			res.send(data.lifeEvents);
+		});
+		// User.findOne({'token' : req.headers.token}, function(err, user) {
+		// 	console.log(user);
+		// });
+	})
 
 
 	app.get('/logout', function (req, res) {
