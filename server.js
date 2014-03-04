@@ -22,7 +22,27 @@ app.set("port", 8080);
 app.set("views", __dirname + "/views");
 app.use(express.static("public", __dirname + "/public"));
 
-app.use(express.cookieParser());
+// csrf 
+var csrfValue = function(req) {
+	var token = (req.body && req.body._csrf) 
+	|| (req.query & req.query._csrf) 
+	|| (req.headers['x-csrf-token']) 
+	|| (req.headers['x-xsrf-token']);
+	return token;
+};
+
+app.use(express.cookieParser('mysecretheresdfsdf'));
+app.use(express.cookieSession());
+app.use(express.csrf()); 
+
+app.use(express.csrf({value: csrfValue}));
+app.use(function(req, res, next) {
+	res.cookie('XSRF-TOKEN', req.session._csrf);
+	next();
+});
+// ----- csrf end
+
+// app.use(express.cookieParser());  // commented out this because i do it up there already
 app.use(express.session({secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough'}));
 app.use(passport.initialize());
 app.use(passport.session());
