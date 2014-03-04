@@ -36,66 +36,6 @@ angular.module('app.services', []) // remember to change this so it can be minif
 // IF STATEMENT TO FIGURE OUT IF USER IS LOGGED IN OR NOT
 // IF NOT LOGGED IN, ASK USER TO LOG IN
 // JSON REQUEST W/ DATA FROM COOKIE
-
-
-
-			// $http.get('/get').success(function(newData) {
-			// 	// console.log(newData);
-			// 	for (var i = 0; i < newData.length; i++) {
-			// 		if (typeof newData[i].date === 'string') {
-			// 			newData[i].date = new Date(newData[i].date)
-			// 		};
-			// 		data.push(newData[i]);
-			// 	};
-			// 	callback(newData);
-			// });
-
-			// TEMPORARY TEST
-			// $http({
-			//     method: 'get',
-			//     url: '/auth/facebook/callback'
-			//     // headers: {'Content-type': 'application/json'},
-			//     // data: {"id": "ID YO"} 	
-			// }).success(function(info) {
-			// 	console.log(info);
-			// })
-		// $window.location.href = '/auth/facebook/callback';
-
-			// $http({
-			// 	method: 'GET',
-			// 	url: '/auth/facebook/callback',
-			// }).success(function(data) {
-			// 	console.log(data);
-			// });
-
-
-
-// 			$http({
-// 			    method: 'POST',
-// 			    url: '/get',
-// 			    headers: {
-// 			        'Content-type': 'application/json'
-// 			    },
-// 			    data: {"id": "ID YO"} 	
-// // ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID ID 											
-// 			})
-// 			.success(function(info) {
-// 				var newData =  info[0].lifeEvents;
-// 				var userID = info[0]._id;
-// 				console.log(userID);
-// 				// console.log(data[0].lifeEvents);
-
-// 				for (var i = 0; i < newData.length; i++) {
-// 					if (typeof newData[i].date === 'string') {
-// 						newData[i].date = new Date(newData[i].date)
-// 					};
-// 					data.push(newData[i]);
-// 				};
-// 				callback(newData);
-// 			});
-
-
-
 			$http({
 			    method: 'get',
 			    url: '/get',
@@ -105,21 +45,13 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    },
 			})
 			.success(function(eventsReceived) {
-				// console.log(eventsReceived);
-				// var newData =  info[0].lifeEvents;
-				// var userID = info[0]._id;
-				// console.log(userID);
-				// // console.log(data[0].lifeEvents);
-
 				for (var i = 0; i < eventsReceived.length; i++) {
 					if (typeof eventsReceived[i].date === 'string') {
 						eventsReceived[i].date = new Date(eventsReceived[i].date)
 					};
 					data.push(eventsReceived[i]);
 				};
-				// console.log(data);
 				callback(data);
-				// callback(eventsReceived);
 			});
 
 
