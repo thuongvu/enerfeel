@@ -35,20 +35,21 @@ module.exports = function(app, passport) {
 		res.redirect('/'); // can i even do that in an spa? more likely that i send a json w/ data
 	});
 
+	app.del('/delete', function (req, res) {
+		console.log("req.headers");
+		console.log(req.headers);
+
+		if (req.headers.token !== 'null') {
+			db.users.update(
+				{token: req.headers.token}, {$pull: {'lifeEvents': {'date': req.body.date}}}
+				);
+			res.send(200, "maybeeee")
+		};
+		
+	});
 
 
 
-
-
-
-	// TEST AN ENDPOINT USING ISLOGGEDIN <------------------------------ ******
-
-
-
-
-
-
-	// // i don't think i need this one because it's an spa. i'll deal with it clientside?
 	function isLoggedIn(req, res, next) {
 		if (req.isAuthenticated()) {
 			return next();

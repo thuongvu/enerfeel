@@ -66,19 +66,19 @@ app.post('/post', function (req, res) {
 	);
 });
 
-app.del('/delete', function (req, res) {
-	console.log(req.body);
-	// db.lifeEventsCollection.remove({_id: ObjectId(req.body._id)});
+// app.del('/delete', function (req, res) {
+// 	console.log(req.body);
+// 	// db.lifeEventsCollection.remove({_id: ObjectId(req.body._id)});
 
-	// client will send TWO objects. 1. objectId of the user. 2. lifeEvent Object w/ data TO DELETE
-	db.lifeEventsCollection.update(
-		{_id: ObjectId("530fb759b3276947eb23894d")}, {$pull: {'lifeEvents': {'date': req.body.date}}}
-		);
+// 	// client will send TWO objects. 1. objectId of the user. 2. lifeEvent Object w/ data TO DELETE
+// 	db.lifeEventsCollection.update(
+// 		{_id: ObjectId("530fb759b3276947eb23894d")}, {$pull: {'lifeEvents': {'date': req.body.date}}}
+// 		);
 
 
-	res.send(200, "maybeeee")
-	// res.send(300, "ERROR")
-});
+// 	res.send(200, "maybeeee")
+// 	// res.send(300, "ERROR")
+// });
 
 app.put('/put', function (req, res) {
 	console.log(req.body);
