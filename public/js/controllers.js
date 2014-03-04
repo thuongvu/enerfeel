@@ -28,12 +28,6 @@ angular.module('app.controllers', [])
 		$scope.category = {};
 		$scope.category.setTo = 'null';
 
-
-		$scope.name = "Thuongvu";
-		$scope.sayHello = function() {
-			$scope.greeting = "Hello " + $scope.name;
-		}
-
 		$scope.login = function() {
 			EventService.login();
 		}

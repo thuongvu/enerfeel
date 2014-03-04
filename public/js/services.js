@@ -23,11 +23,26 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		 ];
 
 		function postData(sampleData) {
-			$http.post('/post', sampleData).success(function(data) {
-				console.log("this comes from postData")
-				console.log(data);
-				return data;
+			// $http.post('/post', sampleData).success(function(data) {
+			// 	console.log("this comes from postData")
+			// 	console.log(data);
+			// 	return data;
+			// });
+
+
+			$http({
+			    method: 'post',
+			    url: '/post',
+			    headers: {
+			        'Content-type': 'application/json',
+			        'token': Auth.token
+			    },
+			    data: sampledata
+			}).success(function(returnedData) {
+				console.log(returnedData);
+				return returnedData;
 			});
+
 
 		};
 		function getData(callback) {
@@ -53,20 +68,16 @@ angular.module('app.services', []) // remember to change this so it can be minif
 				};
 				callback(data);
 			});
-
-
 		};
 		function del(event) {
-			console.log("this is the event");
+			console.log("deleting event w/ http delete request: ");
 			console.log(event);
-			// $http.delete('/delete', {data: {foo: "bar"}}).success(function(status) {
-			// 	console.log(status)
-			// });
 			$http({
 			    method: 'DELETE',
 			    url: '/delete',
 			    headers: {
-			        'Content-type': 'application/json'
+			        'Content-type': 'application/json',
+			        'token': Auth.token
 			    },
 			    data: event
 			}).success(function(status) {
@@ -78,14 +89,17 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    method: 'PUT',
 			    url: '/put',
 			    headers: {
-			        'Content-type': 'application/json'
+			        'Content-type': 'application/json',
+			        'token': Auth.token
 			    },
 			    data: event
 			}).success(function(status) {
 				console.log(status);
 			})
 		};
-		return {
+		
+
+return {
 			deleteLifeEvent: function (event) {
 				console.log(event)
 				console.log("deleteLifeEvent from service")
