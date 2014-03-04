@@ -270,7 +270,9 @@ return {
 			},
 			deleteCategory: function (category, callback) {
 				console.log(category);
-				if (typeof category === 'object') {
+				if ((category.label !== 'meal') && (category.label !== 'exercise') 
+					&& (category.label !== 'work')  && (category.label !== 'sleep')
+					&& (category.label !== 'Choose a category')) {
 					for (var i = 0; i < categoriesObj.list.length; i++) {
 						if (categoriesObj.list[i].label === category.label) {
 							categoriesObj.list.splice(i, 1);
@@ -279,6 +281,8 @@ return {
 					};
 					DeleteCategoryXHR(category, callback);
 					return categoriesObj.list;
+				} else {
+					console.log("can't delete a default")
 				};
 			},
 			categoriesObj: categoriesObj
