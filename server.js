@@ -67,6 +67,19 @@ app.use(function(req, res, next) {
 });
 // ----- csrf end
 
+
+// force ssl
+app.use(function(req, res, next) {
+  if(!req.secure) {
+  	console.log(req.get('Host'));
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  next();
+});
+
+
+
+
 app.use(express.session({
 	secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough'
 	, cookie: {secure: true}
@@ -75,6 +88,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 require('./routes.js')(app, passport);
+
+
+
 
 http.listen(app.get("port"), function () {
 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));

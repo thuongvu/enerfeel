@@ -2,6 +2,12 @@ var User = require('./models/user');
 var mongojs = require('mongojs');
 var db = mongojs('enerfeel', ['users']);
 module.exports = function(app, passport) {
+	// http.get('*', function(req, res) {
+	// 	console.log(req.url)
+	// 	res.redirect('https://localhost:8081' + req.url);
+	// })
+
+
 	app.get("/", function (req,res) {
 		res.render("index.ejs");
 	})
