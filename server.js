@@ -11,7 +11,6 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var configDB = require('./config/database.js');
 var db = mongojs('enerfeel', ['lifeEventsCollection']);
-// var configOptions = require('../enerfeelhidden/configOptions');
 var ObjectId = mongojs.ObjectId;
 mongoose.connect(configDB.url);
 require ('./config/passport')(passport);
@@ -23,17 +22,31 @@ app.set("port", 8080);
 app.set("views", __dirname + "/views");
 app.use(express.static("public", __dirname + "/public"));
 
-// ssl ---------
+// ssl DEVELOPMENT start
+// var options = {
+// 	key: fs.readFileSync('../enerfeelhidden/development/server.key'),
+// 	cert: fs.readFileSync('../enerfeelhidden/development/server.crt'),
+// 	ca: fs.readFileSync('../enerfeelhidden/development/ca.crt'),
+// 	requestCert: true,
+// 	rejectUnauthorized: false,
+// 	passphrase: process.env.PASSPHRASE
+// };
+// var https = require("https").createServer(options, app);
+// ssl DEVELOPMENT end 
+
+// ssl PRODUCTION start
 var options = {
-	key: fs.readFileSync('../enerfeelhidden/server.key'),
-	cert: fs.readFileSync('../enerfeelhidden/server.crt'),
-	ca: fs.readFileSync('../enerfeelhidden/ca.crt'),
+	key: fs.readFileSync('../enerfeelhidden/production/myserver.key'),
+	cert: fs.readFileSync('../enerfeelhidden/production/keys/productivejournal_com.crt'),
+	ca: fs.readFileSync('../enerfeelhidden/production/keys/productivejournal_com.ca-bundle'),
 	requestCert: true,
 	rejectUnauthorized: false,
-	passphrase: process.env.PASSPHRASE
+	// passphrase: process.env.PASSPHRASE
 };
 var https = require("https").createServer(options, app);
-// ssl end -------
+
+// ssl PRODUCTION end
+
 
 // csrf 
 var csrfValue = function(req) {
