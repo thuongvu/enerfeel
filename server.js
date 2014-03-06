@@ -22,6 +22,17 @@ app.set("port", 8080);
 app.set("views", __dirname + "/views");
 app.use(express.static("public", __dirname + "/public"));
 
+// ssl ---------
+var options = {
+	key: fs.readFileSync('../enerfeelhidden/server.key'),
+	cert: fs.readFileSync('../enerfeelhidden/server.crt'),
+	ca: fs.readFileSync('../enerfeelhidden/ca.crt'),
+	requestCert: true,
+	rejectUnauthorized: false,
+};
+var https = require("https").createServer(options, app);
+// ssl end -------
+
 // csrf 
 var csrfValue = function(req) {
 	var token = (req.body && req.body._csrf) 
@@ -33,7 +44,6 @@ var csrfValue = function(req) {
 
 app.use(express.cookieParser('mysecretheresdfsdf'));
 app.use(express.cookieSession());
-// app.use(express.csrf()); // this is unneeded, delete, it was causing a csrf to go twice w/ no value, so no way to use it
 
 app.use(express.csrf({value: csrfValue}));
 app.use(function(req, res, next) {
@@ -42,7 +52,6 @@ app.use(function(req, res, next) {
 });
 // ----- csrf end
 
-// app.use(express.cookieParser());  // commented out this because i do it up there already
 app.use(express.session({secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough'}));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -52,3 +61,7 @@ require('./routes.js')(app, passport);
 http.listen(app.get("port"), function () {
 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));
 });
+
+https.listen(8081, function() {
+	console.log("https server is up and running")
+})
