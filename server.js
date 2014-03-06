@@ -29,7 +29,7 @@ var options = {
 	ca: fs.readFileSync('../enerfeelhidden/development/ca.crt'),
 	// requestCert: true,
 	// rejectUnauthorized: false,
-	// passphrase: process.env.PASSPHRASE
+	passphrase: process.env.PASSPHRASE
 };
 var https = require("https").createServer(options, app);
 // ssl DEVELOPMENT end 
@@ -73,10 +73,10 @@ app.use(passport.session());
 app.use(flash());
 require('./routes.js')(app, passport);
 
-// http.listen(app.get("port"), function () {
-// 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));
-// });
+http.listen(app.get("port"), function () {
+	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));
+});
 
-https.listen(8080, function() {
+https.listen(8081, function() {
 	console.log("https server is up and running")
 })
