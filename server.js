@@ -22,28 +22,28 @@ app.set("port", 8080);
 app.set("views", __dirname + "/views");
 app.use(express.static("public", __dirname + "/public"));
 
-// ssl DEVELOPMENT start
-var options = {
-	key: fs.readFileSync('../enerfeelhidden/development/server.key'),
-	cert: fs.readFileSync('../enerfeelhidden/development/server.crt'),
-	ca: fs.readFileSync('../enerfeelhidden/development/ca.crt'),
-	// requestCert: true,
-	// rejectUnauthorized: false,
-	passphrase: process.env.PASSPHRASE
-};
-var https = require("https").createServer(options, app);
-// ssl DEVELOPMENT end 
-
-// ssl PRODUCTION start
+// // ssl DEVELOPMENT start
 // var options = {
-// 	key: fs.readFileSync('../enerfeelhidden/production/myserver.key'),
-// 	cert: fs.readFileSync('../enerfeelhidden/production/keys/productivejournal_com.crt'),
-// 	ca: fs.readFileSync('../enerfeelhidden/production/keys/productivejournal_com.ca-bundle'),
-// 	requestCert: true,
-// 	rejectUnauthorized: false,
-// 	// passphrase: process.env.PASSPHRASE
+// 	key: fs.readFileSync('../enerfeelhidden/development/server.key'),
+// 	cert: fs.readFileSync('../enerfeelhidden/development/server.crt'),
+// 	ca: fs.readFileSync('../enerfeelhidden/development/ca.crt'),
+// 	// requestCert: true,
+// 	// rejectUnauthorized: false,
+// 	passphrase: process.env.PASSPHRASE
 // };
 // var https = require("https").createServer(options, app);
+// // ssl DEVELOPMENT end 
+
+// ssl PRODUCTION start
+var options = {
+	key: fs.readFileSync('../enerfeelhidden/production/myserver.key'),
+	cert: fs.readFileSync('../enerfeelhidden/production/keys/productivejournal_com.crt'),
+	ca: fs.readFileSync('../enerfeelhidden/production/keys/productivejournal_com.ca-bundle'),
+	requestCert: true,
+	rejectUnauthorized: false,
+	// passphrase: process.env.PASSPHRASE
+};
+var https = require("https").createServer(options, app);
 
 // ssl PRODUCTION end
 
