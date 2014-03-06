@@ -67,7 +67,10 @@ app.use(function(req, res, next) {
 });
 // ----- csrf end
 
-app.use(express.session({secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough'}));
+app.use(express.session({
+	secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough'
+	, cookie: {secure: true}
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
