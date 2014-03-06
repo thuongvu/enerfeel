@@ -213,7 +213,7 @@ return {
 				if (EventService.categories.list) {
 					categoriesObj.list = EventService.categories.list;
 				};
-			},100);
+			},500);
 		}, true);
 		
 		function addCategoryXHR(obj) {

@@ -34,10 +34,6 @@ var https = require("https").createServer(options, app);
 
 // force ssl
 app.use(function(req, res, next) {
-	// console.log("req.get('Host')");
-	// console.log(req.get('Host'));
-	// console.log("req.url");
-	// console.log(req.url);
   if(!req.secure) {
     // return res.redirect(['https://', req.get('Host'), req.url].join(''));
     // return res.redirect(['https://', 'localhost:8081', req.url].join('')); 
@@ -45,8 +41,6 @@ app.use(function(req, res, next) {
   }
   next();
 });
-
-
 
 
 // ---------- ssl end 
