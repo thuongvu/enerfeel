@@ -35,8 +35,8 @@ var https = require("https").createServer(options, app);
 // force ssl
 app.use(function(req, res, next) {
   if(!req.secure) {
-    return res.redirect(['https://', req.get('Host'), req.url].join(''));
-    // return res.redirect(['https://', 'localhost:8081', req.url].join('')); 
+    // return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    return res.redirect(['https://', 'localhost:8081', req.url].join('')); 
   }
   next();
 });
@@ -53,7 +53,13 @@ var csrfValue = function(req) {
 };
 
 app.use(express.cookieParser('mysecretheresdfsdf'));
-app.use(express.cookieSession());
+app.use(express.cookieSession({
+	cookie: {secure: true}
+}));
+app.use(express.session({
+	secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough'
+	, cookie: {secure: true}
+}));
 
 app.use(express.csrf({value: csrfValue}));
 app.use(function(req, res, next) {
@@ -66,10 +72,7 @@ app.use(function(req, res, next) {
 });
 // ----- csrf end
 
-app.use(express.session({
-	secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough'
-	, cookie: {secure: true}
-}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
