@@ -27,9 +27,9 @@ var options = {
 	key: fs.readFileSync('../enerfeelhidden/development/server.key'),
 	cert: fs.readFileSync('../enerfeelhidden/development/server.crt'),
 	ca: fs.readFileSync('../enerfeelhidden/development/ca.crt'),
-	requestCert: true,
-	rejectUnauthorized: false,
-	passphrase: process.env.PASSPHRASE
+	// requestCert: true,
+	// rejectUnauthorized: false,
+	// passphrase: process.env.PASSPHRASE
 };
 var https = require("https").createServer(options, app);
 // ssl DEVELOPMENT end 
