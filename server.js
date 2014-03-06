@@ -11,6 +11,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var configDB = require('./config/database.js');
 var db = mongojs('enerfeel', ['lifeEventsCollection']);
+// var configOptions = require('../enerfeelhidden/configOptions');
 var ObjectId = mongojs.ObjectId;
 mongoose.connect(configDB.url);
 require ('./config/passport')(passport);
@@ -29,6 +30,7 @@ var options = {
 	ca: fs.readFileSync('../enerfeelhidden/ca.crt'),
 	requestCert: true,
 	rejectUnauthorized: false,
+	passphrase: process.env.PASSPHRASE
 };
 var https = require("https").createServer(options, app);
 // ssl end -------
