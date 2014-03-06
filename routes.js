@@ -2,11 +2,6 @@ var User = require('./models/user');
 var mongojs = require('mongojs');
 var db = mongojs('enerfeel', ['users']);
 module.exports = function(app, passport) {
-	// http.get('*', function(req, res) {
-	// 	console.log(req.url)
-	// 	res.redirect('https://localhost:8081' + req.url);
-	// })
-
 
 	app.get("/", function (req,res) {
 		res.render("index.ejs");
@@ -21,7 +16,7 @@ module.exports = function(app, passport) {
 			res.cookie('user', JSON.stringify({
 				'token': req.user.token,
 				'authLevel': 1,
-			}));
+			}), {secure: true, httpOnly: false});
 
 			res.redirect('/');
 	});
@@ -36,11 +31,6 @@ module.exports = function(app, passport) {
 				res.json({'lifeEvents': data.lifeEvents, 'categories': data.categories});
 			});
 		};
-	});
-
-	app.get('/logout', function (req, res) {
-		req.logout();
-		res.redirect('/');
 	});
 
 	app.del('/delete/event', isLoggedIn, function (req, res) {
@@ -116,7 +106,10 @@ module.exports = function(app, passport) {
 		
 	});
 
-
+	app.get('/logout', function (req, res) {
+		req.logout();
+		res.redirect('/');
+	});
 
 	function isLoggedIn(req, res, next) {
 		if (req.isAuthenticated()) {
