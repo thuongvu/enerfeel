@@ -73,10 +73,10 @@ app.use(passport.session());
 app.use(flash());
 require('./routes.js')(app, passport);
 
-http.listen(app.get("port"), function () {
-	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));
-});
+// http.listen(app.get("port"), function () {
+// 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));
+// });
 
-https.listen(8081, function() {
+https.listen(8080, function() {
 	console.log("https server is up and running")
 })
