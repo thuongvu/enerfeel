@@ -54,6 +54,7 @@ var csrfValue = function(req) {
 
 app.use(express.cookieParser('mysecretheresdfsdf'));
 app.use(express.cookieSession({
+	secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough',
 	cookie: {secure: true}
 }));
 app.use(express.session({
@@ -64,7 +65,7 @@ app.use(express.session({
 app.use(express.csrf({value: csrfValue}));
 app.use(function(req, res, next) {
 	if (req.secure) {
-		res.cookie('XSRF-TOKEN', req.session._csrf);
+		res.cookie('XSRF-TOKEN', req.session._csrf, {secure: true, httpOnly: false});
 		next();
 	} else {
 		next();
