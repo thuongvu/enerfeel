@@ -22,31 +22,26 @@ app.set("port", 8080);
 app.set("views", __dirname + "/views");
 app.use(express.static("public", __dirname + "/public"));
 
-// // ssl DEVELOPMENT start
-// var options = {
-// 	key: fs.readFileSync('../enerfeelhidden/development/server.key'),
-// 	cert: fs.readFileSync('../enerfeelhidden/development/server.crt'),
-// 	ca: fs.readFileSync('../enerfeelhidden/development/ca.crt'),
-// 	// requestCert: true,
-// 	// rejectUnauthorized: false,
-// 	passphrase: process.env.PASSPHRASE
-// };
-// var https = require("https").createServer(options, app);
-// // ssl DEVELOPMENT end 
-
-// ssl PRODUCTION start
+// ---------- ssl start 
 var options = {
 	key: fs.readFileSync('../enerfeelhidden/production/myserver.key'),
 	cert: fs.readFileSync('../enerfeelhidden/production/keys/productivejournal_com.crt'),
 	ca: fs.readFileSync('../enerfeelhidden/production/keys/productivejournal_com.ca-bundle'),
 	requestCert: true,
 	rejectUnauthorized: false,
-	// passphrase: process.env.PASSPHRASE
 };
 var https = require("https").createServer(options, app);
 
-// ssl PRODUCTION end
+// force ssl
+app.use(function(req, res, next) {
+  if(!req.secure) {
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    // return res.redirect(['https://', 'localhost:8081', req.url].join('')); 
+  }
+  next();
+});
 
+// ---------- ssl end 
 
 // csrf 
 var csrfValue = function(req) {
@@ -62,23 +57,14 @@ app.use(express.cookieSession());
 
 app.use(express.csrf({value: csrfValue}));
 app.use(function(req, res, next) {
-	res.cookie('XSRF-TOKEN', req.session._csrf);
-	next();
+	if (req.secure) {
+		res.cookie('XSRF-TOKEN', req.session._csrf);
+		next();
+	} else {
+		next();
+	};
 });
 // ----- csrf end
-
-
-// force ssl
-app.use(function(req, res, next) {
-  if(!req.secure) {
-  	console.log(req.get('Host'));
-    return res.redirect(['https://', req.get('Host'), req.url].join(''));
-  }
-  next();
-});
-
-
-
 
 app.use(express.session({
 	secret: 'ireallydislikedoingauthenticaitonihopethisissecureenough'
@@ -89,13 +75,10 @@ app.use(passport.session());
 app.use(flash());
 require('./routes.js')(app, passport);
 
-
-
-
 http.listen(app.get("port"), function () {
 	console.log("server is up and running.  go to http://" + app.get("ipaddr") + ":" + app.get("port"));
 });
 
 https.listen(8081, function() {
-	console.log("https server is up and running")
+	console.log("magical bunnies and unicorns @ https://")
 })
