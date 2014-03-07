@@ -1,5 +1,5 @@
 angular.module('app.controllers', [])
-	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', '$timeout', 'CategoryService', function ($scope, EventService, FilterService, $timeout, CategoryService) {
+	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', '$timeout', 'CategoryService', '$rootScope', function ($scope, EventService, FilterService, $timeout, CategoryService, $rootScope) {
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
 		$scope.loadData = function() {
@@ -32,12 +32,14 @@ angular.module('app.controllers', [])
 			EventService.login();
 		}
 
-		// $scope.showInNav = function(item) {
-		// 	console.log("showinNav")
-		// 	$scope.$broadcast("showNav", {
-		// 		'showAddCategories': 'true',
-		// 	})
-		// };
+		$scope.showInNav = function(item) {
+			console.log("showinNav")
+			// $scope.showAddCategories = true;
+			// $scope.$broadcast("showNav", {
+			// 	'showAddCategories': 'true',
+			// })
+			$rootScope.$broadcast('showInNav', item);
+		};
 
 		// $scope.$watch('showModify', function() {
 		// 	console.log("$scope.showModify");

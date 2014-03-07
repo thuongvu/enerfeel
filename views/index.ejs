@@ -45,14 +45,14 @@
 	
 		</div>
 
-		<div class="navbar navbar-lower navbar-default">
+		<div class="navbar navbar-lower navbar-default" ng-controller="mainCtrl">
 			<ul class="lower-navbar-items">
 				<li>Time Filters</li>
 				<li>Activity Filters</li>
 				<button ng-click="showAddCategories = !showAddCategories">Categories</button>
 				<button ng-click="showModify = !showModify">Events</button>
-		<!-- 		<button ng-click="showInNav('showAddCategories')">Categories</button>
-				<button ng-click="showInNav('showModify')">Events</button> -->
+				<button ng-click="showInNav('showAddCategories')">Categories</button>
+				<button ng-click="showInNav('showModify')">Events</button>
 			</ul>
 		</div>
 
