@@ -226,7 +226,15 @@ angular.module('app.directives', [])
 	.controller('modifyController', ['$scope', 'FilterService', function ($scope, FilterService) {
 		$scope.event = {};
 		$scope.event.selected;
-		$scope.showModify = false;
+		// $scope.showModify = false; // if we disable this, we're golden
+
+		function showModifyWatch() {
+			if ($scope.showModify === true) {
+				$scope.event = {};
+				$scope.event.selected;
+			};
+		}
+		$scope.$watch('showModify', showModifyWatch, true)
 
 		$scope.showModifyFunc = function () {
 
