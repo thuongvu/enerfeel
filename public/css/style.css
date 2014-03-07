@@ -113,6 +113,17 @@ i.lower-2x-icon {
   font-size: 0.8em;
   margin: -0.5em 0 0 0;
 }
-
-
+/*account*/
+.navbar-account {
+  float: right;
+  right: 2%;
+  position: relative;
+}
+.navbar-text-account {
+  padding: 0 0 0 0.5em;
+}
+.navbar-text-account {
+  top: 0.5em;
+  position: relative;
+}
 
