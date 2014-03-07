@@ -14,8 +14,8 @@
 		    };
 		</script>
 	</head>
-	<body>
-		<div class="navbar navbar-default" ng-controller="mainCtrl">
+	<body ng-controller="mainCtrl">
+		<div class="navbar navbar-default" >
 
 			<div class="navbar-view-options">
 				<span class="button-outer">
@@ -52,7 +52,7 @@
 	
 		</div>
 
-		<div class="navbar navbar-lower navbar-default" ng-controller="mainCtrl">
+		<div class="navbar navbar-lower navbar-default">
 			<ul class="lower-navbar-items">
 				<button ng-click="showInNav('showAddCategories')">Categories</button>
 				<button ng-click="showInNav('showModify')">Events</button>
@@ -62,7 +62,7 @@
 
 
 		<br>
-		<div ng-controller="mainCtrl">
+		<div>
 			<!-- <button ng-click="loadData()">Load data</button> -->
 			<!-- <button ng-click="login()">Log in</button> -->
 			<div class="options-area">
@@ -72,14 +72,16 @@
 				<div add></div>
 			</div>
 			<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>
-			<div>
-				<table ng-repeat="event in lifeEventsInView">
-					<tr><td>{{event.note}}</td></tr>
+			<div class="log">
+				<table>
+					<tr class="events-in-log" ng-repeat="event in lifeEventsInView">
+						<td>{{event.date | date:'short'}}:</td>
+						<td>{{event.category}}</td>
+						<td>{{event.note}}</td>
+					</tr>
 				</table>
 			</div>
 		</div>
-
-
 
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/dropdown.js"></script>

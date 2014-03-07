@@ -46,7 +46,6 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    }
 			})
 			.success(function(dataReceived) {
-				// CategoryService.categoriesObj.list = dataReceived.categories;
 				categories.list = dataReceived.categories;
 				var eventsReceived = dataReceived.lifeEvents;
 				for (var i = 0; i < eventsReceived.length; i++) {
@@ -55,8 +54,6 @@ angular.module('app.services', []) // remember to change this so it can be minif
 					};
 					data.push(eventsReceived[i]);
 				};
-				console.log("data from eventService");
-				console.log(data);
 				callback(data);
 			});
 		};

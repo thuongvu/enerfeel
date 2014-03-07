@@ -11,12 +11,10 @@ angular.module('app.controllers', [])
 			} else {
 				// if user is logged in, $http.get, put it into the view
 				EventService.getData(function(data) {
-					console.log(data)
 					for (var i = 0; i < data.length; i++) {
 						$scope.lifeEventsInView.push(data[i]);
 					};
 					$scope.filterService.sortTime($scope.lifeEventsInView);
-					console.log($scope.lifeEventsInView.length)
 				});
 
 			};
@@ -50,6 +48,8 @@ angular.module('app.controllers', [])
 		// 	console.log("$scope.showModify");
 		// 	console.log($scope.showModify);
 		// }, true)
+
+		$scope.items = ['dsfdfsdfsdfdsf', '434tddfg', 'sdfsdf2ef', 'sdfdsnbnvcbvb', 'dsfrwrwer']
 
 
 	}])

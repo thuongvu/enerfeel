@@ -220,6 +220,19 @@ li.navbar-text-account {
 .options-area {
   min-height: 95px;
 }
+/*graph*/
 graph {
   float: left;
 }
+/*log*/
+.log {
+  position: relative;
+}
+td {
+  padding: 0 .9em 0 0;
+  text-align: right;
+}
+tr:nth-child(odd) {
+  background-color: rgba(232, 225, 209, 0.5)
+}
+
