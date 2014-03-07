@@ -72,6 +72,11 @@
 				<div add></div>
 			</div>
 			<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>
+			<div>
+				<table ng-repeat="event in lifeEventsInView">
+					<tr><td>{{event.note}}</td></tr>
+				</table>
+			</div>
 		</div>
 
 

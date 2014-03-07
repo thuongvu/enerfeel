@@ -55,6 +55,8 @@ angular.module('app.services', []) // remember to change this so it can be minif
 					};
 					data.push(eventsReceived[i]);
 				};
+				console.log("data from eventService");
+				console.log(data);
 				callback(data);
 			});
 		};
