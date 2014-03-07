@@ -32,24 +32,31 @@ angular.module('app.controllers', [])
 			EventService.login();
 		}
 
-		$scope.oneAtATime = true;
+		function showAddCategoriesWatch() {
+			if ($scope.showAddCategories == true) {
+				$scope.showModify = false;
+			}
+			// if ($scope.showAddCategories == true) {
+			// 	$scope.showModify = false;
+			// 	console.log("$scope.showAddCategories == true")
+			// 	console.log("$scope.showModify = false")
+			// } else if ($scope.showModify == true) {
+			// 	$scope.showAddCategories = false;
+			// 	console.log("$scope.showAddCategories == false")
+			// 	console.log("$scope.showModify = true")
+			// }
+		};
+		function showModifyWatch() {
+			console.log('$scope.showModify');
+			console.log($scope.showModify);
+		// 	if ($scope.showModify == true) {
+		// 		$scope.showAddCategories = false;
+		// 		console.log("$scope.showModify = true")
+		// 		console.log("$scope.showAddCategories = false")
+		// 	};
+		};
 
-		 $scope.groups = [
-		   {
-		     title: "Dynamic Group Header - 1",
-		     content: "Dynamic Group Body - 1"
-		   },
-		   {
-		     title: "Dynamic Group Header - 2",
-		     content: "Dynamic Group Body - 2"
-		   }
-		 ];
-
-		 $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-		 $scope.addItem = function() {
-		   var newItemNo = $scope.items.length + 1;
-		   $scope.items.push('Item ' + newItemNo);
-		 };
+		$scope.$watch('showAddCategories', showAddCategoriesWatch, true);
+		$scope.$watch('showModify', showModifyWatch, true);
 
 	}])
