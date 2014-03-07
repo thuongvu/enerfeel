@@ -33,7 +33,7 @@ angular.module('app.controllers', [])
 		}
 
 		$scope.showInNav = function(item) {
-			console.log("showinNav")
+			// console.log("showinNav")
 			// $scope.showAddCategories = true;
 			// $scope.$broadcast("showNav", {
 			// 	'showAddCategories': 'true',

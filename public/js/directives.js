@@ -206,23 +206,16 @@ angular.module('app.directives', [])
 	};
 
 	$scope.$on("showInNav", function(event, data) {
-		// // $scope.showAddCategories = 
-		// for (var i in data) {
-		// 	console.log(data[i])
-		// }
-		console.log(data)
-		// console.log(event)
-	})
-	// $scope.$watch('showAddCategories', function() {
-	// 	console.log("$scope.showModify");
-	// 	console.log($scope.showAddCategories);
-	// 	// if ($scope.showAddCategories == true) {
-	// 	// 	$scope.showModify = false;
-	// 	// } else {
-	// 	// 	$scope.showModify = true;
-	// 	// }
-	// 	// console.log($scope.showModify);
-	// }, true);
+		if (data === 'showModify') {
+			console.log(data);
+			$scope.showAddCategories = false;
+			$scope.showModify = true;
+		} else if (data === 'showAddCategories') {
+			console.log(data);
+			$scope.showAddCategories = true;
+			$scope.showModify = false;
+		}
+	});
 
 }])
 .directive('moreCategoryInputs', [function () {
