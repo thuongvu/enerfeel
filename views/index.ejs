@@ -28,7 +28,7 @@
 
 			<div class="navbar-add-event">
 				<i class="lower-2x-icon fa fa-plus-circle fa-2x"></i>
-				<div class="navbar-text-add">Add</div>
+				<div class="navbar-text-add">Add Event</div>
 			</div>
 			
 			<div class="navbar-account">
@@ -44,7 +44,17 @@
 			</div>
 	
 		</div>
-		
+
+		<div class="navbar navbar-lower navbar-default">
+			<ul class="lower-navbar-items">
+				<li>Time Filters</li>
+				<li>Activity Filters</li>
+				<li>Categories</li>
+				<li>Events</li>
+			</ul>
+		</div>
+
+		<br>
 		<div ng-controller="mainCtrl">
 			<button ng-click="loadData()">Load data</button>
 			<button ng-click="login()">Log in</button>

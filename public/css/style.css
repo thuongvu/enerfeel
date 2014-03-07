@@ -59,8 +59,11 @@ div.tooltip {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   border: 1px solid transparent;
+}
+.navbar-lower {
+  min-height: 30px;
 }
 .dropdown {
   position: relative;
@@ -78,7 +81,7 @@ div.tooltip {
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 1em;
   list-style: none;
   background-color: #fff;
   background-clip: padding-box;
@@ -178,7 +181,7 @@ i.lower-2x-icon {
 }
 .navbar-text-add{
   font-size: 0.8em;
-  margin: -0.5em 0 0 0;
+  margin: -0.5em 0 0 -1.5em;
 }
 /*account*/
 .navbar-account {
@@ -203,4 +206,8 @@ li.navbar-text-account {
 .navbar-account {
   cursor: pointer;
 }
-
+.lower-navbar-items li {
+  float: left;
+  display: inline;
+  margin: 0 1em 0 0 ;
+}
