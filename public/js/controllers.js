@@ -38,6 +38,7 @@ angular.module('app.controllers', [])
 			// $scope.$broadcast("showNav", {
 			// 	'showAddCategories': 'true',
 			// })
+			console.log(item);
 			$rootScope.$broadcast('showInNav', item);		
 		};
 

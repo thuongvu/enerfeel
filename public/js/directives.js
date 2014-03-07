@@ -211,14 +211,22 @@ angular.module('app.directives', [])
 			$scope.showModify = true;
 			$scope.showAddCategories = false;
 			$scope.showFilterdir = false;
+			$scope.showAdd = false;
 		} else if (data === 'showAddCategories') {
 			$scope.showAddCategories = true;
 			$scope.showModify = false;
 			$scope.showFilterdir = false;
+			$scope.showAdd = false;
 		} else if (data === 'showFilterdir') {
 			$scope.showAddCategories = false;
 			$scope.showModify = false;
 			$scope.showFilterdir = true;
+			$scope.showAdd = false;
+		} else if (data === 'showAdd') {
+			$scope.showAddCategories = false;
+			$scope.showModify = false;
+			$scope.showFilterdir = false;
+			$scope.showAdd = true;
 		}
 	});
 
