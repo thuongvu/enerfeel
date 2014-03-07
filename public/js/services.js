@@ -214,7 +214,7 @@ return {
 					categoriesObj.list = EventService.categories.list;
 				};
 				console.log(categoriesObj.list);
-			},0);
+			},100);
 		}, true);
 		
 		function addCategoryXHR(obj) {

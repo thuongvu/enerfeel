@@ -64,6 +64,7 @@ div.tooltip {
 }
 .navbar-lower {
   min-height: 30px;
+  height: 50px;
 }
 .dropdown {
   position: relative;
@@ -188,6 +189,7 @@ i.lower-2x-icon {
   float: right;
   right: 2%;
   position: relative;
+  cursor: pointer;
 }
 .navbar-text-account {
   padding: 0 0 0 0.5em;
@@ -203,11 +205,18 @@ li {
 li.navbar-text-account {
   display: inline;
 }
-.navbar-account {
-  cursor: pointer;
-}
 .lower-navbar-items li {
   float: left;
   display: inline;
   margin: 0 1em 0 0 ;
+}
+/*login is temporary*/
+.navbar-login {
+  float: right;
+  position: relative;
+  right: 5%;
+  cursor: pointer;
+}
+.options-area {
+  min-height: 95px;
 }

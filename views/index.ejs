@@ -15,7 +15,7 @@
 		</script>
 	</head>
 	<body>
-		<div class="navbar navbar-default">
+		<div class="navbar navbar-default" ng-controller="mainCtrl">
 
 			<div class="navbar-view-options">
 				<span class="button-outer">
@@ -26,7 +26,7 @@
 				<div class="navbar-text-view">View</div>
 			</div>
 
-			<div class="navbar-add-event" ng-controller="mainCtrl" ng-click="showInNav('showAdd')">
+			<div class="navbar-add-event" ng-click="showInNav('showAdd')">
 				<i class="lower-2x-icon fa fa-plus-circle fa-2x"></i>
 				<div class="navbar-text-add">Add Event</div>
 			</div>
@@ -41,16 +41,19 @@
 				  </ul>
 				</li>
 				<i class="lower-lg-icon fa fa-angle-down fa-lg"></i>
+
 			</div>
+			
+			<!-- this login is temporary -->
+			<div class="navbar-login" ng-click="loadData()"> 
+				<i class="lower-lg-icon fa fa-facebook-square fa-lg">Login</i>
+			</div>
+			
 	
 		</div>
 
 		<div class="navbar navbar-lower navbar-default" ng-controller="mainCtrl">
 			<ul class="lower-navbar-items">
-				<li>Time Filters</li>
-				<li>Activity Filters</li>
-				<button ng-click="showAddCategories = !showAddCategories">Categories</button>
-				<button ng-click="showModify = !showModify">Events</button>
 				<button ng-click="showInNav('showAddCategories')">Categories</button>
 				<button ng-click="showInNav('showModify')">Events</button>
 				<button ng-click="showInNav('showFilterdir')">Time/Activity Filter</button>
@@ -60,12 +63,14 @@
 
 		<br>
 		<div ng-controller="mainCtrl">
-			<button ng-click="loadData()">Load data</button>
-			<button ng-click="login()">Log in</button>
-			<div filterdir></div>
-			<div add-category></div>
-			<div modify></div>
-			<div add></div>
+			<!-- <button ng-click="loadData()">Load data</button> -->
+			<!-- <button ng-click="login()">Log in</button> -->
+			<div class="options-area">
+				<div filterdir></div>
+				<div add-category></div>
+				<div modify></div>
+				<div add></div>
+			</div>
 			<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>
 		</div>
 
