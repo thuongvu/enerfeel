@@ -1,1 +1,1 @@
-angular.module('app', ['ui.bootstrap.dropdown', 'ngCookies', 'ngRoute', 'd3', 'ngQuickDate', 'app.services', 'app.graphDirective', 'app.directives', 'app.controllers' ])
+angular.module('app', ['ui.bootstrap.transition', 'ui.bootstrap.collapse', 'ui.bootstrap.accordion', 'ui.bootstrap.dropdown', 'ngCookies', 'ngRoute', 'd3', 'ngQuickDate', 'app.services', 'app.graphDirective', 'app.directives', 'app.controllers' ])
