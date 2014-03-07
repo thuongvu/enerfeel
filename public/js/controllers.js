@@ -32,31 +32,6 @@ angular.module('app.controllers', [])
 			EventService.login();
 		}
 
-		function showAddCategoriesWatch() {
-			if ($scope.showAddCategories == true) {
-				$scope.showModify = false;
-			}
-			// if ($scope.showAddCategories == true) {
-			// 	$scope.showModify = false;
-			// 	console.log("$scope.showAddCategories == true")
-			// 	console.log("$scope.showModify = false")
-			// } else if ($scope.showModify == true) {
-			// 	$scope.showAddCategories = false;
-			// 	console.log("$scope.showAddCategories == false")
-			// 	console.log("$scope.showModify = true")
-			// }
-		};
-		function showModifyWatch() {
-			console.log('$scope.showModify');
-			console.log($scope.showModify);
-		// 	if ($scope.showModify == true) {
-		// 		$scope.showAddCategories = false;
-		// 		console.log("$scope.showModify = true")
-		// 		console.log("$scope.showAddCategories = false")
-		// 	};
-		};
 
-		$scope.$watch('showAddCategories', showAddCategoriesWatch, true);
-		$scope.$watch('showModify', showModifyWatch, true);
 
 	}])
