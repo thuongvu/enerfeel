@@ -22,6 +22,7 @@
     "angular-route": "~1.2.8",
     "normalize-css": "3.0.0",
     "angular-cookies": "~1.2",
-    "ngQuickDate": "1.2.8"
+    "ngQuickDate": "1.2.8",
+    "components-font-awesome": "~4.0.3"
   }
 }

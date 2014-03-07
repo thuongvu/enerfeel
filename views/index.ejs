@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
 		<link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date.css">
 		<link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date-default-theme.css">
+		<link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<script type="text/javascript">
 		    if (window.location.hash && window.location.hash == '#_=_') {
@@ -13,6 +14,15 @@
 		</script>
 	</head>
 	<body>
+		<div class="navbar navbar-default">
+			<span>
+				<span class="button-outer"><i class="fa fa-bar-chart-o fa-2x"></i></span>
+				<i class="fa fa-list-alt fa-2x"></i>
+				<i class="fa fa-bar-chart-o fa-lg"></i>
+				<i class="fa fa-list-alt fa-lg"></i>
+			</span>
+		</div>
+		
 		<div ng-controller="mainCtrl">
 			<button ng-click="loadData()">Load data</button>
 			<button ng-click="login()">Log in</button>
