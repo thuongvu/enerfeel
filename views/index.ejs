@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 		<link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date.css">
 		<link rel="stylesheet" href="bower_components/ngQuickDate/dist/ng-quick-date-default-theme.css">
 		<link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
@@ -32,10 +33,16 @@
 			
 			<div class="navbar-account">
 				<i class="lower-lg-icon fa fa-calendar-o fa-lg"></i>
-				<span class="navbar-text-account">My Account</span>
+				<li class="dropdown navbar-text-account">
+					<a class="dropdown-toggle">My Account</a>
+				   <ul class="dropdown-menu">
+						<li><a href="#"><i class="fa fa-cog fa-lg"></i> Settings </a></li>
+					   <li><a href="#"><i class="fa fa-share"></i> Sign out</a></li>
+				  </ul>
+				</li>
 				<i class="lower-lg-icon fa fa-angle-down fa-lg"></i>
 			</div>
-
+	
 		</div>
 		
 		<div ng-controller="mainCtrl">
@@ -51,6 +58,7 @@
 
 
 		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/dropdown.js"></script>
 		<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 		<script src="bower_components/angular-resource/angular-resource.min.js"></script>
 		<script src="bower_components/angular-route/angular-route.min.js"></script>
