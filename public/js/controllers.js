@@ -32,6 +32,17 @@ angular.module('app.controllers', [])
 			EventService.login();
 		}
 
+		// $scope.showInNav = function(item) {
+		// 	console.log("showinNav")
+		// 	$scope.$broadcast("showNav", {
+		// 		'showAddCategories': 'true',
+		// 	})
+		// };
+
+		// $scope.$watch('showModify', function() {
+		// 	console.log("$scope.showModify");
+		// 	console.log($scope.showModify);
+		// }, true)
 
 
 	}])

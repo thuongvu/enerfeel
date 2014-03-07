@@ -204,7 +204,24 @@ angular.module('app.directives', [])
 			$scope.categories.selected.categoryToDelete = $scope.categories.list[0];
 		});
 	};
-	
+
+	// $scope.$on("showNav", function(event, data) {
+	// 	// // $scope.showAddCategories = 
+	// 	// for (var i in data) {
+	// 	// 	console.log(data[i])
+	// 	// }
+	// 	console.log(data)
+	// 	console.log(event)
+	// })
+	// $scope.$watch('showAddCategories', function() {
+	// 	console.log("$scope.showModify");
+	// 	if ($scope.showAddCategories == true) {
+	// 		$scope.showModify = false;
+	// 	} else {
+	// 		$scope.showModify = true;
+	// 	}
+	// 	console.log($scope.showModify);
+	// }, true);
 
 }])
 .directive('moreCategoryInputs', [function () {
