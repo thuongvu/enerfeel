@@ -1,22 +1,25 @@
-<div>
-	Time Filters
-	<button ng-click="filterTime('day')">Day</button>
-	<button ng-click="filterTime('week')">Week</button>
-	<button ng-click="filterTime('month')">Month</button>
-	<button ng-click="showCustomTime = !showCustomTime">Custom timeframe</button>
-	<span ng-show="showCustomTime">
-		<span custom-time-filter></span>
-	</span>
-	
-	<!-- <datepicker ng-model="calendar.firstDate"></datepicker>
-	<datepicker ng-model="calendar.secondDate"></datepicker>
-	<button ng-click="customLengthTime(calendar.firstDate, calendar.secondDate)">Custom</button> -->
-</div>
-<div>
-	Activity Filters
-	<button ng-click="filterCategory('meal')">Meal</button>
-	<button ng-click="filterCategory('exercise')">Exercise</button>
-	<button ng-click="filterCategory('work')">Work</button>
-	<button ng-click="filterCategory('sleep')">Sleep</button>
-	<button ng-click="filterCategory('null')">None</button>
-</div>
+<span ng-show="showFilterdir">
+	<div>
+		Time Filters
+		<button ng-click="filterTime('day')">Day</button>
+		<button ng-click="filterTime('week')">Week</button>
+		<button ng-click="filterTime('month')">Month</button>
+		<button ng-click="showCustomTime = !showCustomTime">Custom timeframe</button>
+		<span ng-show="showCustomTime">
+			<span custom-time-filter></span>
+		</span>
+		
+		<!-- <datepicker ng-model="calendar.firstDate"></datepicker>
+		<datepicker ng-model="calendar.secondDate"></datepicker>
+		<button ng-click="customLengthTime(calendar.firstDate, calendar.secondDate)">Custom</button> -->
+	</div>
+	<div>
+		Activity Filters
+		<button ng-click="filterCategory('meal')">Meal</button>
+		<button ng-click="filterCategory('exercise')">Exercise</button>
+		<button ng-click="filterCategory('work')">Work</button>
+		<button ng-click="filterCategory('sleep')">Sleep</button>
+		<button ng-click="filterCategory('null')">None</button>
+	</div>
+	<button ng-click="showFilterdir = !showFilterdir">Hide</button>
+</span>

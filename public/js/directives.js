@@ -207,13 +207,18 @@ angular.module('app.directives', [])
 
 	$scope.$on("showInNav", function(event, data) {
 		if (data === 'showModify') {
-			console.log(data);
-			$scope.showAddCategories = false;
+			console.log($scope.showModify);
 			$scope.showModify = true;
+			$scope.showAddCategories = false;
+			$scope.showFilterdir = false;
 		} else if (data === 'showAddCategories') {
-			console.log(data);
 			$scope.showAddCategories = true;
 			$scope.showModify = false;
+			$scope.showFilterdir = false;
+		} else if (data === 'showFilterdir') {
+			$scope.showAddCategories = false;
+			$scope.showModify = false;
+			$scope.showFilterdir = true;
 		}
 	});
 

@@ -38,7 +38,7 @@ angular.module('app.controllers', [])
 			// $scope.$broadcast("showNav", {
 			// 	'showAddCategories': 'true',
 			// })
-			$rootScope.$broadcast('showInNav', item);
+			$rootScope.$broadcast('showInNav', item);		
 		};
 
 		// $scope.$watch('showModify', function() {
