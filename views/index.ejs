@@ -72,8 +72,9 @@
 				<div add></div>
 			</div>
 			<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>
-			<div class="log">
+			<div class="log" ng-show="lifeEventsInView.length > 0">
 				<table>
+					<th>Date</th><th>Category</th><th>Note</th>
 					<tr class="events-in-log" ng-repeat="event in lifeEventsInView">
 						<td>{{event.date | date:'short'}}:</td>
 						<td>{{event.category}}</td>
