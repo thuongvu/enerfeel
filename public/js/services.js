@@ -213,7 +213,8 @@ return {
 				if (EventService.categories.list) {
 					categoriesObj.list = EventService.categories.list;
 				};
-			},500);
+				console.log(categoriesObj.list);
+			},0);
 		}, true);
 		
 		function addCategoryXHR(obj) {
