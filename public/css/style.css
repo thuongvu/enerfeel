@@ -223,11 +223,17 @@ li.navbar-text-account {
 /*graph*/
 graph {
   float: left;
+  background-color: rgba(232, 225, 209, 0.1);
+  border-radius: 10px;
+  margin: 0 2em 0 0;
 }
 /*log*/
 .log {
   position: relative;
   float: left;
+  padding: 1em;
+  background-color: rgba(232, 225, 209, 0.1);
+  border-radius: 8px;
 }
 td {
   padding: 0 .9em 0 0;
@@ -236,4 +242,6 @@ td {
 tr:nth-child(odd) {
   background-color: rgba(232, 225, 209, 0.5)
 }
-
+.trimmed-notes:hover {
+  background-color: blue;
+}

@@ -24,6 +24,13 @@ angular.module('app.graphDirective', [])
 					.attr("height", height)
 					.attr("class", "chart")
 
+				// svg.append("rect")
+				// 	.attr("width", "87.5%")
+				// 	.attr("height", "78%")
+				// 	.attr("fill", "rgba(232, 225, 209, 0.05)")
+				// 	.attr("transform", "translate(50,30)")
+
+
 				// SCALES
 
 					// x scale
