@@ -321,6 +321,13 @@ angular.module('app.directives', [])
 		$scope.lifeEventsInView = FilterService.filterDate(date)
 	};
 
+	$scope.resetFilters = function() {
+		console.log("resetFilters")
+		// $scope.lifeEventsInView = $scope.filterService.sortTime(EventService.allLifeEvents);
+		$scope.lifeEventsInView = FilterService.sortTime(EventService.allLifeEvents);
+		console.log($scope.lifeEventsInView);
+	};
+
 	
 	$scope.calendar = {};
 	$scope.calendar.firstDate = new Date();
@@ -401,12 +408,12 @@ angular.module('app.directives', [])
 		templateUrl: 'directiveTemplates/larger_components/logsmall_component.html'
 	};
 }])
-// .directive('navbarnot', [function () {
-// 	return {
-// 		restrict: 'EA',
-// 		templateUrl: 'directiveTemplates/larger_components/test-template.html'
-// 	};
-// }])
+.directive('loglarge', [function () {
+	return {
+		restrict: 'EA',
+		templateUrl: 'directiveTemplates/larger_components/loglarge_component.html'
+	};
+}])
 
 
 
