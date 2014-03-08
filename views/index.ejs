@@ -15,23 +15,24 @@
 		</script>
 	</head>
 	<body ng-controller="mainCtrl">
-		<div class="navbar navbar-default" >
 
-			<div class="navbar-view-options">
+		<nav class="navbar navbar-default"> <!--  ============ navbar =========== -->
+
+			<div class="navbar-view-options">  <!-- navbar-view-options -->
 				<span class="button-outer">
 					<span class="icon"><i class="lower-lg-icon fa fa-bar-chart-o fa-lg"></i></span>
 					<span class="icon"><i class="lower-lg-icon fa fa-list-alt fa-lg"></i></span>
 					<span class="icon"><i class="lower-lg-icon fa fa-bar-chart-o"></i><i class="small fa fa-list-alt"></i></span>
 				</span>
 				<div class="navbar-text-view">View</div>
-			</div>
+			</div>	<!-- navbar-view-options end -->
 
-			<div class="navbar-add-event" ng-click="showInNav('showAdd')">
+			<div class="navbar-add-event" ng-click="showInNav('showAdd')"> <!--navbar-add-event-->
 				<i class="lower-2x-icon fa fa-plus-circle fa-2x"></i>
 				<div class="navbar-text-add">Add Event</div>
-			</div>
+			</div> <!-- navbar-add-event end -->
 			
-			<div class="navbar-account">
+			<div class="navbar-account"> <!-- navbar-account -->
 				<i class="lower-lg-icon fa fa-calendar-o fa-lg"></i>
 				<li class="dropdown navbar-text-account">
 					<a class="dropdown-toggle">My Account</a>
@@ -41,38 +42,37 @@
 				  </ul>
 				</li>
 				<i class="lower-lg-icon fa fa-angle-down fa-lg"></i>
-
-			</div>
+			</div> <!-- navbar-account end-->
 			
-			<!-- this login is temporary -->
-			<div class="navbar-login" ng-click="loadData()"> 
+			<div class="navbar-login" ng-click="loadData()">  <!-- navbar-login -->
 				<i class="lower-lg-icon fa fa-facebook-square fa-lg">Login</i>
-			</div>
+			</div> <!-- navbar-login end -->
 			
 	
-		</div>
+		</nav><!-- ================= end navbar  =====================-->
 
-		<div class="navbar navbar-lower navbar-default">
+		
+		<div class="navbar navbar-lower navbar-default"> <!-- ========== lower navbar  ======== -->
 			<ul class="lower-navbar-items">
 				<button ng-click="showInNav('showAddCategories')">Categories</button>
 				<button ng-click="showInNav('showModify')">Events</button>
 				<button ng-click="showInNav('showFilterdir')">Time/Activity Filter</button>
 			</ul>
-		</div>
+		</div> <!-- ================ end lower navbar ======================-->
 
-
-		<br>
-		<div>
-			<!-- <button ng-click="loadData()">Load data</button> -->
-			<!-- <button ng-click="login()">Log in</button> -->
-			<div class="options-area">
+		<article> <!--  ================== article  ============================= -->
+			<div class="options-area"> <!-- options area -->
 				<div filterdir></div>
 				<div add-category></div>
 				<div modify></div>
 				<div add></div>
-			</div>
+			</div> <!-- end options area -->
+			
+			<!-- graph -->
 			<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>
-			<div class="log" ng-show="lifeEventsInView.length > 0">
+			<!-- end graph -->
+		
+			<div class="log" ng-show="lifeEventsInView.length > 0"> <!-- log -->
 				<table class="log-table">
 					<th ng-click="resetFilters()">Date</th>
 					<th ng-click="resetFilters()">Time</th>
@@ -85,8 +85,9 @@
 						<td class="trimmed-notes">{{event.note | limitTo: 22}}</td>
 					</tr>
 				</table>
-			</div>
-		</div>
+			</div> <!-- end log -->
+
+		</article> <!-- =================== end article  ==========================-->
 
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/dropdown.js"></script>
