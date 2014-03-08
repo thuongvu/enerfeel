@@ -235,15 +235,21 @@ graph {
   background-color: rgba(232, 225, 209, 0.1);
   border-radius: 8px;
 }
+td, th {
+  cursor: pointer;
+}
+th:hover, td:hover {
+  background-color: rgba(240, 240, 215, 0.9);
+}
 td {
   padding: 0 .9em 0 0;
   text-align: right;
 }
-tr:nth-child(odd) {
-  background-color: rgba(232, 225, 209, 0.5)
+.notesCursor {
+  cursor: default;
 }
-.trimmed-notes:hover {
-  background-color: blue;
+tr:nth-child(odd) {
+  background-color: rgba(232, 225, 209, 0.5);
 }
 /*links*/
 a:visited {
@@ -255,8 +261,3 @@ a:visited {
 .opacity-half:hover {
   opacity: 1;
 }
-
-/*when hovering over log, give it a regular cursor*/
-
-/*when hovering over td give it a hand*/
-

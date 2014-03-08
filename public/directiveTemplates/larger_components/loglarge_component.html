@@ -6,7 +6,7 @@
 		<th ng-click="resetFilters()">Energy</th>
 		<th ng-click="resetFilters()">Size</th>
 		<th ng-click="resetFilters()">Opacity</th>
-		<th ng-click="resetFilters()">Note</th>
+		<th class="notesCursor" ng-click="resetFilters()">Note</th>
 		<tr class="events-in-log" ng-repeat="event in lifeEventsInView | filter: filters">
 			<td ng-click="filterDate(event.date)">{{event.date | date:'shortDate'}}</td>
 			<td ng-click="filterHour(event.date)">{{event.date | date:'shortTime'}}</td>
@@ -14,7 +14,7 @@
 			<td ng-click="filterEnergy(event.energylevel)">{{event.energylevel}}</td>
 			<td ng-click="filterSize(event.size)">{{event.size}}</td>
 			<td ng-click="filterOpacity(event.opacity)">{{event.opacity}}</td>
-			<td class="trimmed-notes">{{event.note}}</td>
+			<td class="notesCursor">{{event.note}}</td>
 		</tr>
 	</table>
 </div> <!-- end log -->
