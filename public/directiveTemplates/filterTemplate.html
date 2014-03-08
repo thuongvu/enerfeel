@@ -4,7 +4,9 @@
 		<button ng-click="filterTime('day')">Day</button>
 		<button ng-click="filterTime('week')">Week</button>
 		<button ng-click="filterTime('month')">Month</button>
+		<button ng-click="resetFilters()">All</button>
 		<button ng-click="showCustomTime = !showCustomTime">Custom timeframe</button>
+
 		<span ng-show="showCustomTime">
 			<span custom-time-filter></span>
 		</span>

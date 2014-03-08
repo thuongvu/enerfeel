@@ -135,7 +135,7 @@ return {
 			} else if (time === 'week') {
 				var timeAmount = Date.now() - 604800000;
 			} else if (time === 'month') {
-				var timeAmount = Date.now() - 262974000000000;
+				var timeAmount = Date.now() - 2592000000;
 			}
 			return timeAmount;
 		};
@@ -145,7 +145,7 @@ return {
 				var obj = EventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
 				// console.log(obj[prop]['date'].getHours());
-				if (dateOfProp > timeAmount) {
+				if ((dateOfProp > timeAmount) && (dateOfProp < Date.now())) {
 					arr.push(obj[prop])
 				}
 			}
