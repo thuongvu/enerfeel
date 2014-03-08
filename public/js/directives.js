@@ -311,7 +311,16 @@ angular.module('app.directives', [])
 	$scope.filterCategory = function(category) {
 		// $scope.category.setTo = category;
 		$scope.lifeEventsInView = FilterService.filterActivity(category)
-	}
+	};
+
+	$scope.filterHour = function(date) {
+		$scope.lifeEventsInView = FilterService.filterHour(date)
+	};
+
+	$scope.filterDate = function(date) {
+		$scope.lifeEventsInView = FilterService.filterDate(date)
+	};
+
 	
 	$scope.calendar = {};
 	$scope.calendar.firstDate = new Date();

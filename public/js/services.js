@@ -144,6 +144,7 @@ return {
 			for (prop in EventService.allLifeEvents) {
 				var obj = EventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
+				// console.log(obj[prop]['date'].getHours());
 				if (dateOfProp > timeAmount) {
 					arr.push(obj[prop])
 				}
@@ -169,7 +170,7 @@ return {
 			for (prop in EventService.allLifeEvents) {
 				var obj = EventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
-				// console.log(obj)
+				// console.log(obj[prop][date])
 				if ((dateOfProp >= first) && (dateOfProp <= second)) {
 					arr.push(obj[prop])
 				}
@@ -187,6 +188,31 @@ return {
 				};
 
 			};
+			return arr;
+		};
+
+		function filterByHour(hour, arr) {
+			for (prop in EventService.allLifeEvents) {
+				var obj = EventService.allLifeEvents;
+				var hourOfProp = obj[prop]['date'].getHours();
+				if (hour === hourOfProp) {
+					arr.push(obj[prop])
+				}
+			}
+			return arr;
+		};
+
+		function filterByDate(day, month, year, arr) {
+			for (prop in EventService.allLifeEvents) {
+				var obj = EventService.allLifeEvents;
+				var dayOfProp = obj[prop]['date'].getDate();
+				var monthOfProp = obj[prop]['date'].getMonth();
+				var yearOfProp = obj[prop]['date'].getFullYear();
+
+				if ((day === dayOfProp) && (month === monthOfProp) && (year === yearOfProp)){
+					arr.push(obj[prop])
+				}
+			}
 			return arr;
 		};
 
@@ -210,11 +236,25 @@ return {
 				return currentFilterObj.lifeEvents;
 			},
 			filterActivity: function(category) {
-				// currentFilterObj.time = time; // set currentFilterObj.time to what was passed
-				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
-				var results = filterByCategoryName(category, currentFilterObj.lifeEvents); // get me my results!
-				console.log(results)
-				currentFilterObj.lifeEvents = sortTime(results); // sort the results
+				currentFilterObj.lifeEvents = []; 
+				var results = filterByCategoryName(category, currentFilterObj.lifeEvents); 
+				currentFilterObj.lifeEvents = sortTime(results);
+				return currentFilterObj.lifeEvents;
+			},
+			filterHour: function(date) {
+				var hour = date.getHours();
+				currentFilterObj.lifeEvents = []; 
+				var results = filterByHour(hour, currentFilterObj.lifeEvents); 
+				currentFilterObj.lifeEvents = sortTime(results);
+				return currentFilterObj.lifeEvents;
+			},
+			filterDate: function(date) {
+				var day = date.getDate();
+				var month = date.getMonth();
+				var year = date.getFullYear();
+				currentFilterObj.lifeEvents = []; 
+				var results = filterByDate(day, month, year, currentFilterObj.lifeEvents); 
+				currentFilterObj.lifeEvents = sortTime(results);
 				return currentFilterObj.lifeEvents;
 			},
 			currentFilterObj: currentFilterObj,

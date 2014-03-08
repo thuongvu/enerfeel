@@ -36,5 +36,8 @@ angular.module('app.controllers', [])
 
 		$scope.filters = {};
 
+		$scope.resetFilters = function() {
+			$scope.lifeEventsInView = $scope.filterService.sortTime(EventService.allLifeEvents);
+		};
 
 	}])

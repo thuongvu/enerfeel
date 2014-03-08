@@ -227,6 +227,7 @@ graph {
 /*log*/
 .log {
   position: relative;
+  float: left;
 }
 td {
   padding: 0 .9em 0 0;
