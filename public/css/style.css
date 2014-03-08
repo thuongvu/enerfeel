@@ -64,7 +64,7 @@ div.tooltip {
 }
 .navbar-lower {
   min-height: 30px;
-  height: 50px;
+  height: 40px;
 }
 .dropdown {
   position: relative;
@@ -260,4 +260,11 @@ a:visited {
 }
 .opacity-half:hover {
   opacity: 1;
+}
+/*button*/
+button {
+  /*margin: -5em 0 0 0;*/
+}
+.lower-navbar-items {
+  margin: 0.6em 0 0 0;
 }
