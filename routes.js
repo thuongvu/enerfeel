@@ -7,9 +7,9 @@ module.exports = function(app, passport) {
 		res.render("index.ejs");
 	})
 
-	app.get("/view/main", function (req,res) {
-		res.render("partials/main");
-	})
+	// app.get("/view/main", function (req,res) {
+	// 	res.render("partials/main");
+	// })
 
 	app.get('/auth', passport.authenticate('facebook'));
 
@@ -22,7 +22,7 @@ module.exports = function(app, passport) {
 				'authLevel': 1,
 			}), {secure: true, httpOnly: false});
 
-			res.redirect('/');
+			res.redirect('/#/view/main');
 	});
 
 	app.get('/get/events', isLoggedIn, function(req, res) {
