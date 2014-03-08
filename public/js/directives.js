@@ -309,7 +309,8 @@ angular.module('app.directives', [])
 	}
 
 	$scope.filterCategory = function(category) {
-		$scope.category.setTo = category;
+		// $scope.category.setTo = category;
+		$scope.lifeEventsInView = FilterService.filterActivity(category)
 	}
 	
 	$scope.calendar = {};

@@ -5,8 +5,6 @@ angular.module('app.controllers', [])
 		$scope.loadData = function() {
 			// if user is not logged in, log them in
 			if (EventService.Auth.authLevel === 0) {
-				console.log(EventService.Auth.authLevel);
-				console.log("EventService.Auth.authLevel");
 				$scope.login();
 			} else {
 				// if user is logged in, $http.get, put it into the view
@@ -16,7 +14,6 @@ angular.module('app.controllers', [])
 					};
 					$scope.filterService.sortTime($scope.lifeEventsInView);
 				});
-
 			};
 		};
 		// if user is now logged in, invoke $scope.loadData to fill the view
@@ -24,7 +21,6 @@ angular.module('app.controllers', [])
 			$scope.loadData();
 		}
 
-		// $scope.eventService.allLifeEvents = $scope.eventService.getData(); // LETS HOPE THIS WORKS
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("month");
 		$scope.input = {};
 		$scope.category = {};
@@ -35,21 +31,10 @@ angular.module('app.controllers', [])
 		}
 
 		$scope.showInNav = function(item) {
-			// console.log("showinNav")
-			// $scope.showAddCategories = true;
-			// $scope.$broadcast("showNav", {
-			// 	'showAddCategories': 'true',
-			// })
-			console.log(item);
 			$rootScope.$broadcast('showInNav', item);		
 		};
 
-		// $scope.$watch('showModify', function() {
-		// 	console.log("$scope.showModify");
-		// 	console.log($scope.showModify);
-		// }, true)
-
-		$scope.items = ['dsfdfsdfsdfdsf', '434tddfg', 'sdfsdf2ef', 'sdfdsnbnvcbvb', 'dsfrwrwer']
+		$scope.filters = {};
 
 
 	}])

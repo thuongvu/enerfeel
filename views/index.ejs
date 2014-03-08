@@ -74,10 +74,14 @@
 			<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>
 			<div class="log" ng-show="lifeEventsInView.length > 0">
 				<table>
-					<th>Date</th><th>Category</th><th>Note</th>
-					<tr class="events-in-log" ng-repeat="event in lifeEventsInView">
-						<td>{{event.date | date:'short'}}:</td>
-						<td>{{event.category}}</td>
+					<th>Date</th>
+					<th>Time</th>
+					<th ng-click="filters.category =''">Category</th>
+					<th>Note</th>
+					<tr class="events-in-log" ng-repeat="event in lifeEventsInView | filter: filters">
+						<td ng-click="filters.category = event.date">{{event.date | date:'shortDate'}}</td>
+						<td ng-click="filters.hours = event.category">{{event.date | date:'shortTime'}}</td>
+						<td ng-click="filters.category = event['category']">{{event.category}}</td>
 						<td>{{event.note}}</td>
 					</tr>
 				</table>

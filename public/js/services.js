@@ -175,7 +175,20 @@ return {
 				}
 			}
 			return arr;
-		}
+		};
+
+		function filterByCategoryName(category, arr) {
+			for (prop in EventService.allLifeEvents) {
+				var obj = EventService.allLifeEvents;
+				var categoryOfProp = obj[prop].category;
+
+				if (categoryOfProp == category) {
+					arr.push(obj[prop]);
+				};
+
+			};
+			return arr;
+		};
 
 		return {
 			filterLifeEvents: function(time) {
@@ -196,9 +209,13 @@ return {
 				currentFilterObj.lifeEvents = sortTime(results); 
 				return currentFilterObj.lifeEvents;
 			},
-			test: function() {
-				// console.log("blah")
-				return "blah";
+			filterActivity: function(category) {
+				// currentFilterObj.time = time; // set currentFilterObj.time to what was passed
+				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
+				var results = filterByCategoryName(category, currentFilterObj.lifeEvents); // get me my results!
+				console.log(results)
+				currentFilterObj.lifeEvents = sortTime(results); // sort the results
+				return currentFilterObj.lifeEvents;
 			},
 			currentFilterObj: currentFilterObj,
 		}
