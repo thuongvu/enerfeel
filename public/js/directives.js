@@ -395,10 +395,10 @@ angular.module('app.directives', [])
 		templateUrl: 'directiveTemplates/larger_components/graph_component.html'
 	};
 }])
-.directive('log', [function () {
+.directive('logsmall', [function () {
 	return {
 		restrict: 'EA',
-		templateUrl: 'directiveTemplates/larger_components/log_component.html'
+		templateUrl: 'directiveTemplates/larger_components/logsmall_component.html'
 	};
 }])
 // .directive('navbarnot', [function () {

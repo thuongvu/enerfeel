@@ -1,0 +1,14 @@
+<div class="log" ng-show="lifeEventsInView.length > 0"> <!-- log -->
+				<table class="log-table">
+					<th ng-click="resetFilters()">Date</th>
+					<th ng-click="resetFilters()">Time</th>
+					<th ng-click="resetFilters()">Category</th>
+					<th ng-click="resetFilters()">Note</th>
+					<tr class="events-in-log" ng-repeat="event in lifeEventsInView track by $index | filter: filters">
+						<td ng-click="filterDate(event.date)">{{event.date | date:'shortDate'}}</td>
+						<td ng-click="filterHour(event.date)">{{event.date | date:'shortTime'}}</td>
+						<td ng-click="filterCategory(event.category)">{{event.category | limitTo: 15}}</td>
+						<td class="trimmed-notes">{{event.note | limitTo: 22}}</td>
+					</tr>
+				</table>
+			</div> <!-- end log -->
