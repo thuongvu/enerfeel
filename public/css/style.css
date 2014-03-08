@@ -47,14 +47,21 @@ div.tooltip {
 
 /*straight out of bootstrap temp------------------------------------ */
 .navbar-default {
-  background-image: -webkit-linear-gradient(top, #fff 0%, #f8f8f8 100%);
-  background-image:         linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff8f8f8', GradientType=0);
+  background-image: -webkit-linear-gradient(top, #fff 0%, #DEDEDE 100%);
+  background-image:         linear-gradient(to bottom, #fff 0%, #DEDEDE 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#DEDEDE', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background-repeat: repeat-x;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
+}
+.navbar-default-lower {
+  background-image: -webkit-linear-gradient(top, #fff 0%, #f8f8f8 100%);
+  background-image:         linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff8f8f8', GradientType=0);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .90), 0 1px 5px rgba(0, 0, 0, .1);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .90), 0 1px 5px rgba(0, 0, 0, .1);
 }
 .navbar {
   position: relative;
@@ -235,6 +242,9 @@ graph {
   background-color: rgba(232, 225, 209, 0.1);
   border-radius: 8px;
 }
+th {
+  border-bottom: solid 1px grey;
+}
 td, th {
   cursor: pointer;
 }
@@ -267,4 +277,9 @@ button {
 }
 .lower-navbar-items {
   margin: 0.6em 0 0 0;
+}
+article {
+  border-top: 1px solid #D4D4D4;
+  /*margin: 0.5em 0 0 0;*/
+  padding: 1em 0 0 0;
 }
