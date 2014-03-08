@@ -207,7 +207,6 @@ angular.module('app.directives', [])
 
 	$scope.$on("showInNav", function(event, data) {
 		if (data === 'showModify') {
-			console.log($scope.showModify);
 			$scope.showModify = true;
 			$scope.showAddCategories = false;
 			$scope.showFilterdir = false;
@@ -229,6 +228,30 @@ angular.module('app.directives', [])
 			$scope.showAdd = true;
 		}
 	});
+
+	$scope.showInNav = function(data) {
+		if (data === 'showModify') {
+			$scope.showModify = !$scope.showModify;
+			$scope.showAddCategories = false;
+			$scope.showFilterdir = false;
+			$scope.showAdd = false;
+		} else if (data === 'showAddCategories') {
+			$scope.showAddCategories = !$scope.showAddCategories;
+			$scope.showModify = false;
+			$scope.showFilterdir = false;
+			$scope.showAdd = false;
+		} else if (data === 'showFilterdir') {
+			$scope.showAddCategories = false;
+			$scope.showModify = false;
+			$scope.showFilterdir = !$scope.showFilterdir;
+			$scope.showAdd = false;
+		} else if (data === 'showAdd') {
+			$scope.showAddCategories = false;
+			$scope.showModify = false;
+			$scope.showFilterdir = false;
+			$scope.showAdd = !$scope.showAdd;
+		}
+	}
 
 }])
 .directive('moreCategoryInputs', [function () {

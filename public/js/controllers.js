@@ -30,9 +30,9 @@ angular.module('app.controllers', [])
 			EventService.login();
 		}
 
-		$scope.showInNav = function(item) {
-			$rootScope.$broadcast('showInNav', item);		
-		};
+		// $scope.showInNav = function(item) {
+		// 	$rootScope.$broadcast('showInNav', item);		
+		// };
 
 		$scope.filters = {};
 
