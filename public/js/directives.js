@@ -371,25 +371,25 @@ angular.module('app.directives', [])
 		templateUrl: 'directiveTemplates/larger_components/navbarnotLoggedIncomponent.html'
 	};
 }])
-.directive('navbar-LoggedIn', [function () {
+.directive('navbarloggedin', [function () {
 	return {
 		restrict: 'EA',
 		templateUrl: 'directiveTemplates/larger_components/navbar-loggedIn_component.html'
 	};
 }])
-.directive('navbar-lower', [function () {
+.directive('navbarlower', [function () {
 	return {
 		restrict: 'EA',
 		templateUrl: 'directiveTemplates/larger_components/navbar-lower_component.html'
 	};
 }])
-.directive('options-area', [function () {
+.directive('optionsarea', [function () {
 	return {
 		restrict: 'EA',
 		templateUrl: 'directiveTemplates/larger_components/options-area_component.html'
 	};
 }])
-.directive('graph-largerComponent', [function () {
+.directive('graphlargercomponents', [function () {
 	return {
 		restrict: 'EA',
 		templateUrl: 'directiveTemplates/larger_components/graph_component.html'
