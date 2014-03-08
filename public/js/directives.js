@@ -364,6 +364,56 @@ angular.module('app.directives', [])
 		templateUrl: 'directiveTemplates/categoryOptionsListTemplate.html'
 	};
 }])
+.directive('navbarnotloggedin', [function () {
+	return {
+		restrict: 'EA',
+		controller: 'mainCtrl',
+		templateUrl: 'directiveTemplates/larger_components/navbarnotLoggedIncomponent.html'
+	};
+}])
+.directive('navbar-LoggedIn', [function () {
+	return {
+		restrict: 'EA',
+		templateUrl: 'directiveTemplates/larger_components/navbar-loggedIn_component.html'
+	};
+}])
+.directive('navbar-lower', [function () {
+	return {
+		restrict: 'EA',
+		templateUrl: 'directiveTemplates/larger_components/navbar-lower_component.html'
+	};
+}])
+.directive('options-area', [function () {
+	return {
+		restrict: 'EA',
+		templateUrl: 'directiveTemplates/larger_components/options-area_component.html'
+	};
+}])
+.directive('graph-largerComponent', [function () {
+	return {
+		restrict: 'EA',
+		templateUrl: 'directiveTemplates/larger_components/graph_component.html'
+	};
+}])
+.directive('log', [function () {
+	return {
+		restrict: 'EA',
+		templateUrl: 'directiveTemplates/larger_components/log_component.html'
+	};
+}])
+// .directive('navbarnot', [function () {
+// 	return {
+// 		restrict: 'EA',
+// 		templateUrl: 'directiveTemplates/larger_components/test-template.html'
+// 	};
+// }])
+
+
+
+
+
+
+
 
 
 

@@ -2,19 +2,19 @@ angular.module('app', ['ngRoute', 'ui.bootstrap.dropdown', 'ngCookies', 'ngRoute
 	.config(function($routeProvider) {
 		$routeProvider
 			.when('/', {
-				templateUrl: 'partials/notLoggedIn.html',
-				controller: 'mainCtrl'
+				templateUrl: 'partials/notLoggedIn.ejs'
+				// , controller: 'mainCtrl'
 			})
 			.when('/view/main', {
-				templateUrl: 'partials/main.html',
-				controller: 'mainCtrl'
+				templateUrl: 'partials/main.ejs'
+				// , controller: 'mainCtrl'
 			})
 			.when('/view/graph', {
-				templateUrl: 'partials/graph.html',
-				controller: 'mainCtrl'
+				templateUrl: 'partials/graph.ejs'
+				// , controller: 'mainCtrl'
 			})
 			.when('/view/log', {
-				templateUrl: 'partials/log.html',
-				controller: 'mainCtrl'
+				templateUrl: 'partials/log.ejs'
+				// , controller: 'mainCtrl'
 			})
 	});
