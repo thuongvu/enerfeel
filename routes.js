@@ -7,6 +7,10 @@ module.exports = function(app, passport) {
 		res.render("index.ejs");
 	})
 
+	app.get("/view/main", function (req,res) {
+		res.render("partials/main");
+	})
+
 	app.get('/auth', passport.authenticate('facebook'));
 
 	app.get('/auth/facebook/callback', 
