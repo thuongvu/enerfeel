@@ -301,25 +301,32 @@ angular.module('app.directives', [])
 	$scope.category = {};
 	$scope.category.setTo = 'null';
 
+	function emitFilterChange() {
+		$scope.$emit('filterSomething', $scope.lifeEventsInView)
+	}
+
 	$scope.filterTime = function(time) {
 		// console.log(time)
 		// $scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
 		$scope.lifeEventsInView = FilterService.filterLifeEvents(time);
 		console.log($scope.lifeEventsInView);
-		$scope.$emit('filterSomething', $scope.lifeEventsInView)
+		emitFilterChange();
 	}
 
 	$scope.filterCategory = function(category) {
 		// $scope.category.setTo = category;
-		$scope.lifeEventsInView = FilterService.filterActivity(category)
+		$scope.lifeEventsInView = FilterService.filterActivity(category);
+		emitFilterChange();
 	};
 
 	$scope.filterHour = function(date) {
-		$scope.lifeEventsInView = FilterService.filterHour(date)
+		$scope.lifeEventsInView = FilterService.filterHour(date);
+		emitFilterChange();
 	};
 
 	$scope.filterDate = function(date) {
-		$scope.lifeEventsInView = FilterService.filterDate(date)
+		$scope.lifeEventsInView = FilterService.filterDate(date);
+		emitFilterChange();
 	};
 
 	$scope.resetFilters = function() {
@@ -327,6 +334,7 @@ angular.module('app.directives', [])
 		// $scope.lifeEventsInView = $scope.filterService.sortTime(EventService.allLifeEvents);
 		$scope.lifeEventsInView = FilterService.sortTime(EventService.allLifeEvents);
 		console.log($scope.lifeEventsInView);
+		emitFilterChange();
 	};
 
 	
