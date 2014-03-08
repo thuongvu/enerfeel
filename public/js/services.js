@@ -216,6 +216,12 @@ return {
 			return arr;
 		};
 
+		// filter by energy
+
+		// filter by opacity
+
+		// filter by size
+
 		return {
 			filterLifeEvents: function(time) {
 				currentFilterObj.time = time; // set currentFilterObj.time to what was passed
@@ -257,6 +263,14 @@ return {
 				currentFilterObj.lifeEvents = sortTime(results);
 				return currentFilterObj.lifeEvents;
 			},
+
+			// filter by energy
+
+			// filter by opacity
+
+			// filter by size
+
+			
 			currentFilterObj: currentFilterObj,
 		}
 	}])

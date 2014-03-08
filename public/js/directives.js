@@ -329,6 +329,13 @@ angular.module('app.directives', [])
 		emitFilterChange();
 	};
 
+	// filter energy
+
+	// filter opacity
+
+	// filter by size
+	
+
 	$scope.resetFilters = function() {
 		console.log("resetFilters")
 		// $scope.lifeEventsInView = $scope.filterService.sortTime(EventService.allLifeEvents);
