@@ -301,32 +301,32 @@ angular.module('app.directives', [])
 	$scope.category = {};
 	$scope.category.setTo = 'null';
 
-	$scope.filterTime = function(time) {
-		// console.log(time)
-		// $scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
-		$scope.lifeEventsInView = FilterService.filterLifeEvents(time);
-		console.log($scope.lifeEventsInView);
-	}
+	// $scope.filterTime = function(time) {
+	// 	// console.log(time)
+	// 	// $scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
+	// 	$scope.lifeEventsInView = FilterService.filterLifeEvents(time);
+	// 	console.log($scope.lifeEventsInView);
+	// }
 
-	$scope.filterCategory = function(category) {
-		// $scope.category.setTo = category;
-		$scope.lifeEventsInView = FilterService.filterActivity(category)
-	};
+	// $scope.filterCategory = function(category) {
+	// 	// $scope.category.setTo = category;
+	// 	$scope.lifeEventsInView = FilterService.filterActivity(category)
+	// };
 
-	$scope.filterHour = function(date) {
-		$scope.lifeEventsInView = FilterService.filterHour(date)
-	};
+	// $scope.filterHour = function(date) {
+	// 	$scope.lifeEventsInView = FilterService.filterHour(date)
+	// };
 
-	$scope.filterDate = function(date) {
-		$scope.lifeEventsInView = FilterService.filterDate(date)
-	};
+	// $scope.filterDate = function(date) {
+	// 	$scope.lifeEventsInView = FilterService.filterDate(date)
+	// };
 
-	$scope.resetFilters = function() {
-		console.log("resetFilters")
-		// $scope.lifeEventsInView = $scope.filterService.sortTime(EventService.allLifeEvents);
-		$scope.lifeEventsInView = FilterService.sortTime(EventService.allLifeEvents);
-		console.log($scope.lifeEventsInView);
-	};
+	// $scope.resetFilters = function() {
+	// 	console.log("resetFilters")
+	// 	// $scope.lifeEventsInView = $scope.filterService.sortTime(EventService.allLifeEvents);
+	// 	$scope.lifeEventsInView = FilterService.sortTime(EventService.allLifeEvents);
+	// 	console.log($scope.lifeEventsInView);
+	// };
 
 	
 	$scope.calendar = {};
