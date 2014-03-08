@@ -21,32 +21,15 @@ angular.module('app.controllers', [])
 			$scope.loadData();
 		}
 
-		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("month");
-		$scope.input = {};
-		$scope.category = {};
-		$scope.category.setTo = 'null';
-
 		$scope.login = function() {
 			EventService.login();
 		}
 
-		// $scope.showInNav = function(item) {
-		// 	$rootScope.$broadcast('showInNav', item);		
-		// };
-
+		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("month");
+		$scope.input = {};
+		$scope.category = {};
+		$scope.category.setTo = 'null';
 		$scope.filters = {};
-
-		// $scope.resetFilters = function() {
-		// 	console.log("resetFilters")
-		// 	// $scope.lifeEventsInView = $scope.filterService.sortTime(EventService.allLifeEvents);
-		// 	$scope.lifeEventsInView = FilterService.sortTime(EventService.allLifeEvents);
-		// 	console.log($scope.lifeEventsInView);
-		// };
-
-		$scope.goTo = function(path) {
-			// console.log("path")
-			$location.path(path);
-		}
 
 		$scope.$on('filterSomething', function(event, data) {
 			$scope.lifeEventsInView = data;

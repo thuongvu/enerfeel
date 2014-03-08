@@ -205,30 +205,6 @@ angular.module('app.directives', [])
 		});
 	};
 
-	$scope.$on("showInNav", function(event, data) {
-		if (data === 'showModify') {
-			$scope.showModify = true;
-			$scope.showAddCategories = false;
-			$scope.showFilterdir = false;
-			$scope.showAdd = false;
-		} else if (data === 'showAddCategories') {
-			$scope.showAddCategories = true;
-			$scope.showModify = false;
-			$scope.showFilterdir = false;
-			$scope.showAdd = false;
-		} else if (data === 'showFilterdir') {
-			$scope.showAddCategories = false;
-			$scope.showModify = false;
-			$scope.showFilterdir = true;
-			$scope.showAdd = false;
-		} else if (data === 'showAdd') {
-			$scope.showAddCategories = false;
-			$scope.showModify = false;
-			$scope.showFilterdir = false;
-			$scope.showAdd = true;
-		}
-	});
-
 	$scope.showInNav = function(data) {
 		if (data === 'showModify') {
 			$scope.showModify = !$scope.showModify;
@@ -250,8 +226,8 @@ angular.module('app.directives', [])
 			$scope.showModify = false;
 			$scope.showFilterdir = false;
 			$scope.showAdd = !$scope.showAdd;
-		}
-	}
+		};
+	};
 
 }])
 .directive('moreCategoryInputs', [function () {
