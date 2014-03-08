@@ -44,7 +44,7 @@ angular.module('app.controllers', [])
 		// };
 
 		$scope.goTo = function(path) {
-			console.log(path)
+			// console.log("path")
 			$location.path(path);
 		}
 

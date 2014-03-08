@@ -155,15 +155,15 @@ i {
 i.lower-lg-icon {
   line-height: 1.8em;
 }
-.icon {
+.pad-right {
   padding-right: 1.2em;
-  opacity: 0.5;
+  /*opacity: 0.5;*/
 }
-.icon:nth-child(2) {
+.pad-right:nth-child(2) {
   padding-right: 0.7em;
 }
 .icon:hover {
-  opacity: 1;
+  /*opacity: 1;*/
 }
 .navbar-text-view {
   font-size: 0.8em;
@@ -244,4 +244,14 @@ tr:nth-child(odd) {
 }
 .trimmed-notes:hover {
   background-color: blue;
+}
+/*links*/
+a:visited {
+  color: #000;
+}
+.opacity-half {
+  opacity: 0.5;
+}
+.opacity-half:hover {
+  opacity: 1;
 }
