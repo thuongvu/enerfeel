@@ -330,11 +330,23 @@ angular.module('app.directives', [])
 	};
 
 	// filter energy
+	$scope.filterEnergy = function(energy) {
+		$scope.lifeEventsInView = FilterService.filterEnergy(energy);
+		emitFilterChange();
+	};
 
 	// filter opacity
+	$scope.filterOpacity= function(opacity) {
+		$scope.lifeEventsInView = FilterService.filterOpacity(opacity);
+		emitFilterChange();
+	};
 
 	// filter by size
-	
+	$scope.filterSize= function(size) {
+		$scope.lifeEventsInView = FilterService.filterSize(size);
+		emitFilterChange();
+	};
+
 
 	$scope.resetFilters = function() {
 		console.log("resetFilters")

@@ -217,10 +217,40 @@ return {
 		};
 
 		// filter by energy
+		function filterByEnergy(energy, arr) {
+			for (prop in EventService.allLifeEvents) {
+				var obj = EventService.allLifeEvents;
+				var energyOfProp = obj[prop].energylevel;
+				if (energy === energyOfProp) {
+					arr.push(obj[prop])
+				};
+			};
+			return arr;
+		};
 
 		// filter by opacity
+		function filterByOpacity(opacity, arr) {
+			for (prop in EventService.allLifeEvents) {
+				var obj = EventService.allLifeEvents;
+				var opacityOfProp = obj[prop].opacity;
+				if (opacity === opacityOfProp) {
+					arr.push(obj[prop])
+				};
+			};
+			return arr;
+		};
 
 		// filter by size
+		function filterBySize(size, arr) {
+			for (prop in EventService.allLifeEvents) {
+				var obj = EventService.allLifeEvents;
+				var sizeOfProp = obj[prop].size;
+				if (size === sizeOfProp) {
+					arr.push(obj[prop])
+				};
+			};
+			return arr;
+		};
 
 		return {
 			filterLifeEvents: function(time) {
@@ -263,14 +293,24 @@ return {
 				currentFilterObj.lifeEvents = sortTime(results);
 				return currentFilterObj.lifeEvents;
 			},
-
-			// filter by energy
-
-			// filter by opacity
-
-			// filter by size
-
-			
+			filterEnergy: function(energy) {
+				currentFilterObj.lifeEvents = []; 
+				var results = filterByEnergy(energy, currentFilterObj.lifeEvents); 
+				currentFilterObj.lifeEvents = sortTime(results);
+				return currentFilterObj.lifeEvents;
+			},
+			filterOpacity: function(opacity) {
+				currentFilterObj.lifeEvents = []; 
+				var results = filterByOpacity(opacity, currentFilterObj.lifeEvents); 
+				currentFilterObj.lifeEvents = sortTime(results);
+				return currentFilterObj.lifeEvents;
+			},
+			filterSize: function(size) {
+				currentFilterObj.lifeEvents = []; 
+				var results = filterBySize(size, currentFilterObj.lifeEvents); 
+				currentFilterObj.lifeEvents = sortTime(results);
+				return currentFilterObj.lifeEvents;
+			},
 			currentFilterObj: currentFilterObj,
 		}
 	}])

@@ -11,9 +11,9 @@
 			<td ng-click="filterDate(event.date)">{{event.date | date:'shortDate'}}</td>
 			<td ng-click="filterHour(event.date)">{{event.date | date:'shortTime'}}</td>
 			<td ng-click="filterCategory(event.category)">{{event.category}}</td>
-			<td>{{event.energylevel}}</td>
-			<td>{{event.size}}</td>
-			<td>{{event.opacity}}</td>
+			<td ng-click="filterEnergy(event.energylevel)">{{event.energylevel}}</td>
+			<td ng-click="filterSize(event.size)">{{event.size}}</td>
+			<td ng-click="filterOpacity(event.opacity)">{{event.opacity}}</td>
 			<td class="trimmed-notes">{{event.note}}</td>
 		</tr>
 	</table>
