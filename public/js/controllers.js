@@ -43,5 +43,7 @@ angular.module('app.controllers', [])
 			return  "How full you feel (0-5): " + value.toString();
 		}
 
+		$scope.list = [1,2,3,4,5];
+
 
 	}])
