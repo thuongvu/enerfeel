@@ -33,7 +33,11 @@ angular.module('app.controllers', [])
 
 		$scope.$on('filterSomething', function(event, data) {
 			$scope.lifeEventsInView = data;
-		})
+		});
+
+		$scope.energyLevelFormatting = function(value) {
+			return  "Energy Level: " + value.toString();
+		}
 
 
 	}])

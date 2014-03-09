@@ -347,6 +347,13 @@ slider {
 slider span.pointer.active:after {
   background-color: #000;
 }
+slider.energyLevel {
+  width: 150px;
+}
 
+.position-quickdate-higher .quickdate {
+  position: relative;
+  top: -1em;
+}
 
 
