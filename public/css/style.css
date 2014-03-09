@@ -233,7 +233,7 @@ li.navbar-text-account {
   cursor: pointer;
 }
 .options-area {
-  min-height: 105px;
+  min-height: 120px;
 }
 /*graph*/
 graph {
@@ -315,7 +315,7 @@ article {
 /*categories*/
 .addCategory {
   position: relative;
-  padding: 0 0 1em 0;
+  padding: 0 0 0.5em 0;
   /*height: 30px;*/
 }
 .addCategory button {
@@ -325,7 +325,10 @@ article {
  i just made the button 1px larger to compensate, so it wont be moved. hackish, reminder in css*/
 }
 .moreCategoryInputsTemplate {
-  margin: 0.5em 0 0 0;
+  margin: -1.2em 0 0 0;
+}
+.moreCategoryInputs-form-meal {
+  margin: -.9em 0 0 0;
 }
 /*modify*/
 .modifyTemplate-noteSize {
