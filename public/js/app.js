@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute', 'ui.bootstrap.dropdown', 'ngCookies', 'ngRoute', 'd3', 'ngQuickDate', 'app.services', 'app.graphDirective', 'app.directives', 'app.controllers' ])
+angular.module('app', [ 'ngTouch', 'vr.directives.slider', 'ngRoute', 'ui.bootstrap.dropdown', 'ngCookies', 'ngRoute', 'd3', 'ngQuickDate', 'app.services', 'app.graphDirective', 'app.directives', 'app.controllers' ])
 	.config(function($routeProvider) {
 		$routeProvider
 			.when('/', {

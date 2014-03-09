@@ -23,7 +23,8 @@
     "normalize-css": "3.0.0",
     "angular-cookies": "~1.2",
     "ngQuickDate": "1.2.8",
-    "components-font-awesome": "~4.0.3"
+    "components-font-awesome": "~4.0.3",
+    "venturocket-angular-slider": "~0.2.4"
   },
   "resolutions": {
     "angular": "1.2.15-build.2388+sha.186a68f"
