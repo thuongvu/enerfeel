@@ -300,7 +300,8 @@ article {
   height: 30px;
 }
 .addCategory button {
-  height: 24px;
+  /*height: 24px;*/
+  margin: 1px 0 0 0;
  /*categories button. if you click new category, the input forms are 1px larger. 
  i just made the button 1px larger to compensate, so it wont be moved. hackish, reminder in css*/
 }
@@ -308,4 +309,12 @@ article {
 .modifyTemplate-noteSize {
   width: 418px;
   margin: 0.5em 0 0.5em 0;
+}
+/*filterTemplate*/
+.filterTemplate-timeFilters {
+  margin: 0 0 1em 0;
+}
+/*adding extra margin so that when the time pops open, its 23px vs 27px*/
+.filterTemplate-timeFilters button {
+  margin: 2px 0 2px 0; 
 }

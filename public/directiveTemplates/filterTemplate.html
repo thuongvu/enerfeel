@@ -1,5 +1,5 @@
 <span ng-show="showFilterdir">
-	<div>
+	<div class="filterTemplate-timeFilters">
 		Time Filters
 		<button ng-click="filterTime('day')">Day</button>
 		<button ng-click="filterTime('week')">Week</button>
@@ -10,10 +10,7 @@
 		<span ng-show="showCustomTime">
 			<span custom-time-filter></span>
 		</span>
-		
-		<!-- <datepicker ng-model="calendar.firstDate"></datepicker>
-		<datepicker ng-model="calendar.secondDate"></datepicker>
-		<button ng-click="customLengthTime(calendar.firstDate, calendar.secondDate)">Custom</button> -->
+
 	</div>
 	<div>
 		Activity Filters
@@ -21,6 +18,6 @@
 		<button ng-click="filterCategory('exercise')">Exercise</button>
 		<button ng-click="filterCategory('work')">Work</button>
 		<button ng-click="filterCategory('sleep')">Sleep</button>
-		<button ng-click="filterCategory('null')">None</button>
+		<button ng-click="resetFilters()">None</button>
 	</div>
 </span>
