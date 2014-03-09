@@ -1,11 +1,13 @@
 
 <!-- <div add-category></div> -->
 <div ng-show="showAdd" class="showAdd">
-	<input ng-model="input.level" type="number" placeholder="0"></input>
-	<input ng-model="input.note" type="text" placeholder="note"></input>
+	<span time></span>
+	<input ng-model="input.level" type="number" placeholder="Energy level"></input>
+	<input ng-model="input.note" type="text" placeholder="Note"></input>
+	<span category-options-list></span>
 	<button ng-click="addEvent(input.level, input.note, categories.selected.category.value)">Add</button>
 
-	<span category-options-list></span>
-	<span time></span>
+	
+	
 	<div more-category-inputs></div>
 </div>

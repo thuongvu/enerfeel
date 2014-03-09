@@ -1,18 +1,20 @@
-<div ng-show="show.meal">
-	meal
-	<input ng-model="input.size" type="number" placeholder="zero">How full do you feel? 1-5</input>
-	<form>
-		<input ng-model="input.checkbox.dairy" type="checkbox">Dairy</input>
-		<input ng-model="input.checkbox.fruits" type="checkbox">Fruits</input>
-		<input ng-model="input.checkbox.grains" type="checkbox">Grains</input>
-		<input ng-model="input.checkbox.meat" type="checkbox">Meat</input>
-		<input ng-model="input.checkbox.vegetables" type="checkbox">Vegetables</input>
-	</form>
-</div>
-<div ng-repeat="category in categories.list" class="cat">
-	<div ng-show="{{category.show}}" class="{{category.label}}">
-		{{category.label}}
-		<input ng-model="input.size" type="number" placeholder="{{category.size}}"></input>
-		<input ng-model="input.opacity" type="number" placeholder="{{category.opacity}}"></input>
+<div class="moreCategoryInputsTemplate">
+	<div ng-show="show.meal">
+		meal
+		<input ng-model="input.size" type="number" placeholder="zero">How full do you feel? 1-5</input>
+		<form>
+			<input ng-model="input.checkbox.dairy" type="checkbox">Dairy</input>
+			<input ng-model="input.checkbox.fruits" type="checkbox">Fruits</input>
+			<input ng-model="input.checkbox.grains" type="checkbox">Grains</input>
+			<input ng-model="input.checkbox.meat" type="checkbox">Meat</input>
+			<input ng-model="input.checkbox.vegetables" type="checkbox">Vegetables</input>
+		</form>
+	</div>
+	<div ng-repeat="category in categories.list" class="cat">
+		<div ng-show="{{category.show}}" class="{{category.label}}">
+			{{category.label}}
+			<input ng-model="input.size" type="number" placeholder="{{category.size}}"></input>
+			<input ng-model="input.opacity" type="number" placeholder="{{category.opacity}}"></input>
+		</div>
 	</div>
 </div>
