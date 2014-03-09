@@ -238,17 +238,26 @@ li.navbar-text-account {
 /*graph*/
 graph {
   float: left;
-  background-color: rgba(232, 225, 209, 0.1);
-  border-radius: 10px;
-  margin: 0 0 0 0;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px 0 0 10px;
+  margin: 0 0 0 1em;
+  -webkit-box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
+          box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
+
 }
 /*log*/
 .log {
   position: relative;
   float: left;
   padding: 1em;
-  background-color: rgba(232, 225, 209, 0.1);
-  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 0px 10px 10px 0;
+  overflow-y: scroll;
+  height: 372px;
+  border-left: solid 4px transparent;
+  -webkit-box-shadow: inset 10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
+          box-shadow: inset 10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
+  /*margin: 0 0 0 0.5em;*/
 }
 th {
   border-bottom: solid 1px grey;
@@ -296,8 +305,8 @@ article {
 /*categories*/
 .addCategory {
   position: relative;
-  padding: 1em 0 1em 0;
-  height: 30px;
+  padding: 0 0 1em 0;
+  /*height: 30px;*/
 }
 .addCategory button {
   /*height: 24px;*/

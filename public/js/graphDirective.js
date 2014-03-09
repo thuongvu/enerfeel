@@ -14,7 +14,7 @@ angular.module('app.graphDirective', [])
 				var category = scope.category;
 
 				// dimensions of svg
-				var width = 800,
+				var width = 768,
 					 height = 400,
 					 padding = 50;
 
