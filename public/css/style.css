@@ -288,19 +288,24 @@ a:visited {
 .opacity-half:hover {
   opacity: 1;
 }
-/*button*/
-button {
-  /*margin: -5em 0 0 0;*/
-}
-
 article {
   border-top: 1px solid #D4D4D4;
-  /*margin: 0.5em 0 0 0;*/
-  padding: 1em 0 0 0;
+  /*padding: 1em 0 0 0;*/
+  /*margin: 0 0 0 4em;*/
+  position: relative;
+  /*width: 100%;*/
+  text-align: center;
 }
-
-
-
+.options-area-component {
+  display: inline-block;
+  position: relative;
+  padding: 0.5em;
+  margin: 0 0 0 5em;
+  /*width: 50%;*/
+  /*margin: 0 auto;*/
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
+}
 /*options*/
 /*categories*/
 .addCategory {
@@ -327,3 +332,9 @@ article {
 .filterTemplate-timeFilters button {
   margin: 2px 0 2px 0; 
 }
+
+
+
+
+
+
