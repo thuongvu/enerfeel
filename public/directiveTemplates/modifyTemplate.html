@@ -1,9 +1,13 @@
 <!-- <button ng-click="showModifyFunc()">Modify event</button> -->
 <div ng-show="showModify">
-	<input type="text" ng-model="event.selected.date"></input>
-	<input type="number" ng-model="event.selected.energylevel"></input>
-	<input type="text" ng-model="event.selected.note"></input>
-	<input type="text" ng-model="event.selected.category"></input>
-	<button ng-click="updateEvent(event)">Update</button>
-	<button ng-click="deleteEvent(event)">Delete</button>
+	<div>
+		<input type="text" ng-model="event.selected.date" placeholder="Time"></input>
+		<input type="number" ng-model="event.selected.energylevel" placeholder="Energy level"></input>
+		<input type="text" ng-model="event.selected.category" placeholder="Category"></input>
+	</div>
+	<div>
+		<input class="modifyTemplate-noteSize" type="text" ng-model="event.selected.note" placeholder="Note"></input>
+		<button ng-click="updateEvent(event)">Update Event</button>
+		<button ng-click="deleteEvent(event)">Delete Event</button>
+	</div>
 </div>

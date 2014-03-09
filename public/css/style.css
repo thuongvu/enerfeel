@@ -298,9 +298,14 @@ article {
   position: relative;
   padding: 1em 0 1em 0;
   height: 30px;
-  /*background-color: blue;*/
 }
 .addCategory button {
   height: 24px;
-  /*background-color: blue;*/
+ /*categories button. if you click new category, the input forms are 1px larger. 
+ i just made the button 1px larger to compensate, so it wont be moved. hackish, reminder in css*/
+}
+/*modify*/
+.modifyTemplate-noteSize {
+  width: 418px;
+  margin: 0.5em 0 0.5em 0;
 }
