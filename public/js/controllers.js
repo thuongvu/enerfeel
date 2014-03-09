@@ -39,5 +39,9 @@ angular.module('app.controllers', [])
 			return  "Energy Level: " + value.toString();
 		}
 
+		$scope.howFullFeelingFormatting = function(value) {
+			return  "How full you feel (0-5): " + value.toString();
+		}
+
 
 	}])

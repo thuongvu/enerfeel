@@ -3,7 +3,7 @@
 <div ng-show="showAdd" class="showAdd">
 	<time class="position-quickdate-higher"></time>
 	<!-- <input ng-model="input.level" type="number" placeholder="Energy level"></input> -->
-	<slider class="energyLevel" ng-model="input.level" floor="0" ceiling="5" translate="energyLevelFormatting" ></slider> 
+	<slider class="energyLevel" ng-model="input.level" floor="0" ceiling="5" translate="energyLevelFormatting"></slider> 
 	<input ng-model="input.note" type="text" placeholder="Note"></input>
 	<span category-options-list></span>
 	<button ng-click="addEvent(input.level, input.note, categories.selected.category.value)">Add</button>
