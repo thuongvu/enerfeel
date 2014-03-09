@@ -14,8 +14,10 @@
 	<div ng-repeat="category in categories.list" class="cat">
 		<div ng-show="{{category.show}}" class="{{category.label}}">
 			{{category.label}}
-			<input ng-model="input.size" type="number" placeholder="{{category.size}}"></input>
-			<input ng-model="input.opacity" type="number" placeholder="{{category.opacity}}"></input>
+			<!-- <input ng-model="input.size" type="number" placeholder="{{category.size}}"></input> -->
+			<!-- <input ng-model="input.opacity" type="number" placeholder="{{category.opacity}}"></input> -->
+			<span>{{category.size}}</span><slider ng-model="input.size" floor="0" ceiling="5"></slider>
+			<slider ng-model="input.opacity" floor="0" ceiling="5"></slider><span>{{category.opacity}}</span>
 		</div>
 	</div>
 </div>
