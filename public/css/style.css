@@ -355,7 +355,12 @@ article {
   position: relative;
   display: inline-block;
 }
-
+.sliderInMeal {
+  margin: -1em 1em 0 0;
+}
+.mealSlider-caption {
+  margin: 0.5em 0;
+}
 
 
 
