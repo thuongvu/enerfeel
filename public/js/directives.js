@@ -44,21 +44,6 @@ angular.module('app.directives', [])
 			}					
 		}
 
-		function addIfSleep(energyLevel, note, category) {
-			var eventData = {
-				energylevel : energyLevel,
-				note			: note,
-				date        : $scope.wakeTime,
-				category 	: category,	
-				opacity		: $scope.input.opacity,
-				size			: $scope.input.size
-			};
-
-			$scope.eventService.allLifeEvents.push(eventData);
-			$scope.lifeEventsInView.push(eventData)
-
-		}
-
 		function pushDataIntoServices(eventData) {
 			// $scope.eventService.allLifeEvents.push(eventData);
 			$scope.eventService.addLifeEvent(eventData);
@@ -89,15 +74,11 @@ angular.module('app.directives', [])
 
 			if (category === 'meal') {
 				addIfMeal();
-			} else if (category === 'sleep') {
-				addIfSleep(energyLevel, note, category);
-			}
-
+			};
+			
 			catchEmptyInputs();
 			var eventData = createEventDataObj(energyLevel, note, category);
-// console.log(eventData);
 			pushDataIntoServices(eventData);
-			// $scope.showAddFunc();
 			$scope.showAdd = false;
 			clearInputs();
 			$scope.showHideCategories('all');
@@ -118,7 +99,7 @@ angular.module('app.directives', [])
 // ----------------------------------------------------------------------------
 .controller('timeController', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.dateTimePicked = new Date();
-	$scope.wakeTime = new Date();
+	// $scope.wakeTime = new Date();
 	setTime();
 
 	var timeIntervalFunction = function() {
