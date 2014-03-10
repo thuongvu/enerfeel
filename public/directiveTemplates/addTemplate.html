@@ -7,7 +7,7 @@
 		<span class="energyLevelCaption" required>Energy level: {{input.level}}</span>
 		<input ng-model="input.note" type="text" placeholder="Note" required></input>
 		<span category-options-list required></span>
-		<button ng-click="addEvent(input.level, input.note, categories.selected.category.value)" ng-disabled="addForm.$invalid || isUnchanged(input) || categories.selected.category.label === 'Choose a category' ">Add</button>
+		<button ng-click="addEvent(input.level, input.note, categories.selected.category.value)" ng-disabled="addForm.$invalid ||  categories.selected.category.label === 'Choose a category' || input.size == null || input.opacity == null">Add</button>
 		<div more-category-inputs></div>
 	</form>
 </div>
