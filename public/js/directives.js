@@ -15,20 +15,21 @@ angular.module('app.directives', [])
 		// 	}
 		// };
 
-		// ADDING LOGIC
-		function addIfMeal() {
-			if ($scope.input.checkbox == null) {
-				$scope.input.checkbox = {};
-			}
-			$scope.input.checkbox.checked = 0; 
 
-			for (food in $scope.input.checkbox) {
-				if ($scope.input.checkbox[food] === true) {
-					$scope.input.checkbox.checked++;
-				}
-			};
-			$scope.input.opacity = $scope.input.checkbox.checked;
-		}
+		// ADDING LOGIC
+		// function addIfMeal() {
+		// 	if ($scope.input.checkbox == null) {
+		// 		$scope.input.checkbox = {};
+		// 	}
+		// 	$scope.input.checkbox.checked = 0; 
+
+		// 	for (food in $scope.input.checkbox) {
+		// 		if ($scope.input.checkbox[food] === true) {
+		// 			$scope.input.checkbox.checked++;
+		// 		}
+		// 	};
+		// 	$scope.input.opacity = $scope.input.checkbox.checked;
+		// }
 
 		function catchEmptyInputs() {
 			if (($scope.input.opacity == undefined) || ($scope.input.opacity == 0)) {
@@ -87,10 +88,11 @@ angular.module('app.directives', [])
 		// WHERE ALL THESE ADD FUNCTIONS COME TOGETHER
 		$scope.addEvent = function(energyLevel, note, category) {
 
-			if (category === 'meal') {
-				addIfMeal();
-			} 
-			else if (category === 'sleep') {
+			// if (category === 'meal') {
+			// 	addIfMeal();
+			// } 
+			// else 
+				if (category === 'sleep') {
 				addIfSleep(energyLevel, note, category);
 			}
 
@@ -104,6 +106,23 @@ angular.module('app.directives', [])
 			$scope.showHideCategories('all');
 			$scope.categories.selected.category = $scope.categories.list[0];
 		};
+
+		$scope.$watch('input.checkbox', function() {
+			if ($scope.input.checkbox == null) {
+				$scope.input.checkbox = {};
+			}
+			$scope.input.checkbox.checked = 0; 
+
+				for (food in $scope.input.checkbox) {
+					if ($scope.input.checkbox[food] === true) {
+						$scope.input.checkbox.checked++;
+					}
+				};
+				if ($scope.input.checkbox.checked > 0) {
+					$scope.input.opacity = $scope.input.checkbox.checked;
+				} 
+				
+		},true)
 
 	}])
 	.directive('add', ['EventService', 'FilterService', '$timeout', function (EventService, FilterService, $timeout) {		

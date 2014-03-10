@@ -378,3 +378,16 @@ article {
   display: inline-block;
   margin: 0 0.8em 0 0.6em;
 }
+
+.addTemplate-addForm input.ng-invalid.ng-dirty {
+   background-color: #c1e2c3;
+ }
+ .addTemplate-addForm input.ng-valid.ng-dirty {
+   background-color: #c1e2c3;
+ }
+ .addTemplate-addForm select.ng-invalid.ng-dirty {
+    background-color: #c1e2c3;
+}
+.addTemplate-addForm select.ng-valid.ng-dirty {
+  background-color: #c1e2c3;
+}
