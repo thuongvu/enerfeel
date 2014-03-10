@@ -370,7 +370,11 @@ article {
   margin: 0 1.5em;
 }
 .modify-e-slider {
-  margin: 0 1em;
+  margin: 0 0 0 1em;
   display: inline-block;
 }
-
+.modify-e-caption {
+  width: 112px;
+  display: inline-block;
+  margin: 0 0.8em 0 0.6em;
+}
