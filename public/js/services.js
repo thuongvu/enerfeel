@@ -317,6 +317,7 @@ return {
 	.factory('CategoryService', ['EventService', '$rootScope', '$http', function (EventService, $rootScope, $http) {
 		var categoriesObj = {};
 		categoriesObj.list = [ {label:'Choose a category', value: 'noCategoryChosen'} ];
+		// categoriesObj.list = [];
 
 		$rootScope.$watch(EventService.categories, function() {
 			setTimeout(function() {

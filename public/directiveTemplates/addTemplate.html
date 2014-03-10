@@ -1,15 +1,13 @@
 
 <!-- <div add-category></div> -->
-<div ng-show="showAdd" class="showAdd">
-	<span time></span>
-	<div class="sliderWidth" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="5" step="1" ng-model="input.level"></div>
-	<span class="energyLevelCaption">Energy level: {{input.level}}</span>
-	<!-- <input ng-model="input.level" type="number" placeholder="Energy level"></input> -->
-	<input ng-model="input.note" type="text" placeholder="Note"></input>
-	<span category-options-list></span>
-	<button ng-click="addEvent(input.level, input.note, categories.selected.category.value)">Add</button>
-
-	
-	
-	<div more-category-inputs></div>
+<div ng-show="showAdd">
+	<form name="addForm" novalidate class="addTemplate-addForm">
+		<span time required></span>
+		<div class="sliderWidth" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="5" step="1" ng-model="input.level" required></div>
+		<span class="energyLevelCaption" required>Energy level: {{input.level}}</span>
+		<input ng-model="input.note" type="text" placeholder="Note" required></input>
+		<span category-options-list required></span>
+		<button ng-click="addEvent(input.level, input.note, categories.selected.category.value)" ng-disabled="addForm.$invalid || isUnchanged(input) || categories.selected.category.label === 'Choose a category' ">Add</button>
+		<div more-category-inputs></div>
+	</form>
 </div>
