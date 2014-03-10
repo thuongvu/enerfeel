@@ -33,7 +33,8 @@ angular.module('app.controllers', [])
 
 		$scope.$on('filterSomething', function(event, data) {
 			$scope.lifeEventsInView = data;
-		})
+		});
+
 
 
 	}])

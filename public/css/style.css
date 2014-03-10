@@ -379,10 +379,10 @@ article {
   margin: 0 0.8em 0 0.6em;
 }
 
-.addTemplate-addForm input.ng-invalid.ng-dirty {
+.addTemplate-addForm input.ng-invalid.ng-valid {
    background-color: #c1e2c3;
  }
- .addTemplate-addForm input.ng-valid.ng-dirty {
+ .addTemplate-addForm input.ng-valid.ng-valid {
    background-color: #c1e2c3;
  }
  .addTemplate-addForm select.ng-invalid.ng-dirty {

@@ -105,6 +105,8 @@ angular.module('app.directives', [])
 			clearInputs();
 			$scope.showHideCategories('all');
 			$scope.categories.selected.category = $scope.categories.list[0];
+			$scope.addForm.$setPristine();
+
 		};
 
 		$scope.$watch('input.checkbox', function() {
