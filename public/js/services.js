@@ -368,7 +368,9 @@ return {
 						value: category.label,
 						size: category.size,
 						opacity: category.opacity,
-						show: 'show.' + category.label
+						show: 'show.' + category.label,
+						sizeCeiling: 5,
+						opacityCeiling: 5
 					};
 					categoriesObj.list.push(obj);
 					addCategoryXHR(obj);
