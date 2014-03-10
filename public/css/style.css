@@ -340,8 +340,21 @@ article {
 .filterTemplate-timeFilters button {
   margin: 2px 0 2px 0; 
 }
-
-
+.sliderWidth {
+  width: 150px;
+  display: inline-block;
+  margin: 0 0 0 1em;
+}
+.slidersInMoreCategories {
+  margin: 0.5em 2em 0.5em 0;
+}
+.energyLevelCaption {
+  margin: 0 0.7em 0 .7em;
+  /*min-width: 110px;*/
+  width: 110px;
+  position: relative;
+  display: inline-block;
+}
 
 
 
