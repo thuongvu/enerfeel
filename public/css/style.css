@@ -391,3 +391,6 @@ article {
 .addTemplate-addForm select.ng-valid.ng-dirty {
   background-color: #c1e2c3;
 }
+.button-color {
+  /*if you want to update the button color when the form is validated*/
+}
