@@ -44,6 +44,21 @@ angular.module('app.directives', [])
 			}					
 		}
 
+		function addIfSleep(energyLevel, note, category) {
+			var eventData = {
+				energylevel : energyLevel,
+				note			: note,
+				category 	: category,	
+				opacity		: $scope.input.opacity,
+				size			: $scope.input.size,
+				date        : new Date(new Date().getTime() - ($scope.input.size * 3600000))
+			};
+
+			$scope.eventService.allLifeEvents.push(eventData);
+			$scope.lifeEventsInView.push(eventData)
+
+		};
+
 		function pushDataIntoServices(eventData) {
 			// $scope.eventService.allLifeEvents.push(eventData);
 			$scope.eventService.addLifeEvent(eventData);
@@ -74,11 +89,16 @@ angular.module('app.directives', [])
 
 			if (category === 'meal') {
 				addIfMeal();
-			};
-			
+			} 
+			else if (category === 'sleep') {
+				addIfSleep(energyLevel, note, category);
+			}
+
 			catchEmptyInputs();
 			var eventData = createEventDataObj(energyLevel, note, category);
+// console.log(eventData);
 			pushDataIntoServices(eventData);
+			// $scope.showAddFunc();
 			$scope.showAdd = false;
 			clearInputs();
 			$scope.showHideCategories('all');
