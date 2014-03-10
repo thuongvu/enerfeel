@@ -369,4 +369,8 @@ article {
   /*margin: 0.5em 2em 0.5em 0;*/
   margin: 0 1.5em;
 }
+.modify-e-slider {
+  margin: 0 1em;
+  display: inline-block;
+}
 
