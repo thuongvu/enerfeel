@@ -25,10 +25,10 @@
 			
 			<div>
 				<span class="moreCategories-slider-caption">{{category.size}}: {{input.size}}</span>
-				<div class="sliderWidth slidersInMoreCategories sizeSlider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="{{category.sizeFloor}}" max="{{category.sizeCeiling}}" step="1" ng-model="input.size">
+				<div class="sliderWidth slidersInMoreCategories sizeSlider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="{{category.sizeCeiling}}" step="1" ng-model="input.size">
 				</div>
 				
-				<div class="sliderWidth slidersInMoreCategories opacitySlider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="{{category.opacityFloor}}" max="{{category.opacityCeiling}}" step="1" ng-model="input.opacity">
+				<div class="sliderWidth slidersInMoreCategories opacitySlider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="{{category.opacityCeiling}}" step="1" ng-model="input.opacity">
 				</div>
 				<span class="moreCategories-slider-caption">{{category.opacity}}: {{input.opacity}}</span>
 			</div>
