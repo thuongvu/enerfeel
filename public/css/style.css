@@ -345,9 +345,7 @@ article {
   display: inline-block;
   margin: 0 0 0 1em;
 }
-.slidersInMoreCategories {
-  margin: 0.5em 2em 0.5em 0;
-}
+
 .energyLevelCaption {
   margin: 0 0.7em 0 .7em;
   /*min-width: 110px;*/
@@ -361,6 +359,14 @@ article {
 .mealSlider-caption {
   margin: 0.5em 0;
 }
-
-
+.moreCategories-slider-caption {
+  width: 150px;
+  margin: 0.5em 0;
+  display: inline-block;
+  position: relative;
+}
+.slidersInMoreCategories {
+  /*margin: 0.5em 2em 0.5em 0;*/
+  margin: 0 1.5em;
+}
 

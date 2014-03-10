@@ -19,16 +19,18 @@
 	</div>
 	<div ng-repeat="category in categories.list" class="cat">
 		<div ng-show="{{category.show}}" class="{{category.label}}">
-			{{category.label}}
-			<input ng-model="input.size" type="number" placeholder="{{category.size}}"></input>
-			<input ng-model="input.opacity" type="number" placeholder="{{category.opacity}}"></input>
+			<!-- {{category.label}} -->
+			<!-- <input ng-model="input.size" type="number" placeholder="{{category.size}}"></input> -->
+			<!-- <input ng-model="input.opacity" type="number" placeholder="{{category.opacity}}"></input> -->
 			
 			<div>
+				<span class="moreCategories-slider-caption">{{category.size}}: {{input.size}}</span>
 				<div class="sliderWidth slidersInMoreCategories sizeSlider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="{{category.sizeFloor}}" max="{{category.sizeCeiling}}" step="1" ng-model="input.size">
 				</div>
-
+				
 				<div class="sliderWidth slidersInMoreCategories opacitySlider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="{{category.opacityFloor}}" max="{{category.opacityCeiling}}" step="1" ng-model="input.opacity">
 				</div>
+				<span class="moreCategories-slider-caption">{{category.opacity}}: {{input.opacity}}</span>
 			</div>
 		</div>
 	</div>
