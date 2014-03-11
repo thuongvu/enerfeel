@@ -1,35 +1,9 @@
 angular.module('app.directives', [])
 	.controller('AddController', ['$scope', '$timeout', 'CategoryService', function($scope, $timeout, CategoryService) {
-		// $scope.showAdd = false;
 		$scope.show = {};
 		$scope.input = {};
 		$scope.input.checkbox = {};
 		$scope.input.checkbox.checked = 0;
-
-		// show the ADD div or not
-		// $scope.showAddFunc = function() {
-		// 	if ($scope.showAdd === true) {
-		// 		$scope.showAdd = false; 
-		// 	} else {
-		// 		$scope.showAdd = true;
-		// 	}
-		// };
-
-
-		// ADDING LOGIC
-		// function addIfMeal() {
-		// 	if ($scope.input.checkbox == null) {
-		// 		$scope.input.checkbox = {};
-		// 	}
-		// 	$scope.input.checkbox.checked = 0; 
-
-		// 	for (food in $scope.input.checkbox) {
-		// 		if ($scope.input.checkbox[food] === true) {
-		// 			$scope.input.checkbox.checked++;
-		// 		}
-		// 	};
-		// 	$scope.input.opacity = $scope.input.checkbox.checked;
-		// }
 
 		function catchEmptyInputs() {
 			if (($scope.input.opacity == undefined) || ($scope.input.opacity == 0)) {
@@ -37,7 +11,6 @@ angular.module('app.directives', [])
 			}
 			if (($scope.input.size == undefined) || ($scope.input.size == 0)) {
 				if ($scope.input.category === 'exercise') {
-					// console.log($scope.input.category)
 					$scope.input.size = 30;
 				} else {
 					$scope.input.size = 3;
@@ -61,7 +34,6 @@ angular.module('app.directives', [])
 		};
 
 		function pushDataIntoServices(eventData) {
-			// $scope.eventService.allLifeEvents.push(eventData);
 			$scope.eventService.addLifeEvent(eventData);
 			$scope.lifeEventsInView.push(eventData)
 			$scope.filterService.sortTime($scope.lifeEventsInView);
@@ -87,20 +59,13 @@ angular.module('app.directives', [])
 
 		// WHERE ALL THESE ADD FUNCTIONS COME TOGETHER
 		$scope.addEvent = function(energyLevel, note, category) {
-
-			// if (category === 'meal') {
-			// 	addIfMeal();
-			// } 
-			// else 
-				if (category === 'sleep') {
+			if (category === 'sleep') {
 				addIfSleep(energyLevel, note, category);
 			}
 
 			catchEmptyInputs();
 			var eventData = createEventDataObj(energyLevel, note, category);
-// console.log(eventData);
 			pushDataIntoServices(eventData);
-			// $scope.showAddFunc();
 			$scope.showAdd = false;
 			clearInputs();
 			$scope.showHideCategories('all');
@@ -112,27 +77,24 @@ angular.module('app.directives', [])
 		$scope.$watch('input.checkbox', function() {
 			if ($scope.input.checkbox == null) {
 				$scope.input.checkbox = {};
-			}
+			};
 			$scope.input.checkbox.checked = 0; 
 
-				for (food in $scope.input.checkbox) {
-					if ($scope.input.checkbox[food] === true) {
-						$scope.input.checkbox.checked++;
-					}
+			for (food in $scope.input.checkbox) {
+				if ($scope.input.checkbox[food] === true) {
+					$scope.input.checkbox.checked++;
 				};
-				if ($scope.input.checkbox.checked > 0) {
-					$scope.input.opacity = $scope.input.checkbox.checked;
-				} 
-				
-		},true)
+			};
+			if ($scope.input.checkbox.checked > 0) {
+				$scope.input.opacity = $scope.input.checkbox.checked;
+			};
+		},true);
 
 	}])
 	.directive('add', ['EventService', 'FilterService', '$timeout', function (EventService, FilterService, $timeout) {		
 		return {
 			restrict: 'EA',
 			controller: 'AddController',
-			link: function (scope, iElement, iAttrs) {
-			},
 			templateUrl: 'directiveTemplates/addTemplate.html'
 		};
 	}])
@@ -140,13 +102,11 @@ angular.module('app.directives', [])
 // ----------------------------------------------------------------------------
 .controller('timeController', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.dateTimePicked = new Date();
-	// $scope.wakeTime = new Date();
 	setTime();
 
 	var timeIntervalFunction = function() {
 		cancelRefresh = $timeout(function createNewDateObj() {
 			$scope.dateTimePicked = new Date();
-			// console.log("the new time is " + $scope.dateTimePicked);
 			cancelRefresh = $timeout(createNewDateObj, 60000);
 		}, 60000);
 	};
@@ -155,7 +115,6 @@ angular.module('app.directives', [])
 		var currentTime = new Date();
 		var currentTimeSeconds = currentTime.getSeconds();
 		var secsUntilNextMin = (60 - currentTimeSeconds) * 1000;
-		// console.log("currentTimeSeconds is " + currentTimeSeconds + " secsUntilNextMin " + secsUntilNextMin);
 		$timeout(function() {
 			$scope.dateTimePicked = new Date();
 			timeIntervalFunction()
@@ -170,10 +129,7 @@ angular.module('app.directives', [])
 	
 	return {
 		restrict: 'EA',
-		// scope: {},
 		controller: 'timeController',
-		link: function (scope, iElement, iAttrs) {
-		},
 		template: '<datepicker ng-model="dateTimePicked"></datepicker>'
 	};
 }])
@@ -200,11 +156,7 @@ angular.module('app.directives', [])
 			}
 		}
 	}
-	// $scope.input = {}; // using this to make a local copy so i
 	function categoryChange() {
-		// console.log($scope.show);
-		// console.log($scope.categories.list[0])
-		// $scope.input.category = $scope.categories.selected.category.value;
 		$scope.showHideCategories($scope.categories.selected.category.value);
 	};
 
@@ -271,7 +223,6 @@ angular.module('app.directives', [])
 	.controller('modifyController', ['$scope', 'FilterService', function ($scope, FilterService) {
 		$scope.event = {};
 		$scope.event.selected;
-		// $scope.showModify = false; // if we disable this, we're golden
 
 		function showModifyWatch() {
 			if ($scope.showModify === true) {
@@ -294,15 +245,12 @@ angular.module('app.directives', [])
 
 		$scope.deleteEvent = function (event) {
 			$scope.eventService.deleteLifeEvent(event.selected);
-			// console.log($scope.filterService.currentFilterObj.time);
 			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
 		};
 
 		$scope.updateEvent = function (event) {
 			if (event) {
-				// console.log(event.selected)
 				$scope.eventService.updateLifeEvent(event.selected); // might need to disable that
-				// $scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
 				$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(FilterService.currentFilterObj.time);
 			}
 		};
@@ -310,10 +258,7 @@ angular.module('app.directives', [])
 	.directive('modify', ['EventService', 'FilterService', function (EventService, FilterService) {
 		return {
 			restrict: 'EA',
-			// scope: {},
 			controller: 'modifyController',
-			link: function (scope, iElement, iAttrs) {
-			},
 			templateUrl: 'directiveTemplates/modifyTemplate.html'
 		}
 	}])
@@ -327,15 +272,11 @@ angular.module('app.directives', [])
 	}
 
 	$scope.filterTime = function(time) {
-		// console.log(time)
-		// $scope.lifeEventsInView = $scope.filterService.filterLifeEvents(time);
 		$scope.lifeEventsInView = FilterService.filterLifeEvents(time);
-		console.log($scope.lifeEventsInView);
 		emitFilterChange();
 	}
 
 	$scope.filterCategory = function(category) {
-		// $scope.category.setTo = category;
 		$scope.lifeEventsInView = FilterService.filterActivity(category);
 		emitFilterChange();
 	};
@@ -370,10 +311,7 @@ angular.module('app.directives', [])
 
 
 	$scope.resetFilters = function() {
-		console.log("resetFilters")
-		// $scope.lifeEventsInView = $scope.filterService.sortTime(EventService.allLifeEvents);
 		$scope.lifeEventsInView = FilterService.sortTime(EventService.allLifeEvents);
-		console.log($scope.lifeEventsInView);
 		emitFilterChange();
 	};
 
@@ -408,7 +346,7 @@ angular.module('app.directives', [])
 	$scope.categories.selected = {};
 	$scope.categories.selected.category = $scope.categories.list[0];
 	function onCategoryChange() {
-		// console.log($scope.categories.selected.category);
+		
 	};
 	$scope.$watch('categories.selected.category', onCategoryChange, true);
 
@@ -463,13 +401,3 @@ angular.module('app.directives', [])
 		templateUrl: 'directiveTemplates/larger_components/loglarge_component.html'
 	};
 }])
-
-
-
-
-
-
-
-
-
-

@@ -1,8 +1,4 @@
 angular.module('app.services', []) // remember to change this so it can be minified
-	// .factory('Token', ['EventService', function (EventService) {
-	// 	var token = {};
-
-	// }])
 	.factory('EventService', function ($http, $window, $cookieStore) {
 		var data = [];
 		var categories = {};
@@ -16,11 +12,6 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			console.log(Auth);
 			$cookieStore.remove('user');
 		};
-
-		// var csrf = $cookieStore.get('XSRF-TOKEN');
-		// console.log(csrf);
-
-
 
 		function postData(sampleData) {
 			$http({
@@ -144,7 +135,6 @@ return {
 			for (prop in EventService.allLifeEvents) {
 				var obj = EventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
-				// console.log(obj[prop]['date'].getHours());
 				if ((dateOfProp > timeAmount) && (dateOfProp < Date.now())) {
 					arr.push(obj[prop])
 				}
@@ -170,7 +160,6 @@ return {
 			for (prop in EventService.allLifeEvents) {
 				var obj = EventService.allLifeEvents;
 				var dateOfProp = obj[prop].date.valueOf();
-				// console.log(obj[prop][date])
 				if ((dateOfProp >= first) && (dateOfProp <= second)) {
 					arr.push(obj[prop])
 				}
@@ -262,11 +251,10 @@ return {
 				return currentFilterObj.lifeEvents;
 			},
 			sortTime: function(arr) {
-				// sortTime(arr);
 				return sortTime(arr);
 			},
 			customFilterLifeEvents: function(first, second) {
-				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
+				currentFilterObj.lifeEvents = []; 
 				var results = filterCustomDuration(first, second, currentFilterObj.lifeEvents);
 				currentFilterObj.lifeEvents = sortTime(results); 
 				return currentFilterObj.lifeEvents;
@@ -317,7 +305,6 @@ return {
 	.factory('CategoryService', ['EventService', '$rootScope', '$http', function (EventService, $rootScope, $http) {
 		var categoriesObj = {};
 		categoriesObj.list = [ {label:'Choose a category', value: 'noCategoryChosen'} ];
-		// categoriesObj.list = [];
 
 		$rootScope.$watch(EventService.categories, function() {
 			setTimeout(function() {

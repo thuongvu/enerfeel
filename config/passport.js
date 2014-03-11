@@ -39,13 +39,6 @@ module.exports = function(passport) {
 					newUser.fbID = profile.id;
 					newUser.token = token;
 					newUser.name = profile.name.givenName;
-					// newUser.categories = [
-					// 	{label:'Choose a category', value: 'noCategoryChosen'},
-					// 	{label:'meal', value: 'meal'},
-					// 	{label: 'exercise', value: 'exercise', size: 'Minutes', opacity: 'Intensity Level', show: 'show.exercise'},
-					// 	{label: 'work', value: 'work', size: 'Productivity', opacity: 'Stress Level', show: 'show.work'},
-					// 	{label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality', show: 'show.sleep'}
-					// ];
 					newUser.categories = [
 						{label:'Choose a category', value: 'noCategoryChosen'},
 						{label:'meal', value: 'meal'},
@@ -53,7 +46,6 @@ module.exports = function(passport) {
 						{label: 'work', value: 'work', size: 'Productivity', opacity: 'Stress Level', show: 'show.work', sizeCeiling: '5', opacityCeiling: '5'},
 						{label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality', show: 'show.sleep', sizeCeiling: '12', opacityCeiling: '5'}
 					];
-					// floor can be zero, just make the ceiling then. make it 5.  just make them 5, make it easier on myself.  
 
 					newUser.save(function(err) {
 						if (err) {

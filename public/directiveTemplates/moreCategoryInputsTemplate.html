@@ -1,8 +1,6 @@
 <div class="moreCategoryInputsTemplate">
 	<div ng-show="show.meal">
-		<!-- meal -->
-		<!-- <input ng-model="input.size" type="number" placeholder="zero">How full do you feel? 1-5</input> -->
-		
+		<!-- meal -->		
 		<div class="mealSlider-caption">
 			<div class="sliderWidth sliderInMeal sizeSlider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="5" step="1" ng-model="input.size">
 			</div>
@@ -19,10 +17,6 @@
 	</div>
 	<div ng-repeat="category in categories.list" class="cat">
 		<div ng-show="{{category.show}}" class="{{category.label}}">
-			<!-- {{category.label}} -->
-			<!-- <input ng-model="input.size" type="number" placeholder="{{category.size}}"></input> -->
-			<!-- <input ng-model="input.opacity" type="number" placeholder="{{category.opacity}}"></input> -->
-			
 			<div>
 				<span class="moreCategories-slider-caption">{{category.size}}: {{input.size}}</span>
 				<div class="sliderWidth slidersInMoreCategories sizeSlider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="{{category.sizeCeiling}}" step="1" ng-model="input.size">
