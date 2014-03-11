@@ -132,9 +132,18 @@ module.exports = function(app, passport) {
 
 		if (req.headers.token !== 'null') {
 			db.users.update(
-				{token: req.headers.token}, {$pull: {'categories': {'label': req.body.label}}}
-				);
-			res.send(200, "maybeeee")
+				{token: req.headers.token}, {$pull: {'categories': {'label': req.body.label}}},
+				{}, //options
+				function(err, success) {
+					if (err) {
+						res.send(300, "Error");
+						console.log("Error for /delete/category");
+					} else {
+						res.send(200, "Success");
+						console.log("Success for/delete/category");
+					};
+				}
+			);
 		};
 		
 	});

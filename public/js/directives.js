@@ -170,11 +170,18 @@ angular.module('app.directives', [])
 
 
 	$scope.categories.selected.categoryToDelete = $scope.categories.list[0];
-
+	
 	$scope.categories.delete = function(category) {
-		CategoryService.deleteCategory(category, function() {
+		function successFunc() {
+			if ($scope.addCategoryTemplateDeleteCategoryError) {
+				$scope.addCategoryTemplateDeleteCategoryError = false;
+			};
 			$scope.categories.selected.categoryToDelete = $scope.categories.list[0];
-		});
+		};
+		function errorFunc() {
+			$scope.addCategoryTemplateDeleteCategoryError = true;
+		};
+		$scope.categories.categoryService.deleteCategory(category, successFunc, errorFunc);
 	};
 
 	$scope.showInNav = function(data) {

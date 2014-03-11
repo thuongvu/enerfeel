@@ -417,4 +417,6 @@ article {
 .error:focus {
   background-color: #BF5C60;
 }
-
+.addCategoryTemplate-DeleteError {
+  margin: 0 0 0 2em;
+}

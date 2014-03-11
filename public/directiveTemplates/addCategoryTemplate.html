@@ -9,8 +9,8 @@
 				<input ng-model="categories.newCategory.size" type="text" placeholder="Size scale" required></input>
 				<input ng-model="categories.newCategory.opacity" type="text" placeholder="Opacity scale" required></input>
 				<button ng-click="categories.add(categories.newCategory)" ng-disabled="addCategoryForm.$invalid">Add Category</button>
+				<span class="error addCategoryTemplate-addError" ng-show="addCategoryTemplateAddCategoryError">Error!  Please try again.</span>
 			</form>
-			<span class="error addCategoryTemplate-addError" ng-show="addCategoryTemplateAddCategoryError">Error!  Please try again.</span>
 		</span>
 	</div>
 	
@@ -26,7 +26,9 @@
 				categories.selected.categoryToDelete.label ==='work' ||
 				categories.selected.categoryToDelete.label ==='sleep'"
 				>Delete Category</button>
+				<span class="error addCategoryTemplate-DeleteError" ng-show="addCategoryTemplateDeleteCategoryError">Error!  Please try again.</span>
 			</form>
+
 		</span>
 	</div>
 

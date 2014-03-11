@@ -331,14 +331,13 @@ return {
 				}).success(function() {
 					categoriesObj.list.push(category);
 					successFunc();
-					// return categoriesObj.list;
 				}).error(function() {
 					errorFunc();
 				})	
 			};
 		};
 
-		function DeleteCategoryXHR(obj, callback) {
+		function deleteCategoryXHR(category, successFunc, errorFunc) {
 			if (EventService.Auth.authLevel > 0) {
 				$http({
 				    method: 'delete',
@@ -347,11 +346,18 @@ return {
 				        'Content-type': 'application/json',
 				        'token': EventService.Auth.token
 				    },
-				    data: obj
-				}).success(function(returnedData) {
-					// return returnedData;
-					callback();
-				});
+				    data: category
+				}).success(function() {
+					for (var i = 0; i < categoriesObj.list.length; i++) {
+						if (categoriesObj.list[i].label === category.label) {
+							categoriesObj.list.splice(i, 1);
+							break;
+						};
+					};
+					successFunc();
+				}).error(function() {
+					errorFunc();
+				})
 			};
 		};
 
@@ -370,21 +376,8 @@ return {
 					addCategoryXHR(obj, successFunc, errorFunc);
 				};
 			},
-			deleteCategory: function (category, callback) {
-				if ((category.label !== 'meal') && (category.label !== 'exercise') 
-					&& (category.label !== 'work')  && (category.label !== 'sleep')
-					&& (category.label !== 'Choose a category')) {
-					for (var i = 0; i < categoriesObj.list.length; i++) {
-						if (categoriesObj.list[i].label === category.label) {
-							categoriesObj.list.splice(i, 1);
-							break;
-						};
-					};
-					DeleteCategoryXHR(category, callback);
-					return categoriesObj.list;
-				} else {
-					console.log("can't delete a default")
-				};
+			deleteCategory: function (category, successFunc, errorFunc) {
+				deleteCategoryXHR(category, successFunc, errorFunc);
 			},
 			categoriesObj: categoriesObj
 		};
