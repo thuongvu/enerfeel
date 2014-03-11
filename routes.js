@@ -17,13 +17,21 @@ module.exports = function(app, passport) {
 		passport.authenticate('facebook'), function(req, res) {
 			console.log("/auth/facebook/callback req.user");
 			console.log(req.user);
-			res.cookie('user', JSON.stringify({
-				'token': req.user.token,
-				'authLevel': 1,
-			}), {secure: true, httpOnly: false});
+			
+			function setCookieThen(callback) {
+				res.cookie('user', JSON.stringify({
+					'token': req.user.token,
+					'authLevel': 1,
+				}), {secure: true, httpOnly: false});
+				callback();
+			};
 
-			res.redirect('/#/view/main');
-																			// make sure this is async
+			function redirect() {
+				res.redirect('/#/view/main');
+			};
+
+			setCookieThen(redirect);
+
 	});
 
 	app.get('/get/events', isLoggedIn, function(req, res) {
