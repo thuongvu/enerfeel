@@ -58,9 +58,19 @@ module.exports = function(app, passport) {
 			var obj = req.body;
 			db.users.update(
 				{token: req.headers.token},
-				{$push: {lifeEvents: obj}}
+				{$push: {lifeEvents: obj}},
+				{}, // options
+				function(err, success) {
+					if (err) {
+						res.send(300, "Error");
+						console.log("error for /post/event ");
+					} else {
+						res.send(200, "success");
+						console.log("success for /post/success");
+					};
+				}
 			);
-			res.send(200, "success")
+			
 		};
 
 		
