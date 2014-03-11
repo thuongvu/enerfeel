@@ -64,7 +64,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 
 			})
 		};
-		function mod(event) {
+		function put(event, successFunc, errorFunc) {
 			$http({
 			    method: 'PUT',
 			    url: '/put/event',
@@ -73,8 +73,20 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			        'token': Auth.token
 			    },
 			    data: event
-			}).success(function(status) {
-				console.log(status);
+			}).success(function() {
+				console.log("event");
+				console.log(event);
+				console.log("data");
+				console.log(data);
+				for (var i = 0; i < data.length; i++) {
+					if (event.date === data[i].date) {
+						data.splice(i,1, event);
+						break;
+					};
+				};
+				successFunc();
+			}).error(function() {
+				errorFunc();
 			})
 		};
 		
@@ -90,14 +102,8 @@ return {
 				};
 
 			},
-			updateLifeEvent: function(event) { 
-				mod(event);
-				for (var i = 0; i < data.length; i++) {
-					if (event.date === data[i].date) {
-						data.splice(i,1, event);
-						break;
-					}
-				}
+			updateLifeEvent: function(event, successFunc, errorFunc) { 
+				put(event, successFunc, errorFunc);
 			},
 			addLifeEvent: function(eventData, successFunc, errorFunc) {
 				postData(eventData, successFunc, errorFunc);
@@ -125,6 +131,8 @@ return {
 				var timeAmount = Date.now() - 604800000;
 			} else if (time === 'month') {
 				var timeAmount = Date.now() - 2592000000;
+			} else if (time === 'all') {
+				var timeAmount = 0;
 			}
 			return timeAmount;
 		};
@@ -244,6 +252,7 @@ return {
 				currentFilterObj.time = time; // set currentFilterObj.time to what was passed
 				currentFilterObj.lifeEvents = []; // empty out currentFilterObj.time
 				var timeAmount = determineTimeAmount(time); // determine number for subtraction
+				currentFilterObj.time = time; 																							// TESTESTESTESTSETS
 				var results = filterTimeDuration(timeAmount, currentFilterObj.lifeEvents); // get me my results!
 				currentFilterObj.lifeEvents = sortTime(results); // sort the results
 				return currentFilterObj.lifeEvents;

@@ -222,14 +222,13 @@ angular.module('app.directives', [])
 		$scope.$watch('showModify', showModifyWatch, true)
 
 		$scope.showModifyFunc = function () {
-
 			if ($scope.showModify === true) {
 				$scope.showModify = false;
 				$scope.event = {};
 				$scope.event.selected;
 			} else {
 				$scope.showModify = true;
-			}
+			};
 		};
 
 		$scope.deleteEvent = function (event) {
@@ -238,10 +237,20 @@ angular.module('app.directives', [])
 		};
 
 		$scope.updateEvent = function (event) {
-			if (event) {
-				$scope.eventService.updateLifeEvent(event.selected); // might need to disable that
+			function successFunc() {
+				if ($scope.modifyTemplateAddError) {
+					$scope.modifyTemplateAddError = false;
+				}
+				console.log("FilterService.currentFilterObj.time");
+				console.log(FilterService.currentFilterObj.time);
 				$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(FilterService.currentFilterObj.time);
-			}
+			};
+			function errorFunc() {
+				$scope.modifyTemplateAddError = true;
+			};
+			if (event) {
+				$scope.eventService.updateLifeEvent(event.selected, successFunc, errorFunc); 
+			};
 		};
 	}])
 	.directive('modify', ['EventService', 'FilterService', function (EventService, FilterService) {

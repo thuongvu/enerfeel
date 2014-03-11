@@ -25,7 +25,7 @@ angular.module('app.controllers', [])
 			EventService.login();
 		}
 
-		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("month");
+		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("all");
 		$scope.input = {};
 		$scope.category = {};
 		$scope.category.setTo = 'null';
