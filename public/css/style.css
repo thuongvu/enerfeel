@@ -379,6 +379,7 @@ article {
   margin: 0 0.8em 0 0.6em;
 }
 
+/*form validation*/
 .addTemplate-addForm input.ng-invalid.ng-valid {
    background-color: #FA787E;
  }
@@ -402,3 +403,17 @@ article {
    background-color: #c1e2c3;
  }
 
+/*error*/
+.error {
+  background-color: #FA787E;
+  padding: 0.5em;
+  border-radius: 3px;
+  margin: 0 .3em;
+  color: #fff;
+  border: 1px solid transparent;
+  cursor: default;
+}
+.error:hover,
+.error:focus {
+  background-color: #BF5C60;
+}
