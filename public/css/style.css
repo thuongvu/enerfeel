@@ -312,7 +312,7 @@ article {
 
 }
 /*options*/
-/*categories*/
+/*categories*/ /*addCategoryTemplate*/
 .addCategory {
   position: relative;
   padding: 0 0 1em 0;
@@ -324,6 +324,21 @@ article {
  /*categories button. if you click new category, the input forms are 1px larger. 
  i just made the button 1px larger to compensate, so it wont be moved. hackish, reminder in css*/
 }
+.addCategoryTemplate-DeleteError {
+  margin: 0 0 0 2em;
+}
+.floatLeft {
+  display: inline;
+  float: left;
+}
+.margin-topbottom-oneEm {
+  margin: 1em 0;
+}
+button.marginRight-pointSevenFive {
+  margin-right: 0.75em;
+}
+
+/*moreCategoriesInputsTemplate*/
 .moreCategoryInputsTemplate {
   margin: 0.5em 0 0 0;
 }
@@ -379,6 +394,7 @@ article {
   margin: 0 0.8em 0 0.6em;
 }
 
+
 /*form validation*/
 .addTemplate-addForm input.ng-invalid.ng-valid {
    background-color: #FA787E;
@@ -395,13 +411,12 @@ article {
 .button-color {
   /*if you want to update the button color when the form is validated*/
 }
-. 
 .addCategoryTemplate-addCategoryForm input.ng-invalid.ng-valid {
    background-color: #FA787E;
- }
- .addCategoryTemplate-addCategoryForm input.ng-valid.ng-valid {
-   background-color: #c1e2c3;
- }
+}
+.addCategoryTemplate-addCategoryForm input.ng-valid.ng-valid {
+  background-color: #c1e2c3;
+}
 
 /*error*/
 .error {
@@ -416,7 +431,4 @@ article {
 .error:hover,
 .error:focus {
   background-color: #BF5C60;
-}
-.addCategoryTemplate-DeleteError {
-  margin: 0 0 0 2em;
 }
