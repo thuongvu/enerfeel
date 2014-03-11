@@ -65,7 +65,7 @@ module.exports = function(app, passport) {
 						res.send(300, "Error");
 						console.log("error for /post/event ");
 					} else {
-						res.send(200, "success");
+						res.send(200, "Success");
 						console.log("success for /post/success");
 					};
 				}
@@ -82,7 +82,17 @@ module.exports = function(app, passport) {
 		if (req.headers.token !== 'null') {
 			db.users.update(
 				{token: req.headers.token, "lifeEvents.date": req.body.date }, 
-				{$set: {"lifeEvents.$.energylevel": req.body.energylevel, "lifeEvents.$.note": req.body.note, "lifeEvents.$.date": req.body.date, "lifeEvents.$.category": req.body.category, "lifeEvents.$.opacity": req.body.opacity, "lifeEvents.$.size": req.body.size}}
+				{$set: {"lifeEvents.$.energylevel": req.body.energylevel, "lifeEvents.$.note": req.body.note, "lifeEvents.$.date": req.body.date, "lifeEvents.$.category": req.body.category, "lifeEvents.$.opacity": req.body.opacity, "lifeEvents.$.size": req.body.size}},
+				{}, // options
+				function(err, success) {
+					if (err) {
+						res.send(300, "Error");
+						console.log("error for /put/event ");
+					} else {
+						res.send(200, "Success");
+						console.log("Success for /post/success");
+					};
+				}
 				);
 		};
 		res.send(200, 'modded it!')

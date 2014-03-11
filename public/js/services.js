@@ -74,10 +74,6 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			    },
 			    data: event
 			}).success(function() {
-				console.log("event");
-				console.log(event);
-				console.log("data");
-				console.log(data);
 				for (var i = 0; i < data.length; i++) {
 					if (event.date === data[i].date) {
 						data.splice(i,1, event);
@@ -90,7 +86,6 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			})
 		};
 		
-
 return {
 			deleteLifeEvent: function (event) {
 				del(event);

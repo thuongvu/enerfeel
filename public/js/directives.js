@@ -235,7 +235,6 @@ angular.module('app.directives', [])
 			$scope.eventService.deleteLifeEvent(event.selected);
 			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
 		};
-
 		$scope.updateEvent = function (event) {
 			function successFunc() {
 				if ($scope.modifyTemplateAddError) {
