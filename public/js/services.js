@@ -13,7 +13,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			$cookieStore.remove('user');
 		};
 
-		function postData(sampleData) {
+		function postData(eventData, successFunc, errorFunc) {
 			$http({
 			    method: 'post',
 			    url: '/post/event',
@@ -21,9 +21,11 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			        'Content-type': 'application/json',
 			        'token': Auth.token
 			    },
-			    data: sampleData
-			}).success(function(returnedData) {
-				return returnedData;
+			    data: eventData
+			}).success(function() {
+				successFunc();
+			}).error(function() {
+				errorFunc();
 			});
 		};
 
@@ -97,12 +99,8 @@ return {
 					}
 				}
 			},
-			addLifeEvent: function(eventData) {
-				data.push(eventData);
-				postData(eventData);
-			},
-			postData: function(sampleData) {
-				return postData(sampleData);
+			addLifeEvent: function(eventData, successFunc, errorFunc) {
+				postData(eventData, successFunc, errorFunc);
 			},
 			getData: function(callback) {
 				return getData(callback);

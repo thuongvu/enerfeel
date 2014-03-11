@@ -5,20 +5,7 @@ angular.module('app.directives', [])
 		$scope.input.checkbox = {};
 		$scope.input.checkbox.checked = 0;
 
-		function catchEmptyInputs() {
-			if (($scope.input.opacity == undefined) || ($scope.input.opacity == 0)) {
-				$scope.input.opacity = 3;
-			}
-			if (($scope.input.size == undefined) || ($scope.input.size == 0)) {
-				if ($scope.input.category === 'exercise') {
-					$scope.input.size = 30;
-				} else {
-					$scope.input.size = 3;
-				}
-			}					
-		}
-
-		function addIfSleep(energyLevel, note, category) {
+		$scope.addIfSleep = function (energyLevel, note, category) {
 			var eventData = {
 				energylevel : energyLevel,
 				note			: note,
@@ -33,19 +20,33 @@ angular.module('app.directives', [])
 
 		};
 
-		function pushDataIntoServices(eventData) {
-			$scope.eventService.addLifeEvent(eventData);
-			$scope.lifeEventsInView.push(eventData)
-			$scope.filterService.sortTime($scope.lifeEventsInView);
+		$scope.pushDataIntoServices = function(eventData) {
+			function successFunc() {
+				if ($scope.addTemplateAddError) {
+					$scope.addTemplateAddError = false;
+				}
+				$scope.eventService.allLifeEvents.push(eventData);
+				$scope.lifeEventsInView.push(eventData);
+				$scope.filterService.sortTime($scope.lifeEventsInView);
+				$scope.resetInputsCategories();
+			};
+			function errorFunc() {
+				$scope.addTemplateAddError = true;
+			};
+			$scope.eventService.addLifeEvent(eventData, successFunc, errorFunc);
 		}
 
-		function clearInputs() {
+		$scope.resetInputsCategories = function() {
 			for (prop in $scope.input) {
 				$scope.input[prop] = null;
-			}
+			};
+			$scope.showAdd = false;
+			$scope.showHideCategories('all');
+			$scope.categories.selected.category = $scope.categories.list[0];
+			$scope.addForm.$setPristine();
 		}
 
-		function createEventDataObj(energyLevel, note, category) {
+		$scope.createEventDataObj = function(energyLevel, note, category) {
 			var eventData = {
 				energylevel : energyLevel,
 				note			: note,
@@ -55,23 +56,14 @@ angular.module('app.directives', [])
 				size			: $scope.input.size
 			};
 			return eventData;
-		}
+		};
 
-		// WHERE ALL THESE ADD FUNCTIONS COME TOGETHER
 		$scope.addEvent = function(energyLevel, note, category) {
 			if (category === 'sleep') {
-				addIfSleep(energyLevel, note, category);
-			}
-
-			catchEmptyInputs();
-			var eventData = createEventDataObj(energyLevel, note, category);
-			pushDataIntoServices(eventData);
-			$scope.showAdd = false;
-			clearInputs();
-			$scope.showHideCategories('all');
-			$scope.categories.selected.category = $scope.categories.list[0];
-			$scope.addForm.$setPristine();
-
+				$scope.addIfSleep(energyLevel, note, category);
+			};
+			var eventData = $scope.createEventDataObj(energyLevel, note, category);
+			$scope.pushDataIntoServices(eventData);
 		};
 
 		$scope.$watch('input.checkbox', function() {

@@ -60,7 +60,9 @@ module.exports = function(app, passport) {
 				{token: req.headers.token},
 				{$push: {lifeEvents: obj}}
 			);
+			res.send(200, "success")
 		};
+
 		
 	});
 
