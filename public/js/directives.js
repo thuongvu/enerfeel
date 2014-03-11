@@ -152,9 +152,18 @@ angular.module('app.directives', [])
 	$scope.$watch('categories.selected.category', categoryChange, true);
 
 	$scope.categories.add = function(newCategory) {
-		$scope.categories.list = $scope.categories.categoryService.addCategory(newCategory);
-		$scope.show[newCategory.label] = false;
-		$scope.categories.newCategory = {};
+		function successFunc() {
+			if ($scope.addCategoryTemplateAddCategoryError) {
+				$scope.addCategoryTemplateAddCategoryError = false;
+			}
+			$scope.categories.list = CategoryService.categoriesObj.list;
+			$scope.show[newCategory.label] = false;
+			$scope.categories.newCategory = {};
+		};
+		function errorFunc() {
+			$scope.addCategoryTemplateAddCategoryError = true;
+		};
+		$scope.categories.categoryService.addCategory(newCategory, successFunc, errorFunc);
 	};
 
 	$scope.categories.newCategory = {};

@@ -23,6 +23,7 @@ module.exports = function(app, passport) {
 			}), {secure: true, httpOnly: false});
 
 			res.redirect('/#/view/main');
+																			// make sure this is async
 	});
 
 	app.get('/get/events', isLoggedIn, function(req, res) {
@@ -87,7 +88,7 @@ module.exports = function(app, passport) {
 				function(err, success) {
 					if (err) {
 						res.send(300, "Error");
-						console.log("error for /put/event ");
+						console.log("Error for /put/event ");
 					} else {
 						res.send(200, "Success");
 						console.log("Success for /post/success");
@@ -108,8 +109,15 @@ module.exports = function(app, passport) {
 			db.users.update(
 				{token: req.headers.token},
 				{$push: {categories: obj}}, 
-				function(err, data) {
-					console.log(data);
+				{}, //options
+				function(err, success) {
+					if (err) {
+						res.send(300, "Error");
+						console.log("Error for /post/category");
+					} else {
+						res.send(200, "Success");
+						console.log("Success for /post/category");
+					};
 				}
 			);
 		};

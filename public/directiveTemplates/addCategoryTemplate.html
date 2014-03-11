@@ -10,6 +10,7 @@
 				<input ng-model="categories.newCategory.opacity" type="text" placeholder="Opacity scale" required></input>
 				<button ng-click="categories.add(categories.newCategory)" ng-disabled="addCategoryForm.$invalid">Add Category</button>
 			</form>
+			<span class="error addCategoryTemplate-addError" ng-show="addCategoryTemplateAddCategoryError">Error!  Please try again.</span>
 		</span>
 	</div>
 	

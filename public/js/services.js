@@ -13,7 +13,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			$cookieStore.remove('user');
 		};
 
-		function postData(eventData, successFunc, errorFunc) {
+		function post(eventData, successFunc, errorFunc) {
 			$http({
 			    method: 'post',
 			    url: '/post/event',
@@ -102,7 +102,7 @@ return {
 				put(event, successFunc, errorFunc);
 			},
 			addLifeEvent: function(eventData, successFunc, errorFunc) {
-				postData(eventData, successFunc, errorFunc);
+				post(eventData, successFunc, errorFunc);
 			},
 			getData: function(callback) {
 				return getData(callback);
@@ -318,7 +318,7 @@ return {
 			},100);
 		}, true);
 		
-		function addCategoryXHR(obj) {
+		function addCategoryXHR(category, successFunc, errorFunc) {
 			if (EventService.Auth.authLevel > 0) {
 				$http({
 				    method: 'post',
@@ -327,10 +327,14 @@ return {
 				        'Content-type': 'application/json',
 				        'token': EventService.Auth.token
 				    },
-				    data: obj
-				}).success(function(returnedData) {
-					// return returnedData;
-				});
+				    data: category
+				}).success(function() {
+					categoriesObj.list.push(category);
+					successFunc();
+					// return categoriesObj.list;
+				}).error(function() {
+					errorFunc();
+				})	
 			};
 		};
 
@@ -352,7 +356,7 @@ return {
 		};
 
 		return {
-			addCategory: function(category) {
+			addCategory: function(category, successFunc, errorFunc) {
 				if (typeof category === 'object') {
 					var obj = {
 						label: category.label,
@@ -363,10 +367,8 @@ return {
 						sizeCeiling: 5,
 						opacityCeiling: 5
 					};
-					categoriesObj.list.push(obj);
-					addCategoryXHR(obj);
+					addCategoryXHR(obj, successFunc, errorFunc);
 				};
-				return categoriesObj.list;
 			},
 			deleteCategory: function (category, callback) {
 				if ((category.label !== 'meal') && (category.label !== 'exercise') 
