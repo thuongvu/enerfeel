@@ -14,10 +14,7 @@ angular.module('app.directives', [])
 				size			: $scope.input.size,
 				date        : new Date(new Date().getTime() - ($scope.input.size * 3600000))
 			};
-
-			$scope.eventService.allLifeEvents.push(eventData);
-			$scope.lifeEventsInView.push(eventData)
-
+			$scope.pushDataIntoServices(eventData);
 		};
 
 		$scope.pushDataIntoServices = function(eventData) {
