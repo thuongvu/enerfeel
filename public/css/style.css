@@ -380,7 +380,7 @@ article {
 }
 
 .addTemplate-addForm input.ng-invalid.ng-valid {
-   background-color: #c1e2c3;
+   background-color: #FA787E;
  }
  .addTemplate-addForm input.ng-valid.ng-valid {
    background-color: #c1e2c3;
@@ -394,3 +394,11 @@ article {
 .button-color {
   /*if you want to update the button color when the form is validated*/
 }
+. 
+.addCategoryTemplate-addCategoryForm input.ng-invalid.ng-valid {
+   background-color: #FA787E;
+ }
+ .addCategoryTemplate-addCategoryForm input.ng-valid.ng-valid {
+   background-color: #c1e2c3;
+ }
+
