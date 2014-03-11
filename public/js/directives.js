@@ -230,18 +230,24 @@ angular.module('app.directives', [])
 				$scope.showModify = true;
 			};
 		};
-
 		$scope.deleteEvent = function (event) {
-			$scope.eventService.deleteLifeEvent(event.selected);
-			$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+			function successFunc() {
+				if ($scope.modifyTemplateAddError) {
+					$scope.modifyTemplateAddError = false;
+				};
+				$scope.lifeEventsInView = $scope.filterService.filterLifeEvents($scope.filterService.currentFilterObj.time);
+			};
+			function errorFunc() {
+				$scope.modifyTemplateAddError = true;
+			};
+			$scope.eventService.deleteLifeEvent(event.selected, successFunc, errorFunc);
+			
 		};
 		$scope.updateEvent = function (event) {
 			function successFunc() {
 				if ($scope.modifyTemplateAddError) {
 					$scope.modifyTemplateAddError = false;
-				}
-				console.log("FilterService.currentFilterObj.time");
-				console.log(FilterService.currentFilterObj.time);
+				};
 				$scope.lifeEventsInView = $scope.filterService.filterLifeEvents(FilterService.currentFilterObj.time);
 			};
 			function errorFunc() {

@@ -51,7 +51,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			});
 		};
 
-		function del(event) {
+		function del(event, successFunc, errorFunc) {
 			$http({
 			    method: 'DELETE',
 			    url: '/delete/event',
@@ -60,8 +60,16 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			        'token': Auth.token
 			    },
 			    data: event
-			}).success(function(status) {
-
+			}).success(function() {
+				for (var i = 0; i < data.length; i++) {
+					if (event.date === data[i].date) {
+						data.splice(i, 1);
+						break;
+					};
+				};
+				successFunc();
+			}).error(function() {
+				errorFunc();
 			})
 		};
 		function put(event, successFunc, errorFunc) {
@@ -87,15 +95,8 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		};
 		
 return {
-			deleteLifeEvent: function (event) {
-				del(event);
-				for (var i = 0; i < data.length; i++) {
-					if (event.date === data[i].date) {
-						data.splice(i, 1);
-						break;
-					};
-				};
-
+			deleteLifeEvent: function (event, successFunc, errorFunc) {
+				del(event, successFunc, errorFunc);
 			},
 			updateLifeEvent: function(event, successFunc, errorFunc) { 
 				put(event, successFunc, errorFunc);
