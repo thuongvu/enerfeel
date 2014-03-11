@@ -3,17 +3,22 @@ angular.module('app.controllers', [])
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
 		$scope.loadData = function() {
-			// if user is not logged in, log them in
 			if (EventService.Auth.authLevel === 0) {
 				$scope.login();
-			} else {
-				// if user is logged in, $http.get, put it into the view
-				EventService.getData(function(data) {
-					for (var i = 0; i < data.length; i++) {
-						$scope.lifeEventsInView.push(data[i]);
+			} else if (EventService.Auth.authLevel > 0){
+				function successFunc() {
+					if ($scope.optionsAreaLoadDataError) {
+						$scope.optionsAreaLoadDataError = false;
+					};
+					for (var i = 0; i < EventService.allLifeEvents.length; i++) {
+						$scope.lifeEventsInView.push(EventService.allLifeEvents[i]);
 					};
 					$scope.filterService.sortTime($scope.lifeEventsInView);
-				});
+				};
+				function errorFunc() {
+					$scope.optionsAreaLoadDataError = true;
+				};
+				EventService.getData(successFunc, errorFunc);
 			};
 		};
 		// if user is now logged in, invoke $scope.loadData to fill the view

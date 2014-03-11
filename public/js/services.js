@@ -29,7 +29,7 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			});
 		};
 
-		function getData(callback) {
+		function getUserData(successFunc, errorFunc) {
 			$http({
 			    method: 'get',
 			    url: '/get/events',
@@ -47,7 +47,13 @@ angular.module('app.services', []) // remember to change this so it can be minif
 					};
 					data.push(eventsReceived[i]);
 				};
-				callback(data);
+				// callback(data);
+				successFunc();
+				// as it stands, the successFunc does NOT get the data from here
+				// before, i had a callback that passed the 'data'
+				// but it's the same thing as EventService.allLifeEvents, so why pass it?
+			}).error(function() {
+				errorFunc();
 			});
 		};
 
@@ -104,8 +110,9 @@ return {
 			addLifeEvent: function(eventData, successFunc, errorFunc) {
 				post(eventData, successFunc, errorFunc);
 			},
-			getData: function(callback) {
-				return getData(callback);
+			getData: function(successFunc, errorFunc) {
+				// return getData(callback);
+				getUserData(successFunc, errorFunc)
 			},
 			login: function() {
 				$window.location.href = '/auth/facebook/callback';

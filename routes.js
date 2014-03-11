@@ -31,9 +31,14 @@ module.exports = function(app, passport) {
 		console.log(req.headers);
 		if (req.headers.token !== 'null') {
 			db.users.findOne({'token' : req.headers.token}, function(err, data) {
-				console.log("user Data");
-				console.log(data);
-				res.json({'lifeEvents': data.lifeEvents, 'categories': data.categories});
+				if (err) {
+					res.send(300, "Error");
+					console.log("error for /get/events ");
+				} else {
+					console.log("user Data");
+					console.log(data);
+					res.json({'lifeEvents': data.lifeEvents, 'categories': data.categories});
+				};
 			});
 		};
 	});
