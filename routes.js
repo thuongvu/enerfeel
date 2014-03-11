@@ -57,9 +57,18 @@ module.exports = function(app, passport) {
 
 		if (req.headers.token !== 'null') {
 			db.users.update(
-				{token: req.headers.token}, {$pull: {'lifeEvents': {'date': req.body.date}}}
-				);
-			res.send(200, "maybeeee")
+				{token: req.headers.token}, {$pull: {'lifeEvents': {'date': req.body.date}}},
+				{}, // options
+				function(err, success) {
+					if (err) {
+						res.send(300, "Error");
+						console.log("error for /delete/event");
+					} else {
+						res.send(200, "Success");
+						console.log("success for /delete/event");
+					};
+				}
+			);
 		};
 		
 	});
