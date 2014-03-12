@@ -14,7 +14,7 @@ angular.module('app.graphDirective', [])
 				var category = scope.category;
 
 				// dimensions of svg
-				var width = 768,
+				var width = 722,
 					 height = 400,
 					 padding = 50;
 
@@ -23,13 +23,6 @@ angular.module('app.graphDirective', [])
 					.attr("width", width)
 					.attr("height", height)
 					.attr("class", "chart")
-
-				// svg.append("rect")
-				// 	.attr("width", "87.5%")
-				// 	.attr("height", "78%")
-				// 	.attr("fill", "rgba(232, 225, 209, 0.05)")
-				// 	.attr("transform", "translate(50,30)")
-
 
 				// SCALES
 

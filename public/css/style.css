@@ -71,7 +71,6 @@ body {
 .navbar {
   position: relative;
   min-height: 50px;
-  /*margin-bottom: 20px;*/
   border: 1px solid #D9D9D9;
 }
 .navbar-lower {
@@ -81,6 +80,11 @@ body {
 .lower-navbar-items {
   margin: 0.5em 0 0 0;
 }
+.lower-navbar-items button {
+  left: 2%;
+  position: relative;
+}
+
 .dropdown {
   position: relative;
 }
@@ -433,7 +437,39 @@ button.marginRight-pointSevenFive {
   background-color: #BF5C60;
 }
 
+@media (max-width: 1170px) {
+  .log {
+    position: relative;
+    margin: 10px 0 0 0;
+    display: block;
+    width: 684px;
+    left: 20px;
+    height: 100%;
+  }
+  .log table {
+    width: 100%;
+  }
+}
 
-
-
-
+/*for the log-only view*/
+.log-view-large {
+  height: 100%;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  float: none;
+  width: 60%;
+}
+.log-view-large table {
+  text-align: center;
+  margin: 0 auto;
+}
+/*for graph view only*/
+.graph-view-large {
+  height: 100%;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  float: none;
+  width: 60%;
+}
