@@ -110,22 +110,33 @@ angular.module('app.services', []) // remember to change this so it can be minif
 		
 return {
 			deleteLifeEvent: function (event, successFunc, errorFunc) {
-				del(event, successFunc, errorFunc);
+				function loggedInFunc() {
+					del(event, successFunc, errorFunc);
+				};
+				function notLoggedIn() {
+					successFunc();
+				};
+				checkIfLoggedIn(loggedInFunc, notLoggedIn);
 			},
 			updateLifeEvent: function(event, successFunc, errorFunc) { 
-				put(event, successFunc, errorFunc);
+				function loggedInFunc() {
+					put(event, successFunc, errorFunc);
+				};
+				function notLoggedIn() {
+					successFunc();
+				};
+				
+				checkIfLoggedIn(loggedInFunc, notLoggedIn);
 			},
 			addLifeEvent: function(eventData, successFunc, errorFunc) {
 				function loggedInFunc() {
 					post(eventData, successFunc, errorFunc);
-					console.log("post/addlifeEvent success")
 				};
 
 				function notLoggedIn() {
-					console.log("not logged in POST/addlifeevent");
 					successFunc();
 				};
-				
+
 				checkIfLoggedIn(loggedInFunc, notLoggedIn);
 			},
 			getData: function(successFunc, errorFunc) {
@@ -340,6 +351,14 @@ return {
 			{label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality', show: 'show.sleep', sizeCeiling: '12', opacityCeiling: '5'} 
 		];
 
+		function checkIfLoggedIn(loggedInFunc, loggedOutFunc) {
+			if (EventService.Auth.authLevel > 0) {
+				loggedInFunc();
+			} else {
+				loggedOutFunc();
+			};
+		};
+
 		$rootScope.$watch(EventService.categories, function() {
 			setTimeout(function() {
 				if (EventService.categories.list) {
@@ -350,7 +369,7 @@ return {
 		}, true);
 		
 		function addCategoryXHR(category, successFunc, errorFunc) {
-			if (EventService.Auth.authLevel > 0) {
+			// if (EventService.Auth.authLevel > 0) {
 				$http({
 				    method: 'post',
 				    url: '/post/category',
@@ -365,11 +384,11 @@ return {
 				}).error(function() {
 					errorFunc();
 				})	
-			};
+			// };
 		};
 
 		function deleteCategoryXHR(category, successFunc, errorFunc) {
-			if (EventService.Auth.authLevel > 0) {
+			// if (EventService.Auth.authLevel > 0) {
 				$http({
 				    method: 'delete',
 				    url: '/delete/category',
@@ -389,26 +408,49 @@ return {
 				}).error(function() {
 					errorFunc();
 				})
-			};
+			// };
 		};
 
 		return {
 			addCategory: function(category, successFunc, errorFunc) {
-				if (typeof category === 'object') {
-					var obj = {
-						label: category.label,
-						value: category.label,
-						size: category.size,
-						opacity: category.opacity,
-						show: 'show.' + category.label,
-						sizeCeiling: 5,
-						opacityCeiling: 5
-					};
+				// if (typeof category === 'object') {
+				var obj = {
+					label: category.label,
+					value: category.label,
+					size: category.size,
+					opacity: category.opacity,
+					show: 'show.' + category.label,
+					sizeCeiling: 5,
+					opacityCeiling: 5
+				};
+					
+				function loggedInFunc() {
 					addCategoryXHR(obj, successFunc, errorFunc);
 				};
+				function notLoggedIn() {
+					categoriesObj.list.push(obj);
+					successFunc();
+				};
+				
+				checkIfLoggedIn(loggedInFunc, notLoggedIn);
+
+				// };
 			},
 			deleteCategory: function (category, successFunc, errorFunc) {
-				deleteCategoryXHR(category, successFunc, errorFunc);
+				
+				function loggedInFunc() {
+					deleteCategoryXHR(category, successFunc, errorFunc);
+				};
+				function notLoggedIn() {
+					for (var i = 0; i < categoriesObj.list.length; i++) {
+						if (categoriesObj.list[i].label === category.label) {
+							categoriesObj.list.splice(i, 1);
+							break;
+						};
+					};
+					successFunc();
+				};
+				checkIfLoggedIn(loggedInFunc, notLoggedIn);
 			},
 			categoriesObj: categoriesObj
 		};
