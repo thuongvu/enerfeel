@@ -259,6 +259,12 @@ return {
 					del(event, successFunc, errorFunc);
 				};
 				function notLoggedIn() {
+					for (var i = 0; i < data.length; i++) {
+						if (event.date === data[i].date) {
+							data.splice(i, 1);
+							break;
+						};
+					};
 					successFunc();
 				};
 				checkIfLoggedIn(loggedInFunc, notLoggedIn);

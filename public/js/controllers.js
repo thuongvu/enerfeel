@@ -40,6 +40,24 @@ angular.module('app.controllers', [])
 			$scope.lifeEventsInView = data;
 		});
 
-
-
+		// console.log($scope.testingFrontPageCtrl)
+		// console.log("authLevel is " + EventService.Auth.authLevel);
 	}])
+	.controller('frontPageCtrl', ['$scope', 'EventService', function($scope, EventService) {
+		console.log("frontPageCtrl")
+		$scope.eventService = EventService;
+		$scope.$watch('eventService.allLifeEvents', function(){
+			console.log(EventService.allLifeEvents[EventService.allLifeEvents.length - 1].energylevel);
+			if (EventService.allLifeEvents[EventService.allLifeEvents.length - 1].category === 'meal') {
+				console.log("it's a meal")
+				console.log(EventService.allLifeEvents[EventService.allLifeEvents.length - 1])
+			}
+			// console.log(EventService.allLifeEvents[EventService.allLifeEvents.length - 1].category);
+
+		}, true);
+		$scope.testingFrontPageCtrl = 'lol'
+	
+	}])
+
+
+
