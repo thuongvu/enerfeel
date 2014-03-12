@@ -275,7 +275,7 @@ graph {
   position: relative;
   /*float: left;*/
   margin: 0 0 0 -0.3em;
-  top: .2em;
+  top: .25em;
   display: inline-block;
   padding: 1em;
   background-color: rgba(255, 255, 255, 1);
@@ -450,7 +450,7 @@ button.marginRight-pointSevenFive {
 
 @media (max-width: 1159px) {
   .log {
-    /*display: block;*/
+    margin: 0.5em 0 0 0 ;
     height: 100%;
     border-radius: 10px;
   }
