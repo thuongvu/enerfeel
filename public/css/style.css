@@ -254,24 +254,27 @@ li.navbar-text-account {
 }
 /*graph*/
 graph {
-  float: left;
+  /*float: left;*/
+  display: inline-block;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10px 0 0 10px;
-  margin: 0 0 0 4em;
+  margin: 0 0 0 1em;
   -webkit-box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
           box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
   
   /*height: 100%;*/
-  text-align: center;
+  /*text-align: center;*/
   /*margin: 0 auto;*/
-  display: block;
+  /*display: block;*/
   /*width: 60%;*/
   /*display: inline-block;*/
 }
 /*log*/
 .log {
   position: relative;
-  float: left;
+  /*float: left;*/
+  top: .2em;
+  display: inline-block;
   padding: 1em;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 0px 10px 10px 0;
@@ -446,18 +449,26 @@ button.marginRight-pointSevenFive {
 @media (max-width: 1170px) {
   .log {
     position: relative;
-    margin: 10px 0 0 0;
-    display: block;
-    width: 684px;
+    /*margin: 10px 0 0 0;*/
+    text-align: center;
+    display: inline-block;
+    width: 600px;
     left: 20px;
     height: 100%;
   }
   .log table {
     width: 100%;
   }
-  graph {
+ /* graph {
     margin: 0 0 0 1em;
-  }
+  }*/
+/*  .graph-view-large {
+    text-align: center;
+    margin: 0 0 0 1em;
+    display: block;
+    width: 60%;
+    float: left;
+  }*/
 }
 
 /*for the log-only view*/
@@ -474,7 +485,7 @@ button.marginRight-pointSevenFive {
   margin: 0 auto;
 }
 /*for graph view only*/
-.graph-view-large {
+/*.graph-view-large {
   height: 100%;
   text-align: center;
   margin: 0 auto;
@@ -482,3 +493,4 @@ button.marginRight-pointSevenFive {
   float: none;
   width: 60%;
 }
+*/
