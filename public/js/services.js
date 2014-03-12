@@ -13,6 +13,14 @@ angular.module('app.services', []) // remember to change this so it can be minif
 			$cookieStore.remove('user');
 		};
 
+		function checkIfLoggedIn(loggedInFunc, loggedOutFunc) {
+			if (Auth.authLevel > 0) {
+				loggedInFunc();
+			} else {
+				loggedOutFunc();
+			}
+		}
+
 		function post(eventData, successFunc, errorFunc) {
 			$http({
 			    method: 'post',
@@ -108,7 +116,17 @@ return {
 				put(event, successFunc, errorFunc);
 			},
 			addLifeEvent: function(eventData, successFunc, errorFunc) {
-				post(eventData, successFunc, errorFunc);
+				function loggedInFunc() {
+					post(eventData, successFunc, errorFunc);
+					console.log("post/addlifeEvent success")
+				};
+
+				function notLoggedIn() {
+					console.log("not logged in POST/addlifeevent");
+					successFunc();
+				};
+				
+				checkIfLoggedIn(loggedInFunc, notLoggedIn);
 			},
 			getData: function(successFunc, errorFunc) {
 				// return getData(callback);
@@ -314,7 +332,13 @@ return {
 	}])
 	.factory('CategoryService', ['EventService', '$rootScope', '$http', function (EventService, $rootScope, $http) {
 		var categoriesObj = {};
-		categoriesObj.list = [ {label:'Choose a category', value: 'noCategoryChosen'} ];
+		categoriesObj.list = [ 
+			{label:'Choose a category', value: 'noCategoryChosen'},
+			{label:'meal', value: 'meal'},
+			{label: 'exercise', value: 'exercise', size: 'Minutes', opacity: 'Intensity Level', show: 'show.exercise', sizeCeiling: '180', opacityCeiling: '5'},
+			{label: 'work', value: 'work', size: 'Productivity', opacity: 'Stress Level', show: 'show.work', sizeCeiling: '5', opacityCeiling: '5'},
+			{label: 'sleep', value: 'sleep', size: 'Number of hours', opacity: 'Sleep quality', show: 'show.sleep', sizeCeiling: '12', opacityCeiling: '5'} 
+		];
 
 		$rootScope.$watch(EventService.categories, function() {
 			setTimeout(function() {

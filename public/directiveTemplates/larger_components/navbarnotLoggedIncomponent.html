@@ -1,5 +1,26 @@
-<nav class="navbar navbar-default"> 
-	<div class="navbar-login" ng-click="loadData()"> 
-		<i class="lower-lg-icon fa fa-facebook-square fa-lg">Login</i>
-	</div> 
-</nav>
+<nav class="navbar navbar-default"> <!--  ============ navbar =========== -->
+
+			<div class="navbar-view-options">  <!-- navbar-view-options -->
+				<span class="button-outer">
+					<span class="pad-right opacity-half"><a href="#/view/graph"><i class="lower-lg-icon fa fa-bar-chart-o fa-lg"></i></a></span>
+					<span class="pad-right opacity-half"><a href="#/view/log"><i class="lower-lg-icon fa fa-list-alt fa-lg"></i></a></span>
+					<span class="pad-right opacity-half"><a href="#/view/main"><i class="lower-lg-icon fa fa-bar-chart-o"></i><i class="small fa fa-list-alt"></i></a></span>
+				</span>
+				<div class="navbar-text-view">View</div>
+			</div>	<!-- navbar-view-options end -->
+
+			<div class="navbar-add-event" ng-click="showInNav('showAdd')"> <!--navbar-add-event-->
+				<i class="opacity-half lower-2x-icon fa fa-plus-circle fa-2x"></i>
+				<div class="navbar-text-add">Add Event</div>
+			</div> <!-- navbar-add-event end -->
+
+			<div class="navbar-signup" ng-click="loadData()">  <!-- navbar-signup -->
+				<i class="opacity-half lower-lg-icon fa fa-facebook-square fa-lg">Sign up</i>
+			</div> <!-- navbar-signup end -->
+			
+			<div class="navbar-login-notSignedIn" ng-click="loadData()">  <!-- navbar-login -->
+				<i class="opacity-half lower-lg-icon fa fa-facebook-square fa-lg">Login</i>
+			</div> <!-- navbar-login end -->
+			
+	
+		</nav><!-- ================= end navbar  =====================-->

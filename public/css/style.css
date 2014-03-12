@@ -230,6 +230,21 @@ li.navbar-text-account {
   right: 5%;
   cursor: pointer;
 }
+.navbar-login-notSignedIn {
+  float: right;
+  position: relative;
+  right: 1%;
+  cursor: pointer;
+}
+/*signup*/
+.navbar-signup {
+  float: left;
+  position: relative;
+  left: 30%;
+  cursor: pointer;
+}
+
+
 .options-area {
   min-height: 105px;
 }
