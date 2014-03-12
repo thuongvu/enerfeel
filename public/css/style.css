@@ -251,6 +251,7 @@ li.navbar-text-account {
 
 .options-area {
   min-height: 105px;
+  margin: 0 0 0.5em 0;
 }
 /*graph*/
 graph {
