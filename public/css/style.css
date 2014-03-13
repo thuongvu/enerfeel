@@ -468,3 +468,15 @@ button.marginRight-pointSevenFive {
 .graph-view-large .graph {
   border-radius: 10px;
 }
+
+
+@media (max-width: 768px) {
+  .axis text {
+    font-size: .6em;
+  }
+}
+@media (max-width: 465px) {
+  .axis text {
+    font-size: .25em;
+  }
+}

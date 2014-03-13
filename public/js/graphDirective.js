@@ -20,14 +20,15 @@ angular.module('app.graphDirective', [])
 						width = 722,
 						height = 400,
 						padding = 50;
-					} else if (($window.innerWidth <= 768) && ($window.innerWidth >= 320)) {
+					} else if (($window.innerWidth <= 768) && ($window.innerWidth >= 465)) {
 						width = 440,
 						height = 240,
 						padding = 30;
-					} else if ($window.innerWidth <= 320) {
+					} else if ($window.innerWidth <= 465) {
 						width = 308,
 						height = 168,
-						padding = 21;
+						// height = 198,
+						padding = 30;
 					};
 				};
 				defineGraphDimensions();
@@ -35,7 +36,7 @@ angular.module('app.graphDirective', [])
 				angular.element($window).bind('resize', function() {
 					defineGraphDimensions();
 					removeSvgMakeNew();
-				   });
+				});
 
 				function removeSvgMakeNew() {
 					if (svg) {
@@ -187,7 +188,7 @@ angular.module('app.graphDirective', [])
 				 colorScale = d3.scale.category10()
 
 		};
-		
+
 		createGraph();
 
 		scope.$watch('data', updateGraph, true);
