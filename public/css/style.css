@@ -504,8 +504,14 @@ button.marginRight-pointSevenFive {
   display: inline-block;
 }
 @media (max-width: 532px) {
-  div.sliderWidth.modify-e-slider {
+  /*div.sliderWidth.modify-e-slider {
     margin: 0.5em 0 0.5em 1em;
+  }*/
+  .sliderWidth {
+    margin: 0.5em 0 0.5em 1em;
+  }
+  .addNote {
+    margin: 0 0 0.5em 0;
   }
 }
 .modify-e-caption {
