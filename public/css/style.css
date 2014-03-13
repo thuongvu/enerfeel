@@ -4,8 +4,8 @@ html, body {
 }
 .cf:before,
 .cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+    content: " ";
+    display: table; 
 }
 
 .cf:after {
@@ -169,7 +169,7 @@ body {
 /*my own -------------------------------------------------------------*/
 /*NAVBAR --- VIEW */
 .navbar-view-options {
-  /*left: 5%;*/
+  left: 5%;
   position: relative;
   display: inline-block;
   float: left;
@@ -205,7 +205,7 @@ i.lower-lg-icon {
 .navbar-add-event {
   /*display: inline-block;*/
   position: relative;
-  /*left: 15%;*/
+  left: 15%;
   float: left;
   cursor: pointer;
 }
@@ -245,27 +245,93 @@ li.navbar-text-account {
 }
 /*login is temporary*/
 .navbar-login {
-  /*float: right;*/
-  float: left;
+  float: right;
+  /*float: left;*/
   position: relative;
-  /*right: 5%;*/
+  right: 5%;
   cursor: pointer;
 }
 .navbar-login-notSignedIn {
-  /*float: right;*/
-  float: left;
+  float: right;
+  /*float: left;*/
   position: relative;
-  /*right: 1%;*/
+  right: 1%;
   cursor: pointer;
 }
 /*signup*/
 .navbar-signup {
   float: left;
   position: relative;
-  /*left: 30%;*/
+  left: 30%;
   cursor: pointer;
 }
+@media (max-width: 540px) {
+  .navbar-signup {
+    /*left: 20%;*/
 
+  }
+  .navbar-add-event {
+    left: 0;
+    margin-left: 2em;
+  }
+  .navbar-view-options {
+    left: 0;
+    /*margin-left: 1em;*/
+  }
+  .navbar-higher {
+    min-height: 80px;
+  }
+  .navbar-signup {
+    float: left;
+    left: 0;
+    margin-left: 2em;
+  }
+  .navbar-login-notSignedIn {
+    float: left;
+    right: 0;
+    margin-left: 2em;
+    margin-top: -1em;
+  }
+  .navbar-login {
+    float: left;
+    right: 0;
+    margin-left: 2em;
+    margin-top: -1em;
+  }
+}
+@media (max-width: 340px) {
+  .navbar-add-event {
+    left: -5%;
+    float: right;
+  }
+  .navbar-signup {
+    float: left;
+    left: 0;
+    margin-left: 2em;
+    left: 10%;
+  }
+  .navbar-login-notSignedIn {
+    float: left;
+    right: 0;
+    left: 10%;
+    margin-left: 2em;
+    margin-top: 0.1em;
+  }
+  .navbar-login {
+    left: 10%;
+    float: left;
+    right: 0;
+    margin-left: 2em;
+    margin-top: -2em;
+  }
+  .lower-navbar-items button {
+  left: -5%;
+  position: relative;
+  }
+  .log {
+    
+  }
+}
 
 .options-area {
   min-height: 105px;
