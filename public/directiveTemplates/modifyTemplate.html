@@ -1,17 +1,19 @@
 <div ng-show="showModify">
-	<div>
+
+	<div> <!-- time + slider + energylevel -->
 		<form name="modifyForm" novalidate class="modifyTemplate-modifyForm">
 			<input type="text" ng-model="event.selected.date" placeholder="Time"></input>
 			<div class="sliderWidth modify-e-slider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="5" step="1" ng-model="event.selected.energylevel"></div> 
 			<span class="modify-e-caption">Energy Level: {{event.selected.energylevel}}</span>
 			</select>
 		</form>
-		
 	</div>
-	<div>
+
+	<div> <!-- note + update button + delete button -->
 		<input class="modifyTemplate-noteSize" type="text" ng-model="event.selected.note" placeholder="Note" minLength="1"></input>
 		<button ng-click="updateEvent(event)" ng-disabled="modifyForm.$invalid || event.selected.energylevel == null || event.selected.note.length < 1">Update Event</button>
 		<button ng-click="deleteEvent(event)" ng-disabled="modifyForm.$invalid">Delete Event</button>
 		<span class="error modifyTemplate-addError" ng-show="modifyTemplateAddError">Error!  Please try again.</span>
 	</div>
+
 </div>

@@ -1,6 +1,6 @@
 <div class="moreCategoryInputsTemplate">
+	<!-- meal -->	
 	<div ng-show="show.meal">
-		<!-- meal -->		
 		<div class="mealSlider-caption">
 			<div class="sliderWidth sliderInMeal sizeSlider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="5" step="1" ng-model="input.size">
 			</div>
@@ -14,7 +14,11 @@
 			<input ng-model="input.checkbox.meat" type="checkbox">Meat</input>
 			<input ng-model="input.checkbox.vegetables" type="checkbox">Vegetables</input>
 		</form>
+
 	</div>
+	<!-- meal end -->
+
+	<!-- other options -->
 	<div ng-repeat="category in categories.list" class="cat">
 		<div ng-show="{{category.show}}" class="{{category.label}}">
 			<div>
@@ -28,4 +32,5 @@
 			</div>
 		</div>
 	</div>
+	<!-- other options -->
 </div>

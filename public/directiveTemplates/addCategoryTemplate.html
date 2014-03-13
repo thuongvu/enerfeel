@@ -2,30 +2,47 @@
 
 <span ng-show="showAddCategories">
 	<div class="addCategory" class="margin-topbottom-oneEm">
+
+		<!-- button -->
 		<button class="floatLeft marginRight-pointSevenFive" ng-click="showAddCategories_add = !showAddCategories_add">New Category</button>
+		
 		<span class="floatLeft" ng-show="showAddCategories_add">
 			<form name="addCategoryForm" novalidate class="addCategoryTemplate-addCategoryForm">
+
+				<!-- inputs for adding new category -->
 				<input ng-model="categories.newCategory.label" type="text" placeholder="Name of category" required></input>
 				<input ng-model="categories.newCategory.size" type="text" placeholder="Size scale" required></input>
 				<input ng-model="categories.newCategory.opacity" type="text" placeholder="Opacity scale" required></input>
+
+				<!-- add button -->
 				<button ng-click="categories.add(categories.newCategory)" ng-disabled="addCategoryForm.$invalid">Add Category</button>
+				
+				<!-- error -->
 				<span class="error addCategoryTemplate-addError" ng-show="addCategoryTemplateAddCategoryError">Error!  Please try again.</span>
+
 			</form>
 		</span>
+
 	</div>
 	
 
 	<div class="margin-topbottom-oneEm">
+		<!-- button for deleting categories -->
 		<button class="floatLeft marginRight-pointSevenFive" ng-click="showAddCategories_delete = !showAddCategories_delete">Delete Category</button>
 		<span class="floatLeft" ng-show="showAddCategories_delete">
 			<form name="deleteCategoryForm" novalidate class="addCategoryTemplate-deleteCategoryForm">
+
+				<!-- select option to delete -->
 				<select ng-model="categories.selected.categoryToDelete" ng-options="category as category.label for category in categories.list"></select>
+
+				<!-- delete button -->
 				<button ng-click="categories.delete(categories.selected.categoryToDelete)" 
 				ng-disabled="categories.selected.categoryToDelete.label ==='meal' || 
 				categories.selected.categoryToDelete.label ==='exercise' ||
 				categories.selected.categoryToDelete.label ==='work' ||
 				categories.selected.categoryToDelete.label ==='sleep'"
 				>Delete</button>
+				<!-- error  -->
 				<span class="error addCategoryTemplate-DeleteError" ng-show="addCategoryTemplateDeleteCategoryError">Error!  Please try again.</span>
 			</form>
 

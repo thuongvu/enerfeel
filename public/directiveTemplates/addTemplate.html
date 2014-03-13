@@ -1,13 +1,12 @@
 <div ng-show="showAdd">
 	<form name="addForm" novalidate class="addTemplate-addForm">
-		<span time required></span>
-		<div class="sliderWidth" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="5" step="1" ng-model="input.level" required></div>
-		<span class="energyLevelCaption" required>Energy level: {{input.level}}</span>
-		<input class="addNote" ng-model="input.note" type="text" placeholder="Note" required></input>
-		<span category-options-list required></span>
-		<button ng-click="addEvent(input.level, input.note, categories.selected.category.value)" ng-disabled="addForm.$invalid ||  categories.selected.category.label === 'Choose a category' || input.size == null || input.opacity == null" ng-class="{'button-color': addForm.$valid && categories.selected.category.label !== 'Choose a category' && input.size != null && input.opacity != null}">Add</button>
-		<!-- <button ng-click="addEvent(input.level, input.note, categories.selected.category.value)">Add temporary</button> -->
-		<span class="error addTemplate-addError" ng-show="addTemplateAddError">Error!  Please try again.</span>
-		<div more-category-inputs></div>
+		<span time required></span> <!-- time -->
+		<div class="sliderWidth" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="5" step="1" ng-model="input.level" required></div> <!-- slider -->
+		<span class="energyLevelCaption" required>Energy level: {{input.level}}</span> <!-- caption -->
+		<input class="addNote" ng-model="input.note" type="text" placeholder="Note" required></input> <!-- note -->
+		<span category-options-list required></span> <!-- select options -->
+		<button ng-click="addEvent(input.level, input.note, categories.selected.category.value)" ng-disabled="addForm.$invalid ||  categories.selected.category.label === 'Choose a category' || input.size == null || input.opacity == null" ng-class="{'button-color': addForm.$valid && categories.selected.category.label !== 'Choose a category' && input.size != null && input.opacity != null}">Add</button> <!-- add button -->
+		<span class="error addTemplate-addError" ng-show="addTemplateAddError">Error!  Please try again.</span> <!-- error msg -->
+		<div more-category-inputs></div> <!-- more category inputs -->
 	</form>
 </div>
