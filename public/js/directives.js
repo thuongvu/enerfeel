@@ -408,10 +408,29 @@ angular.module('app.directives', [])
 		templateUrl: 'directiveTemplates/larger_components/graph_component.html'
 	};
 }])
-.directive('logsmall', [function () {
+.directive('logsmall', [ '$window', function ($window) {
 	return {
 		restrict: 'EA',
-		templateUrl: 'directiveTemplates/larger_components/logsmall_component.html'
+		templateUrl: 'directiveTemplates/larger_components/logsmall_component.html',
+		link: function (scope, iElement, iAttrs) {
+
+			// function defineGraphDimensions() {
+			// 	width = Math.round($window.innerWidth / 1.7756232687);
+			// 	height = Math.round($window.innerWidth / 3.205);
+
+			// };
+			// defineGraphDimensions();
+			
+			angular.element($window).bind('resize', function() {
+				angular.element(iElement[0]).children()[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
+			});
+			angular.element(iElement[0]).children()[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
+
+
+			// console.log(angular.element(iElement[0]));
+			// console.log(angular.element(iElement[0]).children()[0]);
+			// angular.element(iElement[0]).children()[0].style.height = "100px"		
+		}
 	};
 }])
 .directive('loglarge', [function () {
