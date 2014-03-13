@@ -13,51 +13,42 @@ angular.module('app.graphDirective', [])
 				var graphData = scope.data;
 				var category = scope.category;
 
-				// dimensions of svg
-				// var width = 722,
-				// 	 height = 400,
-				// 	 padding = 50;
-
 				var width, height, padding;
 
-		
+				function defineGraphDimensions() {
+					if ($window.innerWidth >= 768) {
+						width = 722,
+						height = 400,
+						padding = 50;
+					} else if (($window.innerWidth <= 768) && ($window.innerWidth >= 320)) {
+						width = 440,
+						height = 240,
+						padding = 30;
+					} else if ($window.innerWidth <= 320) {
+						width = 308,
+						height = 168,
+						padding = 21;
+					};
+				};
+				defineGraphDimensions();
+				
+				angular.element($window).bind('resize', function() {
+					defineGraphDimensions();
+					removeSvgMakeNew();
+				   });
 
-
-
-				console.log($window.innerWidth);
-				if ($window.innerWidth > 768) {
-					console.log("greater than 768")
-					width = 722,
-					height = 400,
-					padding = 50;
-				} else if (($window.innerWidth < 768) && ($window.innerWidth > 320)) {
-					console.log("less than 768")
-					width = 440,
-					height = 240,
-					padding = 30;
-				} else {
-					console.log("something's broken ")
-				}
-				console.log(width);
-				console.log(height);
-				console.log(padding);
-				// angular.element($window).bind('resize', function() {
-				// 	console.log($window.innerWidth);
-				//      // $scope.initializeWindowSize();
-				//      // return $scope.$apply();
-				//      if ($window.innerWidth < 768) {
-				//      	width = 440,
-				//      	height = 240,
-				//      	padding = 30
-				//      	d3.select("svg").remove();
-				//      	svg = d3.select(iElement[0])
-				//      						.append("svg")
-				//      						.attr("width", width)
-				//      						.attr("height", height)
-				//      						.attr("class", "chart")
-				//      }
-				//    });
-
+				function removeSvgMakeNew() {
+					if (svg) {
+							d3.select("svg").remove();
+						svg = d3.select(iElement[0])
+     						.append("svg")
+     						.attr("width", width)
+     						.attr("height", height)
+     						.attr("class", "chart");
+     					createGraph();
+     					updateGraph();
+					};
+				};
 
 				var svg = d3.select(iElement[0])
 					.append("svg")
@@ -66,35 +57,36 @@ angular.module('app.graphDirective', [])
 					.attr("class", "chart")
 
 
-
+		var x, y, opacityScale, exerciseScale, sleepScale, xAxis, yAxis, line, path, div, colorScale;
+		function createGraph() {
 				// SCALES
 
 					// x scale
-				var x = d3.time.scale()
+				 x = d3.time.scale()
 					.domain(d3.extent(graphData, function (d) {
 						return d.date;
 					}))
 					.range([padding, width - padding]);
 
 					// y scale
-				var y = d3.scale.linear()
+				 y = d3.scale.linear()
 					.domain([0, d3.max(graphData, function (d) {
 						return d.energylevel;
 					})])
 					.range([height - padding - 10, padding - 10]);
 
 					// opacity scale
-				var opacityScale = d3.scale.linear()
+				 opacityScale = d3.scale.linear()
 					.domain([0,5])
 					.range([.1,.9]);
 
 					// size scale
-				var sizeScale = d3.scale.linear()
+				 sizeScale = d3.scale.linear()
 					.domain([0,5])
 					.range([6,13]);
 
 					// size scale for exercise!
-				var exerciseScale = d3.scale.linear()
+				 exerciseScale = d3.scale.linear()
 					.domain([0, d3.max(graphData, function (d) {
 						if (d.category === 'exercise') {
 							return d.size;
@@ -103,7 +95,7 @@ angular.module('app.graphDirective', [])
 					.range([6,13]);
 
 					// sleep scale for exercise!
-				var sleepScale = d3.scale.linear()
+				 sleepScale = d3.scale.linear()
 					.domain([0, d3.max(graphData, function (d) {
 						if (d.category === 'sleep') {
 							return d.size;
@@ -114,13 +106,13 @@ angular.module('app.graphDirective', [])
 				// INITIALIZING AXES
 
 					// x axis
-				var xAxis = d3.svg.axis()
+				 xAxis = d3.svg.axis()
 					.scale(x)
 				   .orient("bottom")
 					.ticks(10)
 
 					// y axis
-				var yAxis = d3.svg.axis()
+				 yAxis = d3.svg.axis()
 					.scale(y)
 				   .orient("left")
 					.ticks(10)
@@ -149,7 +141,7 @@ angular.module('app.graphDirective', [])
 
 				// LINE
 
-				var line = d3.svg.line()
+				 line = d3.svg.line()
 					.x(function (d) {
 						return x(d.date);
 					})
@@ -159,11 +151,12 @@ angular.module('app.graphDirective', [])
 						
 				// PATH
 
-				var path = svg.append("g")
+				 path = svg.append("g")
 					.attr("class", "linepath")
 					.append("path");
 
 				path
+					// .attr("class", "linepath")
 					.datum(graphData)
 					.attr("d", line)
 					.attr("class", "line")
@@ -179,22 +172,26 @@ angular.module('app.graphDirective', [])
 
 				// PATH 2 TEST
 
-				var path2 = svg.append("g")
+				 path2 = svg.append("g")
 					.attr("class", "line-category")
 					.append("path");
 
 				// TOOLTIP	
 
-				var div = d3.select("body").append("div")
+				 div = d3.select("body").append("div")
 					.attr("class", "tooltip")
 					.style("opacity", 0);
 
 				// COLORSCALE
 
-				var colorScale = d3.scale.category10()
+				 colorScale = d3.scale.category10()
 
-			scope.$watch('data', updateGraph, true);
-			scope.$watch('category', updateGraph, true);
+		};
+		
+		createGraph();
+
+		scope.$watch('data', updateGraph, true);
+		scope.$watch('category', updateGraph, true);
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
