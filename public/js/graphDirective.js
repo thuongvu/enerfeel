@@ -1,5 +1,5 @@
 angular.module('app.graphDirective', [])
-	.directive('graph', ['d3', function (d3) {
+	.directive('graph', ['d3', '$window', function (d3, $window) {
 		return {
 			restrict: 'EA',
 			scope: {
@@ -14,15 +14,58 @@ angular.module('app.graphDirective', [])
 				var category = scope.category;
 
 				// dimensions of svg
-				var width = 722,
-					 height = 400,
-					 padding = 50;
+				// var width = 722,
+				// 	 height = 400,
+				// 	 padding = 50;
+
+				var width, height, padding;
+
+		
+
+
+
+				console.log($window.innerWidth);
+				if ($window.innerWidth > 768) {
+					console.log("greater than 768")
+					width = 722,
+					height = 400,
+					padding = 50;
+				} else if (($window.innerWidth < 768) && ($window.innerWidth > 320)) {
+					console.log("less than 768")
+					width = 440,
+					height = 240,
+					padding = 30;
+				} else {
+					console.log("something's broken ")
+				}
+				console.log(width);
+				console.log(height);
+				console.log(padding);
+				// angular.element($window).bind('resize', function() {
+				// 	console.log($window.innerWidth);
+				//      // $scope.initializeWindowSize();
+				//      // return $scope.$apply();
+				//      if ($window.innerWidth < 768) {
+				//      	width = 440,
+				//      	height = 240,
+				//      	padding = 30
+				//      	d3.select("svg").remove();
+				//      	svg = d3.select(iElement[0])
+				//      						.append("svg")
+				//      						.attr("width", width)
+				//      						.attr("height", height)
+				//      						.attr("class", "chart")
+				//      }
+				//    });
+
 
 				var svg = d3.select(iElement[0])
 					.append("svg")
 					.attr("width", width)
 					.attr("height", height)
 					.attr("class", "chart")
+
+
 
 				// SCALES
 
