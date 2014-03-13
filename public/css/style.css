@@ -573,7 +573,7 @@ button.marginRight-pointSevenFive {
 }
 
 /*for the graph-only view*/
-.graph-view-large .graph {
+.graph-view-large graph {
   border-radius: 10px;
 }
 
