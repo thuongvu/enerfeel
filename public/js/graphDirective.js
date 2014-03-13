@@ -15,21 +15,23 @@ angular.module('app.graphDirective', [])
 
 				var width, height, padding;
 
+				 var paddingScale = d3.scale.linear()
+					.domain([320, 3000])
+					.range([30, 60]);
+
+				 var widthScale = d3.scale.linear()
+					.domain([320, 3000])
+					.range([300, 1920]);
+
 				function defineGraphDimensions() {
-					if ($window.innerWidth >= 768) {
-						width = 722,
-						height = 400,
-						padding = 50;
-					} else if (($window.innerWidth <= 768) && ($window.innerWidth >= 465)) {
-						width = 440,
-						height = 240,
-						padding = 30;
-					} else if ($window.innerWidth <= 465) {
-						width = 308,
-						height = 168,
-						// height = 198,
-						padding = 30;
-					};
+					width = Math.round($window.innerWidth / 1.7756232687);
+					height = Math.round($window.innerWidth / 3.205);
+					if ($window.innerWidth <= 400) {
+						width = Math.round($window.innerWidth / 1.1);
+						height = Math.round($window.innerWidth / 2);
+					}
+					padding = paddingScale($window.innerWidth);
+
 				};
 				defineGraphDimensions();
 				
