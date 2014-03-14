@@ -43,6 +43,7 @@ angular.module('app.controllers', [])
 			$scope.lifeEventsInView = data;
 		});
 
+		$scope.showInstructions = false;
 		// console.log($scope.testingFrontPageCtrl)
 		// console.log("authLevel is " + EventService.Auth.authLevel);
 	}])
