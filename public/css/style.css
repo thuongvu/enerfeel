@@ -476,6 +476,10 @@ button.marginRight-pointSevenFive {
   display: inline-block;
   margin: 0 0 0 1em;
 }
+.modifyTimeSpan {
+  min-width: 175px;
+  display: inline-block;
+}
 
 
 .energyLevelCaption {
