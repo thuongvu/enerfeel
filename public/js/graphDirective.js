@@ -383,15 +383,16 @@ angular.module('app.graphDirective', [])
 						})
 						.attr("opacity", function(d) {
 							return opacityScale(d.opacity)
-						})
+						});
 
+					var formatHoverDate = d3.time.format("%a %b %e %I:%M:%S %p");
 
 					circles
 						.on("mouseover", function(d) {
 							div.transition()
 								.duration(250)
 								.style("opacity", 1)
-							div .html(d.note + "<br>" + d.date)
+							div .html(formatHoverDate(d.date) + "<br>" + d.note + "<br>" + d.category)
 								.style("left", (d3.event.pageX) + "px")
 								.style("top", (d3.event.pageY - 28) + "px")
 						})
@@ -402,7 +403,7 @@ angular.module('app.graphDirective', [])
 						})
 						.on("click", function(d) {
 							scope.select = d;
-						})
+						});
 
 
 						// update circle (locations)
