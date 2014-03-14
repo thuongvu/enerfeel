@@ -64,8 +64,9 @@ div.tooltip {
 body {
   background-color: #EDEDED;
 }
-                                                                          /*<div class="navbar navbar-lower navbar-default-lower">*/
-/*straight out of bootstrap temp------------------------------------ */
+                                                         /*<div class="navbar navbar-lower navbar-default-lower">*/
+
+          /* ---------------- NAVBAR --------------------*/
 .navbar-default {
   background-image: -webkit-linear-gradient(top, #fff 0%, #DEDEDE 100%);
   background-image:         linear-gradient(to bottom, #fff 0%, #DEDEDE 100%);
@@ -73,8 +74,6 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background-repeat: repeat-x;
   border-radius: 4px;
-  /*-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);*/
-          /*box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);*/
 }
 .navbar-default-lower {
   background-image: -webkit-linear-gradient(top, #DEDEDE 0%, #fff 100%);
@@ -86,13 +85,11 @@ body {
   border-radius: 4px;
 }
 .navbar {
-  /*position: relative;*/
   min-height: 50px;
   border: 1px solid #D9D9D9;
 }
 .navbar-lower {
   min-height: 38px;
-  /*height: 38px;*/
 }
 .lower-navbar-items {
   margin: 0.5em 0 0 0;
@@ -101,7 +98,7 @@ body {
   left: 2%;
   position: relative;
 }
-
+                  /* ---------------- DROPDOWN --------------------*/
 .dropdown {
   position: relative;
 }
@@ -114,7 +111,6 @@ body {
   left: -50%;
   z-index: 1000;
   display: none;
-  /*float: left;*/
   position: inline-block;
   min-width: 160px;
   padding: 5px 0;
@@ -170,15 +166,14 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 
-/*my own -------------------------------------------------------------*/
-/*NAVBAR --- VIEW */
+                  /* ---------------- navbar ITEMS --------------------*/
+          /*NAVBAR --- VIEW */
 .navbar-view-options {
   left: 5%;
   position: relative;
   display: inline-block;
   float: left;
   cursor: pointer;
-  /*margin-left: 1em;*/
 }
 .button-outer {
   position: relative;
@@ -205,9 +200,9 @@ i.lower-lg-icon {
   font-size: 0.8em;
   margin: -.5em 4.5em 0 4.5em;
 }
-/*NAVBAR --- ADD*/
+
+        /*NAVBAR --- ADD*/
 .navbar-add-event {
-  /*display: inline-block;*/
   position: relative;
   left: 15%;
   float: left;
@@ -220,7 +215,7 @@ i.lower-2x-icon {
   font-size: 0.8em;
   margin: -0.5em 0 0 -1.5em;
 }
-/*account*/
+    /*NAVBAR ---- ACCOUNT*/
 .navbar-account {
   float: right;
   right: 2%;
@@ -234,7 +229,7 @@ i.lower-2x-icon {
   top: 0.5em;
   position: relative;
 }
-/*dropdown*/
+    /*dropdown in navbar account*/
 li {
   list-style-type: none;
 }
@@ -246,22 +241,21 @@ li.navbar-text-account {
   display: inline;
   margin: 0 1em 0 0 ;
 }
-/*login is temporary*/
+        /* LOGIN*/
 .navbar-login {
   float: right;
-  /*float: left;*/
   position: relative;
   right: 5%;
   cursor: pointer;
 }
 .navbar-login-notSignedIn {
   float: right;
-  /*float: left;*/
   position: relative;
   right: 1%;
   cursor: pointer;
 }
-/*signup*/
+
+        /*NAVBAR SIGNUP*/
 .navbar-signup {
   float: left;
   position: relative;
@@ -277,7 +271,6 @@ li.navbar-text-account {
   }
   .navbar-view-options {
     left: 0;
-    /*margin-left: 1em;*/
   }
   .navbar-higher {
     min-height: 80px;
@@ -329,16 +322,10 @@ li.navbar-text-account {
   left: -5%;
   position: relative;
   }
-  .log {
-
-  }
- /* .navbar-account {
-    float: right;
-    right: 2%;
-    position: relative;
-    cursor: pointer;
-  }*/
 }
+
+
+      /*NAVBAR INSTRUCTIONS BUTTON*/
 .toggle-instructions-icon {
   cursor: pointer;
   color: grey;
@@ -359,28 +346,28 @@ li.navbar-text-account {
   }
 }
 
+                      /* --------------- OPTIONS AREA ---------------- */
+
 .options-area {
   min-height: 105px;
-  /*margin: 0 0 0.5em 0;*/
 }
-/*graph*/
+article {
+  border-top: 1px solid #D4D4D4;
+  position: relative;
+  text-align: center;
+}
+          /*GRAPH*/
 graph {
   display: inline-block;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10px 0 0 10px;
-  /*margin: 0 0 0 1em;*/
   -webkit-box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
           box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
-  
 }
-/*log*/
-logsmall {
-  /*height: 100%;*/
-  /*height: 40%;*/
-}
+           /*LOG*/
+
 .log {
   position: relative;
-  /*float: left;*/
   margin: 0 0 0 -0.3em;
   top: .25em;
   display: inline-block;
@@ -393,13 +380,7 @@ logsmall {
   -webkit-box-shadow: inset 10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
           box-shadow: inset 10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
 }
-article {
-  border-top: 1px solid #D4D4D4;
-  position: relative;
-  text-align: center;
-  /*height: 60%;*/
-  /*width: 100%;*/
-}
+
 @media (max-width: 768px) {
   .axis text {
     font-size: .6em;
@@ -425,7 +406,7 @@ td {
 tr:nth-child(odd) {
   background-color: rgba(232, 225, 209, 0.5);
 }
-/*links*/
+  /*links*/
 a:visited {
   color: #000;
 }
@@ -436,31 +417,22 @@ a:visited {
   opacity: 1;
 }
 
-/*article used to go here*/
-
-
-
-
 .options-area-component {
   display: inline-block;
   position: relative;
   padding: 0.5em 2em 0.5em 2em;
-  /*margin: 0.1em 0 0 5em;*/
   border-radius: 4px;
   -webkit-box-shadow: inset 0 0 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
           box-shadow: inset 0 0 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
 }
-/*options*/
+
 /*categories*/ /*addCategoryTemplate*/
 .addCategory {
   position: relative;
   padding: 0 0 1em 0;
 }
 .addCategory button {
-  /*height: 24px;*/
   margin: 1px 0 0 0;
- /*categories button. if you click new category, the input forms are 1px larger. 
- i just made the button 1px larger to compensate, so it wont be moved. hackish, reminder in css*/
 }
 .addCategoryTemplate-DeleteError {
   margin: 0 0 0 2em;
@@ -482,8 +454,6 @@ button.marginRight-pointSevenFive {
 }
 /*modify*/
 .modifyTemplate-noteSize {
-  /*width: 418px;*/
-  /*width: 70%;*/
   margin: 0.5em 0 0.5em 0;
 }
 /*filterTemplate*/
@@ -531,9 +501,6 @@ button.marginRight-pointSevenFive {
   display: inline-block;
 }
 @media (max-width: 532px) {
-  /*div.sliderWidth.modify-e-slider {
-    margin: 0.5em 0 0.5em 1em;
-  }*/
   .sliderWidth {
     margin: 0.5em 0 0.5em 1em;
   }
@@ -588,8 +555,6 @@ button.marginRight-pointSevenFive {
 
 @media (max-width: 1159px) {
   .log {
-    /*margin: 0.5em 0 0 0 ;*/
-    /*height: 100%;*/
     border-radius: 10px;
   }
   graph {

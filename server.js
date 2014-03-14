@@ -36,6 +36,7 @@ var https = require("https").createServer(options, app);
 app.use(function(req, res, next) {
   if(!req.secure) {
     // return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    // productivejournal.com
     // return res.redirect(['https://', 'localhost:8081', req.url].join('')); 
     return res.redirect(['https://', process.env.RESREDIRECT, req.url].join('')); 
   }
