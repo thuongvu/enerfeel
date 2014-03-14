@@ -35,7 +35,7 @@ module.exports = function(app, passport) {
 		console.log(req.headers);
 		if (req.headers.token !== 'null') {
 			db.users.findOne({'token' : req.headers.token}, function(err, data) {
-				if (err || success == 0) {
+				if (err) {
 					res.send(300, "Error");
 					console.log("error for /get/events ");
 				} else {
@@ -168,8 +168,20 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/logout', function (req, res) {
-		req.logout();
-		res.redirect('/');
+		console.log("/logout");
+		console.log(req.headers);
+		console.log('req.session');
+		console.log(req.session);
+		function logOut(callback) {
+			req.session = null;
+			console.log(req.session);
+			callback()
+		}
+		function sendTwoHundred() {
+			res.send(200);
+		};
+
+		logOut(sendTwoHundred);
 	});
 
 	function isLoggedIn(req, res, next) {

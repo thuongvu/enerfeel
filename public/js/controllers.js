@@ -29,6 +29,9 @@ angular.module('app.controllers', [])
 		$scope.login = function() {
 			EventService.login();
 		}
+		$scope.logout = function() {
+			EventService.logout();
+		}
 
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("all");
 		$scope.input = {};

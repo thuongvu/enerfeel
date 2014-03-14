@@ -1,5 +1,5 @@
 angular.module('app.services', []) // remember to change this so it can be minified
-	.factory('EventService', function ($http, $window, $cookieStore) {
+	.factory('EventService', function ($http, $window, $cookieStore, $location) {
 		var data = [];
 		var categories = {};
 		var Auth = {};
@@ -296,6 +296,23 @@ return {
 			},
 			login: function() {
 				$window.location.href = '/auth/facebook/callback';
+			},
+			logout: function() {
+
+					$http({
+					    method: 'GET',
+					    url: '/logout',
+					    headers: {
+					        'Content-type': 'application/json',
+					        'token': Auth.token
+					    }
+					}).success(function() {
+						Auth.authLevel = 0;
+						$location.path('/')
+					}).error(function() {
+
+					});
+
 			},
 			Auth: Auth,
 			allLifeEvents: data,
