@@ -16,8 +16,8 @@ angular.module('app.graphDirective', [])
 				var width, height, padding;
 
 				 var paddingScale = d3.scale.linear()
-					.domain([320, 3000])
-					.range([30, 60]);
+					.domain([320, 2000])
+					.range([30, 80]);
 
 				 var widthScale = d3.scale.linear()
 					.domain([320, 3000])
@@ -26,9 +26,13 @@ angular.module('app.graphDirective', [])
 				function defineGraphDimensions() {
 					width = Math.round($window.innerWidth / 1.7756232687);
 					height = Math.round($window.innerWidth / 3.205);
+
 					if ($window.innerWidth <= 400) {
 						width = Math.round($window.innerWidth / 1.1);
 						height = Math.round($window.innerWidth / 2);
+					} else if ($window.innerWidth <= 970) {
+						width = Math.round($window.innerWidth / 1.05);
+						height = Math.round($window.innerWidth / 1.9);
 					}
 					padding = paddingScale($window.innerWidth);
 
@@ -131,7 +135,7 @@ angular.module('app.graphDirective', [])
 					// 	.text("Date")
 					// 	.attr("x", width / 2)
 					// 	.attr("y", 50)
-						// .attr("transform", "translate(" + x + "," + y + ")" + "rotate(-90)")
+					// 	.attr("transform", "translate(" + x + "," + y + ")" + "rotate(-90)")
 
 				svg.selectAll(".x.axis").selectAll("text")
 					.attr("transform", "rotate(-45)translate(-20, 0)")
@@ -141,7 +145,23 @@ angular.module('app.graphDirective', [])
 					.attr("class", "y axis")
 					.attr("transform", "translate(" + padding + ",-10)")                  
 					.call(yAxis)
-
+				 .append("text")
+				 	.text("Energy Level")
+				 	.attr("x", width / 2)
+				 	.attr("y", height / 2)
+				 	// .attr("transform", "rotate(-90 "+ (width / 3.69) + "," + (width / 1.7) + ")")
+				 	.attr("transform", function() {
+				 		if (width > 500) {
+				 			return "rotate(-90 "+ (width / 3.69) + "," + (width / 1.7) + ")"
+				 		} else if (width > 340){
+				 			return "rotate(-90 "+ (width / 3.9) + "," + (width / 1.7) + ")"
+				 		} else {
+				 			return "rotate(-90 "+ (width / 4.2) + "," + (width / 1.7) + ")"
+				 		}
+				 	})
+				 	console.log(width);
+				 	// .attr("transform", "rotate(-90 "+ (width / 3.49) +"," + (width / 1.66) + ")")
+				 	// .attr("transform", "rotate(-90 172,380)")
 				// LINE
 
 				 line = d3.svg.line()
