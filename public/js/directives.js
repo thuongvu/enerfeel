@@ -273,6 +273,9 @@ angular.module('app.directives', [])
 				$scope.eventService.updateLifeEvent(event.selected, successFunc, errorFunc); 
 			};
 		};
+
+		$scope.modifyDate = new Date();
+
 	}])
 	.directive('modify', ['EventService', 'FilterService', function (EventService, FilterService) {
 		return {

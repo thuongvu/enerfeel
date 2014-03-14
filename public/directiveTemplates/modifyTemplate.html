@@ -2,7 +2,8 @@
 
 	<div> <!-- time + slider + energylevel -->
 		<form name="modifyForm" novalidate class="modifyTemplate-modifyForm">
-			<input type="text" ng-model="event.selected.date" placeholder="Time"></input>
+			<!-- <input type="text" ng-model="event.selected.date" placeholder="Time"></input> -->
+			<datepicker ng-model="event.selected.date"></datepicker>
 			<div class="sliderWidth modify-e-slider" ui-slider="{orientation: 'horizontal', range: 'min'}"  min="0" max="5" step="1" ng-model="event.selected.energylevel"></div> 
 			<span class="modify-e-caption">Energy Level: {{event.selected.energylevel}}</span>
 			</select>

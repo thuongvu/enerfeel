@@ -7,10 +7,6 @@ module.exports = function(app, passport) {
 		res.render("index.ejs");
 	})
 
-	// app.get("/view/main", function (req,res) {
-	// 	res.render("partials/main");
-	// })
-
 	app.get('/auth', passport.authenticate('facebook'));
 
 	app.get('/auth/facebook/callback', 
@@ -39,7 +35,7 @@ module.exports = function(app, passport) {
 		console.log(req.headers);
 		if (req.headers.token !== 'null') {
 			db.users.findOne({'token' : req.headers.token}, function(err, data) {
-				if (err) {
+				if (err || success == 0) {
 					res.send(300, "Error");
 					console.log("error for /get/events ");
 				} else {
@@ -60,7 +56,7 @@ module.exports = function(app, passport) {
 				{token: req.headers.token}, {$pull: {'lifeEvents': {'date': req.body.date}}},
 				{}, // options
 				function(err, success) {
-					if (err) {
+					if (err || success == 0) {
 						res.send(300, "Error");
 						console.log("error for /delete/event");
 					} else {
@@ -84,7 +80,7 @@ module.exports = function(app, passport) {
 				{$push: {lifeEvents: obj}},
 				{}, // options
 				function(err, success) {
-					if (err) {
+					if (err || success == 0) {
 						res.send(300, "Error");
 						console.log("error for /post/event ");
 					} else {
@@ -108,10 +104,11 @@ module.exports = function(app, passport) {
 				{$set: {"lifeEvents.$.energylevel": req.body.energylevel, "lifeEvents.$.note": req.body.note, "lifeEvents.$.date": req.body.date, "lifeEvents.$.category": req.body.category, "lifeEvents.$.opacity": req.body.opacity, "lifeEvents.$.size": req.body.size}},
 				{}, // options
 				function(err, success) {
-					if (err) {
+					if (err || success == 0) {
 						res.send(300, "Error");
 						console.log("Error for /put/event ");
 					} else {
+						console.log(success);
 						res.send(200, "Success");
 						console.log("Success for /post/success");
 					};
@@ -133,7 +130,7 @@ module.exports = function(app, passport) {
 				{$push: {categories: obj}}, 
 				{}, //options
 				function(err, success) {
-					if (err) {
+					if (err || success == 0) {
 						res.send(300, "Error");
 						console.log("Error for /post/category");
 					} else {
@@ -157,7 +154,7 @@ module.exports = function(app, passport) {
 				{token: req.headers.token}, {$pull: {'categories': {'label': req.body.label}}},
 				{}, //options
 				function(err, success) {
-					if (err) {
+					if (err || success == 0) {
 						res.send(300, "Error");
 						console.log("Error for /delete/category");
 					} else {
