@@ -415,28 +415,11 @@ angular.module('app.directives', [])
 	return {
 		restrict: 'EA',
 		templateUrl: 'directiveTemplates/larger_components/logsmall_component.html',
-		link: function (scope, iElement, iAttrs) {
-
-			// function defineGraphDimensions() {
-			// 	width = Math.round($window.innerWidth / 1.7756232687);
-			// 	height = Math.round($window.innerWidth / 3.205);
-
-			// };
-			// defineGraphDimensions();
-			
+		link: function (scope, iElement, iAttrs) {			
 			angular.element($window).bind('resize', function() {
-				// console.log(angular.element(iElement[0]).children()[0])
-				// console.log(angular.element(iElement[0]).children()[1])
 				angular.element(iElement[0]).children()[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
-				angular.element(iElement[0]).children()[1].style.height = Math.round($window.innerWidth / 3.45) + "px"
 			});
 			angular.element(iElement[0]).children()[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
-			angular.element(iElement[0]).children()[1].style.height = Math.round($window.innerWidth / 3.45) + "px"
-
-
-			// console.log(angular.element(iElement[0]));
-			// console.log(angular.element(iElement[0]).children()[0]);
-			// angular.element(iElement[0]).children()[0].style.height = "100px"		
 		}
 	};
 }])
@@ -444,5 +427,19 @@ angular.module('app.directives', [])
 	return {
 		restrict: 'EA',
 		templateUrl: 'directiveTemplates/larger_components/loglarge_component.html'
+	};
+}])
+.directive('instructions', ['$window', function ($window) {
+	return {
+		restrict: 'EA',
+		templateUrl: 'directiveTemplates/larger_components/instructions_component.html',
+		link: function (scope, iElement, iAttrs) {
+			console.log(angular.element(iElement[0])[0]);
+			angular.element($window).bind('resize', function() {
+				console.log(angular.element(iElement[0])[0]);
+				angular.element(iElement[0])[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
+			});
+			angular.element(iElement[0])[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
+		}
 	};
 }])
