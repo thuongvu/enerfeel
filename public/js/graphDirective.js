@@ -391,6 +391,9 @@ angular.module('app.graphDirective', [])
 
 					circles
 						.on("mouseover", function(d) {
+							d3.select(this)
+								.attr("opacity", 1);
+
 							showToolTipOnClick = false;
 							div.transition()
 								.duration(250)
@@ -400,12 +403,17 @@ angular.module('app.graphDirective', [])
 								.style("top", (d3.event.pageY - 28) + "px")
 						})
 						.on("mouseleave", function(d) {
+							d3.select(this)
+								.attr("opacity", function(d) {
+									return opacityScale(d.opacity);
+								});
+
 							if (!showToolTipOnClick) {
 								div.transition()
 									.duration(250)
 									.style("opacity", 0)
 							}
-							
+
 						})
 						.on("click", function(d) {
 							scope.select = d;
