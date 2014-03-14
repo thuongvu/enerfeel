@@ -383,12 +383,15 @@ angular.module('app.graphDirective', [])
 						})
 						.attr("opacity", function(d) {
 							return opacityScale(d.opacity)
-						});
+						})
+						// .style("cursor", "pointer");
 
 					var formatHoverDate = d3.time.format("%a %b %e %I:%M:%S %p");
+					var showToolTipOnClick = false;
 
 					circles
 						.on("mouseover", function(d) {
+							showToolTipOnClick = false;
 							div.transition()
 								.duration(250)
 								.style("opacity", 1)
@@ -397,12 +400,28 @@ angular.module('app.graphDirective', [])
 								.style("top", (d3.event.pageY - 28) + "px")
 						})
 						.on("mouseleave", function(d) {
-							div.transition()
-								.duration(250)
-								.style("opacity", 0)
+							if (!showToolTipOnClick) {
+								div.transition()
+									.duration(250)
+									.style("opacity", 0)
+							}
+							
 						})
 						.on("click", function(d) {
 							scope.select = d;
+							showToolTipOnClick = !showToolTipOnClick;
+							if (showToolTipOnClick) {
+								div.transition()
+									.duration(250)
+									.style("opacity", 1)
+								div .html(formatHoverDate(d.date) + "<br>" + d.note + "<br>" + d.category)
+									.style("left", (d3.event.pageX) + "px")
+									.style("top", (d3.event.pageY - 28) + "px")
+							} else {
+								div.transition()
+									.duration(250)
+									.style("opacity", 0)
+							}
 						});
 
 
@@ -432,6 +451,7 @@ angular.module('app.graphDirective', [])
 						.attr("opacity", function(d) {
 							return opacityScale(d.opacity)
 						})
+						.style("cursor", "pointer");
 
 						// circle exit (not needed now, but maybe in the future)
 					circles.exit().remove();
