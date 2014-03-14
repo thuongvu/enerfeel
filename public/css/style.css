@@ -335,6 +335,21 @@ li.navbar-text-account {
     cursor: pointer;
   }*/
 }
+.toggle-instructions-icon {
+  float: right;
+  margin: -0.9em 0.5em 0 0;
+  position: relative;
+}
+@media (max-width: 400px) {
+  .toggle-instructions-icon {
+    /*float: left;*/
+    margin: -0.9em 0.5em 0 0;
+  }
+  .lower-navbar-items button {
+    left: -10%;
+    position: relative;
+  }
+}
 
 .options-area {
   min-height: 105px;
