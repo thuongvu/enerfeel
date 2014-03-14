@@ -425,9 +425,13 @@ angular.module('app.directives', [])
 			// defineGraphDimensions();
 			
 			angular.element($window).bind('resize', function() {
+				// console.log(angular.element(iElement[0]).children()[0])
+				// console.log(angular.element(iElement[0]).children()[1])
 				angular.element(iElement[0]).children()[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
+				angular.element(iElement[0]).children()[1].style.height = Math.round($window.innerWidth / 3.45) + "px"
 			});
 			angular.element(iElement[0]).children()[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
+			angular.element(iElement[0]).children()[1].style.height = Math.round($window.innerWidth / 3.45) + "px"
 
 
 			// console.log(angular.element(iElement[0]));

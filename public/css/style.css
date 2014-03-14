@@ -627,3 +627,10 @@ button.marginRight-pointSevenFive {
 .inlineblock {
   display: inline-block;
 }
+.instructions {
+  overflow-y: scroll;
+  /*width: 35.7%;*/
+  width: 31.1%;
+
+}
+
