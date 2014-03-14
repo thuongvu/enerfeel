@@ -336,6 +336,7 @@ li.navbar-text-account {
   }*/
 }
 .toggle-instructions-icon {
+  cursor: pointer;
   color: grey;
   float: right;
   margin: -0.9em 0.5em 0 0;
@@ -613,7 +614,6 @@ button.marginRight-pointSevenFive {
   border-radius: 10px;
 }
 
-
 @media (max-width: 768px) {
   .axis text {
     font-size: .6em;
@@ -629,8 +629,6 @@ button.marginRight-pointSevenFive {
 }
 .instructions {
   overflow-y: scroll;
-  /*width: 35.7%;*/
   width: 31.1%;
-
 }
 
