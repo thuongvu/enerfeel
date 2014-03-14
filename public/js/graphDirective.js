@@ -30,7 +30,7 @@ angular.module('app.graphDirective', [])
 					if ($window.innerWidth <= 400) {
 						width = Math.round($window.innerWidth / 1.1);
 						height = Math.round($window.innerWidth / 2);
-					} else if ($window.innerWidth <= 970) {
+					} else if ($window.innerWidth <= 992) {
 						width = Math.round($window.innerWidth / 1.05);
 						height = Math.round($window.innerWidth / 1.9);
 					}
