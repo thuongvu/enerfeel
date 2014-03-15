@@ -1,6 +1,7 @@
 var User = require('./models/user');
 var mongojs = require('mongojs');
 var db = mongojs('enerfeel', ['users']);
+var sanitizer = require('sanitizer');
 module.exports = function(app, passport) {
 
 	app.get("/", function (req,res) {
@@ -33,8 +34,11 @@ module.exports = function(app, passport) {
 	app.get('/get/events', isLoggedIn, function(req, res) {
 		console.log("/get req.headers");
 		console.log(req.headers);
+
+		var sanitizedHeadersToken = sanitizer.sanitize(req.headers.token);
+
 		if (req.headers.token !== 'null') {
-			db.users.findOne({'token' : req.headers.token}, function(err, data) {
+			db.users.findOne({'token' : sanitizedHeadersToken}, function(err, data) {
 				if (err) {
 					res.send(300, "Error");
 					console.log("error for /get/events ");
@@ -51,9 +55,12 @@ module.exports = function(app, passport) {
 		console.log("/delete req.headers");
 		console.log(req.headers);
 
+		var sanitizedHeadersToken = sanitizer.sanitize(req.headers.token);
+		var sanitizedReqBodyDate = sanitizer.sanitize(req.body.date);
+
 		if (req.headers.token !== 'null') {
 			db.users.update(
-				{token: req.headers.token}, {$pull: {'lifeEvents': {'date': req.body.date}}},
+				{token: sanitizedHeadersToken}, {$pull: {'lifeEvents': {'date': sanitizedReqBodyDate}}},
 				{}, // options
 				function(err, success) {
 					if (err || success == 0) {
@@ -73,10 +80,20 @@ module.exports = function(app, passport) {
 		console.log('/post req.body');
 		console.log(req.body);
 
+		var sanitizedHeadersToken = sanitizer.sanitize(req.headers.token);
+
 		if (req.headers.token !== 'null') {
-			var obj = req.body;
+			var obj = {
+				energylevel: sanitizer.sanitize(req.body.energylevel),
+				note: sanitizer.sanitize(req.body.note),
+				date: sanitizer.sanitize(req.body.date),
+				category: sanitizer.sanitize(req.body.category),
+				opacity: sanitizer.sanitize(req.body.opacity),
+				size: sanitizer.sanitize(req.body.size)
+			};
+
 			db.users.update(
-				{token: req.headers.token},
+				{token: sanitizedHeadersToken},
 				{$push: {lifeEvents: obj}},
 				{}, // options
 				function(err, success) {
@@ -98,10 +115,24 @@ module.exports = function(app, passport) {
 	app.put('/put/event', isLoggedIn, function (req, res) {
 		console.log('/put req.body');
 		console.log(req.body);
+
+		var sanitizedHeadersToken = sanitizer.sanitize(req.headers.token);
+
+
 		if (req.headers.token !== 'null') {
+
+			var obj = {
+				energylevel: sanitizer.sanitize(req.body.energylevel),
+				note: sanitizer.sanitize(req.body.note),
+				date: sanitizer.sanitize(req.body.date),
+				category: sanitizer.sanitize(req.body.category),
+				opacity: sanitizer.sanitize(req.body.opacity),
+				size: sanitizer.sanitize(req.body.size)
+			};
+
 			db.users.update(
-				{token: req.headers.token, "lifeEvents.date": req.body.date }, 
-				{$set: {"lifeEvents.$.energylevel": req.body.energylevel, "lifeEvents.$.note": req.body.note, "lifeEvents.$.date": req.body.date, "lifeEvents.$.category": req.body.category, "lifeEvents.$.opacity": req.body.opacity, "lifeEvents.$.size": req.body.size}},
+				{token: sanitizedHeadersToken, "lifeEvents.date": obj.date }, 
+				{$set: {"lifeEvents.$.energylevel": obj.energylevel, "lifeEvents.$.note": obj.note, "lifeEvents.$.date": obj.date, "lifeEvents.$.category": obj.category, "lifeEvents.$.opacity": obj.opacity, "lifeEvents.$.size": obj.size}},
 				{}, // options
 				function(err, success) {
 					if (err || success == 0) {
@@ -123,10 +154,21 @@ module.exports = function(app, passport) {
 		console.log('/post/category req.body');
 		console.log(req.body);
 
+		var sanitizedHeadersToken = sanitizer.sanitize(req.headers.token);
+
 		if (req.headers.token !== 'null') {
-			var obj = req.body;
+			var obj = {
+				label: sanitizer.sanitize(req.body.label),
+				value: sanitizer.sanitize(req.body.value),
+				size: sanitizer.sanitize(req.body.size),
+				opacity: sanitizer.sanitize(req.body.opacity),
+				show: sanitizer.sanitize(req.body.show),
+				sizeCeiling: sanitizer.sanitize(req.body.sizeCeiling),
+				opacityCeiling: sanitizer.sanitize(req.body.opacityCeiling)
+			};
+			console.log(obj);
 			db.users.update(
-				{token: req.headers.token},
+				{token: sanitizedHeadersToken},
 				{$push: {categories: obj}}, 
 				{}, //options
 				function(err, success) {
@@ -149,9 +191,12 @@ module.exports = function(app, passport) {
 		console.log('req.body');
 		console.log(req.body);
 
+		var sanitizedHeadersToken = sanitizer.sanitize(req.headers.token);
+		var sanitizedReqBodyLabel = sanitizer.sanitize(req.body.label)
+
 		if (req.headers.token !== 'null') {
 			db.users.update(
-				{token: req.headers.token}, {$pull: {'categories': {'label': req.body.label}}},
+				{token: sanitizedHeadersToken}, {$pull: {'categories': {'label': sanitizedReqBodyLabel}}},
 				{}, //options
 				function(err, success) {
 					if (err || success == 0) {
