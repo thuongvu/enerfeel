@@ -1,7 +1,7 @@
 angular.module('app.directives', [])
 	.controller('AddController', ['$scope', '$timeout', 'CategoryService', function($scope, $timeout, CategoryService) {
 		$scope.show = {};
-		$scope.input = {};
+		// $scope.input = {}; // i don't think i need this
 		$scope.input.checkbox = {};
 		$scope.input.checkbox.checked = 0;
 
@@ -80,7 +80,7 @@ angular.module('app.directives', [])
 		},true);
 
 	}])
-	.directive('add', ['EventService', 'FilterService', '$timeout', function (EventService, FilterService, $timeout) {		
+	.directive('add', [function () {		
 		return {
 			restrict: 'EA',
 			controller: 'AddController',
@@ -225,7 +225,7 @@ angular.module('app.directives', [])
 }])
 
 // ----------------------------------------------------------------------------
-	.controller('modifyController', ['$scope', 'FilterService', function ($scope, FilterService) {
+	.controller('modifyController', ['$scope', 'FilterService', 'EventService', function ($scope, FilterService, EventService) {
 		$scope.event = {};
 		$scope.event.selected;
 
@@ -277,7 +277,7 @@ angular.module('app.directives', [])
 		$scope.modifyDate = new Date();
 
 	}])
-	.directive('modify', ['EventService', 'FilterService', function (EventService, FilterService) {
+	.directive('modify', [function() {
 		return {
 			restrict: 'EA',
 			controller: 'modifyController',
@@ -320,13 +320,13 @@ angular.module('app.directives', [])
 	};
 
 	// filter opacity
-	$scope.filterOpacity= function(opacity) {
+	$scope.filterOpacity = function(opacity) {
 		$scope.lifeEventsInView = FilterService.filterOpacity(opacity);
 		emitFilterChange();
 	};
 
 	// filter by size
-	$scope.filterSize= function(size) {
+	$scope.filterSize = function(size) {
 		$scope.lifeEventsInView = FilterService.filterSize(size);
 		emitFilterChange();
 	};
@@ -337,7 +337,6 @@ angular.module('app.directives', [])
 		emitFilterChange();
 	};
 
-	
 	$scope.calendar = {};
 	$scope.calendar.firstDate = new Date();
 	$scope.calendar.secondDate = new Date();
@@ -346,7 +345,7 @@ angular.module('app.directives', [])
 		$scope.lifeEventsInView = $scope.filterService.customFilterLifeEvents(first, second);
 	};
 }])
-.directive('filterdir', ['EventService', 'FilterService', function (EventService, FilterService) {
+.directive('filterdir', [function () {
 	return {
 		restrict: 'EA',
 		controller: 'filterController',
@@ -367,11 +366,6 @@ angular.module('app.directives', [])
 	$scope.categories.list = $scope.categories.categoryService.categoriesObj.list;
 	$scope.categories.selected = {};
 	$scope.categories.selected.category = $scope.categories.list[0];
-	function onCategoryChange() {
-		
-	};
-	$scope.$watch('categories.selected.category', onCategoryChange, true);
-
 }])
 .directive('categoryOptionsList', [function () {
 	return {
@@ -435,9 +429,7 @@ angular.module('app.directives', [])
 		templateUrl: 'directiveTemplates/larger_components/instructions_component.html',
 		link: function (scope, iElement, iAttrs) {
 			scope.showInstructions = false;
-			console.log(angular.element(iElement[0])[0]);
 			angular.element($window).bind('resize', function() {
-				console.log(angular.element(iElement[0])[0]);
 				angular.element(iElement[0])[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
 			});
 			angular.element(iElement[0])[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
