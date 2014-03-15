@@ -2,6 +2,13 @@ angular.module('app.controllers', [])
 	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', 'CategoryService', 'MockData', function ($scope, EventService, FilterService, CategoryService, MockData) {
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
+		// used to be lower
+		$scope.lifeEventsInView = FilterService.filterLifeEvents("all");
+		$scope.input = {};
+		$scope.category = {};
+		$scope.category.setTo = 'null';
+		$scope.filters = {};
+		// used to be lower
 		$scope.login = function() {
 			EventService.login();
 		};
@@ -24,7 +31,7 @@ angular.module('app.controllers', [])
 					for (var i = 0; i < EventService.allLifeEvents.length; i++) {
 						$scope.lifeEventsInView.push(EventService.allLifeEvents[i]);
 					};
-					$scope.filterService.sortTime($scope.lifeEventsInView);
+					FilterService.sortTime($scope.lifeEventsInView);
 				};
 				function errorFunc() {
 					$scope.optionsAreaLoadDataError = true;
@@ -37,11 +44,6 @@ angular.module('app.controllers', [])
 			$scope.loadData();
 		};
 
-		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("all");
-		$scope.input = {};
-		$scope.category = {};
-		$scope.category.setTo = 'null';
-		$scope.filters = {};
 
 		$scope.$on('filterSomething', function(event, data) {
 			$scope.lifeEventsInView = data;
