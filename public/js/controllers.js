@@ -47,31 +47,3 @@ angular.module('app.controllers', [])
 		// console.log($scope.testingFrontPageCtrl)
 		// console.log("authLevel is " + EventService.Auth.authLevel);
 	}])
-	.controller('frontPageCtrl', ['$scope', 'EventService', function($scope, EventService) {
-		$scope.trackChanges = {};
-
-		console.log("frontPageCtrl")
-		$scope.eventService = EventService;
-		$scope.$watch('eventService.allLifeEvents', function(){
-			console.log(EventService.allLifeEvents[EventService.allLifeEvents.length - 1].energylevel);
-			if (EventService.allLifeEvents[EventService.allLifeEvents.length - 1].category === 'meal') {
-				console.log("it's a meal")
-				console.log(EventService.allLifeEvents[EventService.allLifeEvents.length - 1])
-			}
-			// console.log(EventService.allLifeEvents[EventService.allLifeEvents.length - 1].category);
-
-		}, true);
-		$scope.testingFrontPageCtrl = 'lol'
-
-		// 1. add an event. choose an energy level. write a note, choose a category, and fill others before clicking add.
-		// 2.  Woo!  You added your first event.  Let's try modifying that event now.  Click "Modify Events" button.
-		// click the dot you just added, and it will appear in the inputs above.  Modify your event, and remember save it!  
-		// 3. add a category.
-		
-
-
-	
-	}])
-
-
-

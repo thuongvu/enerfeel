@@ -3,18 +3,14 @@ angular.module('app', ['ui.slider', 'ngRoute', 'ui.bootstrap.dropdown', 'ngCooki
 		$routeProvider
 			.when('/', {
 				templateUrl: 'partials/notLoggedIn.ejs'
-				, controller: 'frontPageCtrl'
 			})
 			.when('/view/main', {
 				templateUrl: 'partials/main.ejs'
-				// , controller: 'mainCtrl'
 			})
 			.when('/view/graph', {
 				templateUrl: 'partials/graph.ejs'
-				// , controller: 'mainCtrl'
 			})
 			.when('/view/log', {
 				templateUrl: 'partials/log.ejs'
-				// , controller: 'mainCtrl'
 			})
 	});
