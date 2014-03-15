@@ -3,5 +3,6 @@
 	<div class="options-area-component" ng-show="showAddCategories" add-category></div>
 	<div class="options-area-component" ng-show="showModify" modify></div>
 	<div class="options-area-component" ng-show="showAdd" add></div>
-	<div class="error options-area-loadDataError" ng-show="optionsAreaLoadDataError">Error!  Please try again.</div>
+	<div class="sampleData options-area-sampleData" ng-hide="hideSampleDataHeader || eventService.Auth.authLevel > 0">This sample data shows you how you might use Productive Journal to track your productivity and energy level.  <a ng-click="loadData()" href="#">Sign up</a> today! <span class="closeSampleDataHeader" ng-click="hideSampleDataHeader = !hideSampleDataHeader">X</span></div>
+	<div class="error options-area-loadDataError" ng-show="optionsAreaLoadDataError">Error!  Please try logging in again.</div>
 </div> <!-- end options area -->

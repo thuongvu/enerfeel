@@ -535,7 +535,7 @@ button.marginRight-pointSevenFive {
 }
                                    /* OPTIONS AREA --- ERROR */
 .error {
-  background-color: #FA787E;
+  background-color: #5cb85c;
   padding: 0.5em;
   border-radius: 3px;
   margin: 0 .3em;
@@ -546,6 +546,21 @@ button.marginRight-pointSevenFive {
 .error:hover,
 .error:focus {
   background-color: #BF5C60;
+}
+
+                                /*OPTIONS AREA -- SAMPLE DATA HEADER*/
+.sampleData {
+  background-color: #66CC66;
+  padding: 0.5em;
+  border-radius: 3px;
+  margin: 0 .3em;
+  color: #fff;
+  border: 1px solid transparent;
+  cursor: default;
+}
+.closeSampleDataHeader {
+  float: right;
+  cursor: pointer;
 }
                                 /*OPTIONS AREA --- LOG-ONLY VIEW + MEDIA QUERIES*/
 .log-view-large {
