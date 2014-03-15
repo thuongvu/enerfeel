@@ -1,12 +1,16 @@
 angular.module('app.controllers', [])
-	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', 'CategoryService', function ($scope, EventService, FilterService, CategoryService) {
+	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', 'CategoryService', 'MockData', function ($scope, EventService, FilterService, CategoryService, MockData) {
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
 		$scope.login = function() {
 			EventService.login();
 		};
 		$scope.logout = function() {
-			EventService.logout();
+			function successFunc() {
+				EventService.allLifeEvents = [];
+				EventService.allLifeEvents = MockData;
+			};
+			EventService.logout(successFunc);
 		};
 
 		$scope.loadData = function() {

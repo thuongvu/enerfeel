@@ -160,7 +160,7 @@ return {
 			login: function() {
 				$window.location.href = '/auth/facebook/callback';
 			},
-			logout: function() {
+			logout: function(successFunc) {
 
 					$http({
 					    method: 'GET',
@@ -171,7 +171,12 @@ return {
 					    }
 					}).success(function() {
 						Auth.authLevel = 0;
-						$location.path('/')
+						// data = [];
+						// dataOnLoad();
+						// console.log(data);
+						$location.path('/');
+						// data = MockData;
+						successFunc();
 					}).error(function() {
 
 					});
