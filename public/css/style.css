@@ -177,10 +177,9 @@ body {
 }
 .button-outer {
   position: relative;
-  padding: 0 0.1em 0.4em 0.8em;
+  padding: 0 0em 0.4em 0.8em;
   border-radius: 3px;
   border: 1.5px solid grey;
-  margin: 0 2em 0 0;
 }
 i {
   padding-top: 0;
