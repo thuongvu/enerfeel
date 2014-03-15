@@ -582,12 +582,16 @@ return {
 		return {
 			addCategory: function(category, successFunc, errorFunc) {
 				// if (typeof category === 'object') {
+					
+				var re = /-?([_a-z]|[\240-\377])([_a-z0-9-]|[\240-\377])*/g;
+				var cssValidatedText = category['label'].match(re).join("");
+
 				var obj = {
-					label: category.label,
-					value: category.label,
+					label: cssValidatedText,
+					value: cssValidatedText,
 					size: category.size,
 					opacity: category.opacity,
-					show: 'show.' + category.label,
+					show: 'show.' + cssValidatedText,
 					sizeCeiling: 5,
 					opacityCeiling: 5
 				};
