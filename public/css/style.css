@@ -1,3 +1,4 @@
+                  /* =============================== GLOBAL =============================== */
 html, body {
   width: 100%;
   height: 100%;
@@ -12,8 +13,9 @@ html, body {
 }
 body {
   font-family: Helvetica;
+  background-color: #EDEDED;
 }
-/* ------------------------- GRAPH style --------------------*/
+                /* =============================== GRAPH directive =============================== */
 .axis path,
   .axis line {
     fill: none;
@@ -58,15 +60,13 @@ div.tooltip {
 .x.axis {
   font-size: 1.2em;
 }
-
-/* ------------------------- GRAPH style end --------------------*/
-
-body {
-  background-color: #EDEDED;
+@media (max-width: 768px) {
+  .axis text {
+    font-size: .6em;
+  }
 }
-                                                         /*<div class="navbar navbar-lower navbar-default-lower">*/
+                  /* ====================== NAVBAR (from bootstrap) ======================*/
 
-          /* ---------------- NAVBAR --------------------*/
 .navbar-default {
   background-image: -webkit-linear-gradient(top, #fff 0%, #DEDEDE 100%);
   background-image:         linear-gradient(to bottom, #fff 0%, #DEDEDE 100%);
@@ -98,7 +98,7 @@ body {
   left: 2%;
   position: relative;
 }
-                  /* ---------------- DROPDOWN --------------------*/
+                          /* ---------------- DROPDOWN (from bootstrap) --------------------*/
 .dropdown {
   position: relative;
 }
@@ -128,7 +128,6 @@ body {
 .open > .dropdown-menu {
   display: block;
 }
-
 .dropdown-menu > li > a {
   display: block;
   padding: 3px 20px;
@@ -166,8 +165,9 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 
-                  /* ---------------- navbar ITEMS --------------------*/
-          /*NAVBAR --- VIEW */
+                        /* ---------------- NAVBAR ITEMS --------------------*/
+
+                                        /*NAVBAR --- VIEW */
 .navbar-view-options {
   left: 5%;
   position: relative;
@@ -179,7 +179,6 @@ body {
   position: relative;
   padding: 0 0em 0.4em 0.8em;
   border-radius: 3px;
-  /*border: 1.5px solid grey;*/
 }
 i {
   padding-top: 0;
@@ -194,14 +193,12 @@ i.lower-lg-icon {
 .pad-right:nth-child(2) {
   padding-right: 0.7em;
 }
-.icon:hover {
-}
 .navbar-text-view {
   font-size: 0.8em;
   margin: -.5em 4.5em 0 4.5em;
 }
 
-        /*NAVBAR --- ADD*/
+                                             /*NAVBAR --- ADD*/
 .navbar-add-event {
   position: relative;
   left: 15%;
@@ -215,7 +212,7 @@ i.lower-2x-icon {
   font-size: 0.8em;
   margin: -0.5em 0 0 -1.5em;
 }
-    /*NAVBAR ---- ACCOUNT*/
+                                          /*NAVBAR ---- ACCOUNT*/
 .navbar-account {
   float: right;
   right: 2%;
@@ -229,7 +226,7 @@ i.lower-2x-icon {
   top: 0.5em;
   position: relative;
 }
-    /*dropdown in navbar account*/
+                                     /*NAVBAR  ------ ACCOUNT DROPDOWN*/
 li {
   list-style-type: none;
 }
@@ -241,7 +238,7 @@ li.navbar-text-account {
   display: inline;
   margin: 0 1em 0 0 ;
 }
-        /* LOGIN*/
+                                         /* NAVBAR ---- LOGIN*/
 .navbar-login {
   float: right;
   position: relative;
@@ -254,14 +251,15 @@ li.navbar-text-account {
   right: 1%;
   cursor: pointer;
 }
-
-        /*NAVBAR SIGNUP*/
+                                        /*NAVBAR ----- SIGNUP*/
 .navbar-signup {
   float: left;
   position: relative;
   left: 30%;
   cursor: pointer;
 }
+
+                        /* ---------------- NAVBAR ----- MEDIA QUERIES ------------------ */
 @media (max-width: 540px) {
   .navbar-signup {
   }
@@ -323,9 +321,7 @@ li.navbar-text-account {
   position: relative;
   }
 }
-
-
-      /*NAVBAR INSTRUCTIONS BUTTON*/
+                                      /*NAVBAR --- INSTRUCTIONS BUTTON*/
 .toggle-instructions-icon {
   cursor: pointer;
   color: grey;
@@ -345,9 +341,20 @@ li.navbar-text-account {
     position: relative;
   }
 }
+                                           /*NAVBAR  --- LINKS*/
+a:visited {
+  color: #000;
+}
+.opacity-half {
+  opacity: 0.5;
+}
+.opacity-half:hover {
+  opacity: 1;
+}
 
-                      /* --------------- OPTIONS AREA ---------------- */
+                /* =============================== OPTIONS AREA =============================== */
 
+                                          /*OPTIONS AREA --- global*/
 .options-area {
   min-height: 105px;
 }
@@ -356,7 +363,25 @@ article {
   position: relative;
   text-align: center;
 }
-          /*GRAPH*/
+.options-area-component {
+  display: inline-block;
+  position: relative;
+  padding: 0.5em 2em 0.5em 2em;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
+          box-shadow: inset 0 0 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
+}
+  
+                          /*OPTIONS AREA --- MEDIA QUERY log + graph view*/
+@media (max-width: 1159px) {
+  .log {
+    border-radius: 10px;
+  }
+  graph {
+    border-radius: 10px;
+  }
+}
+                                    /* OPTIONS AREA --- GRAPH */
 graph {
   display: inline-block;
   background-color: rgba(255, 255, 255, 1);
@@ -364,8 +389,7 @@ graph {
   -webkit-box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
           box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
 }
-           /*LOG*/
-
+                                   /* OPTIONS AREA --- LOG*/
 .log {
   position: relative;
   margin: 0 0 0 -0.3em;
@@ -380,13 +404,6 @@ graph {
   -webkit-box-shadow: inset 10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
           box-shadow: inset 10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
 }
-
-@media (max-width: 768px) {
-  .axis text {
-    font-size: .6em;
-  }
-}
-
 th {
   border-bottom: solid 1px grey;
 }
@@ -406,27 +423,8 @@ td {
 tr:nth-child(odd) {
   background-color: rgba(232, 225, 209, 0.5);
 }
-  /*links*/
-a:visited {
-  color: #000;
-}
-.opacity-half {
-  opacity: 0.5;
-}
-.opacity-half:hover {
-  opacity: 1;
-}
 
-.options-area-component {
-  display: inline-block;
-  position: relative;
-  padding: 0.5em 2em 0.5em 2em;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 0 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
-          box-shadow: inset 0 0 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
-}
-
-/*categories*/ /*addCategoryTemplate*/
+                                /* OPTIONS AREA --- addCategoryTemplate */
 .addCategory {
   position: relative;
   padding: 0 0 1em 0;
@@ -448,22 +446,23 @@ button.marginRight-pointSevenFive {
   margin-right: 0.75em;
 }
 
-/*moreCategoriesInputsTemplate*/
+                             /* OPTIONS AREA --- moreCategoriesInputsTemplate*/
 .moreCategoryInputsTemplate {
   margin: 0.5em 0 0 0;
 }
-/*modify*/
+                                  /* OPTIONS AREA ---- modify*/
 .modifyTemplate-noteSize {
   margin: 0.5em 0 0.5em 0;
 }
-/*filterTemplate*/
+                                /* OPTIONS AREA ---- filterTemplate*/
 .filterTemplate-timeFilters {
   margin: 0 0 1em 0;
 }
-/*adding extra margin so that when the time pops open, its 23px vs 27px*/
+
 .filterTemplate-timeFilters button {
   margin: 2px 0 2px 0; 
 }
+                                    /* OPTIONS AREA --- SLIDERS */
 .sliderWidth {
   width: 150px;
   display: inline-block;
@@ -473,8 +472,6 @@ button.marginRight-pointSevenFive {
   min-width: 175px;
   display: inline-block;
 }
-
-
 .energyLevelCaption {
   margin: 0 0.7em 0 .7em;
   width: 110px;
@@ -500,6 +497,7 @@ button.marginRight-pointSevenFive {
   margin: 0 0 0 1em;
   display: inline-block;
 }
+                        /* OPTIONS AREA --- MEDIA QURIES --- SLIDERS  + ADDNOTE (relevant)*/  
 @media (max-width: 532px) {
   .sliderWidth {
     margin: 0.5em 0 0.5em 1em;
@@ -513,9 +511,7 @@ button.marginRight-pointSevenFive {
   display: inline-block;
   margin: 0 0.8em 0 0.6em;
 }
-
-
-/*form validation*/
+                                /* OPTIONS AREA --- FORM VALIDATION */
 .addTemplate-addForm input.ng-invalid.ng-valid {
    background-color: #FA787E;
  }
@@ -529,7 +525,7 @@ button.marginRight-pointSevenFive {
   background-color: #c1e2c3;
 }
 .button-color {
-  /*if you want to update the button color when the form is validated*/
+  /*button color, form validated*/
 }
 .addCategoryTemplate-addCategoryForm input.ng-invalid.ng-valid {
    background-color: #FA787E;
@@ -537,8 +533,7 @@ button.marginRight-pointSevenFive {
 .addCategoryTemplate-addCategoryForm input.ng-valid.ng-valid {
   background-color: #c1e2c3;
 }
-
-/*error*/
+                                   /* OPTIONS AREA --- ERROR */
 .error {
   background-color: #FA787E;
   padding: 0.5em;
@@ -552,17 +547,7 @@ button.marginRight-pointSevenFive {
 .error:focus {
   background-color: #BF5C60;
 }
-
-@media (max-width: 1159px) {
-  .log {
-    border-radius: 10px;
-  }
-  graph {
-    border-radius: 10px;
-  }
-}
-
-/*for the log-only view*/
+                                /*OPTIONS AREA --- LOG-ONLY VIEW + MEDIA QUERIES*/
 .log-view-large {
   height: 100%;
   border-radius: 10px;
@@ -577,8 +562,7 @@ button.marginRight-pointSevenFive {
     font-size: 0.6em;
   }
 }
-
-/*for the graph-only view*/
+                            /*OPTIONS AREA --- GRAPH-ONLY VIEW + MEDIA QUERIES*/
 .graph-view-large graph {
   border-radius: 10px;
 }
@@ -596,8 +580,8 @@ button.marginRight-pointSevenFive {
 .inlineblock {
   display: inline-block;
 }
+                                  /*OPTIONS AREA --- INSTRUCTIONS */
 .instructions {
   overflow-y: scroll;
   width: 31.1%;
 }
-
