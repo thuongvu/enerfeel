@@ -1,5 +1,5 @@
 angular.module('app.services', []) // remember to change this so it can be minified
-	.factory('EventService', function ($http, $window, $cookieStore, $location) {
+	.factory('EventService', ['$http', '$window', '$cookieStore', '$location', function ($http, $window, $cookieStore, $location) {
 		var data = [];
 		var categories = {};
 		var Auth = {};
@@ -318,7 +318,8 @@ return {
 			allLifeEvents: data,
 			categories: categories
 		}
-	})
+
+	}])
 	.factory('FilterService', ['EventService', function (EventService) {
 		var currentFilterObj = {};
 		currentFilterObj.time = null;
