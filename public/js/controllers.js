@@ -1,7 +1,14 @@
 angular.module('app.controllers', [])
-	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', '$timeout', 'CategoryService', '$rootScope', '$location', function ($scope, EventService, FilterService, $timeout, CategoryService, $rootScope, $location) {
+	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', 'CategoryService', function ($scope, EventService, FilterService, CategoryService) {
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
+		$scope.login = function() {
+			EventService.login();
+		};
+		$scope.logout = function() {
+			EventService.logout();
+		};
+
 		$scope.loadData = function() {
 			if (EventService.Auth.authLevel === 0) {
 				$scope.login();
@@ -21,17 +28,10 @@ angular.module('app.controllers', [])
 				EventService.getData(successFunc, errorFunc);
 			};
 		};
-		// if user is now logged in, invoke $scope.loadData to fill the view
+
 		if (EventService.Auth.authLevel > 0) {
 			$scope.loadData();
-		}
-
-		$scope.login = function() {
-			EventService.login();
-		}
-		$scope.logout = function() {
-			EventService.logout();
-		}
+		};
 
 		$scope.lifeEventsInView = $scope.filterService.filterLifeEvents("all");
 		$scope.input = {};
@@ -43,7 +43,4 @@ angular.module('app.controllers', [])
 			$scope.lifeEventsInView = data;
 		});
 
-		$scope.showInstructions = false;
-		// console.log($scope.testingFrontPageCtrl)
-		// console.log("authLevel is " + EventService.Auth.authLevel);
 	}])

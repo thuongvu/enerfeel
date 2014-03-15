@@ -434,6 +434,7 @@ angular.module('app.directives', [])
 		restrict: 'EA',
 		templateUrl: 'directiveTemplates/larger_components/instructions_component.html',
 		link: function (scope, iElement, iAttrs) {
+			scope.showInstructions = false;
 			console.log(angular.element(iElement[0])[0]);
 			angular.element($window).bind('resize', function() {
 				console.log(angular.element(iElement[0])[0]);
