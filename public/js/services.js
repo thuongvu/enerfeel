@@ -65,11 +65,7 @@ angular.module('app.services', [])
 					};
 					data.push(eventsReceived[i]);
 				};
-				// callback(data);
 				successFunc();
-				// as it stands, the successFunc does NOT get the data from here
-				// before, i had a callback that passed the 'data'
-				// but it's the same thing as EventService.allLifeEvents, so why pass it?
 			}).error(function() {
 				errorFunc();
 			});
@@ -123,6 +119,7 @@ return {
 				function loggedInFunc() {
 					del(event, successFunc, errorFunc);
 				};
+				
 				function notLoggedIn() {
 					for (var i = 0; i < data.length; i++) {
 						if (event.date === data[i].date) {
@@ -132,12 +129,14 @@ return {
 					};
 					successFunc();
 				};
+
 				checkIfLoggedIn(loggedInFunc, notLoggedIn);
 			},
 			updateLifeEvent: function(event, successFunc, errorFunc) { 
 				function loggedInFunc() {
 					put(event, successFunc, errorFunc);
 				};
+
 				function notLoggedIn() {
 					successFunc();
 				};
@@ -156,7 +155,6 @@ return {
 				checkIfLoggedIn(loggedInFunc, notLoggedIn);
 			},
 			getData: function(successFunc, errorFunc) {
-				// return getData(callback);
 				getUserData(successFunc, errorFunc)
 			},
 			login: function() {
@@ -403,7 +401,6 @@ return {
 		}, true);
 		
 		function addCategoryXHR(category, successFunc, errorFunc) {
-			// if (EventService.Auth.authLevel > 0) {
 				$http({
 				    method: 'post',
 				    url: '/post/category',
@@ -417,12 +414,10 @@ return {
 					successFunc();
 				}).error(function() {
 					errorFunc();
-				})	
-			// };
+				});
 		};
 
 		function deleteCategoryXHR(category, successFunc, errorFunc) {
-			// if (EventService.Auth.authLevel > 0) {
 				$http({
 				    method: 'delete',
 				    url: '/delete/category',
@@ -441,14 +436,11 @@ return {
 					successFunc();
 				}).error(function() {
 					errorFunc();
-				})
-			// };
+				});
 		};
 
 		return {
 			addCategory: function(category, successFunc, errorFunc) {
-				// if (typeof category === 'object') {
-					
 				var re = /-?([_a-z]|[\240-\377])([_a-z0-9-]|[\240-\377])*/g;
 				var cssValidatedText = category['label'].match(re).join("");
 
@@ -472,13 +464,12 @@ return {
 				
 				checkIfLoggedIn(loggedInFunc, notLoggedIn);
 
-				// };
 			},
 			deleteCategory: function (category, successFunc, errorFunc) {
-				
 				function loggedInFunc() {
 					deleteCategoryXHR(category, successFunc, errorFunc);
 				};
+
 				function notLoggedIn() {
 					for (var i = 0; i < categoriesObj.list.length; i++) {
 						if (categoriesObj.list[i].label === category.label) {
@@ -488,6 +479,7 @@ return {
 					};
 					successFunc();
 				};
+
 				checkIfLoggedIn(loggedInFunc, notLoggedIn);
 			},
 			categoriesObj: categoriesObj
@@ -496,127 +488,127 @@ return {
 .factory('MockData', [function() {
 	var now = new Date();
 	var mockData = [
-						{
-				           "energylevel" : 2,
-				           "note" : "slept less than usual",
-				           "date" : new Date(now.getTime() - 1227600000 + Math.floor(Math.random() * 1800000)), //14 days ago + 5 hours 1209600000 + 18000000
-				           "category" : "sleep",
-				           "opacity" : 2,
-				           "size" : 1
-				       }, 
-				       {
-				           "energylevel" : 2,
-				           "note" : "slept less than usual",
-				           "date" : new Date(now.getTime() - 1209600000 + Math.floor(Math.random() * 1800000)), // 14 days ago
-				           "category" : "sleep",
-				           "opacity" : 2,
-				           "size" : 1
-				       }, 
-				       {
-				           "energylevel" : 3,
-				           "note" : "ran 3 miles",
-				           "date" : new Date(now.getTime() - 1206000000 + Math.floor(Math.random() * 1800000)), // 14 days - 1 hours. 1209600000 - 3600000
-				           "category" : "exercise",
-				           "opacity" : 4,
-				           "size" : 40
-				       }, 
-				       {
-				           "energylevel" : 4,
-				           "note" : "ate toast and eggs and milk",
-				           "date" : new Date(now.getTime() - 1202400000 + Math.floor(Math.random() * 1800000)), // 14 days - 2 hours. 1209600000 - (3600000 * 2)
-				           "category" : "meal",
-				           "opacity" : 3,
-				           "size" : 3
-				       }, 
-				       {
-				           "energylevel" : 3,
-				           "note" : "a little tired.  should've slept more",
-				           "date" : new Date(now.getTime() - 1198800000 + Math.floor(Math.random() * 1800000)), // 14 days - 3 hours. 1209600000 - (3600000 * 3)
-				           "category" : "work",
-				           "opacity" : 2.5,
-				           "size" : 2.5
-				       }, 
-				       {
-				           "energylevel" : 4,
-				           "note" : "ran 4 miles",
-				           "date" : new Date(now.getTime() - 1036800000 + Math.floor(Math.random() * 1800000)), // 12 days
-				           "category" : "exercise",
-				           "opacity" : 5,
-				           "size" : 40
-				       }, 
-				       {
-				           "energylevel" : 3,
-				           "note" : "normal sleep",
-				           "date" : new Date(now.getTime() - 554400000 + Math.floor(Math.random() * 1800000)), // 6 days + 8 hours sleep
-				           "category" : "sleep",
-				           "opacity" : 3,
-				           "size" : 4
-				       }, 
-				       {
-				           "energylevel" : 3,
-				           "note" : "normal sleep",
-				           "category" : "sleep",
-				           "opacity" : 3,
-				           "size" : 4,
-				           "date" : new Date(now.getTime() - 518400000 + Math.floor(Math.random() * 1800000)) // 6 days sleep
-				       }, 
-				       {
-				           "energylevel" : 2.5,
-				           "note" : "ate a huge meal",
-				           "date" : new Date(now.getTime() - 514800000 + Math.floor(Math.random() * 1800000)), // 6 days - 1 hour. 518400000 - 3600000 ate huge meal
-				           "category" : "meal",
-				           "opacity" : 5,
-				           "size" : 4
-				       }, 
-				       {
-				           "energylevel" : 2.5,
-				           "note" : "good productivity for a few hours, getting tired", 
-				           "date" : new Date(now.getTime() - 504000000 + Math.floor(Math.random() * 1800000)), // 6 days - 4 hours. 518400000 - (3600000 * 4) worked
-				           "category" : "work",
-				           "opacity" : 4,
-				           "size" : 4
-				       }, 
-				       {
-				           "energylevel" : 1,
-				           "note" : "very tired. drinking 2 coffees",
-				           "date" : new Date(now.getTime() - 500400000 + Math.floor(Math.random() * 1800000)), // 6 days - 5 hours. 518400000 - (3600000 * 5) coffee
-				           "category" : "meal",
-				           "opacity" : 1,
-				           "size" : 1
-				       }, 
-				       {
-				           "energylevel" : 5,
-				           "note" : "coffee is AWESOME",
-				           "date" : new Date(now.getTime() - 496800000 + Math.floor(Math.random() * 1800000)),  //6 days hours - 6 hours. 518400000 - (3600000 * 6) productivity++
-				           "category" : "work",
-				           "opacity" : 5,
-				           "size" : 5
-				       }, 
-				       {
-				           "energylevel" : 2,
-				           "note" : "feeling sleepy",
-				           "date" : new Date(now.getTime() - 345600000 + Math.floor(Math.random() * 1800000)), // 4 days tired
-				           "category" : "work",
-				           "opacity" : 2,
-				           "size" : 2
-				       }, 
-				       {
-				           "energylevel" : 3,
-				           "note" : "ran for 2 miles",
-				           "date" : new Date(now.getTime() - 342000000 + Math.floor(Math.random() * 1800000)), // 4 days - 1 hour. 345600000 - 3600000 run
-				           "category" : "exercise",
-				           "opacity" : 30,
-				           "size" : 4
-				       }, 
-				       {
-				           "energylevel" : 4.5,
-				           "note" : "feeling better at work",
-				           "date" : new Date(now.getTime() - 338400000 + Math.floor(Math.random() * 1800000)), // 345600000 - (3600000 * 2) productivity++
-				           "category" : "work",
-				           "opacity" : 4,
-				           "size" : 4
-				       }, 
-			];
+		{
+	        "energylevel" : 2,
+	        "note" : "slept less than usual",
+	        "date" : new Date(now.getTime() - 1227600000 + Math.floor(Math.random() * 1800000)), //14 days ago + 5 hours 1209600000 + 18000000
+	        "category" : "sleep",
+	        "opacity" : 2,
+	        "size" : 1
+	    }, 
+	    {
+	        "energylevel" : 2,
+	        "note" : "slept less than usual",
+	        "date" : new Date(now.getTime() - 1209600000 + Math.floor(Math.random() * 1800000)), // 14 days ago
+	        "category" : "sleep",
+	        "opacity" : 2,
+	        "size" : 1
+	    }, 
+	    {
+	        "energylevel" : 3,
+	        "note" : "ran 3 miles",
+	        "date" : new Date(now.getTime() - 1206000000 + Math.floor(Math.random() * 1800000)), // 14 days - 1 hours. 1209600000 - 3600000
+	        "category" : "exercise",
+	        "opacity" : 4,
+	        "size" : 40
+	    }, 
+	    {
+	        "energylevel" : 4,
+	        "note" : "ate toast and eggs and milk",
+	        "date" : new Date(now.getTime() - 1202400000 + Math.floor(Math.random() * 1800000)), // 14 days - 2 hours. 1209600000 - (3600000 * 2)
+	        "category" : "meal",
+	        "opacity" : 3,
+	        "size" : 3
+	    }, 
+	    {
+	        "energylevel" : 3,
+	        "note" : "a little tired.  should've slept more",
+	        "date" : new Date(now.getTime() - 1198800000 + Math.floor(Math.random() * 1800000)), // 14 days - 3 hours. 1209600000 - (3600000 * 3)
+	        "category" : "work",
+	        "opacity" : 2.5,
+	        "size" : 2.5
+	    }, 
+	    {
+	        "energylevel" : 4,
+	        "note" : "ran 4 miles",
+	        "date" : new Date(now.getTime() - 1036800000 + Math.floor(Math.random() * 1800000)), // 12 days
+	        "category" : "exercise",
+	        "opacity" : 5,
+	        "size" : 40
+	    }, 
+	    {
+	        "energylevel" : 3,
+	        "note" : "normal sleep",
+	        "date" : new Date(now.getTime() - 554400000 + Math.floor(Math.random() * 1800000)), // 6 days + 8 hours sleep
+	        "category" : "sleep",
+	        "opacity" : 3,
+	        "size" : 4
+	    }, 
+	    {
+	        "energylevel" : 3,
+	        "note" : "normal sleep",
+	        "category" : "sleep",
+	        "opacity" : 3,
+	        "size" : 4,
+	        "date" : new Date(now.getTime() - 518400000 + Math.floor(Math.random() * 1800000)) // 6 days sleep
+	    }, 
+	    {
+	        "energylevel" : 2.5,
+	        "note" : "ate a huge meal",
+	        "date" : new Date(now.getTime() - 514800000 + Math.floor(Math.random() * 1800000)), // 6 days - 1 hour. 518400000 - 3600000 ate huge meal
+	        "category" : "meal",
+	        "opacity" : 5,
+	        "size" : 4
+	    }, 
+	    {
+	        "energylevel" : 2.5,
+	        "note" : "good productivity for a few hours, getting tired", 
+	        "date" : new Date(now.getTime() - 504000000 + Math.floor(Math.random() * 1800000)), // 6 days - 4 hours. 518400000 - (3600000 * 4) worked
+	        "category" : "work",
+	        "opacity" : 4,
+	        "size" : 4
+	    }, 
+	    {
+	        "energylevel" : 1,
+	        "note" : "very tired. drinking 2 coffees",
+	        "date" : new Date(now.getTime() - 500400000 + Math.floor(Math.random() * 1800000)), // 6 days - 5 hours. 518400000 - (3600000 * 5) coffee
+	        "category" : "meal",
+	        "opacity" : 1,
+	        "size" : 1
+	    }, 
+	    {
+	        "energylevel" : 5,
+	        "note" : "coffee is AWESOME",
+	        "date" : new Date(now.getTime() - 496800000 + Math.floor(Math.random() * 1800000)),  //6 days hours - 6 hours. 518400000 - (3600000 * 6) productivity++
+	        "category" : "work",
+	        "opacity" : 5,
+	        "size" : 5
+	    }, 
+	    {
+	        "energylevel" : 2,
+	        "note" : "feeling sleepy",
+	        "date" : new Date(now.getTime() - 345600000 + Math.floor(Math.random() * 1800000)), // 4 days tired
+	        "category" : "work",
+	        "opacity" : 2,
+	        "size" : 2
+	    }, 
+	    {
+	        "energylevel" : 3,
+	        "note" : "ran for 2 miles",
+	        "date" : new Date(now.getTime() - 342000000 + Math.floor(Math.random() * 1800000)), // 4 days - 1 hour. 345600000 - 3600000 run
+	        "category" : "exercise",
+	        "opacity" : 30,
+	        "size" : 4
+	    }, 
+	    {
+	        "energylevel" : 4.5,
+	        "note" : "feeling better at work",
+	        "date" : new Date(now.getTime() - 338400000 + Math.floor(Math.random() * 1800000)), // 345600000 - (3600000 * 2) productivity++
+	        "category" : "work",
+	        "opacity" : 4,
+	        "size" : 4
+	    }, 
+	];
 
 	return mockData;
 
