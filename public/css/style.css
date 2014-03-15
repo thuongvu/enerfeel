@@ -179,7 +179,7 @@ body {
   position: relative;
   padding: 0 0em 0.4em 0.8em;
   border-radius: 3px;
-  border: 1.5px solid grey;
+  /*border: 1.5px solid grey;*/
 }
 i {
   padding-top: 0;
