@@ -11,6 +11,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var configDB = require('./config/database.js');
 var db = mongojs('enerfeel', ['lifeEventsCollection']);
+var resRedirect = require('./config/resRedirect.js');
 var ObjectId = mongojs.ObjectId;
 mongoose.connect(configDB.url);
 require ('./config/passport')(passport);
@@ -22,6 +23,8 @@ app.set("port", 8080);
 app.set("views", __dirname + "/views");
 app.use(express.static("public", __dirname + "/public"));
 
+
+
 // ---------- ssl start 
 var options = {
 	key: fs.readFileSync('../enerfeelhidden/production/myserver.key'),
@@ -32,13 +35,16 @@ var options = {
 };
 var https = require("https").createServer(options, app);
 
+console.log(resRedirect.url);
+
 // force ssl
 app.use(function(req, res, next) {
   if(!req.secure) {
     // return res.redirect(['https://', req.get('Host'), req.url].join(''));
     // productivejournal.com
     // return res.redirect(['https://', 'localhost:8081', req.url].join('')); 
-    return res.redirect(['https://', process.env.RESREDIRECT, req.url].join('')); 
+    // return res.redirect(['https://', process.env.RESREDIRECT, req.url].join('')); 
+    return res.redirect(['https://', resRedirect.url, req.url].join('')); 
   }
   next();
 });
