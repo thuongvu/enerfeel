@@ -9,3 +9,4 @@ start
 stop
 npm-debug.log
 resRedirect.js
+build

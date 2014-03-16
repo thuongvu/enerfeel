@@ -35,7 +35,7 @@ var options = {
 };
 var https = require("https").createServer(options, app);
 
-console.log(resRedirect.url);
+// console.log(resRedirect.url);
 
 // force ssl
 app.use(function(req, res, next) {
