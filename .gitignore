@@ -7,3 +7,4 @@ out.log
 forever.log
 start
 stop
+npm-debug.log
