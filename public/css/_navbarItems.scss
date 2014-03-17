@@ -13,9 +13,9 @@
 i {
   padding-top: 0;
   vertical-align: middle;
-}
-i.lower-lg-icon {
-  line-height: 1.8em;
+  &.lower-lg-icon {
+    line-height: 1.8em;
+  }
 }
 .pad-right {
   padding-right: 1.2em;
@@ -91,8 +91,6 @@ li {
 
                         // ---------------- NAVBAR ----- MEDIA QUERIES ------------------
 @media (max-width: 540px) {
-  .navbar-signup {
-  }
   .navbar-add-event {
     left: 0;
     margin-left: 2em;
@@ -158,10 +156,11 @@ li {
   float: right;
   margin: -0.9em 0.5em 0 0;
   position: relative;
+  &:hover {
+    opacity: 0.8;
+  }
 }
-.toggle-instructions-icon:hover {
-  opacity: 0.8;
-}
+
 @media (max-width: 400px) {
   .toggle-instructions-icon {
     margin: -0.9em 0.5em 0 0;

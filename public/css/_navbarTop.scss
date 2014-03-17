@@ -1,17 +1,20 @@
  // ====================== NAVBAR (from bootstrap) ======================
-.navbar-default {
-  background-image: -webkit-linear-gradient(top, #fff 0%, #DEDEDE 100%);
-  background-image:         linear-gradient(to bottom, #fff 0%, #DEDEDE 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#DEDEDE', GradientType=0);
+ $navbarGray: #DEDEDE;
+ 
+@mixin navbar($topColor, $bottomColor) {
+  background-image: -webkit-linear-gradient(top, $bottomColor 0%, $topColor 100%);
+  background-image:         linear-gradient(to bottom, $bottomColor 0%, $topColor 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bottomColor}', endColorstr='#{$topColor}', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background-repeat: repeat-x;
   border-radius: 4px;
 }
+
+.navbar-default {
+  @include navbar($navbarGray, #fff);
+}
 .navbar-default-lower {
-  background-image: -webkit-linear-gradient(top, #DEDEDE 0%, #fff 100%);
-  background-image:         linear-gradient(to bottom, #DEDEDE 0%, #fff 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DEDEDE', endColorstr='#ffffffff', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  @include navbar(#fff, $navbarGray);
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .90), 0 1px 5px rgba(0, 0, 0, .15);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, .90), 0 1px 5px rgba(0, 0, 0, .15);
   border-radius: 4px;

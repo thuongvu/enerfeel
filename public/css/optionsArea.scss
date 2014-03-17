@@ -1,5 +1,10 @@
 // =============================== OPTIONS AREA ===============================
                                           //OPTIONS AREA --- global
+
+@mixin boxShadow($offsetX, $offsetY, $blurRadius, $color, $offsetXb, $offsetYb, $blurRadiusb, $colorb) {
+  -webkit-box-shadow: inset $offsetX $offsetY $blurRadius $color, $offsetXb $offsetYb $blurRadiusb $colorb;
+          box-shadow: inset $offsetX $offsetY $blurRadius $color, $offsetXb $offsetYb $blurRadiusb $colorb;
+}
 .options-area {
   min-height: 105px;
 }
@@ -13,8 +18,7 @@ article {
   position: relative;
   padding: 0.5em 2em 0.5em 2em;
   border-radius: 4px;
-  -webkit-box-shadow: inset 0 0 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
-          box-shadow: inset 0 0 0 rgba(255, 255, 255, .90), 0 1px 1px rgba(0, 0, 0, .15);
+  @include boxShadow(0, 0, 0, rgba(255, 255, 255, .90), 0, 1px, 1px, rgba(0, 0, 0, .15))
 }
   
                           //OPTIONS AREA --- MEDIA QUERY log + graph view
@@ -31,8 +35,7 @@ graph {
   display: inline-block;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10px 0 0 10px;
-  -webkit-box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
-          box-shadow: inset -10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
+  @include boxShadow(-10px, 0, 0, rgba(255, 255, 255, .90), 0, 5px, 10px, rgba(0, 0, 0, .15))
 }
                                    // OPTIONS AREA --- LOG
 .log {
@@ -46,8 +49,7 @@ graph {
   overflow-y: scroll;
   height: 100%;
   border-left: solid 4px transparent;
-  -webkit-box-shadow: inset 10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
-          box-shadow: inset 10px 0 0 rgba(255, 255, 255, .90), 0 5px 10px rgba(0, 0, 0, .15);
+  @include boxShadow(10px, 0, 0, rgba(255, 255, 255, .90), 0, 5px, 10px, rgba(0, 0, 0, .15))
 }
 th {
   border-bottom: solid 1px grey;
@@ -73,9 +75,9 @@ tr:nth-child(odd) {
 .addCategory {
   position: relative;
   padding: 0 0 1em 0;
-}
-.addCategory button {
-  margin: 1px 0 0 0;
+  button {
+    margin: 1px 0 0 0;
+  }
 }
 .addCategoryTemplate-DeleteError {
   margin: 0 0 0 2em;
@@ -102,10 +104,9 @@ button.marginRight-pointSevenFive {
                                 // OPTIONS AREA ---- filterTemplate
 .filterTemplate-timeFilters {
   margin: 0 0 1em 0;
-}
-
-.filterTemplate-timeFilters button {
-  margin: 2px 0 2px 0; 
+  button {
+    margin: 2px 0 2px 0; 
+  }
 }
                                     // OPTIONS AREA --- SLIDERS 
 .sliderWidth {

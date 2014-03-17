@@ -48,12 +48,12 @@ module.exports = function(grunt) {
           'public/bower_components/normalize-css/normalize.css',
           'public/bower_components/ngQuickDate/dist/ng-quick-date.css',
           'public/bower_components/ngQuickDate/dist/ng-quick-date-default-theme.css',
-          // 'public/bower_components/components-font-awesome/css/font-awesome.min.css',
+          'public/bower_components/components-font-awesome/css/font-awesome.min.css',
           'public/bower_components/jquery-ui/themes/smoothness/jquery-ui.css',
           // 'public/css/style.css'
-          'public/css/compiled.css'
+          // 'public/css/compiled.css'
         ],
-        dest: 'public/build/main.css',
+        dest: 'public/build/vendors.css',
         ext:'.min.css'
       },
     },
