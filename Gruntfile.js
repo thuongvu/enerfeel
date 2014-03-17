@@ -1,3 +1,5 @@
+// Command to run: grunt karma:unit:start watch
+
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -71,7 +73,6 @@ module.exports = function(grunt) {
     karma: {
       unit: {
         configFile: 'test/karma.conf.js',
-        // autoWatch: true
         background: true
       }
     }
@@ -87,7 +88,5 @@ module.exports = function(grunt) {
 
   // Tasks to run
   grunt.registerTask('default', ['uglify', 'concat', 'cssmin', 'karma:unit:run']);
-
-
 
 };
