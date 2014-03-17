@@ -50,9 +50,10 @@ module.exports = function(grunt) {
           'public/bower_components/ngQuickDate/dist/ng-quick-date-default-theme.css',
           // 'public/bower_components/components-font-awesome/css/font-awesome.min.css',
           'public/bower_components/jquery-ui/themes/smoothness/jquery-ui.css',
-          'public/css/style.css'
+          // 'public/css/style.css'
+          'public/css/compiled.css'
         ],
-        dest: 'public/build/concatStyles.css',
+        dest: 'public/build/main.css',
         ext:'.min.css'
       },
     },
@@ -60,7 +61,7 @@ module.exports = function(grunt) {
     watch: {
       files: [
         'public/js/*.js',
-        'public/css/style.css',
+        'public/css/*',
         'public/directiveTemplates/*.html',
         'public/directiveTemplates/larger_components*.html',
         'public/partials/*',
@@ -75,6 +76,17 @@ module.exports = function(grunt) {
         configFile: 'test/karma.conf.js',
         background: true
       }
+    },
+
+    sass: {
+      dist: {
+        options: {
+          style: 'expanded' // or compressed/expanded
+        },
+        files: {
+          'public/css/compiled.css': 'public/css/preCompiled.scss'
+        }
+      }
     }
 
   });
@@ -85,8 +97,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-sass');
 
   // Tasks to run
-  grunt.registerTask('default', ['uglify', 'concat', 'cssmin', 'karma:unit:run']);
+  grunt.registerTask('default', ['uglify', 'concat', 'sass', 'cssmin', 'karma:unit:run']);
 
 };
