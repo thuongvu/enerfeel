@@ -1,5 +1,5 @@
 angular.module('app.controllers', [])
-	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', 'CategoryService', 'MockData', function ($scope, EventService, FilterService, CategoryService, MockData) {
+	.controller('mainCtrl', ['$scope', 'EventService', 'FilterService', 'CategoryService', 'MockData', '$timeout', function ($scope, EventService, FilterService, CategoryService, MockData, $timeout) {
 		$scope.eventService = EventService;
 		$scope.filterService = FilterService;
 		// used to be lower
@@ -48,5 +48,9 @@ angular.module('app.controllers', [])
 		$scope.$on('filterSomething', function(event, data) {
 			$scope.lifeEventsInView = data;
 		});
+
+		$timeout(function() {
+			$scope.hideSampleDataHeader = true;
+		}, 30000)
 
 	}]);
