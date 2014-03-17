@@ -53,7 +53,21 @@ module.exports = function(grunt) {
         dest: 'public/build/concatStyles.css',
         ext:'.min.css'
       },
+    },
+
+    watch: {
+      files: [
+        'public/js/*.js',
+        'public/css/style.css',
+        'public/directiveTemplates/*.html',
+        'public/directiveTemplates/larger_components*.html',
+        'public/partials/*',
+        'views/*',
+        'views/partials/*'
+      ],
+      tasks: 'default'
     }
+
   });
 
   // Load Plugins
@@ -61,8 +75,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   // grunt.loadNpmTasks('grunt-contrib-concat_css');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Tasks to run
   grunt.registerTask('default', ['uglify', 'concat', 'cssmin']);
+
+
 
 };
