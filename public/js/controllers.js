@@ -49,4 +49,4 @@ angular.module('app.controllers', [])
 			$scope.lifeEventsInView = data;
 		});
 
-	}])
+	}]);

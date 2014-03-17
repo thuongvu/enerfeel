@@ -435,4 +435,4 @@ angular.module('app.directives', [])
 			angular.element(iElement[0])[0].style.height = Math.round($window.innerWidth / 3.45) + "px"
 		}
 	};
-}])
+}]);

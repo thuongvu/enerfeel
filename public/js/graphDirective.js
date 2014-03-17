@@ -469,4 +469,4 @@ angular.module('app.graphDirective', [])
 
 			}
 		}
-	}])
+	}]);

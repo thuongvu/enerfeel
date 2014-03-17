@@ -617,4 +617,4 @@ return {
 
 	return mockData;
 
-}])
+}]);
