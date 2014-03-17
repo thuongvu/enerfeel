@@ -65,7 +65,15 @@ module.exports = function(grunt) {
         'views/*',
         'views/partials/*'
       ],
-      tasks: 'default'
+      tasks: ['default']
+    },
+
+    karma: {
+      unit: {
+        configFile: 'test/karma.conf.js',
+        // autoWatch: true
+        background: true
+      }
     }
 
   });
@@ -73,12 +81,12 @@ module.exports = function(grunt) {
   // Load Plugins
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  // grunt.loadNpmTasks('grunt-contrib-concat_css');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-karma');
 
   // Tasks to run
-  grunt.registerTask('default', ['uglify', 'concat', 'cssmin']);
+  grunt.registerTask('default', ['uglify', 'concat', 'cssmin', 'karma:unit:run']);
 
 
 
