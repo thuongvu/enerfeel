@@ -13,9 +13,9 @@
 i {
   padding-top: 0;
   vertical-align: middle;
-}
-i.lower-lg-icon {
-  line-height: 1.8em;
+  &.lower-lg-icon {
+    line-height: 1.8em;
+  }
 }
 .pad-right {
   padding-right: 1.2em;
@@ -59,10 +59,14 @@ i.lower-2x-icon {
                                      //NAVBAR  ------ ACCOUNT DROPDOWN
 li {
   list-style-type: none;
-  &.navbar-text-account {
+  // &.navbar-text-account {
+  //   display: inline;
+  // }
+}
+li.navbar-text-account {
     display: inline;
   }
-}
+  
 .lower-navbar-items li {
   float: left;
   display: inline;

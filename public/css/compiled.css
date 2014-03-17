@@ -78,7 +78,7 @@ div.tooltip {
 .navbar-default {
   background-image: -webkit-linear-gradient(top, white 0%, #dedede 100%);
   background-image: linear-gradient(to bottom, white 0%, #dedede 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#DEDEDE', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#dedede', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background-repeat: repeat-x;
   border-radius: 4px;
@@ -87,7 +87,7 @@ div.tooltip {
 .navbar-default-lower {
   background-image: -webkit-linear-gradient(top, #dedede 0%, white 100%);
   background-image: linear-gradient(to bottom, #dedede 0%, white 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DEDEDE', endColorstr='#ffffffff', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dedede', endColorstr='#ffffffff', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 5px rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 5px rgba(0, 0, 0, 0.15);
@@ -204,7 +204,6 @@ i {
   padding-top: 0;
   vertical-align: middle;
 }
-
 i.lower-lg-icon {
   line-height: 1.8em;
 }
@@ -257,6 +256,7 @@ i.lower-2x-icon {
 li {
   list-style-type: none;
 }
+
 li.navbar-text-account {
   display: inline;
 }
