@@ -16,14 +16,18 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       {pattern: 'public/bower_components/jquery/jquery.min.js', watched: false},
+      {pattern: 'public/bower_components/jquery-ui/ui/minified/jquery-ui.min.js', watched: false},
       {pattern: 'public/bower_components/angular/angular.min.js', watched: false},
       {pattern: 'public/bower_components/angular-mocks/angular-mocks.js', watched: false},
       {pattern: 'public/bower_components/angular-cookies/angular-cookies.min.js', watched: false},
       {pattern: 'public/bower_components/angular-resource/angular-resource.min.js', watched: false},
       {pattern: 'public/bower_components/angular-route/angular-route.min.js', watched: false},
       {pattern: 'public/bower_components/ngQuickDate/dist/ng-quick-date.min.js', watched: false},
+      {pattern: 'public/bower_components/angular-ui-slider/src/slider.js', watched: false},
+      {pattern: 'public/bower_components/dropdown.js', watched: false},
       {pattern: 'public/bower_components/d3module.js', watched: false},
       {pattern: 'public/directiveTemplates/*.html', watched: false},
+      {pattern: 'public/directiveTemplates/larger_components/*.html', watched: false},
       {pattern: 'public/js/*.js', watched: true},
       {pattern: 'test/*.js'}
     ],
@@ -31,6 +35,7 @@ module.exports = function(config) {
 
      preprocessors: {
        'public/directiveTemplates/*.html': 'ng-html2js',
+       'public/directiveTemplates/larger_components/*.html': 'ng-html2js',
      },
        
      ngHtml2JsPreprocessor: {
