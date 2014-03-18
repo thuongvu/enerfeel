@@ -92,11 +92,16 @@ module.exports = function(grunt) {
 
     ngtemplates:  {
       app:        {
-        // cwd:      'src/app',
-        src:      [
-          'public/directiveTemplates/*.html',
-          'public/directiveTemplates/larger_components/*.html',
-          'public/partials/*.ejs' 
+        options: {
+          module: 'app.templateees',
+          // prefix: '/hello/'
+        },
+        cwd:      'public',
+        src:      
+        [
+          'directiveTemplates/*.html',
+          'directiveTemplates/larger_components/*.html',
+          'partials/*.ejs' 
           ],
         dest:     'public/build/templates.js'
       }
