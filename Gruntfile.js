@@ -16,8 +16,8 @@ module.exports = function(grunt) {
         'public/bower_components/angular-resource/angular-resource.min.js',
         'public/bower_components/angular-route/angular-route.min.js',
         'public/bower_components/ngQuickDate/dist/ng-quick-date.js',
-         'public/bower_components/d3module.js',
-         'public/build/uglified.js'
+        'public/bower_components/d3module.js',
+        'public/build/uglified.js'
         ],
         dest: 'public/build/concat.js'
       }
@@ -34,8 +34,9 @@ module.exports = function(grunt) {
       build: {
         src: [
             'public/js/*.js', 
+            // 'public/build/templates.js',
             'public/bower_components/angular-ui-slider/src/slider.js', 
-            'public/bower_components/dropdown.js',
+            'public/bower_components/dropdown.js'
         ],
         dest: 'public/build/uglified.js'
       }
@@ -87,6 +88,18 @@ module.exports = function(grunt) {
           'public/css/compiled.css': 'public/css/preCompiled.scss'
         }
       }
+    },
+
+    ngtemplates:  {
+      app:        {
+        // cwd:      'src/app',
+        src:      [
+          'public/directiveTemplates/*.html',
+          'public/directiveTemplates/larger_components/*.html',
+          'public/partials/*.ejs' 
+          ],
+        dest:     'public/build/templates.js'
+      }
     }
 
   });
@@ -98,8 +111,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-angular-templates');
 
   // Tasks to run
-  grunt.registerTask('default', ['uglify', 'concat', 'sass', 'cssmin', 'karma:unit:run']);
+  grunt.registerTask('default', ['ngtemplates', 'uglify', 'concat', 'sass', 'cssmin', 'karma:unit:run']);
 
 };
