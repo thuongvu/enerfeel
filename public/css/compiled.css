@@ -248,9 +248,6 @@ i.lower-2x-icon {
 
 .navbar-text-account {
   padding: 0 0 0 0.5em;
-}
-
-.navbar-text-account {
   top: 0.5em;
   position: relative;
 }
@@ -588,14 +585,17 @@ button.marginRight-pointSevenFive {
   background-color: #c1e2c3;
 }
 
-.error {
-  background-color: #fa787e;
+.error, .sampleData {
   padding: 0.5em;
   border-radius: 3px;
   margin: 0 .3em;
   color: #fff;
   border: 1px solid transparent;
   cursor: default;
+}
+
+.error {
+  background-color: #fa787e;
 }
 .error:hover, .error:focus {
   background-color: #BF5C60;
@@ -603,12 +603,6 @@ button.marginRight-pointSevenFive {
 
 .sampleData {
   background-color: #66CC66;
-  padding: 0.5em;
-  border-radius: 3px;
-  margin: 0 .3em;
-  color: #fff;
-  border: 1px solid transparent;
-  cursor: default;
 }
 
 .closeSampleDataHeader {

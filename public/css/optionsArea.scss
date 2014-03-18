@@ -190,28 +190,25 @@ $greenValid: #c1e2c3;
 }
 
                                    // OPTIONS AREA --- ERROR
-.error {
-  background-color: $redInvalid;
+%notice {
   padding: 0.5em;
   border-radius: 3px;
   margin: 0 .3em;
   color: #fff;
   border: 1px solid transparent;
   cursor: default;
-
+}                                  
+.error {
+  @extend %notice;
+  background-color: $redInvalid;
   &:hover, &:focus {
     background-color: #BF5C60;
   }
 }
                                 //OPTIONS AREA -- SAMPLE DATA HEADER
 .sampleData {
+  @extend %notice;
   background-color: #66CC66;
-  padding: 0.5em;
-  border-radius: 3px;
-  margin: 0 .3em;
-  color: #fff;
-  border: 1px solid transparent;
-  cursor: default;
 }
 .closeSampleDataHeader {
   float: right;
