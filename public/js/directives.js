@@ -5,16 +5,19 @@ angular.module('app.directives', [])
 		$scope.input.checkbox = {};
 		$scope.input.checkbox.checked = 0;
 
-		$scope.addIfSleep = function (energyLevel, note, category) {
+		$scope.addIfSleep = function (energyLevel, note, category, opacity, size) {
 			var eventData = {
 				energylevel : energyLevel,
 				note			: note,
 				category 	: category,	
-				opacity		: $scope.input.opacity,
-				size			: $scope.input.size,
-				date        : new Date(new Date().getTime() - ($scope.input.size * 3600000))
+				opacity		: opacity,
+				size			: size,
+				date        : new Date(new Date().getTime() - (size * 3600000))
 			};
 			$scope.pushDataIntoServices(eventData);
+			console.log("this is $scope.addIfSleep")
+			console.log(eventData);
+
 		};
 
 		$scope.pushDataIntoServices = function(eventData) {
@@ -52,15 +55,22 @@ angular.module('app.directives', [])
 				opacity		: $scope.input.opacity,
 				size			: $scope.input.size
 			};
+			console.log("this is scope.createEventDataObj")
+			console.log(eventData);
 			return eventData;
 		};
 
 		$scope.addEvent = function(energyLevel, note, category) {
-			if (category === 'sleep') {
-				$scope.addIfSleep(energyLevel, note, category);
-			};
+			var opacity = $scope.input.opacity;
+			var size = $scope.input.size;
 			var eventData = $scope.createEventDataObj(energyLevel, note, category);
 			$scope.pushDataIntoServices(eventData);
+			if (category === 'sleep') {
+				// make a copy of input and size, and pass it
+				// var opacity = $scope.input.opacity;
+				// var size = $scope.input.size;
+				$scope.addIfSleep(energyLevel, note, category, opacity, size);
+			};
 		};
 
 		$scope.$watch('input.checkbox', function() {

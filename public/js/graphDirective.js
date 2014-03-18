@@ -167,7 +167,7 @@ angular.module('app.graphDirective', [])
 						
 				// PATH
 
-				 path = svg.append("g")
+				path = svg.append("g")
 					.attr("class", "linepath")
 					.append("path");
 
@@ -182,17 +182,17 @@ angular.module('app.graphDirective', [])
 					.on("mouseout", function(d) {
 						d3.select(this)
 							.attr("class", "line")
-					})
+					});
 
 				// TOOLTIP	
 
-				 div = d3.select("body").append("div")
+				div = d3.select("body").append("div")
 					.attr("class", "tooltip")
 					.style("opacity", 0);
 
 				// COLORSCALE
 
-				 colorScale = d3.scale.category10()
+				colorScale = d3.scale.category10()
 
 		};
 
@@ -251,13 +251,13 @@ angular.module('app.graphDirective', [])
 					var xAxis = d3.svg.axis()
 						.scale(x)
 						.orient("bottom")
-						.ticks(10)
+						.ticks(10);
 
 						 // y axis
 					var yAxis = d3.svg.axis()
 						.scale(y)
 						.orient("left")
-						.ticks(5)
+						.ticks(5);
 
 					// REDEFINING LINE
 					var line = d3.svg.line()
@@ -266,23 +266,23 @@ angular.module('app.graphDirective', [])
 						})
 						.y(function (d) {
 							return y(d.energylevel) 
-						})
+						});
 
 					// AXES TRANSITION
 
 						// x axis + calling
 					svg.select(".x.axis").transition()
 						.duration(500)
-						.call(xAxis)
+						.call(xAxis);
 
 					svg.selectAll(".x.axis").selectAll("text")
-						.attr("transform", "rotate(-45)translate(-20, 0)")	
+						.attr("transform", "rotate(-45)translate(-20, 0)");
 
 
 						// y axis + calling			
 					svg.select(".y.axis").transition()
 						.duration(500)
-						.call(yAxis)
+						.call(yAxis);
 
 					//PATH TRANSITION
 					
@@ -292,7 +292,7 @@ angular.module('app.graphDirective', [])
 							.duration(750)
 							.ease("linear")
 						 .attr("d", line)
-						 .attr("transform", null)			
+						 .attr("transform", null);			
 
 					// CIRCLE
 
@@ -301,7 +301,7 @@ angular.module('app.graphDirective', [])
 															// CANNOT USE G GROUP FOR CIRCLES otherwise stuff breaks.
 															// ************
 						// define circles
-					var circles = svg.selectAll(".circles").data(graphData)
+					var circles = svg.selectAll(".circles").data(graphData);
 
 						// enter circle + tooltips
 					circles.enter().append("svg:circle")
@@ -316,10 +316,17 @@ angular.module('app.graphDirective', [])
 							return y(d.energylevel)
 						})
 						.attr("r", function(d) {
-							if (d.category !== 'exercise') {
-								return sizeScale(d.size);
-							} else {
+							// if (d.category !== 'exercise') {
+							// 	return sizeScale(d.size);
+							// } else {
+							// 	return exerciseScale(d.size);
+							// }
+							if (d.category == 'exercise') {
 								return exerciseScale(d.size);
+							} else if (d.category == 'sleep') {
+								return sleepScale(d.size);
+							} else {
+								return sizeScale(d.size);
 							}
 						})
 						.attr("fill", function(d,i) {
@@ -327,7 +334,7 @@ angular.module('app.graphDirective', [])
 						})
 						.attr("opacity", function(d) {
 							return opacityScale(d.opacity)
-						})
+						});
 
 					var formatHoverDate = d3.time.format("%a %b %e %I:%M:%S %p");
 

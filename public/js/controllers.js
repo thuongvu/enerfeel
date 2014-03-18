@@ -52,5 +52,7 @@ angular.module('app.controllers', [])
 		$timeout(function() {
 			$scope.hideSampleDataHeader = true;
 		}, 30000);
+
+		console.log("loaded")
 		
 	}]);
