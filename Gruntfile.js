@@ -33,7 +33,13 @@ module.exports = function(grunt) {
       },
       build: {
         src: [
-            'public/js/*.js', 
+            // 'public/js/*.js', 
+            'public/js/app.js',
+            'public/build/templates.js',
+            'public/js/controllers.js',
+            'public/js/directives.js',
+            'public/js/graphDirective.js',
+            'public/js/services.js',
             // 'public/build/templates.js',
             'public/bower_components/angular-ui-slider/src/slider.js', 
             'public/bower_components/dropdown.js'
@@ -67,7 +73,8 @@ module.exports = function(grunt) {
         'public/directiveTemplates/larger_components*.html',
         'public/partials/*',
         'views/*',
-        'views/partials/*'
+        'views/partials/*',
+        'Gruntfile.js'
       ],
       tasks: ['default']
     },
@@ -93,7 +100,7 @@ module.exports = function(grunt) {
     ngtemplates:  {
       app:        {
         options: {
-          module: 'app.templateees',
+          // module: 'templateees',
           // prefix: '/hello/'
         },
         cwd:      'public',
