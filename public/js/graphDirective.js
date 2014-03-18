@@ -13,13 +13,14 @@ angular.module('app.graphDirective', [])
 				var graphData = scope.data;
 				var category = scope.category;
 
+			// scale graph based on $window dimensions
 				var width, height, padding;
 
-				 var paddingScale = d3.scale.linear()
+				var paddingScale = d3.scale.linear()
 					.domain([320, 2000])
 					.range([30, 80]);
 
-				 var widthScale = d3.scale.linear()
+				var widthScale = d3.scale.linear()
 					.domain([320, 3000])
 					.range([300, 1920]);
 
@@ -57,43 +58,43 @@ angular.module('app.graphDirective', [])
 					};
 				};
 
+			// define svg and add it to the DOM
 				var svg = d3.select(iElement[0])
 					.append("svg")
 					.attr("width", width)
 					.attr("height", height)
 					.attr("class", "chart")
 
-
 		var x, y, opacityScale, exerciseScale, sleepScale, xAxis, yAxis, line, path, div, colorScale;
 		function createGraph() {
 				// SCALES
 
 					// x scale
-				 x = d3.time.scale()
+				x = d3.time.scale()
 					.domain(d3.extent(graphData, function (d) {
 						return d.date;
 					}))
 					.range([padding, width - padding]);
 
 					// y scale
-				 y = d3.scale.linear()
+				y = d3.scale.linear()
 					.domain([0, d3.max(graphData, function (d) {
 						return d.energylevel;
 					})])
 					.range([height - padding - 10, padding - 10]);
 
 					// opacity scale
-				 opacityScale = d3.scale.linear()
+				opacityScale = d3.scale.linear()
 					.domain([0,5])
 					.range([.1,.9]);
 
 					// size scale
-				 sizeScale = d3.scale.linear()
+				sizeScale = d3.scale.linear()
 					.domain([0,5])
 					.range([6,13]);
 
 					// size scale for exercise!
-				 exerciseScale = d3.scale.linear()
+				exerciseScale = d3.scale.linear()
 					.domain([0, d3.max(graphData, function (d) {
 						if (d.category === 'exercise') {
 							return d.size;
@@ -101,8 +102,8 @@ angular.module('app.graphDirective', [])
 					})])
 					.range([6,13]);
 
-					// sleep scale for exercise!
-				 sleepScale = d3.scale.linear()
+					// sleep scale for sleep!
+				sleepScale = d3.scale.linear()
 					.domain([0, d3.max(graphData, function (d) {
 						if (d.category === 'sleep') {
 							return d.size;
@@ -113,16 +114,16 @@ angular.module('app.graphDirective', [])
 				// INITIALIZING AXES
 
 					// x axis
-				 xAxis = d3.svg.axis()
+				xAxis = d3.svg.axis()
 					.scale(x)
 				   .orient("bottom")
-					.ticks(10)
+					.ticks(10);
 
 					// y axis
-				 yAxis = d3.svg.axis()
+				yAxis = d3.svg.axis()
 					.scale(y)
 				   .orient("left")
-					.ticks(10)
+					.ticks(10);
 
 				// APPENDING + CALLING AXES
 
@@ -130,15 +131,10 @@ angular.module('app.graphDirective', [])
 				svg.append("g")
 					.attr("class", "x axis")
 					.attr("transform", "translate(0," + (height - padding - 10) + ")")
-					.call(xAxis)
-				 // .append("text") 
-					// 	.text("Date")
-					// 	.attr("x", width / 2)
-					// 	.attr("y", 50)
-					// 	.attr("transform", "translate(" + x + "," + y + ")" + "rotate(-90)")
+					.call(xAxis);
 
 				svg.selectAll(".x.axis").selectAll("text")
-					.attr("transform", "rotate(-45)translate(-20, 0)")
+					.attr("transform", "rotate(-45)translate(-20, 0)");
 
 					// y axis
 				svg.append("g")
@@ -149,7 +145,6 @@ angular.module('app.graphDirective', [])
 				 	.text("Energy Level")
 				 	.attr("x", width / 2)
 				 	.attr("y", height / 2)
-				 	// .attr("transform", "rotate(-90 "+ (width / 3.69) + "," + (width / 1.7) + ")")
 				 	.attr("transform", function() {
 				 		if (width > 500) {
 				 			return "rotate(-90 "+ (width / 3.69) + "," + (width / 1.7) + ")"
@@ -158,19 +153,17 @@ angular.module('app.graphDirective', [])
 				 		} else {
 				 			return "rotate(-90 "+ (width / 4.2) + "," + (width / 1.7) + ")"
 				 		}
-				 	})
-				 	console.log(width);
-				 	// .attr("transform", "rotate(-90 "+ (width / 3.49) +"," + (width / 1.66) + ")")
-				 	// .attr("transform", "rotate(-90 172,380)")
+				 	});
+
 				// LINE
 
-				 line = d3.svg.line()
+				line = d3.svg.line()
 					.x(function (d) {
 						return x(d.date);
 					})
 					.y(function (d) {
 						return y(d.energylevel) 
-					})
+					});
 						
 				// PATH
 
@@ -179,7 +172,6 @@ angular.module('app.graphDirective', [])
 					.append("path");
 
 				path
-					// .attr("class", "linepath")
 					.datum(graphData)
 					.attr("d", line)
 					.attr("class", "line")
@@ -215,8 +207,6 @@ angular.module('app.graphDirective', [])
 				function updateGraph() {
 					var graphData = scope.data;
 					var category = scope.category;
-					// console.log(graphData);
-					// console.log(category);
 
 					// REDEFINING SCALES
 
@@ -306,11 +296,10 @@ angular.module('app.graphDirective', [])
 
 					// CIRCLE
 
-			// ************
-			// SPECIAL NOTE:
-			// CANNOT USE G GROUP FOR CIRCLES otherwise stuff breaks.
-			// ************
-
+															// ************
+															// SPECIAL NOTE:
+															// CANNOT USE G GROUP FOR CIRCLES otherwise stuff breaks.
+															// ************
 						// define circles
 					var circles = svg.selectAll(".circles").data(graphData)
 
@@ -339,10 +328,8 @@ angular.module('app.graphDirective', [])
 						.attr("opacity", function(d) {
 							return opacityScale(d.opacity)
 						})
-						// .style("cursor", "pointer");
 
 					var formatHoverDate = d3.time.format("%a %b %e %I:%M:%S %p");
-					// var showToolTipOnClick = false;
 
 					circles
 						.on("mouseover", function(d) {
@@ -365,7 +352,11 @@ angular.module('app.graphDirective', [])
 							div.transition()
 								.duration(250)
 								.style("opacity", 0);
+						})
+						.on("click", function(d) {
+							scope.select = d;
 						});
+
 
 						// update circle (locations)
 					circles
@@ -395,7 +386,6 @@ angular.module('app.graphDirective', [])
 						})
 						.style("cursor", "pointer");
 
-						// circle exit (not needed now, but maybe in the future)
 					circles.exit().remove();
 
 
