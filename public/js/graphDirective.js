@@ -192,13 +192,6 @@ angular.module('app.graphDirective', [])
 							.attr("class", "line")
 					})
 
-
-				// PATH 2 TEST
-
-				 path2 = svg.append("g")
-					.attr("class", "line-category")
-					.append("path");
-
 				// TOOLTIP	
 
 				 div = d3.select("body").append("div")
@@ -309,45 +302,7 @@ angular.module('app.graphDirective', [])
 							.duration(750)
 							.ease("linear")
 						 .attr("d", line)
-						 .attr("transform", null)
-			
-
-					// PATH2 TRANSITON
-					if (category != 'null') {
-							if (path2 == null) {
-								path2 = svg.append("g")
-									.attr("class", "linepath") //path needs to be a global var
-									.append("path");
-							}
-							
-						var nestedData = d3.nest()
-							.key(function(d) {
-								return d.category;
-							})
-							.entries(graphData);
-
-						for (var i = 0; i < nestedData.length; i++) {
-							if (nestedData[i].key === category) {
-								var categoryData = nestedData[i];
-								break;
-							} 
-						}
-
-						path2
-							.datum(categoryData.values)
-							 .transition()
-							 	// .delay(250)
-								.duration(750)
-								.ease("linear")
-							.attr("d", line)
-							.attr("class", "line-category")
-							.attr("transform", null)
-					} 
-					else if (category === 'null'){
-						svg.selectAll(".line-category").data([]).exit().remove()
-						path2 = null;
-					}
-					
+						 .attr("transform", null)			
 
 					// CIRCLE
 
