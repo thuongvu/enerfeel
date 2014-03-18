@@ -42,6 +42,7 @@
     "grunt-concat-sourcemap": "~0.4.1",
     "grunt-contrib-cssmin": "~0.9.0",
     "grunt-karma": "~0.8.2",
-    "grunt-angular-templates": "~0.5.3"
+    "grunt-angular-templates": "~0.5.3",
+    "grunt-contrib-htmlmin": "~0.2.0"
   }
 }
