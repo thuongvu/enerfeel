@@ -34,7 +34,7 @@ angular.module('app.graphDirective', [])
 					} else if ($window.innerWidth <= 992) {
 						width = Math.round($window.innerWidth / 1.05);
 						height = Math.round($window.innerWidth / 1.9);
-					}
+					};
 					padding = paddingScale($window.innerWidth);
 
 				};
@@ -63,7 +63,7 @@ angular.module('app.graphDirective', [])
 					.append("svg")
 					.attr("width", width)
 					.attr("height", height)
-					.attr("class", "chart")
+					.attr("class", "chart");
 
 		var x, y, opacityScale, exerciseScale, sleepScale, xAxis, yAxis, line, path, div, colorScale;
 		function createGraph() {
@@ -98,7 +98,7 @@ angular.module('app.graphDirective', [])
 					.domain([0, d3.max(graphData, function (d) {
 						if (d.category === 'exercise') {
 							return d.size;
-						}
+						};
 					})])
 					.range([6,13]);
 
@@ -107,7 +107,7 @@ angular.module('app.graphDirective', [])
 					.domain([0, d3.max(graphData, function (d) {
 						if (d.category === 'sleep') {
 							return d.size;
-						}
+						};
 					})])
 					.range([6,13]);
 
@@ -152,7 +152,7 @@ angular.module('app.graphDirective', [])
 				 			return "rotate(-90 "+ (width / 3.9) + "," + (width / 1.7) + ")"
 				 		} else {
 				 			return "rotate(-90 "+ (width / 4.2) + "," + (width / 1.7) + ")"
-				 		}
+				 		};
 				 	});
 
 				// LINE
@@ -160,7 +160,7 @@ angular.module('app.graphDirective', [])
 				line = d3.svg.line()
 					.x(function (d) {
 						return x(d.date);
-					})
+					});
 					.y(function (d) {
 						return y(d.energylevel) 
 					});
@@ -192,7 +192,7 @@ angular.module('app.graphDirective', [])
 
 				// COLORSCALE
 
-				colorScale = d3.scale.category10()
+				colorScale = d3.scale.category10();
 
 		};
 
@@ -233,7 +233,7 @@ angular.module('app.graphDirective', [])
 					 	.domain([0, d3.max(graphData, function (d) {
 					 		if (d.category === 'exercise') {
 					 			return d.size;
-					 		}
+					 		};
 					 	})])
 					 	.range([6,13]);
 
@@ -241,7 +241,7 @@ angular.module('app.graphDirective', [])
 					 	.domain([0, d3.max(graphData, function (d) {
 					 		if (d.category === 'sleep') {
 					 			return d.size;
-					 		}
+					 		};
 					 	})])
 					 	.range([6,13]);
 
@@ -277,7 +277,6 @@ angular.module('app.graphDirective', [])
 
 					svg.selectAll(".x.axis").selectAll("text")
 						.attr("transform", "rotate(-45)translate(-20, 0)");
-
 
 						// y axis + calling			
 					svg.select(".y.axis").transition()
@@ -316,11 +315,6 @@ angular.module('app.graphDirective', [])
 							return y(d.energylevel)
 						})
 						.attr("r", function(d) {
-							// if (d.category !== 'exercise') {
-							// 	return sizeScale(d.size);
-							// } else {
-							// 	return exerciseScale(d.size);
-							// }
 							if (d.category == 'exercise') {
 								return exerciseScale(d.size);
 							} else if (d.category == 'sleep') {
