@@ -9,6 +9,11 @@ start
 stop
 npm-debug.log
 resRedirect.js
-build
 .sass-cache
 fonts
+angular-cookies.min.js.map
+angular-resource.min.js.map
+angular-route.min.js.map
+angular-touch.min.js.map
+angular.min.js.map
+images
