@@ -16,15 +16,7 @@ describe('Services:', function() {
 			expect(EventService).not.toBeNull();
 		});
 
-		it('should allow the user to log out', function() {
-			$httpBackend.when('GET', '/logout').respond(200);
-			function successFunc() {
-				$httpBackend.flush();
-			};
-			EventService.logout(successFunc);
-		});
-
-		it("should make a addLifeEvent POST and invoke a callback", function() {
+		it("should make addLifeEvent POST and invoke a callback", function() {
 			$httpBackend.when('POST', '/post/event', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3})
 				.respond(200);
 
@@ -43,17 +35,67 @@ describe('Services:', function() {
 
 		});
 
-		// it("should have deleteData DELETE data", function() {
-		// 	$httpBackend.expectDELETE('/delete').respond(200, {data: 'successful delete request'});
-		// 	EventService.deleteLifeEvent({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
-		// 	$httpBackend.flush();
-		// })
+		it("should make deleteData DELETE and invoke callback", function() {
+			$httpBackend.when('DELETE' ,'/delete/event').respond(200, {data: 'successful delete request'});
 
-		// it("should have updateLifeEvent PUT data", function() {
-		// 	$httpBackend.expectPUT('/put').respond(200, {data: 'successful PUT request'});
-		// 	EventService.updateLifeEvent({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
-		// 	$httpBackend.flush();
-		// })
+			var invoked = false;
+			var success = function() {
+				invoked = true;
+			};
+			function err() {};
+			
+			var eventData = {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3};
+			
+			EventService.deleteLifeEvent(eventData, success, err);
+			$httpBackend.flush();
+			expect(invoked).toBeTruthy();
+		});
+
+		it("should make updateLifeEvent PUT and invoke callback", function() {
+			$httpBackend.when('PUT', '/put/event').respond(200, {data: 'successful PUT request'});
+			var invoked = false;
+			var success = function() {
+				invoked = true;
+			};
+			function err() {};
+			
+			var eventData = {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3};
+			EventService.updateLifeEvent(eventData, success, err);
+			$httpBackend.flush();
+			expect(invoked).toBeTruthy();
+		});
+
+		it('should make logout GET and invoke callback', function() {
+			$httpBackend.when('GET', '/logout').respond(200, {data: 'successful GET request'});
+
+			var invoked = false;
+			var success = function() {
+				invoked = true;
+			};
+			function err() {};
+
+			EventService.logout(success);
+			$httpBackend.flush();
+			expect(invoked).toBeTruthy();
+		});
+
+		it('should make getData GET and invoke callback', function() {
+			$httpBackend.when('GET', '/get/events').respond(200, {lifeEvents: [ { energylevel: 1, note: '3sfdsdfsd', date: '2014-01-04T05:12:00.716Z', category: 'meal',  opacity: 1, size: 3 }]});
+			// i'd like this to console.log data
+			var invoked = false;
+			var success = function(data) {
+				invoked = true;
+				console.log(data);
+			};
+			function err() {};
+
+			EventService.getData(success);
+			$httpBackend.flush();
+			expect(invoked).toBeTruthy();
+		});
+
+
+
 	});
 	
 })
