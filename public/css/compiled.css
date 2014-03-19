@@ -547,7 +547,7 @@ button.marginRight-pointSevenFive {
 }
 
 .addNote {
-  margin: 0 0 0.5em 0;
+  margin: 0 0.5em 0 0;
 }
 
 @media (max-width: 532px) {
