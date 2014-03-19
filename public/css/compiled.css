@@ -550,6 +550,21 @@ button.marginRight-pointSevenFive {
   margin: 0 0.5em 0 0;
 }
 
+.addNotice {
+  display: inline-block;
+  width: 200px;
+  height: 20px;
+  position: relative;
+}
+
+.addNotice .red {
+  color: #fa787e;
+}
+
+.addNotice .green {
+  color: #44BA55;
+}
+
 @media (max-width: 532px) {
   .sliderWidth {
     margin: 0.5em 0 0.5em 1em;
