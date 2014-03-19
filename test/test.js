@@ -212,28 +212,86 @@ describe("Unit: filterController", function() {
 		module("app");
 	})	
 	
-	var ctrl, scope;
+	var ctrl, scope, FilterService;
 
-	beforeEach(inject(function($controller, $rootScope) {
+	beforeEach(inject(function($controller, $rootScope, $injector) {
 		scope = $rootScope.$new();
+
+		EventService = $injector.get('EventService');
+		FilterService = $injector.get('FilterService');
+		MockData = $injector.get('MockData');
 
 		ctrl = $controller('filterController', {
 			$scope: scope
 		});
-	}))
 
-	it("should change category to 'hello'", function() {
-		expect(scope.category.setTo).toEqual('null')
-		scope.filterCategory('hello');
-		expect(scope.category.setTo).toEqual("hello");
-	})
+		EventService.allLifeEvents = MockData;
+	}))
 
 	it("should have a defined firstDate", function() {
 		expect(scope.calendar.firstDate).toBeDefined()
-	})
+	});
 
 	it("should have a defined secondDate", function() {
 		expect(scope.calendar.secondDate).toBeDefined()
+	});
+
+	it("should change category to 'work' and change number of items in currentFilterObj.lifeEvents", function() {
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(0);
+		scope.filterCategory('work');
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(5);
+	});
+
+	it("filterTime should filter objects by time in currentFilterObj.lifeEvents", function() {
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(0);
+
+		scope.filterTime('week');
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(9);
+
+		scope.filterTime('day');
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(0);
+
+		scope.filterTime('month');
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(15);
+
+	});
+
+	it("should have filterHour filter objects by hour", function() {
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(0);
+		var now = new Date();
+		scope.filterHour(new Date(now.getTime() - 1202400000 + Math.floor(Math.random() * 1800000)));
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(3);
+	});
+
+	it("should have filterDate filter objects by hour", function() {
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(0);
+		var now = new Date();
+		scope.filterDate(new Date(now.getTime() - 1202400000 + Math.floor(Math.random() * 1800000)));
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(5);
+	});
+
+	it("should have filterEnergy filter objects by Energy level", function() {
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(0);
+		scope.filterEnergy(3);
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(5);
+		scope.filterEnergy(4);
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(2);
+	});
+
+	it("should have filterOpacity filter objects by Energy level", function() {
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(0);
+		scope.filterEnergy(3);
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(5);
+		scope.filterEnergy(4);
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(2);
+	});
+
+	it("should filter by category, hour, energy, opacity, size", function() {
+		scope.filterBy('category', 'meal');
+
+		scope.filterBy('energy', 3);
+
+		
 	})
 
 });
