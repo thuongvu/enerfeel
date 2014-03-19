@@ -19,24 +19,28 @@ describe('Services:', function() {
 		it('should allow the user to log out', function() {
 			$httpBackend.when('GET', '/logout').respond(200);
 			function successFunc() {
-				console.log("logged out");
-			}
+				$httpBackend.flush();
+			};
 			EventService.logout(successFunc);
 		});
 
-		it("should have addLifeEvent POST data", function() {
+		it("should make a addLifeEvent POST and invoke a callback", function() {
 			$httpBackend.when('POST', '/post/event', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3})
-				.respond(200, {data: "successful post request"});
+				.respond(200);
 
-			function suc() {
-				$httpBackend.flush(); // this will be successful if the flush works.  if unable to login, the flush will cause an error
+			var invoked = false;
+			var success = function() {
+				invoked = true;
 			};
-			function err() {
-			};
+			function err() {};
 			
 			var eventData = {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3};
 			
-			EventService.addLifeEvent(eventData, suc, err);
+			EventService.addLifeEvent(eventData, success, err);
+			
+			$httpBackend.flush(); 
+			expect(invoked).toBeTruthy();
+
 		});
 
 		// it("should have deleteData DELETE data", function() {
