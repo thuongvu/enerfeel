@@ -16,23 +16,42 @@ describe('Services:', function() {
 			// console.log(EventService);
 		});
 
-		it("should make a POST request to the backend", function() {
-			// took out date because test fails if i include it, date obj ==!
-			$httpBackend.expect('POST', '/post', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3}).respond(200, {data: "successful post request"});
-			EventService.postData({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
-			$httpBackend.flush();
-		});
+		// it("should make a POST request to the backend", function() {
+		// 	// took out date because test fails if i include it, date obj ==!
+		// 	$httpBackend.expect('POST', '/post/event', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3}).respond(200, {data: "successful post request"});
+		// 	EventService.post({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
+		// 	$httpBackend.flush();
+		// });
 
-		it("should make a GET request to the backend", function() {
-			$httpBackend.expect('GET', '/get').respond(200, {data: {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3, date: new Date()}});
-			EventService.getData(function(data) {console.log(data)});
-			$httpBackend.flush();
-		});
+		// it("should make a GET request to the backend", function() {
+		// 	$httpBackend.expect('GET', '/get/events').respond(200, {data: {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3, date: new Date()}});
+		// 	EventService.getUserData(function(data) {console.log(data)});
+		// 	$httpBackend.flush();
+		// });
 
 		it("should have addLifeEvent POST data", function() {
-			$httpBackend.expect('POST', '/post', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3}).respond(200, {data: "successful post request"});
-			EventService.addLifeEvent({energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3});
-			$httpBackend.flush();
+			$httpBackend.expect('POST', '/post/event', {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3}).respond(200, {data: "successful post request"});
+			var Auth = {};
+			Auth.authLevel = 1;
+			Auth.token = 'sdfdfsdf';
+			function suc(data) {
+				console.log("logged in")
+				console.log(data);
+			};
+			function err() {
+				console.log("not logged in")
+			};
+			// $httpBackend.when('POST', '/post/events')
+				// .respond(200);
+
+			var eventData = {energylevel: 3, note: 'lol', category: 'meal', opacity: 1, size: 3};
+			EventService.addLifeEvent(eventData, suc, err);
+
+			// it("should respond 200", function() {
+				// $httpBackend.flush();
+				// con
+			// });
+			
 		});
 
 		it("should have deleteData DELETE data", function() {

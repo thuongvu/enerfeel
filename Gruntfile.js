@@ -70,7 +70,8 @@ module.exports = function(grunt) {
         'public/partials/*',
         'views/*',
         'views/partials/*',
-        'Gruntfile.js'
+        'Gruntfile.js',
+        'test/test.js'
       ],
       tasks: ['default']
     },
