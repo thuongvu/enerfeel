@@ -40,8 +40,8 @@ angular.module('app.services', [])
 			        'token': Auth.token
 			    },
 			    data: eventData
-			}).success(function() {
-				successFunc();
+			}).success(function(data) {
+				successFunc(data);
 			}).error(function() {
 				errorFunc();
 			});
