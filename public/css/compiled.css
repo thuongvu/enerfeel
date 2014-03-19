@@ -546,6 +546,10 @@ button.marginRight-pointSevenFive {
   display: inline-block;
 }
 
+.addNote {
+  margin: 0 0 0.5em 0;
+}
+
 @media (max-width: 532px) {
   .sliderWidth {
     margin: 0.5em 0 0.5em 1em;

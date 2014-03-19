@@ -160,7 +160,7 @@ angular.module('app.graphDirective', [])
 				line = d3.svg.line()
 					.x(function (d) {
 						return x(d.date);
-					});
+					})
 					.y(function (d) {
 						return y(d.energylevel) 
 					});
@@ -233,7 +233,7 @@ angular.module('app.graphDirective', [])
 					 	.domain([0, d3.max(graphData, function (d) {
 					 		if (d.category === 'exercise') {
 					 			return d.size;
-					 		};
+					 		}
 					 	})])
 					 	.range([6,13]);
 
@@ -321,13 +321,13 @@ angular.module('app.graphDirective', [])
 								return sleepScale(d.size);
 							} else {
 								return sizeScale(d.size);
-							}
+							};
 						})
 						.attr("fill", function(d,i) {
 							return colorScale(d.category);
 						})
 						.attr("opacity", function(d) {
-							return opacityScale(d.opacity)
+							return opacityScale(d.opacity);
 						});
 
 					var formatHoverDate = d3.time.format("%a %b %e %I:%M:%S %p");

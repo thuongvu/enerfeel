@@ -53,6 +53,4 @@ angular.module('app.controllers', [])
 			$scope.hideSampleDataHeader = true;
 		}, 30000);
 
-		console.log("loaded")
-		
 	}]);
