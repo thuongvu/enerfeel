@@ -171,11 +171,7 @@ return {
 					    }
 					}).success(function() {
 						Auth.authLevel = 0;
-						// data = [];
-						// dataOnLoad();
-						// console.log(data);
 						$location.path('/');
-						// data = MockData;
 						successFunc();
 					}).error(function() {
 

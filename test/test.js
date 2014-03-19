@@ -81,15 +81,13 @@ describe('Services:', function() {
 
 		it('should make getData GET and invoke callback', function() {
 			$httpBackend.when('GET', '/get/events').respond(200, {lifeEvents: [ { energylevel: 1, note: '3sfdsdfsd', date: '2014-01-04T05:12:00.716Z', category: 'meal',  opacity: 1, size: 3 }]});
-			// i'd like this to console.log data
 			var invoked = false;
-			var success = function(data) {
+			var success = function() {
 				invoked = true;
-				console.log(data);
 			};
 			function err() {};
 
-			EventService.getData(success);
+			EventService.getData(success, err);
 			$httpBackend.flush();
 			expect(invoked).toBeTruthy();
 		});
@@ -196,10 +194,10 @@ describe('Directive: customTimeFilter', function() {
 		var elementPreDigest = angular.element('<div filterdir></div>');
 		var element = $compile(elementPreDigest)(scope);
 		scope.$apply();
-		expect(element.find('.ng-hide').eq(0).length).toEqual(1);
+		expect(element.find('span.ng-hide').eq(1).length).toEqual(1);
 		scope.showCustomTime = true;
 		scope.$apply();
-		expect(element.find('.ng-hide').eq(0).length).toEqual(0);
+		expect(element.find('span.ng-hide').eq(1).length).toEqual(0);
 	})
 
 });
