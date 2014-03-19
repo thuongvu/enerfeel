@@ -15,7 +15,6 @@ module.exports = function(grunt) {
         'public/bower_components/angular-cookies/angular-cookies.min.js', 
         'public/bower_components/angular-resource/angular-resource.min.js',
         'public/bower_components/angular-route/angular-route.min.js',
-        // 'public/bower_components/ngQuickDate/dist/ng-quick-date.js',
         'public/bower_components/d3module.js',
         'public/build/uglified.js'
         ],
@@ -27,20 +26,18 @@ module.exports = function(grunt) {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
         compress: {
-          // drop_console: true
+          drop_console: true
         },
         preserveComments: false
       },
       build: {
         src: [
-            // 'public/js/*.js', 
             'public/js/app.js',
             'public/build/templates.js',
             'public/js/controllers.js',
             'public/js/directives.js',
             'public/js/graphDirective.js',
             'public/js/services.js',
-            // 'public/build/templates.js',
             'public/bower_components/angular-ui-slider/src/slider.js', 
             'public/bower_components/dropdown.js',
             'public/bower_components/ngQuickDate/dist/ng-quick-date.js'
@@ -58,8 +55,6 @@ module.exports = function(grunt) {
           'public/bower_components/ngQuickDate/dist/ng-quick-date-default-theme.css',
           'public/bower_components/components-font-awesome/css/font-awesome.min.css',
           'public/bower_components/jquery-ui/themes/smoothness/jquery-ui.css',
-          // 'public/css/style.css'
-          // 'public/css/compiled.css'
         ],
         dest: 'public/build/vendors.css',
         ext:'.min.css'
@@ -90,7 +85,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          style: 'expanded' // or compressed/expanded
+          style: 'expanded' // compressed/expanded
         },
         files: {
           'public/css/compiled.css': 'public/css/preCompiled.scss'
@@ -110,7 +105,8 @@ module.exports = function(grunt) {
             removeEmptyAttributes:          true,
             removeRedundantAttributes:      true,
             removeScriptTypeAttributes:     true,
-            removeStyleLinkTypeAttributes:  true
+            removeStyleLinkTypeAttributes:  true,
+            // removeCommentsFromCDATAkey:     true 
           },
         },
         cwd:      'public',
