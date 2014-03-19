@@ -341,7 +341,6 @@ angular.module('app.directives', [])
 		emitFilterChange();
 	};
 
-
 	$scope.resetFilters = function() {
 		$scope.lifeEventsInView = FilterService.sortTime(EventService.allLifeEvents);
 		emitFilterChange();

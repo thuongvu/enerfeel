@@ -278,21 +278,42 @@ describe("Unit: filterController", function() {
 		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(2);
 	});
 
-	it("should have filterOpacity filter objects by Energy level", function() {
+	it("should have filterOpacity filter objects by opacity", function() {
 		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(0);
-		scope.filterEnergy(3);
-		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(5);
-		scope.filterEnergy(4);
-		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(2);
+		scope.filterOpacity(3);
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(3);
+		scope.filterOpacity(4);
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(3);
 	});
 
-	it("should filter by category, hour, energy, opacity, size", function() {
-		scope.filterBy('category', 'meal');
+	it("should have filterOpacity filter objects by size", function() {
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(0);
+		scope.filterSize(3);
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(1);
+		scope.filterSize(1);
+		expect(FilterService.currentFilterObj.lifeEvents.length).toBe(3);
+	});
 
-		scope.filterBy('energy', 3);
+	it("should have resetFilters to sort all life events and set that value to scope.lifeEventsInView", function() {
+		expect(scope.lifeEventsInView).toBeUndefined();
 
+		scope.resetFilters();
 		
-	})
+		var isSorted = true;
+		for (var i = 1; i < scope.lifeEventsInView.length; i++) {
+			if (scope.lifeEventsInView[i].date < scope.lifeEventsInView[i - 1].date) {
+				isSorted = false;
+			};
+		};
+		expect(scope.lifeEventsInView).toBeDefined();
+		expect(isSorted).toBeTruthy();
+	});
+
+	// // TODO 
+	// it("should filter by category, hour, energy, opacity, size", function() {
+	// 	scope.filterBy('category', 'meal');
+	// 	scope.filterBy('energy', 3);
+	// });
 
 });
 
