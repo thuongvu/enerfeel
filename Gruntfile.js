@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         'public/bower_components/jquery-ui/ui/minified/jquery-ui.min.js',
         'public/bower_components/angular/angular.min.js', 
         'public/bower_components/angular-cookies/angular-cookies.min.js', 
-        'public/bower_components/angular-resource/angular-resource.min.js',
+        // 'public/bower_components/angular-resource/angular-resource.min.js',
         'public/bower_components/angular-route/angular-route.min.js',
         'public/bower_components/d3module.js',
         'public/build/uglified.js'
@@ -40,7 +40,8 @@ module.exports = function(grunt) {
             'public/js/services.js',
             'public/bower_components/angular-ui-slider/src/slider.js', 
             'public/bower_components/dropdown.js',
-            'public/bower_components/ngQuickDate/dist/ng-quick-date.js'
+            'public/bower_components/ngQuickDate/dist/ng-quick-date.js',
+            'public/js/ga.js'
         ],
         dest: 'public/build/uglified.js'
       }
