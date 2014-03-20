@@ -721,29 +721,21 @@ describe("AddController ", function() {
 		});
 		EventService = $injector.get('EventService');
 		FilterService = $injector.get('FilterService');
-	}));
-
-	it("addEvent adds an event to the eventService", function() {
-		scope.eventService = EventService;
-		scope.filterService = FilterService;
 		// defining a bunch of things that this scope usually inherits START
 		scope.addForm = {};
 		scope.addForm.$setPristine = function () {};
-		scope.lifeEventsInView = scope.filterService.filterLifeEvents("month");
-		scope.showHideCategories = function(cat) {
-				for (category in scope.show) {
-					if (category !== cat) {
-						scope.show[category] = false;
-					} else {
-						scope.show[category] = true;
-					}
-				}
-			};
+		scope.lifeEventsInView = FilterService.filterLifeEvents("month");
+		scope.showHideCategories = function(cat) {for (category in scope.show) { if (category !== cat) { scope.show[category] = false; } else { scope.show[category] = true; }}};
 		scope.categories = {};
 		scope.categories.selected = {};
 		scope.categories.list = [];
 		scope.categories.list[0] = {label:'Choose a category', value: 'noCategoryChosen'};
 		// defining a bunch of things that this scope usually inherits END
+	}));
+
+	it("addEvent adds an event to the eventService", function() {
+		scope.eventService = EventService;
+		scope.filterService = FilterService;
 
 		scope.dateTimePicked = new Date();
 		scope.addEvent(3, 'hello', 'meal');
@@ -752,4 +744,52 @@ describe("AddController ", function() {
 	});
 
 });
+
+// describe("GraphDirective ", function() {
+// 	var ctrl, scope, EventService, FilterService, CategoryService, MockData, graph, d3, $window;
+
+// 	beforeEach(module('app'))
+// 	beforeEach(inject(function($templateCache, $controller, _$rootScope_, $injector, _$window_, $timeout, _$compile_) {
+// 		$rootScope = _$rootScope_;
+// 		scope = $rootScope.$new();
+// 		ctrl = $controller('mainCtrl', {
+// 			$scope: scope
+// 		});
+// 		$window = _$window_;
+// 		timeout = $timeout;
+// 		$compile = _$compile_;
+// 		EventService = $injector.get('EventService');
+// 		FilterService = $injector.get('FilterService');
+// 		MockData = $injector.get('MockData');
+// 		d3 = $injector.get('d3');
+// 		EventService.allLifeEvents = MockData;
+// 		scope.lifeEventsInView = EventService.allLifeEvents;
+// 		scope.category.setTo = 'null';
+// 		scope.event = {};
+// 		scope.event.selected = '';
+// 	}));
+
+// 	it("addEvent adds an event to the eventService", function() {
+// 		// console.log(scope.lifeEventsInView.length);
+// 		// console.log(scope.category.setTo);
+// 		// console.log(scope.event.selected)
+// 		var elementPreDigest = angular.element('<graph data="lifeEventsInView" category="category.setTo" select="event.selected"></graph>');
+// 		var element = $compile(elementPreDigest)($rootScope);
+// 		$rootScope.$digest();
+// 		// console.log(element);
+// 		// console.log($window.innerWidth);
+// 		// console.log(scope.allLifeEvents)
+// 	});
+
+// });
+	
+
+	// TIME CONTROLLER??
+
+	// MODIFY CONTROLLER
+		// deleteEvent
+		// updateEvent
+
+
+
 
