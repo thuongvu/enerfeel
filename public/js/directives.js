@@ -1,7 +1,7 @@
 angular.module('app.directives', [])
 	.controller('AddController', ['$scope', '$timeout', 'CategoryService', function($scope, $timeout, CategoryService) {
 		$scope.show = {};
-		// $scope.input = {}; // i don't think i need this
+		$scope.input = {}; // yes i do need this for testing the directive controller on its own
 		$scope.input.checkbox = {};
 		$scope.input.checkbox.checked = 0;
 
@@ -15,8 +15,8 @@ angular.module('app.directives', [])
 				date        : new Date(new Date().getTime() - (size * 3600000))
 			};
 			$scope.pushDataIntoServices(eventData);
-			console.log("this is $scope.addIfSleep")
-			console.log(eventData);
+			// console.log("this is $scope.addIfSleep")
+			// console.log(eventData);
 
 		};
 
@@ -55,8 +55,8 @@ angular.module('app.directives', [])
 				opacity		: $scope.input.opacity,
 				size			: $scope.input.size
 			};
-			console.log("this is scope.createEventDataObj")
-			console.log(eventData);
+			// console.log("this is scope.createEventDataObj")
+			// console.log(eventData);
 			return eventData;
 		};
 

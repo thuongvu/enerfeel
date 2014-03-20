@@ -397,7 +397,7 @@ return {
 				if (EventService.categories.list) {
 					categoriesObj.list = EventService.categories.list;
 				};
-				console.log(categoriesObj.list);
+				// console.log(categoriesObj.list);
 			},100);
 		}, true);
 		

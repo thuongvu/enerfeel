@@ -364,11 +364,16 @@ describe('Services:', function() {
 
 			 expect((FilterService.customFilterLifeEvents(date1, date2).length)).toEqual(4);
 		});
+
+	});
 	
 	describe('CategoryService', function() {
-		var CategoryService;
-		beforeEach(inject(function($injector) {
-			CategoryService = $injector.get('CategoryService')
+		var CategoryService, EventService, $httpBackend, $rootScope;
+		beforeEach(inject(function($injector, _$httpBackend_, _$rootScope_) {
+			$httpBackend = _$httpBackend_;
+			$rootScope = _$rootScope_;
+			CategoryService = $injector.get('CategoryService');
+			EventService = $injector.get('EventService');
 		}));
 
 		it('should not be null', function() {
@@ -379,16 +384,35 @@ describe('Services:', function() {
 			expect(CategoryService.categoriesObj.list[0].label).toMatch('Choose a category');
 		});
 
-		it('addCategory should add an item to the categoriesObj.list', function() {
-			expect(CategoryService.categoriesObj.list[5]).toBeUndefined();
+		it('addCategory should add an item to the categoriesObj.list when NOT logged in', function() {
+			expect(CategoryService.categoriesObj.list[6]).toBeUndefined();
 			var obj = {label: 'blue', size: 'intensity', opacity:'hue'};
-			CategoryService.addCategory(obj);
-			expect(CategoryService.categoriesObj.list[5]).toMatch({label: 'blue', size: 'intensity', opacity:'hue'});
+			function success() {};
+			function err() {};
+			CategoryService.addCategory(obj, success, err);
+			expect(CategoryService.categoriesObj.list[6]).toMatch({label: 'blue', size: 'intensity', opacity:'hue'});
 		});
+
+		// it('addCategory should add an item to the categoriesObj.list when LOGGED IN', function() {
+		// 	EventService.Auth.authLevel = 1;
+		// 	$httpBackend.when('POST', '/post/category', {label: 'sleepsss', value: 'sleepsss', size: 'Number of hourssss', opacity: 'Sleep qualitysss', show: 'show.sleepsss', sizeCeiling: 5, opacityCeling: 5})
+		// 		.respond(200);
+		// 	var obj = {label: 'sleepsss', size: 'Number of hourssss', opacity: 'Sleep qualitysss'} ;
+		// 	function success() {
+				
+		// 	};
+		// 	function err() {};
+		// 	CategoryService.addCategory(obj, success, err);
+		// 	// expect(CategoryService.categoriesObj.list[6]).toMatch({label: 'blue', size: 'intensity', opacity:'hue'});
+		// 	// $httpBackend.flush(); 
+		// });
+
 
 		it('deleteCategory should delete specified item from categoriesObj.list', function() {
 			expect(CategoryService.categoriesObj.list[1].label).toContain('meal');
-			CategoryService.deleteCategory('meal');
+			function success() {};
+			function err() {};
+			CategoryService.deleteCategory({label: 'meal'}, success, err);
 			expect(CategoryService.categoriesObj.list[1].label).not.toMatch('meal');
 		});
 
@@ -575,12 +599,13 @@ describe('Directive: moreCategoryInputs', function() {
 describe('Directive: addCategory', function() {
 	beforeEach(module("app"));
 	
-	var element, scope, template, CategoryService, ctrl;
+	var element, scope, template, CategoryService, ctrl, EventService;
 
 	beforeEach(module('templates'));
 
-	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector, $controller) {
-		CategoryService = $injector.get('CategoryService')
+	beforeEach(inject(function($templateCache, _$compile_, _$rootScope_, $injector, $controller, EventService) {
+		CategoryService = $injector.get('CategoryService');
+		EventService = $injector.get('EventService');
 		template = $templateCache.get('public/directiveTemplates/addCategoryTemplate.html');
 		$templateCache.put('directiveTemplates/addCategoryTemplate.html', template);
 		
@@ -604,7 +629,7 @@ describe('Directive: addCategory', function() {
 		scope.categories.newCategory = {label: 'blue', size: 'intensity', opacity:'hue'};
 		scope.categories.add(scope.categories.newCategory);
 		expect(scope.categories.list.length).toEqual(6);
-		expect(scope.categories.list[5]).toEqual({label: 'blue', value: 'blue', size:'intensity', opacity:'hue', show: 'show.blue'});
+		expect(scope.categories.list[5]).toEqual({label : 'blue', value : 'blue', size : 'intensity', opacity : 'hue', show : 'show.blue', sizeCeiling : 5, opacityCeiling : 5});
 		expect(scope.categories.newCategory).toEqual({});
 	});
 
@@ -666,14 +691,14 @@ describe('Directive: Add', function() {
 		});
 	}));
 
-	it(" has Add Event button that !showAdd, renders a div w/ class 'showAdd'", function() {
+	it(" has Add Event button that !showAdd, renders a div w/ class 'showAdd' - renders correctly", function() {
 		var elementPreDigest = angular.element('<div add></div>');
 		var element = $compile(elementPreDigest)(scope);
 		scope.$digest();
-		expect(element.find('.ng-hide.showAdd').eq(0).length).toEqual(1);
+		expect(element.find('div.ng-hide form').eq(0).length).toEqual(1);
 		scope.showAdd = true;
 		scope.$digest();
-		expect(element.find('.ng-hide.showAdd').eq(0).length).toEqual(0);
+		expect(element.find('div.ng-hide form').eq(0).length).toEqual(0);
 	});
 
 	// it("can use createEventDataObj", function() {
@@ -701,6 +726,9 @@ describe("AddController ", function() {
 	it("addEvent adds an event to the eventService", function() {
 		scope.eventService = EventService;
 		scope.filterService = FilterService;
+		// defining a bunch of things that this scope usually inherits START
+		scope.addForm = {};
+		scope.addForm.$setPristine = function () {};
 		scope.lifeEventsInView = scope.filterService.filterLifeEvents("month");
 		scope.showHideCategories = function(cat) {
 				for (category in scope.show) {
@@ -715,11 +743,12 @@ describe("AddController ", function() {
 		scope.categories.selected = {};
 		scope.categories.list = [];
 		scope.categories.list[0] = {label:'Choose a category', value: 'noCategoryChosen'};
+		// defining a bunch of things that this scope usually inherits END
 
 		scope.dateTimePicked = new Date();
 		scope.addEvent(3, 'hello', 'meal');
 		expect(scope.eventService.allLifeEvents[scope.eventService.allLifeEvents.length - 1])
-		.toMatch({energylevel: 3, note: 'hello', date: scope.dateTimePicked, category: 'meal', opacity: 3, size: 3})
+		.toMatch({energylevel: 3, note: 'hello', date: scope.dateTimePicked});
 	});
 
 });
