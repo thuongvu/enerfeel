@@ -211,21 +211,14 @@ return {
 				}
 			}
 			return arr;
-		}
+		};
 
 		function sortTime(arr) {
 				arr.sort(function(a,b) {
 					return a.date - b.date	
 				})
 			return arr;
-		} 
-
-		function sort(arr) {
-				arr.sort(function(a,b) {
-					return a.date - b.date	
-				})
-			return arr;
-		} 
+		}; 
 
 		function filterCustomDuration(first, second, arr) {
 			for (prop in EventService.allLifeEvents) {
@@ -331,12 +324,6 @@ return {
 				currentFilterObj.lifeEvents = sortTime(results); 
 				return currentFilterObj.lifeEvents;
 			},
-			filterActivity: function(category) {
-				currentFilterObj.lifeEvents = []; 
-				var results = filterByCategoryName(category, currentFilterObj.lifeEvents); 
-				currentFilterObj.lifeEvents = sortTime(results);
-				return currentFilterObj.lifeEvents;
-			},
 			filterHour: function(date) {
 				var hour = date.getHours();
 				currentFilterObj.lifeEvents = []; 
@@ -350,6 +337,12 @@ return {
 				var year = date.getFullYear();
 				currentFilterObj.lifeEvents = []; 
 				var results = filterByDate(day, month, year, currentFilterObj.lifeEvents); 
+				currentFilterObj.lifeEvents = sortTime(results);
+				return currentFilterObj.lifeEvents;
+			},
+			filterActivity: function(category) {
+				currentFilterObj.lifeEvents = []; 
+				var results = filterByCategoryName(category, currentFilterObj.lifeEvents); 
 				currentFilterObj.lifeEvents = sortTime(results);
 				return currentFilterObj.lifeEvents;
 			},
